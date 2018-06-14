@@ -103,6 +103,7 @@ public class formularioListarXml extends javax.swing.JPanel {
             String ruta = files[i].getAbsolutePath();
             long tamano = files[i].length();
             AgregarDatosTabla(nombre, ruta, tamano);
+            
         }
         control.controlLectorFacturas(files);
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -2,6 +2,7 @@ package gafe.control;
 
 import gafe.modelo.Factura;
 import gafe.modelo.LectorFacturasXML;
+import gafe.modelo.Proyecto;
 import gafe.vista.formularioCrearProyecto;
 import gafe.vista.formularioListarXml;
 import gafe.vista.formularioPrincipal;
@@ -17,7 +18,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 public class Control {
-    
+        
     public Control() {
         formularioPrincipal = new formularioPrincipal(this);
         formularioListarXml = new formularioListarXml(this); 
@@ -39,10 +40,12 @@ public class Control {
         listadoFacturas = claseLectorFacturas.listarFacturas(files);
         
         
-        /*Prueba crera XML Factura*/
+        /*Prueba crera XML Factura y agregar las facturas en la lista Facturas de la clase Proyecto*/
+        
         for (int i = 0; i < listadoFacturas.size(); i++) {
             Factura factura= listadoFacturas.get(i);
             crearXml(factura);
+            //proyecto.agregarXMLProyecto(factura); // Agregar las facturas al proyecto;
         }
         
         
@@ -54,6 +57,7 @@ public class Control {
         formCrearProyecto.setSize(587, 402);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        System.out.println("Entreeeeeessssss yes s s s s");
     } 
     
    /*------------------CREAR XML -----------------*/
@@ -82,22 +86,19 @@ public class Control {
         
     }}
     
-    
-    //PRUEBA GITTTTT
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
+    public void crearObjetoProyecto(String nombre, String cedula, String descripcion) {
+        Proyecto proyecto = new Proyecto(nombre, cedula, descripcion);
+        listadoProyectos(proyecto);
+    }
 
+    public void listadoProyectos(Proyecto p) {
+        listadoProyecto.add(p);
+    }
+
+
+    
+    List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
     formularioCrearProyecto formCrearProyecto;

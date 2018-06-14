@@ -15,11 +15,14 @@ public class formularioPrincipal extends javax.swing.JFrame {
         initComponents();
         this.control = control;
         init();
-        crearArbol();      
+        crearArbol();  
+        
+    
     }
     
     public void init(){
        setVisible(true);
+       
     }
     
     
