@@ -4,7 +4,6 @@ package gafe.modelo;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement // este es para crear el XML
 public class Factura {
 
     public Factura(){};

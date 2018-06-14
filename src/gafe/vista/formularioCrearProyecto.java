@@ -153,13 +153,12 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
             if (ruta == null || nombreProyecto == null || descripcionProyecto == null) {
                 JOptionPane.showMessageDialog(null,"Debes ingresar todos los campos","Alerta",JOptionPane.INFORMATION_MESSAGE);
             } else {
-                String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
+                String guardarEn = ruta + '\\' + cedulaProyecto + ".gafe";
                 crearArchivo = new FileWriter(guardarEn);
                 BufferedWriter escribirArchivo = new BufferedWriter(crearArchivo);
                 escribirArchivo.close();
-
                 
-                control.crearObjetoProyecto(nombreProyecto, cedulaProyecto, descripcionProyecto); // crear Objeto Proyecto
+                control.crearObjetoProyecto(nombreProyecto, cedulaProyecto, descripcionProyecto,ruta); // crear Objeto Proyecto
             }
 
         } catch (IOException e) {

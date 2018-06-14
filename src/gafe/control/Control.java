@@ -38,17 +38,21 @@ public class Control {
     public void controlLectorFacturas(File[] files) {
         List<Factura> listadoFacturas;
         listadoFacturas = claseLectorFacturas.listarFacturas(files);
-        
-        
+
         /*Prueba crera XML Factura y agregar las facturas en la lista Facturas de la clase Proyecto*/
-        
-        for (int i = 0; i < listadoFacturas.size(); i++) {
-            Factura factura= listadoFacturas.get(i);
+        /*for (int i = 0; i < listadoFacturas.size(); i++) {
+            Factura factura = listadoFacturas.get(i);
             crearXml(factura);
-            //proyecto.agregarXMLProyecto(factura); // Agregar las facturas al proyecto;
+            // Agregar XML al proyecto  OJO cambiar esta quemado.
+ 
+        }*/
+        for (int i = 0; i < listadoFacturas.size(); i++) {
+            Factura factura = listadoFacturas.get(i);
+            listadoProyecto.get(0).agregarXMLProyecto(factura);
         }
         
-        
+        crearXml(listadoProyecto.get(0)); // llenar el Archivo .GAFE hay q cambiarlo para que sea el que queremos seleccionar
+
     }
     
     public void abrirFormularioCrearProyecto(JPanel panelPrincipal) {
@@ -57,38 +61,42 @@ public class Control {
         formCrearProyecto.setSize(587, 402);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-        System.out.println("Entreeeeeessssss yes s s s s");
+
     } 
     
    /*------------------CREAR XML -----------------*/
     
     
-    public void crearXml(Factura factura){
+    //public void crearXml(Factura factura){
+    public void crearXml(Proyecto proyecto){
     String xmlString;
-    File file = new File("C:\\file.xml");
+    
+    String rutaProyecto = proyecto.getRuta();
+    String nombreProyecto = proyecto.getCedula();
+    String rutaTolta = rutaProyecto+"/"+nombreProyecto+".gafe";
+    File file = new File(rutaTolta);
     
     try{
-        JAXBContext context = JAXBContext.newInstance(Factura.class);
+        JAXBContext context = JAXBContext.newInstance(Proyecto.class);
         Marshaller m = context.createMarshaller();       
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
         FileWriter fw = new FileWriter(file.getAbsoluteFile(),true); // Se habilita el Append para que pueda agregar  los datos si sobreescribir. 
         //StringWriter sw = new StringWriter();
-        m.marshal(factura, file);
-        m.marshal(factura, fw);
+        m.marshal(proyecto, file);
+        m.marshal(proyecto, fw);
         
         //xmlString = sw.toString();
-        
-        //System.out.println(""+xmlString);
-    } catch(JAXBException e) {
-        System.out.println("Error Crear XML " +e);
-    } catch(IOException e){
-        
-        
-    }}
+            //System.out.println(""+xmlString);
+        } catch (JAXBException e) {
+            System.out.println("Error Crear XML " + e);
+        } catch (IOException e) {
+
+        }
+    }
     
    
-    public void crearObjetoProyecto(String nombre, String cedula, String descripcion) {
-        Proyecto proyecto = new Proyecto(nombre, cedula, descripcion);
+    public void crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta) {
+        Proyecto proyecto = new Proyecto(nombre, cedula, descripcion,ruta);
         listadoProyectos(proyecto);
     }
 
@@ -97,7 +105,6 @@ public class Control {
     }
 
 
-    
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
