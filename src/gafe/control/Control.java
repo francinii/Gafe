@@ -32,7 +32,6 @@ public class Control {
         formularioListarXml.setSize(599, 284);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-
     }   
     
     public void controlLectorFacturas(File[] files) {

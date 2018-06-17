@@ -70,43 +70,14 @@ public class formularioListarXml extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 23, 0, 23);
         add(jScrollPane1, gridBagConstraints);
 
-        jButton1.setText("Agregar Xml");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Guardar");
+        jButton1.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 485, 33, 23);
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         add(jButton1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FileFilter xmlFilter = new FileNameExtensionFilter("Arvhivos XML", "xml");
-        jfc.setDialogTitle("Seleccione los archivos");
-        jfc.setMultiSelectionEnabled(true);
-        jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        jfc.setFileFilter(xmlFilter);
-        File[] files = null;
-
-        int returnValue = jfc.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            files = jfc.getSelectedFiles();
-        }
-
-        //Cargar Tabla
-        for (int i = 0; i < files.length; i++) {
-            String nombre = files[i].getName();
-            String ruta = files[i].getAbsolutePath();
-            long tamano = files[i].length();
-            AgregarDatosTabla(nombre, ruta, tamano);
-            
-        }
-        control.controlLectorFacturas(files);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void AgregarDatosTabla(String nombre, String ruta, long tamano){
         
