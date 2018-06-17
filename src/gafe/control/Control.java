@@ -36,8 +36,7 @@ public class Control {
     
     public void controlLectorFacturas(File[] files) {
         List<Factura> listadoFacturas;
-        listadoFacturas = claseLectorFacturas.listarFacturas(files);
-        
+        listadoFacturas = claseLectorFacturas.listarFacturas(files);       
         
         /*Prueba crera XML Factura*/
         for (int i = 0; i < listadoFacturas.size(); i++) {
