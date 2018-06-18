@@ -1,41 +1,19 @@
 package gafe.vista;
 
 import gafe.control.Control;
-import gafe.modelo.ElementosArbol;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 public class formularioPrincipal extends javax.swing.JFrame {
 
-    public formularioPrincipal(Control control) {
-        this.control = control;
+    public formularioPrincipal(Control control, ControlFormularioPrincipal controlFormularioPrincipal) {
+        this.control = control; //puede que no se use mas adelante
+        this.controlFormularioPrincipal = controlFormularioPrincipal;
         init();
     }
 
     public void init() {
         initComponents();
         setVisible(true);
-        crearArbol();
-    }
-
-    public void crearArbol() {
-        DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(ElementosArbol.PROYECTO.getNombre());
-        DefaultTreeModel modelo = new DefaultTreeModel(proyecto);
-        arbol.setModel(modelo);
-        DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode(ElementosArbol.XML.getNombre());
-        DefaultMutableTreeNode reportes = new DefaultMutableTreeNode(ElementosArbol.REPORTES.getNombre());
-        modelo.insertNodeInto(cargarXml, proyecto, 0);
-        modelo.insertNodeInto(reportes, proyecto, 1);
-
-    }
-
-    private void AbrirPaneles(String seleccionArbol) {
-        if (seleccionArbol.equals(ElementosArbol.XML.getNombre())) {
-            control.abrirFormularioListarXml(panelPrincipal);
-        } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
-            control.abrirFormularioCrearProyecto(panelPrincipal);
-        }
-
+        controlFormularioPrincipal.crearArbol(arbol);
     }
 
     @SuppressWarnings("unchecked")
@@ -152,21 +130,15 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
-        // Este evento obtiene donde se esta posecionado en el arbol
-        DefaultMutableTreeNode nodoSeleccionado = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();
-        if (nodoSeleccionado != null) {
-            String nombreNodo = nodoSeleccionado.toString();
-            AbrirPaneles(nombreNodo);
-        }
-
+        controlFormularioPrincipal.arbolMouseClicked(arbol, panelPrincipal);
     }//GEN-LAST:event_arbolMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        control.abrirFormularioCrearProyecto(panelPrincipal);
+        controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        control.abrirFormularioCrearProyecto(panelPrincipal);
+        controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
 
@@ -191,4 +163,5 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
     private Control control;
+    private ControlFormularioPrincipal controlFormularioPrincipal;
 }
