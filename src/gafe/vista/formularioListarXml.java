@@ -45,6 +45,10 @@ public class formularioListarXml extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaXml = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        nombreEmpresa = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cedulaJuridica = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -60,7 +64,8 @@ public class formularioListarXml extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 530;
         gridBagConstraints.ipady = 129;
@@ -74,9 +79,47 @@ public class formularioListarXml extends javax.swing.JPanel {
         jButton1.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         add(jButton1, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Cédula jurídica:");
+        jLabel1.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
+        add(jLabel1, gridBagConstraints);
+
+        nombreEmpresa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
+        add(nombreEmpresa, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Empresa:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
+        add(jLabel3, gridBagConstraints);
+
+        cedulaJuridica.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
+        add(cedulaJuridica, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     public void AgregarDatosTabla(String nombre, String ruta, long tamano){
@@ -150,8 +193,12 @@ public class formularioListarXml extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cedulaJuridica;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nombreEmpresa;
     private javax.swing.JTable tablaXml;
     // End of variables declaration//GEN-END:variables
 }

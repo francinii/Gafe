@@ -1,36 +1,41 @@
 package gafe.vista;
 
 import gafe.control.Control;
-import javax.swing.JPanel;
-import javax.swing.JTree;
+import gafe.modelo.ElementosArbol;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+public class formularioPrincipal extends javax.swing.JFrame {
 
-public class formularioPrincipal extends javax.swing.JFrame {    
-    Control control;
-      
     public formularioPrincipal(Control control) {
-        this.control = control;       
-        init();            
+        this.control = control;
+        init();
     }
-    
-    public void init(){
-       initComponents();      
-       setVisible(true);
-       crearArbol(); 
+
+    public void init() {
+        initComponents();
+        setVisible(true);
+        crearArbol();
     }
-    
-    
-    public void crearArbol(){
-    DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode("Proyecto");
-    DefaultTreeModel modelo = new DefaultTreeModel (proyecto);    
-    arbol.setModel(modelo);     
-    DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode("Cargar Xml");
-    DefaultMutableTreeNode reportes = new DefaultMutableTreeNode("Reportes");    
-    modelo.insertNodeInto(cargarXml, proyecto, 0);
-    modelo.insertNodeInto(reportes, proyecto, 1);
-   
+
+    public void crearArbol() {
+        DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(ElementosArbol.PROYECTO.getNombre());
+        DefaultTreeModel modelo = new DefaultTreeModel(proyecto);
+        arbol.setModel(modelo);
+        DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode(ElementosArbol.XML.getNombre());
+        DefaultMutableTreeNode reportes = new DefaultMutableTreeNode(ElementosArbol.REPORTES.getNombre());
+        modelo.insertNodeInto(cargarXml, proyecto, 0);
+        modelo.insertNodeInto(reportes, proyecto, 1);
+
+    }
+
+    private void AbrirPaneles(String seleccionArbol) {
+        if (seleccionArbol.equals(ElementosArbol.XML.getNombre())) {
+            control.abrirFormularioListarXml(panelPrincipal);
+        } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
+            control.abrirFormularioCrearProyecto(panelPrincipal);
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -42,9 +47,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
         arbol = new javax.swing.JTree();
         panelPrincipal = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -79,29 +84,29 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
         jToolBar1.setToolTipText("");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/nuevo2.png"))); // NOI18N
-        jButton3.setToolTipText("Nuevo");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/abrir2.png"))); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/nuevo2.png"))); // NOI18N
+        btnNuevo.setToolTipText("Nuevo");
+        btnNuevo.setFocusable(false);
+        btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(btnNuevo);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardar2.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/abrir2.png"))); // NOI18N
+        btnAbrir.setFocusable(false);
+        btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnAbrir);
+
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardar2.png"))); // NOI18N
+        btnGuardar.setFocusable(false);
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnGuardar);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
@@ -117,11 +122,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setText("Abrir proyecto");
         jMenuItem2.setToolTipText("");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Guardar");
@@ -132,11 +132,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Cerrar todos los proyectos");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem6.setText("Salir");
@@ -157,49 +152,29 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
-       // Este evento obtiene donde se esta posecionado en el arbol
-        DefaultMutableTreeNode  nodoSeleccionado = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();     
-        String nombreNodo = nodoSeleccionado.toString();
-        AbrirPaneles(nombreNodo);
-        
+        // Este evento obtiene donde se esta posecionado en el arbol
+        DefaultMutableTreeNode nodoSeleccionado = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();
+        if (nodoSeleccionado != null) {
+            String nombreNodo = nodoSeleccionado.toString();
+            AbrirPaneles(nombreNodo);
+        }
+
     }//GEN-LAST:event_arbolMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        control.abrirFormularioCrearProyecto(panelPrincipal);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        control.abrirFormularioCrearProyecto(panelPrincipal);
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    
-    private void AbrirPaneles(String seleccionArbol) {
-        switch (seleccionArbol) {
-            case "Cargar Xml":
-                System.out.println("Entre");
-                control.abrirFormularioListarXml(panelPrincipal);
-                break;
-
-            case "Reportes":
-                control.abrirFormularioCrearProyecto(panelPrincipal);
-                break;
-        }
-    }
-       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbol;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -215,4 +190,5 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
+    private Control control;
 }

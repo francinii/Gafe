@@ -41,6 +41,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(512, 137));
         setLayout(new java.awt.GridBagLayout());
@@ -49,7 +50,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         txtDescripcionProyecto.setRows(5);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
@@ -67,7 +68,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.ipadx = -13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 3, 4, 54);
@@ -80,7 +81,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
@@ -97,7 +98,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
@@ -114,7 +115,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
@@ -124,7 +125,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
         add(txtRuta, gridBagConstraints);
 
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Crear");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -132,38 +133,46 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(btnGuardar, gridBagConstraints);
 
         jLabel5.setText("Nombre del proyecto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         add(jLabel5, gridBagConstraints);
 
         jLabel6.setText("Ruta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         add(jLabel6, gridBagConstraints);
 
         jLabel7.setText("Cédula jurídica");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         add(jLabel7, gridBagConstraints);
 
         jLabel8.setText("Descripción");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         add(jLabel8, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Nuevo Proyecto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        add(jLabel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -200,6 +209,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
