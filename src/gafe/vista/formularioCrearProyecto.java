@@ -1,25 +1,29 @@
-
 package gafe.vista;
 
 import gafe.control.Control;
+import gafe.modelo.Proyecto;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
-
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 public class formularioCrearProyecto extends javax.swing.JPanel {
 
-    Control control;
-  
-    public formularioCrearProyecto(Control c) {
+    ControlFormularioPrincipal controlVentanas;
+
+    public formularioCrearProyecto(ControlFormularioPrincipal c) {
         initComponents();
-        this.control = c;
+        this.controlVentanas = c;
         setVisible(true);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,17 +180,10 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-		jfc.setDialogTitle("Seleccione la ruta: ");
-		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-		int returnValue = jfc.showSaveDialog(null);
-		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			if (jfc.getSelectedFile().isDirectory()) {
-
-                                txtRuta.setText(jfc.getSelectedFile().toString());
-			}
-		}
+        String ruta = controlVentanas.obtenerRutaFileChooser();
+        if (!ruta.equals("")) {
+            txtRuta.setText(ruta);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtNombreProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProyectoActionPerformed
@@ -198,8 +195,27 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRutaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        // FileWriter crearArchivo = null;
+        try {
+            String ruta = txtRuta.getText();
+            String nombreProyecto = txtNombreProyecto.getText();
+            String descripcionProyecto = txtDescripcionProyecto.getText();
+            String cedula = txtCedula.getText();
+            if (ruta == null || nombreProyecto == null || descripcionProyecto == null || cedula == null) {
+                controlVentanas.mensaje("Debes ingresar todos los campos");
+            } else {
+                String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
+                //  crearArchivo = new FileWriter(guardarEn);
+                // BufferedWriter escribirArchivo = new BufferedWriter(crearArchivo);
+                // escribirArchivo.close();
+                controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
+            }
+        } catch (IOException e) {
+        } catch (JAXBException ex) {
+            Logger.getLogger(formularioCrearProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:

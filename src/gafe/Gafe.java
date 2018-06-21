@@ -20,10 +20,6 @@ public class Gafe {
         }
 
         Control gestorPrincipal = new Control();
-        
-        //HOlaaaaaa
-        
-        
     }
     
 }

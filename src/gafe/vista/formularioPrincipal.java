@@ -13,7 +13,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     public void init() {
         initComponents();
         setVisible(true);
-        controlFormularioPrincipal.crearArbol(arbol);
+        controlFormularioPrincipal.agregarNodoArbol(arbol);
     }
 
     @SuppressWarnings("unchecked")
@@ -78,6 +78,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
         btnAbrir.setFocusable(false);
         btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnAbrir);
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardar2.png"))); // NOI18N
@@ -100,6 +105,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setText("Abrir proyecto");
         jMenuItem2.setToolTipText("");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Guardar");
@@ -141,6 +151,14 @@ public class formularioPrincipal extends javax.swing.JFrame {
         controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        controlFormularioPrincipal.abrirFileChooser("Archivo .gafe", "gafe", false);
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        controlFormularioPrincipal.abrirFileChooser("Archivo .gafe", "gafe", false);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbol;
@@ -162,6 +180,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
-    private Control control;
-    private ControlFormularioPrincipal controlFormularioPrincipal;
+    private final Control control;
+    private final ControlFormularioPrincipal controlFormularioPrincipal;
 }

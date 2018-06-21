@@ -7,6 +7,7 @@ import gafe.vista.ControlFormularioPrincipal;
 import gafe.vista.formularioCrearProyecto;
 import gafe.vista.formularioListarXml;
 import gafe.vista.formularioPrincipal;
+import gafe.vista.formularioReporte;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,10 +21,12 @@ import javax.xml.bind.Marshaller;
 public class Control {
 
     public Control() {
-        formularioPrincipal = new formularioPrincipal(this, new ControlFormularioPrincipal(this));
-        formularioListarXml = new formularioListarXml(this);
-        formCrearProyecto = new formularioCrearProyecto(this);
+        controlVentanas = new ControlFormularioPrincipal(this);
+        formularioPrincipal = new formularioPrincipal(this, controlVentanas);
+        formularioListarXml = new formularioListarXml(controlVentanas);
+        formCrearProyecto = new formularioCrearProyecto(controlVentanas);
         claseLectorFacturas = new LectorFacturasXML();
+        formReporte = new formularioReporte();
     }
 
     public formularioCrearProyecto getFormularioCrearProyecto() {
@@ -34,57 +37,28 @@ public class Control {
         return formularioListarXml;
     }
 
-    public void controlLectorFacturas(File[] files) {
-        List<Factura> listadoFacturas;
-        listadoFacturas = claseLectorFacturas.listarFacturas(files);
-
-        /*Prueba crera XML Factura y agregar las facturas en la lista Facturas de la clase Proyecto*/
- /*for (int i = 0; i < listadoFacturas.size(); i++) {
-            Factura factura = listadoFacturas.get(i);
-            crearXml(factura);
-            // Agregar XML al proyecto  OJO cambiar esta quemado.
- 
-        }*/
-        for (int i = 0; i < listadoFacturas.size(); i++) {
-            Factura factura = listadoFacturas.get(i);
-            listadoProyecto.get(0).agregarXMLProyecto(factura);
-        }
-
-        crearXml(listadoProyecto.get(0)); // llenar el Archivo .GAFE hay q cambiarlo para que sea el que queremos seleccionar
-
+    public formularioReporte getFormReporte() {
+        return formReporte;
     }
+
+    public List<Factura> obtenerListadoFacturas(File[] files) {
+        return claseLectorFacturas.listarFacturas(files);
+    }
+
+    public List<Proyecto> obtenerListadoProyectos() {
+        return listadoProyecto;
+    }
+
+
 
     /*------------------CREAR XML -----------------*/
     //public void crearXml(Factura factura){
-    public void crearXml(Proyecto proyecto) {
-        String xmlString;
 
-        String rutaProyecto = proyecto.getRuta();
-        String nombreProyecto = proyecto.getCedula();
-        String rutaTolta = rutaProyecto + "/" + nombreProyecto + ".gafe";
-        File file = new File(rutaTolta);
 
-        try {
-            JAXBContext context = JAXBContext.newInstance(Proyecto.class);
-            Marshaller m = context.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true); // Se habilita el Append para que pueda agregar  los datos si sobreescribir. 
-            //StringWriter sw = new StringWriter();
-            m.marshal(proyecto, file);
-            m.marshal(proyecto, fw);
-
-            //xmlString = sw.toString();
-            //System.out.println(""+xmlString);
-        } catch (JAXBException e) {
-            System.out.println("Error Crear XML " + e);
-        } catch (IOException e) {
-
-        }
-    }
-
-    public void crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta) {
-        Proyecto proyecto = new Proyecto(nombre, cedula, descripcion, ruta);
-        listadoProyectos(proyecto);
+    public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta) {
+        return new Proyecto(nombre, cedula, descripcion, ruta);
+        //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
+        //listadoProyectos(proyecto);
     }
 
     public void listadoProyectos(Proyecto p) {
@@ -96,5 +70,7 @@ public class Control {
     formularioListarXml formularioListarXml;
     formularioCrearProyecto formCrearProyecto;
     LectorFacturasXML claseLectorFacturas;
+    formularioReporte formReporte;
+    ControlFormularioPrincipal controlVentanas;
 
 }
