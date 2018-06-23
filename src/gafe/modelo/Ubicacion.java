@@ -5,6 +5,9 @@
  */
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="ubicacion")
 public class Ubicacion {
 
     public Ubicacion(String provincia, String canton, String distrito,String barrio, String otraSenas) {
@@ -12,8 +15,11 @@ public class Ubicacion {
         this.canton = canton;
         this.distrito = distrito;
         this.barrio = barrio;
-        this.otraSenas = otraSenas;
-        
+        this.otraSenas = otraSenas;        
+    }
+    
+   public Ubicacion() {
+        this("","","","","");     
     }
 
     public String getProvincia() {

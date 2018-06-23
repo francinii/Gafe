@@ -1,12 +1,12 @@
-
 package gafe.modelo;
-
-import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="factura")
 public class Factura {
 
-    public Factura(){};
+    public Factura(){
+        this("", "", "", null, null, "", "", "", null, null, null, null);
+    };
     
     public Factura(String clave, String consecutivo, String fechaEmision, Emisor emisor, Receptor receptor, String condicionVenta, String plazoCredito, String medioPago, DetalleServicio detalleServicio, ResumenFactura resumenFactura, InformacionReferencia informacionReferencia, Normativa normativa) {
         this.clave = clave;
@@ -22,6 +22,9 @@ public class Factura {
         this.informacionReferencia = informacionReferencia;
         this.normativa = normativa;
     }
+    
+    
+   
 
     public String getClave() {
         return clave;

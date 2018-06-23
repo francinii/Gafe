@@ -2,7 +2,11 @@ package gafe.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "receptor")
 public class Receptor {
     //verificar los GET y SET del TELEFONO
 
@@ -14,6 +18,10 @@ public class Receptor {
         this.ubicacion = ubicacion;
         telefonos = new ArrayList<>();
         this.correo = correo;
+    }
+    
+     Receptor(){
+        this("", null, "", "",null, "");    
     }
 
     public String getNombre() {
@@ -40,6 +48,12 @@ public class Receptor {
         return correo;
     }
 
+    @XmlElementWrapper(name = "wrapperTelefonos")
+    @XmlElement(name = "telefono")
+    public List<Telefono> getTelefono() {
+        return telefonos;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -63,11 +77,11 @@ public class Receptor {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
     public void agregarTelefono(Telefono e) {
         telefonos.add(e);
     }
-        
+
     private String nombre;
     private Identificacion identicacion;
     private String identificacionExtranjero;
@@ -75,4 +89,4 @@ public class Receptor {
     private Ubicacion ubicacion;
     final private List<Telefono> telefonos;
     private String correo;
-    }
+}

@@ -5,15 +5,22 @@
  */
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author HP_810G2
  */
+@XmlRootElement(name="identificacion")
 public class Identificacion {
     
     public Identificacion(String tipoIdentificacion, String numeroIdentificacion) {
         this.tipoIdentificacion = tipoIdentificacion;
         this.numeroIdentificacion = numeroIdentificacion;
+    }
+    
+     public Identificacion() {
+        this("","");
     }
 
     public String getTipoIdentificacion() {

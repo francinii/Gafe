@@ -1,12 +1,18 @@
 
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="normativa")
 public class Normativa {
 
     public Normativa(String numeroResolucion, String fechaResolucion) {
         this.numeroResolucion = numeroResolucion;
         this.fechaResolucion = fechaResolucion;
+    }
+    
+    public Normativa(){
+        this("", "");
     }
 
     public String getNumeroResolucion() {

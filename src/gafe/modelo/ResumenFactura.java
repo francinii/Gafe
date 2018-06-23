@@ -1,5 +1,8 @@
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="resumenFactura")
 public class ResumenFactura {
 
     public ResumenFactura(String codigoMoneda, String tipoCambio, String totalServiciosGravados, String totalServiciosExcentos, String totalMercanciasGravadas, String totalMercanciasExcentas, String totalGravado, String totalExcento, String totalVenta, String totalDescuentos, String totalVentaNeta, String totalImpuesto, String totalComprobante) {
@@ -17,6 +20,10 @@ public class ResumenFactura {
         this.totalImpuesto = totalImpuesto;
         this.totalComprobante = totalComprobante;
     }
+    
+        public ResumenFactura() {
+            this("","","","","","","","","","","","","");
+        }
 
     public String getCodigoMoneda() {
         return codigoMoneda;

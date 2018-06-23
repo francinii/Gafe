@@ -77,10 +77,14 @@ public class ControlFormularioPrincipal {
         panelPrincipal.repaint();
     }
 
-    public void agregarNodoArbol(JTree arbol) {
-        DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(ElementosArbol.PROYECTO.getNombre());
-        DefaultTreeModel modelo = new DefaultTreeModel(proyecto);
-        arbol.setModel(modelo);
+    public void agregarNodoArbol(JTree arbol, String nombre) {
+        DefaultTreeModel modelo = (DefaultTreeModel) arbol.getModel();
+
+        DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(nombre);
+        DefaultMutableTreeNode cabeza = (DefaultMutableTreeNode) modelo.getRoot();
+        modelo.insertNodeInto(proyecto, cabeza, 0);
+        // DefaultTreeModel modelo = new DefaultTreeModel(proyecto);
+        //  arbol.setModel(modelo);
         DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode(ElementosArbol.XML.getNombre());
         DefaultMutableTreeNode reportes = new DefaultMutableTreeNode(ElementosArbol.REPORTES.getNombre());
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode(ElementosArbol.CLIENTE.getNombre());
@@ -151,31 +155,85 @@ public class ControlFormularioPrincipal {
         return files;
     }
 
-    public void mensaje(String mensaje){
-        JOptionPane.showMessageDialog(null,mensaje,"Alerta",JOptionPane.INFORMATION_MESSAGE);
+    public void mensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Alerta", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-        public void crearXmlProyecto(String nombre, String cedula, String descripcion,String ruta) throws PropertyException, JAXBException, FileNotFoundException, IOException{
-    		JAXBContext context = JAXBContext.newInstance(Proyecto.class);
-		Marshaller marshaller = context.createMarshaller();
-		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-		Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta);
-		//Anadimos el proyecto creado a la lista de proyectos
-                control.listadoProyectos(proyecto);
-                
-		//marshaller.marshal(proyecto, System.out);		
-		FileOutputStream fos = new FileOutputStream(ruta);
-		marshaller.marshal(proyecto, fos);
-		fos.close();                 		
-		Unmarshaller unmarshaller = context.createUnmarshaller();
-		//Deserealizamos a partir de un documento XML
-		Proyecto provincaAux = (Proyecto) unmarshaller.unmarshal(new File(ruta));
-		System.out.println("********* Provincia cargado desde fichero XML***************");
-		marshaller.marshal(provincaAux, System.out);
-    
+
+    public void crearXmlProyecto(String nombre, String cedula, String descripcion, String ruta) throws PropertyException, JAXBException, FileNotFoundException, IOException {
+        JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta);
+        Factura f = new Factura();
+        proyecto.agregarXMLProyecto(f);
+        //Anadimos el proyecto creado a la lista de proyectos
+        control.listadoProyectos(proyecto);
+        marshaller.marshal(proyecto, System.out);
+        FileOutputStream fos = new FileOutputStream(ruta);
+        marshaller.marshal(proyecto, fos);
+        fos.close();
+        agregarNodoArbol(control.arbol(), nombre);
     }
-    
-    
+
+//    public void crearXmlProyecto(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) throws PropertyException, JAXBException, FileNotFoundException, IOException {
+//        JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+//        Marshaller marshaller = context.createMarshaller();
+//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//        Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta, facturas);
+//        //Anadimos el proyecto creado a la lista de proyectos
+//        control.listadoProyectos(proyecto);
+//        marshaller.marshal(proyecto, System.out);
+//        FileOutputStream fos = new FileOutputStream(ruta);
+//        marshaller.marshal(proyecto, fos);
+//        fos.close();
+//    }
+    //Arreglar este metodo
+    public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion) throws JAXBException, PropertyException, IOException {
+        File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion);
+        JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+        Marshaller m = context.createMarshaller();
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);        
+        //Deserealizamos a partir de un documento XML
+        Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
+        Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
+        if (proyecto.getListadoFacturas() != null) {
+            List<Factura> lista = proyecto.getListadoFacturas();
+            for (int i = 0; i < lista.size(); i++) {
+                proyect.agregarXMLProyecto(lista.get(i));
+            }
+        }       
+        List<Factura> list = control.obtenerListadoFacturas(files);
+        for (int i = 0; i < list.size(); i++) {
+            proyect.agregarXMLProyecto(list.get(i));
+        }
+        m.marshal(proyect, System.out);
+        try (FileOutputStream fos = new FileOutputStream(ruta)) {
+            m.marshal(proyect, fos);
+//           JAXBContext jc = JAXBContext.newInstance(Proyecto.class);
+//           File archivo =new File(ruta);
+//    Proyecto config = (Proyecto)jc.createUnmarshaller().unmarshal(archivo);
+//    System.out.print(config);
+            // list = config.getInstances();
+//    list.get(0).getClave();
+//    list.get(1)setHostName("192.168.3.140");
+//    list.get(2).setPort(168);
+//    list.get(2).setHostName("192.168.1.168");
+//    Marshaller m = jc.createMarshaller();
+//    m.marshal(config,  archivo);
+//
+            //Necesito escribrir en el archivo 
+//        for (int i = 0; i < listadoFacturas.size(); i++) {
+//            proyect.agregarXMLProyecto(listadoFacturas.get(i));
+//        }
+            //    crearXmlProyecto(proyect.getNombre(), proyect.getCedula(), proyect.getDescripcion(), proyect.getRuta(), listadoFacturas);
+//       JAXBContext context = JAXBContext.newInstance(Factura.class);
+//        Marshaller marshaller = context.createMarshaller();
+//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//          Factura factura = control.crearFactura(ruta);
+        }
+    }
+
     private final Control control;
 
 }

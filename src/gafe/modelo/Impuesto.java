@@ -1,5 +1,8 @@
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="impuesto")
 public class Impuesto {
 
     public Impuesto(String codigo, String tarifaImpuesto, String monto, Exoneracion exoneracion) {
@@ -7,6 +10,10 @@ public class Impuesto {
         this.tarifaImpuesto = tarifaImpuesto;
         this.monto = monto;
         this.exoneracion = exoneracion;
+    }
+    
+    public Impuesto(){
+        this("","","",null);
     }
 
     public String getCodigo() {

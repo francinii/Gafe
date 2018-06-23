@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.JTree;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -45,8 +46,17 @@ public class Control {
         return claseLectorFacturas.listarFacturas(files);
     }
 
+    //Obtiene una unica Factura
     public List<Proyecto> obtenerListadoProyectos() {
         return listadoProyecto;
+    }
+    
+    public Factura crearFactura(String ruta){
+        return claseLectorFacturas.crearFactura(ruta);
+    }
+    
+    public JTree arbol(){
+        return formularioPrincipal.arbol();
     }
 
 
@@ -57,6 +67,12 @@ public class Control {
 
     public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta) {
         return new Proyecto(nombre, cedula, descripcion, ruta);
+        //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
+        //listadoProyectos(proyecto);
+    }
+    
+       public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta,  List<Factura> facturas) {
+        return new Proyecto(nombre, cedula, descripcion, ruta, facturas);
         //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
         //listadoProyectos(proyecto);
     }

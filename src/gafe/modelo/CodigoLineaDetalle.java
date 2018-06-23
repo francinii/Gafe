@@ -1,10 +1,17 @@
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="codigoDetalle")
 public class CodigoLineaDetalle {
 
     public CodigoLineaDetalle(String tipoCodigo, String nombreCodigo) {
         this.tipoCodigo = tipoCodigo;
         this.nombreCodigo = nombreCodigo;
+    }
+    
+    public CodigoLineaDetalle(){
+        this("","");
     }
 
     public String getTipoCodigo() {

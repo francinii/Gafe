@@ -1,7 +1,9 @@
 
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="lineaDetalle")
 public class LineaDetalle {
 
     public LineaDetalle(String numeroLinea, CodigoLineaDetalle codigo, String cantidad, String unidadMedida, String unidadMedidaComercial, String detalle, String precioUnitario, String montoTotal, String montoDescuento, String Naturalezadescuento, String subTotal, Impuesto impuesto, String montoTotalLinea) {
@@ -19,6 +21,10 @@ public class LineaDetalle {
         this.impuesto = impuesto;
         this.montoTotalLinea = montoTotalLinea;
     }
+    
+    public LineaDetalle(){
+        this("",null,"","","","","","","","","",null,"");
+    }  
 
     public String getNumeroLinea() {
         return numeroLinea;

@@ -2,7 +2,9 @@
 package gafe.modelo;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="exoneracion")
 public class Exoneracion {
     public Exoneracion(String tipoDocumento, String numeroDocumento, String nombreInstitucion, String fecheEmision, String montoImpuesto, String porcentajeCompra) {
         this.tipoDocumento = tipoDocumento;
@@ -11,6 +13,10 @@ public class Exoneracion {
         this.fecheEmision = fecheEmision;
         this.montoImpuesto = montoImpuesto;
         this.porcentajeCompra = porcentajeCompra;
+    }
+    
+    public Exoneracion(){
+        this("", "", "", "", "", "");
     }
 
     /**

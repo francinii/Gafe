@@ -1,7 +1,9 @@
 package gafe.modelo;
 
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="informacionReferencia")
 public class InformacionReferencia {
 
     public InformacionReferencia(String tipoDocumento, String numeroDoumento, String fechaEmision, String codigo, String razon) {
@@ -11,6 +13,11 @@ public class InformacionReferencia {
         this.codigo = codigo;
         this.razon = razon;
     }
+    
+    public InformacionReferencia() {
+        this("","", "","","");
+    }
+    
 
     public String getTipoDocumento() {
         return tipoDocumento;

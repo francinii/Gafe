@@ -1,6 +1,7 @@
 package gafe.vista;
 
 import gafe.control.Control;
+import javax.swing.JTree;
 
 public class formularioPrincipal extends javax.swing.JFrame {
 
@@ -13,7 +14,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
     public void init() {
         initComponents();
         setVisible(true);
-        controlFormularioPrincipal.agregarNodoArbol(arbol);
+      //  controlFormularioPrincipal.agregarNodoArbol(arbol);
+    }
+
+    public JTree arbol() {
+        return arbol;
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +49,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jScrollPane1.setMinimumSize(new java.awt.Dimension(110, 23));
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Proyectos");
+        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         arbol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

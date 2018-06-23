@@ -2,7 +2,11 @@ package gafe.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="emisor")
 public class Emisor {
 
     public Emisor(String nombre, Identificacion identicacion, String nombreComercial, Ubicacion ubicacion, String correo) {
@@ -13,7 +17,17 @@ public class Emisor {
         this.correo = correo;
         this.telefonos = new ArrayList<>();
     }
-
+    
+    Emisor(){
+        this("", null, "", null, "");    
+    }
+    
+    @XmlElementWrapper(name="wrapperTelefonos")
+    @XmlElement(name="telefono")
+    public List<Telefono> getTelefono(){
+        return telefonos;
+    }
+    
     public String getNombre() {
         return nombre;
     }

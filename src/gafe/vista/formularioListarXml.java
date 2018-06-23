@@ -13,15 +13,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.bind.JAXBException;
 
 public class formularioListarXml extends javax.swing.JPanel {
 
@@ -142,9 +146,12 @@ public class formularioListarXml extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         File[] files = controlVentanas.abrirFileChooser("Archivos XML", "xml",true);
+        try {
+           // File[] files = controlVentanas.abrirFileChooser("Archivos XML", "xml",true);
+            String guardarEn = "C:" + '\\' + "Users" + '\\' + "HP_810G2" + '\\' + "Desktop" + '\\' + "pruebafinal" + ".gafe";
+            controlVentanas.agregarFacturaProyecto( guardarEn,"Archivos XML", "xml",true);
 //        FileFilter xmlFilter = new FileNameExtensionFilter("Archivos XML", "xml");
- //       jfc.setDialogTitle("Seleccione los archivos");
+//       jfc.setDialogTitle("Seleccione los archivos");
 //        jfc.setMultiSelectionEnabled(true);
 //        jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 //        jfc.setFileFilter(xmlFilter);
@@ -156,14 +163,19 @@ public class formularioListarXml extends javax.swing.JPanel {
 //        }
 //
 //        //Cargar Tabla
-        if(files != null){
-        for (int i = 0; i < files.length; i++) {
-            String nombre = files[i].getName();
-            String ruta = files[i].getAbsolutePath();
-            long tamano = files[i].length();
-            AgregarDatosTabla(nombre, ruta, tamano);
-        }
-//        control.controlLectorFacturas(files);
+//if(files != null){
+//    for (int i = 0; i < files.length; i++) {
+//        String nombre = files[i].getName();
+//        String ruta = files[i].getAbsolutePath();
+//        long tamano = files[i].length();
+//        AgregarDatosTabla(nombre, ruta, tamano);
+//    }
+////        control.controlLectorFacturas(files);
+//}
+        } catch (JAXBException ex) {
+            Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

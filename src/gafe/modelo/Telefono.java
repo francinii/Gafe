@@ -1,11 +1,18 @@
 package gafe.modelo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="telefono")
 public class Telefono {
 
     public Telefono(String codigoPais, String numeroTelefono) {
         this.codigoPais = codigoPais;
         this.numeroTelefono = numeroTelefono;
     }
+    
+     public Telefono() {
+        this("","");
+     }
 
     public String getCodigoPais() {
         return codigoPais;
