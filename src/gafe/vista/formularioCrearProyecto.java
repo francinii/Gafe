@@ -195,7 +195,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRutaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // FileWriter crearArchivo = null;
+                        
         try {
             String ruta = txtRuta.getText();
             String nombreProyecto = txtNombreProyecto.getText();
