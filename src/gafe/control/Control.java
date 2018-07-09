@@ -29,7 +29,7 @@ public class Control {
         formularioListarXml = new formularioListarXml(controlVentanas);
         formCrearProyecto = new formularioCrearProyecto(controlVentanas);
         claseLectorFacturas = new LectorFacturasXML();
-        formReporte = new formularioReporte();
+        formReporte = new formularioReporte(controlVentanas);
         recursosCompartidos = new RecursosCompartidos();     
     }
 

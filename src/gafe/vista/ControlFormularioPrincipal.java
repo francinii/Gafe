@@ -490,5 +490,27 @@ public class ControlFormularioPrincipal {
         
     }
     
+    /*  Esto es para el formulario de reportes    */
+    
+    public void ocultarMostrarColumnas(JTable tablaReportes, int columna, int status){
+        
+        if (status == 1) { // 1 cuando quiero mostrar
+            tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(500);
+            tablaReportes.getColumnModel().getColumn(columna).setMinWidth(75);
+            tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(75);    
+            tablaReportes.getColumnModel().getColumn(columna).setResizable(true);
+        } else { // 0 cuando quiero ocultar
+            tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(0);
+            tablaReportes.getColumnModel().getColumn(columna).setMinWidth(0);
+            tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(0);
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
     private final Control control;
 }
