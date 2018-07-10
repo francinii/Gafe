@@ -3,6 +3,7 @@ package gafe.control;
 import gafe.modelo.Factura;
 import gafe.modelo.LectorFacturasXML;
 import gafe.modelo.Proyecto;
+import gafe.modelo.RecursosCompartidos;
 import gafe.vista.ControlFormularioPrincipal;
 import gafe.vista.formularioCrearProyecto;
 import gafe.vista.formularioListarXml;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,7 +29,8 @@ public class Control {
         formularioListarXml = new formularioListarXml(controlVentanas);
         formCrearProyecto = new formularioCrearProyecto(controlVentanas);
         claseLectorFacturas = new LectorFacturasXML();
-        formReporte = new formularioReporte();
+        formReporte = new formularioReporte(controlVentanas);
+        recursosCompartidos = new RecursosCompartidos();     
     }
 
     public formularioCrearProyecto getFormularioCrearProyecto() {
@@ -46,7 +49,7 @@ public class Control {
         return claseLectorFacturas.listarFacturas(files);
     }
 
-    //Obtiene una unica Factura
+    
     public List<Proyecto> obtenerListadoProyectos() {
         return listadoProyecto;
     }
@@ -64,14 +67,13 @@ public class Control {
     /*------------------CREAR XML -----------------*/
     //public void crearXml(Factura factura){
 
-
     public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta) {
         return new Proyecto(nombre, cedula, descripcion, ruta);
         //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
         //listadoProyectos(proyecto);
     }
-    
-       public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta,  List<Factura> facturas) {
+
+    public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) {
         return new Proyecto(nombre, cedula, descripcion, ruta, facturas);
         //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
         //listadoProyectos(proyecto);
@@ -80,7 +82,16 @@ public class Control {
     public void listadoProyectos(Proyecto p) {
         listadoProyecto.add(p);
     }
-
+    
+    
+    // este meotodo me retorna la tabla del fromulario principal, para poder cargarl cuando abro el archivo .Gafe
+    public JTable obtenerTabla(){
+        JTable tabla = formularioListarXml.obtenerTabla();
+        return tabla;
+    }
+    
+    
+    
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
@@ -88,5 +99,6 @@ public class Control {
     LectorFacturasXML claseLectorFacturas;
     formularioReporte formReporte;
     ControlFormularioPrincipal controlVentanas;
+    RecursosCompartidos recursosCompartidos;
 
 }

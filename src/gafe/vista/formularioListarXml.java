@@ -1,7 +1,8 @@
 package gafe.vista;
 
 import gafe.control.Control;
-import gafe.modelo.VariablesGlobales;
+import gafe.modelo.Proyecto;
+import gafe.modelo.RecursosCompartidos;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -22,23 +23,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.xml.bind.JAXBException;
 
 public class formularioListarXml extends javax.swing.JPanel {
 
     ControlFormularioPrincipal controlVentanas;
-
-    //   JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+   
     public formularioListarXml(ControlFormularioPrincipal control) {
-
+        System.out.println("Entre constructor");
         initComponents();
         this.controlVentanas = control;
         setVisible(true);
-        arrastrarSoltar();
+        arrastrarSoltar(); 
+
     }
 
     @SuppressWarnings("unchecked")
@@ -50,19 +53,20 @@ public class formularioListarXml extends javax.swing.JPanel {
         tablaXml = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        nombreEmpresa = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cedulaJuridica = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        txtNombre = new javax.swing.JLabel();
+        txtCedulaJ = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
         tablaXml.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+
             },
             new String [] {
-                "Nombre", "Ruta", "Tamaño"
+                "Numero Factura", "Emisor", "Receptor", "Total"
             }
         ));
         jScrollPane1.setViewportView(tablaXml);
@@ -104,15 +108,6 @@ public class formularioListarXml extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
         add(jLabel1, gridBagConstraints);
 
-        nombreEmpresa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
-        add(nombreEmpresa, gridBagConstraints);
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Empresa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -121,15 +116,6 @@ public class formularioListarXml extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
         add(jLabel3, gridBagConstraints);
-
-        cedulaJuridica.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
-        add(cedulaJuridica, gridBagConstraints);
 
         jButton2.setText("Cargar facturas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,36 +129,45 @@ public class formularioListarXml extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 4, 30);
         add(jButton2, gridBagConstraints);
+
+        txtNombre.setText("Empresa");
+        add(txtNombre, new java.awt.GridBagConstraints());
+
+        txtCedulaJ.setText("Cedula Juridica");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(6, 32, 6, 32);
+        add(txtCedulaJ, gridBagConstraints);
+
+        jButton3.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        add(jButton3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void limpiarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) tablaXml.getModel();
+        int filas = tablaXml.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            modelo.removeRow(0);
+            System.out.println("Limpiar");
+        }
+        txtCedulaJ.setText("");
+        txtNombre.setText("");
+        
+    }
+    
+    public void llenarDatosProyecto(String nombre, String cedula) {
+        txtCedulaJ.setText(cedula);
+        txtNombre.setText(nombre);
+    }
+            
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            // File[] files = controlVentanas.abrirFileChooser("Archivos XML", "xml",true);
-            VariablesGlobales vg = VariablesGlobales.getInstance();
-            String guardarEn = "C:" + '\\' + "Users" + '\\' + "HP_810G2" + '\\' + "Desktop" + '\\' + vg.getNombreProyectoActual() + ".gafe";
-            controlVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true);
-//        FileFilter xmlFilter = new FileNameExtensionFilter("Archivos XML", "xml");
-//       jfc.setDialogTitle("Seleccione los archivos");
-//        jfc.setMultiSelectionEnabled(true);
-//        jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-//        jfc.setFileFilter(xmlFilter);
-//        File[] files = null;
-//
-//        int returnValue = jfc.showOpenDialog(null);
-//        if (returnValue == JFileChooser.APPROVE_OPTION) {
-//            files = jfc.getSelectedFiles();
-//        }
-//
-//        //Cargar Tabla
-//if(files != null){
-//    for (int i = 0; i < files.length; i++) {
-//        String nombre = files[i].getName();
-//        String ruta = files[i].getAbsolutePath();
-//        long tamano = files[i].length();
-//        AgregarDatosTabla(nombre, ruta, tamano);
-//    }
-////        control.controlLectorFacturas(files);
-//}
+        try {          
+            String guardarEn = RecursosCompartidos.getRuta();      
+            controlVentanas.agregarFacturaProyecto( guardarEn,"Archivos XML", "xml",true,tablaXml);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -183,18 +178,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    public void AgregarDatosTabla(String nombre, String ruta, long tamano) {
-        DefaultTableModel modelo = (DefaultTableModel) tablaXml.getModel(); //Obtengo el modelo existente por defecto     
-        Object[] fila = new Object[3];
-        fila[0] = nombre;
-        fila[1] = ruta;
-        fila[2] = tamano + " Mb";
-        modelo.addRow(fila);
-
-        tablaXml.setModel(modelo);
-    }
-
+      
     public void arrastrarSoltar() {
 
         DropTarget target = new DropTarget(tablaXml, new DropTargetListener() {
@@ -230,14 +214,20 @@ public class formularioListarXml extends javax.swing.JPanel {
                     files = listaArchivosArrastrados.toArray(files);
 
                     //Cargar Tabla
-                    for (int i = 0; i < files.length; i++) {
-                        String nombre = files[i].getName();
-                        String ruta = files[i].getAbsolutePath();
-                        long tamano = files[i].length();
-                        AgregarDatosTabla(nombre, ruta, tamano);
-                    }
-                    controlVentanas.controlLectorFacturas(files);
-                    System.out.println("Hagase Grande" + listaArchivosArrastrados.size());
+//                    for (int i = 0; i < files.length; i++) {
+//                        String nombre = files[i].getName();
+//                        String ruta = files[i].getAbsolutePath();
+//                        long tamano = files[i].length();
+//                        AgregarDatosTabla(nombre, ruta, tamano);
+//                    }
+                    //controlVentanas.controlLectorFacturas(files);
+                    
+                    String guardarEn = RecursosCompartidos.getRuta(); 
+                    
+                    
+                    controlVentanas.agregarFacturaProyecto(files,guardarEn,tablaXml);
+                    
+                    
 
                 } catch (Exception ex) {
                     System.out.println("Error" + ex);
@@ -248,15 +238,21 @@ public class formularioListarXml extends javax.swing.JPanel {
         });
 
     }
+    
+    //retornar la tabla para poder cargarla a la hora de abrir el archivo .GAFE
+    public JTable obtenerTabla(){
+        return tablaXml;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cedulaJuridica;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel nombreEmpresa;
     private javax.swing.JTable tablaXml;
+    private javax.swing.JLabel txtCedulaJ;
+    private javax.swing.JLabel txtNombre;
     // End of variables declaration//GEN-END:variables
 }

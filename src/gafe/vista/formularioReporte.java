@@ -2,7 +2,10 @@ package gafe.vista;
 
 public class formularioReporte extends javax.swing.JPanel {
 
-    public formularioReporte() {
+    ControlFormularioPrincipal controlVentanas;
+    
+    public formularioReporte(ControlFormularioPrincipal control) {
+        this.controlVentanas = control;
         initComponents();
     }
 
@@ -12,19 +15,7 @@ public class formularioReporte extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
+        TablaReportes = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
@@ -38,121 +29,27 @@ public class formularioReporte extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(500, 204));
         setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12"
             }
         ));
-        jTable1.setMinimumSize(new java.awt.Dimension(500, 600));
-        jScrollPane1.setViewportView(jTable1);
+        TablaReportes.setMinimumSize(new java.awt.Dimension(500, 600));
+        jScrollPane1.setViewportView(TablaReportes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 16;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 4, 3);
         add(jScrollPane1, gridBagConstraints);
-
-        jCheckBox1.setText("Clave");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox1, gridBagConstraints);
-
-        jCheckBox2.setText("Consecutivo");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox2, gridBagConstraints);
-
-        jCheckBox3.setText("Cédula emisor");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox3, gridBagConstraints);
-
-        jCheckBox4.setText("Nombre emisor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox4, gridBagConstraints);
-
-        jCheckBox5.setText("Cédula receptor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox5, gridBagConstraints);
-
-        jCheckBox6.setText("Nombre receptor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox6, gridBagConstraints);
-
-        jCheckBox7.setText("Detalle línea");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox7, gridBagConstraints);
-
-        jCheckBox8.setText("Moneda");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox8, gridBagConstraints);
-
-        jCheckBox9.setText("Fecha");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox9, gridBagConstraints);
-
-        jCheckBox10.setText("Subtotal");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox10, gridBagConstraints);
-
-        jCheckBox11.setText("Impuesto de ventas");
-        jCheckBox11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox11ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox11, gridBagConstraints);
-
-        jCheckBox12.setText("Total final de línea");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jCheckBox12, gridBagConstraints);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -205,14 +102,14 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 10;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
         add(jLabel4, gridBagConstraints);
 
         jButton1.setText("Guardar reporte");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         add(jButton1, gridBagConstraints);
 
@@ -224,18 +121,10 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
         add(jButton2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
-
-    private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox11ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -243,20 +132,9 @@ public class formularioReporte extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaReportes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
@@ -265,6 +143,5 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,7 +24,6 @@ public class Factura {
     }
     
     
-   
 
     public String getClave() {
         return clave;

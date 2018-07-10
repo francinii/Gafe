@@ -1,7 +1,10 @@
 package gafe.vista;
 
 import gafe.control.Control;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTree;
+import javax.xml.bind.JAXBException;
 
 public class formularioPrincipal extends javax.swing.JFrame {
 
@@ -159,11 +162,19 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        controlFormularioPrincipal.abrirProyecto();
+         try {
+            controlFormularioPrincipal.abrirNuevoProyecto(arbol);
+        } catch (JAXBException ex) {
+            Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-      controlFormularioPrincipal.abrirProyecto();
+        try {
+            controlFormularioPrincipal.abrirNuevoProyecto(arbol);
+        } catch (JAXBException ex) {
+            Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 
@@ -187,6 +198,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
+    
     private final Control control;
     private final ControlFormularioPrincipal controlFormularioPrincipal;
 }
