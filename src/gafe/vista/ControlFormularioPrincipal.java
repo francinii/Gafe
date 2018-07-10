@@ -4,6 +4,7 @@ import gafe.control.Control;
 import gafe.modelo.ElementosArbol;
 import gafe.modelo.Factura;
 import gafe.modelo.Proyecto;
+import gafe.modelo.VariablesGlobales;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,25 +39,29 @@ public class ControlFormularioPrincipal {
         formCrearProyecto.setSize(587, 402);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-
     }
 
     public void arbolMouseClicked(JTree arbol, JPanel panelPrincipal) {
         DefaultMutableTreeNode nodoSeleccionado = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();
-        if (nodoSeleccionado != null) {
-            String nombreNodo = nodoSeleccionado.toString();
-            AbrirPaneles(nombreNodo, panelPrincipal);
+        if (nodoSeleccionado != null) {            
+            AbrirPaneles(nodoSeleccionado, panelPrincipal);
         }
     }
 
-    private void AbrirPaneles(String seleccionArbol, JPanel panelPrincipal) {
-        if (seleccionArbol.equals(ElementosArbol.XML.getNombre())) {
+    //Abre los paneles al dar click a las hojas del arbol (panel de reportes, empleodos, xml)
+    private void AbrirPaneles(DefaultMutableTreeNode nodoSeleccionado, JPanel panelPrincipal) {
+        String seleccionArbol = nodoSeleccionado.toString();
+        VariablesGlobales vg = VariablesGlobales.getInstance();
+        if (seleccionArbol.equals(ElementosArbol.XML.getNombre())) {            
             abrirFormularioListarXml(panelPrincipal);
+            vg.setNombreProyectoActual(nodoSeleccionado.getParent().toString());
         } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
             abrirFormularioReportes(panelPrincipal);
+             vg.setNombreProyectoActual(nodoSeleccionado.getParent().toString());             
         } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
+             vg.setNombreProyectoActual(nodoSeleccionado.getParent().toString());
             //   control.abrirFormularioCrearProyecto(panelPrincipal);
-        }
+        }        
     }
 
     public void abrirFormularioListarXml(JPanel panelPrincipal) {
@@ -77,9 +82,9 @@ public class ControlFormularioPrincipal {
         panelPrincipal.repaint();
     }
 
+    //Agrega un elemento al arbol
     public void agregarNodoArbol(JTree arbol, String nombre) {
         DefaultTreeModel modelo = (DefaultTreeModel) arbol.getModel();
-
         DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(nombre);
         DefaultMutableTreeNode cabeza = (DefaultMutableTreeNode) modelo.getRoot();
         modelo.insertNodeInto(proyecto, cabeza, 0);
@@ -140,25 +145,42 @@ public class ControlFormularioPrincipal {
         }
     }
 
+    //Abre el explorador de archivos se envia el nombre del tipo de archivo la extencion y si se permite multiple
+    //seleccion
     public File[] abrirFileChooser(String nombreArchivo, String extension, boolean multipleEleccion) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         FileFilter xmlFilter = new FileNameExtensionFilter(nombreArchivo, extension);
-        jfc.setDialogTitle("Seleccione los archivos");
+        jfc.setDialogTitle("Seleccione el archivo");
         jfc.setMultiSelectionEnabled(multipleEleccion);
         jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         jfc.setFileFilter(xmlFilter);
-        File[] files = null;
+        File[] files;
         int returnValue = jfc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            files = jfc.getSelectedFiles();
+            files = jfc.getSelectedFiles();  
+             return files;
         }
-        return files;
+        return null;
+        
+       
     }
 
     public void mensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, "Alerta", JOptionPane.INFORMATION_MESSAGE);
+    }    
+    
+    //Abre un proyecto nuevo
+    public void abrirProyecto(){
+        File[] archivo = abrirFileChooser("Archivos gafe","gafe", false);
+        String nombre = ""; 
+        for (File ruta : archivo) {            
+            nombre = ruta.getName();
+        }
+        agregarNodoArbol(control.arbol(), nombre);
+        
     }
 
+    //Crea el xml de un nuevo proyecto, se envia el nombre cedula descripcion y donde se va a guardar el nuevo proyecto
     public void crearXmlProyecto(String nombre, String cedula, String descripcion, String ruta) throws PropertyException, JAXBException, FileNotFoundException, IOException {
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
         Marshaller marshaller = context.createMarshaller();
@@ -175,19 +197,7 @@ public class ControlFormularioPrincipal {
         agregarNodoArbol(control.arbol(), nombre);
     }
 
-//    public void crearXmlProyecto(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) throws PropertyException, JAXBException, FileNotFoundException, IOException {
-//        JAXBContext context = JAXBContext.newInstance(Proyecto.class);
-//        Marshaller marshaller = context.createMarshaller();
-//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//        Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta, facturas);
-//        //Anadimos el proyecto creado a la lista de proyectos
-//        control.listadoProyectos(proyecto);
-//        marshaller.marshal(proyecto, System.out);
-//        FileOutputStream fos = new FileOutputStream(ruta);
-//        marshaller.marshal(proyecto, fos);
-//        fos.close();
-//    }
-    //Arreglar este metodo
+    //Agregar una nueva factura a un proyecto, se envia por parametro la ruta de la factura a agregar, el nombre del archivo la extension del archivo
     public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion) throws JAXBException, PropertyException, IOException {
         File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion);
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
@@ -200,7 +210,7 @@ public class ControlFormularioPrincipal {
         if (proyecto.getListadoFacturas() != null) {
             List<Factura> lista = proyecto.getListadoFacturas();
             for (int i = 0; i < lista.size(); i++) {
-                proyect.agregarXMLProyecto(lista.get(i));
+                proyect.agregarXMLProyecto(lista.get(i)); 
             }
         }       
         List<Factura> list = control.obtenerListadoFacturas(files);

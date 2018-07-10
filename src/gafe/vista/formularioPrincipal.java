@@ -159,11 +159,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        controlFormularioPrincipal.abrirFileChooser("Archivo .gafe", "gafe", false);
+        controlFormularioPrincipal.abrirProyecto();
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        controlFormularioPrincipal.abrirFileChooser("Archivo .gafe", "gafe", false);
+      controlFormularioPrincipal.abrirProyecto();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
 

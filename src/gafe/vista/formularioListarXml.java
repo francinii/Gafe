@@ -1,6 +1,7 @@
 package gafe.vista;
 
 import gafe.control.Control;
+import gafe.modelo.VariablesGlobales;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -31,8 +32,7 @@ public class formularioListarXml extends javax.swing.JPanel {
 
     ControlFormularioPrincipal controlVentanas;
 
- //   JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-
+    //   JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
     public formularioListarXml(ControlFormularioPrincipal control) {
 
         initComponents();
@@ -147,9 +147,10 @@ public class formularioListarXml extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
-           // File[] files = controlVentanas.abrirFileChooser("Archivos XML", "xml",true);
-            String guardarEn = "C:" + '\\' + "Users" + '\\' + "HP_810G2" + '\\' + "Desktop" + '\\' + "pruebafinal" + ".gafe";
-            controlVentanas.agregarFacturaProyecto( guardarEn,"Archivos XML", "xml",true);
+            // File[] files = controlVentanas.abrirFileChooser("Archivos XML", "xml",true);
+            VariablesGlobales vg = VariablesGlobales.getInstance();
+            String guardarEn = "C:" + '\\' + "Users" + '\\' + "HP_810G2" + '\\' + "Desktop" + '\\' + vg.getNombreProyectoActual() + ".gafe";
+            controlVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true);
 //        FileFilter xmlFilter = new FileNameExtensionFilter("Archivos XML", "xml");
 //       jfc.setDialogTitle("Seleccione los archivos");
 //        jfc.setMultiSelectionEnabled(true);
