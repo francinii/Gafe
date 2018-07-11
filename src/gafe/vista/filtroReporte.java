@@ -594,6 +594,7 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 0);
         getContentPane().add(jCheckBox34, gridBagConstraints);
 
         jCheckBox35.setText("Codigo del Producto");
