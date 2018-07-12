@@ -65,11 +65,13 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
+        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         panelPrincipal.setLayout(new java.awt.BorderLayout());
         jSplitPane1.setRightComponent(panelPrincipal);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
         jToolBar1.setToolTipText("");
 
@@ -103,6 +105,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jToolBar1.add(btnGuardar);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+
+        jMenuBar1.setBackground(new java.awt.Color(35, 114, 75));
 
         jMenu1.setText("Archivo");
 
