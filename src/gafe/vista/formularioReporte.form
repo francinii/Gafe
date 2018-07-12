@@ -38,9 +38,9 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="TablaReportes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);">
               <Table columnCount="44" rowCount="4">
-                <Column editable="false" title="Clave" type="java.lang.Object"/>
-                <Column editable="false" title="Consecutivo" type="java.lang.Object"/>
-                <Column editable="false" title="Fecha Emision" type="java.lang.Object"/>
+                <Column editable="true" title="Clave" type="java.lang.Object"/>
+                <Column editable="true" title="Consecutivo" type="java.lang.Object"/>
+                <Column editable="true" title="Fecha Emision" type="java.lang.Object"/>
                 <Column editable="false" title="Condicion Venta" type="java.lang.Object"/>
                 <Column editable="false" title="Plaza Credito" type="java.lang.Object"/>
                 <Column editable="false" title="Medio Pago" type="java.lang.Object"/>
