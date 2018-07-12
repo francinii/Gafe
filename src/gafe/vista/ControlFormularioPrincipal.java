@@ -4,6 +4,7 @@ import gafe.control.Control;
 import gafe.modelo.ElementosArbol;
 import gafe.modelo.ExportarReporte;
 import gafe.modelo.Factura;
+import gafe.modelo.LineaDetalle;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import java.io.File;
@@ -329,7 +330,13 @@ public class ControlFormularioPrincipal {
         m.marshal(proyect, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             m.marshal(proyect, fos);
+        }catch(Exception e){
+            System.out.println("Error a la hora de crear el xml "+e);
+        
         }
+                
+                
+                          
     }
 
     //Este metodo es desde el arrastar y soltar.
@@ -586,31 +593,42 @@ public class ControlFormularioPrincipal {
                 columna[3] = listFacturas.get(i).getCondicionVenta().toString();
                 columna[4] = listFacturas.get(i).getPlazoCredito().toString();
                 columna[5] = listFacturas.get(i).getMedioPago().toString();
-             //   columna[6] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion().toString();
+                columna[6] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion().toString();
                 columna[7] = listFacturas.get(i).getEmisor().getNombre().toString();
                 columna[8] = listFacturas.get(i).getEmisor().getNombreComercial().toString();
-              //  columna[9] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
+                columna[9] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
                 //columna[10] = listFacturas.get(i).getEmisor().getTelefono().get(1).getNumeroTelefono();
                 columna[11] = listFacturas.get(i).getEmisor().getCorreo().toString();
-               // columna[12] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia().toString();
-               // columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton().toString();
-              //  columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito().toString();
+                columna[12] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia().toString();
+                columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton().toString();
+                columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito().toString();
 
                
-              //  columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion().toString();
-              //  columna[16] = listFacturas.get(i).getReceptor().getNombre().toString();
-              //  columna[17] = listFacturas.get(i).getReceptor().getNombreComercial().toString();
-             //   columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero().toString();
-               // columna[19] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono().toString();
-                //columna[20] = listFacturas.get(i).getReceptor().getTelefono().get(1).getNumeroTelefono().toString();
+                columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion().toString();
+                columna[16] = listFacturas.get(i).getReceptor().getNombre().toString();
+                columna[17] = listFacturas.get(i).getReceptor().getNombreComercial().toString();
+                columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero().toString();
+                columna[19] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono().toString();
+//                columna[20] = listFacturas.get(i).getReceptor().getTelefono().get(1).getNumeroTelefono().toString();
 
                 
-             //   columna[21] = listFacturas.get(i).getReceptor().getCorreo().toString();
-              //  columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia().toString();
-             //   columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton().toString();
-              //  columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito().toString();
-                             
+                columna[21] = listFacturas.get(i).getReceptor().getCorreo().toString();
+                columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia().toString();
+                columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton().toString();
+                columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito().toString();
+                
                 modelo.addRow(columna);
+                
+                System.out.println("lisatdoofsdaf"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
+                
+                for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
+//                    if(j != 0){ /// OJOOOOO PRIMER RECORRIDO
+//                        //columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString();
+//                        System.out.println("numero de linea"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString());
+//                        modelo.addRow(columna);                         
+//                    } 
+                    System.out.println("entreweeefsdfafsdaf");
+                }
 
             }
 
