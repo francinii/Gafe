@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -168,13 +170,16 @@ public class ControlFormularioPrincipal {
 
     public void agregarNodoArbol(JTree arbol, String nombre, String ruta) {
         DefaultTreeModel modelo = (DefaultTreeModel) arbol.getModel();
-
+        
         DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(nombre);
         DefaultMutableTreeNode cabeza = (DefaultMutableTreeNode) modelo.getRoot();
         modelo.insertNodeInto(proyecto, cabeza, 0);
         // DefaultTreeModel modelo = new DefaultTreeModel(proyecto);
         //  arbol.setModel(modelo);
+       // DefaultTreeCellRenderer renderIcono= (DefaultTreeCellRenderer)arbol.getCellRenderer();
         DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode(ElementosArbol.XML.getNombre());
+       // renderIcono.setLeafIcon(new ImageIcon(getClass().getResource("/recursos/users.png")));
+        
         DefaultMutableTreeNode reportes = new DefaultMutableTreeNode(ElementosArbol.REPORTES.getNombre());
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode(ElementosArbol.CLIENTE.getNombre());
         DefaultMutableTreeNode proveedores = new DefaultMutableTreeNode(ElementosArbol.PROVEEDOR.getNombre());
