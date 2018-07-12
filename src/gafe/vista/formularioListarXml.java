@@ -141,6 +141,11 @@ public class formularioListarXml extends javax.swing.JPanel {
         add(txtCedulaJ, gridBagConstraints);
 
         jButton3.setText("-");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
@@ -178,6 +183,10 @@ public class formularioListarXml extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        controlVentanas.eliminarFacturas(tablaXml);
+    }//GEN-LAST:event_jButton3ActionPerformed
       
     public void arrastrarSoltar() {
 
