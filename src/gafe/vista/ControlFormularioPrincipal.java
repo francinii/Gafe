@@ -488,8 +488,8 @@ public class ControlFormularioPrincipal {
             tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(0);
             tablaReportes.getColumnModel().getColumn(columna).setMinWidth(0);
             tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(0);
-            tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMaxWidth(0);
-            tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMinWidth(0);
+           // tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMaxWidth(0);
+           // tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMinWidth(0);
         }
     }
 

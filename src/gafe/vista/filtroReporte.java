@@ -790,15 +790,16 @@ public class filtroReporte extends javax.swing.JFrame {
     }
 
     public void cambiarEstadoColumnasReporte(){
-         List<String> listaEstados = control.leerArchivoConfiguracion();
-          boolean estado;
-         for (int i = 0; i < listaEstados.size(); i++) {
-            estado = false;
-            if (listaEstados.get(i).equals("true")) {            
-                estado = true;
-            }
-            control.ocultarMostrarColumnas( i, estado);
-        }
+        control.cambiarEstadoColumnasReporte();
+//         List<String> listaEstados = control.leerArchivoConfiguracion();
+//          boolean estado;
+//         for (int i = 0; i < listaEstados.size(); i++) {
+//            estado = false;
+//            if (listaEstados.get(i).equals("true")) {            
+//                estado = true;
+//            }
+//            control.ocultarMostrarColumnas( i, estado);
+//        }
      
     }
     

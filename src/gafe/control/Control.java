@@ -24,7 +24,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 public class Control {
-    
+
     public Control() {
         lectorArchivoConfiguracion = new LectorArchivoConfiguracion();
         controlVentanas = new ControlFormularioPrincipal(this);
@@ -33,51 +33,52 @@ public class Control {
         formCrearProyecto = new formularioCrearProyecto(controlVentanas);
         claseLectorFacturas = new LectorFacturasXML();
         formReporte = new formularioReporte(controlVentanas);
-        recursosCompartidos = new RecursosCompartidos();        
-        
-        this.leerArchivoConfiguracion();
-        for (int i = 1; i < 50; i++) {
-            System.out.println("case " + i + ":");
-            System.out.println("jCheckBox" + i + ".setSelected(estado);");
-            System.out.println("break;");
+        recursosCompartidos = new RecursosCompartidos();
 
-            //    System.out.println("listaEstados.add(jCheckBox" + i + ".isSelected()+ \"\"); ");
-        }
-        
+      //  this.leerArchivoConfiguracion();
+//        for (int i = 1; i < 50; i++) {
+//            System.out.println("case " + i + ":");
+//            System.out.println("jCheckBox" + i + ".setSelected(estado);");
+//            System.out.println("break;");
+//
+//            //    System.out.println("listaEstados.add(jCheckBox" + i + ".isSelected()+ \"\"); ");
+//        }
+        cambiarEstadoColumnasReporte();
+
     }
-    
+
     public void ocultarMostrarColumnas(int columna, boolean status) {
         controlVentanas.ocultarMostrarColumnas(columna, status);
     }
-    
+
     public formularioCrearProyecto getFormularioCrearProyecto() {
         return formCrearProyecto;
     }
-    
+
     public formularioListarXml getFormularioListarXml() {
         return formularioListarXml;
     }
-    
+
     public formularioReporte getFormReporte() {
         return formReporte;
     }
-    
+
     public JTable tablaReportes() {
         return formReporte.tablaReportes();
     }
-    
+
     public List<Factura> obtenerListadoFacturas(File[] files) {
         return claseLectorFacturas.listarFacturas(files);
     }
-    
+
     public List<Proyecto> obtenerListadoProyectos() {
         return listadoProyecto;
     }
-    
+
     public Factura crearFactura(String ruta) {
         return claseLectorFacturas.crearFactura(ruta);
     }
-    
+
     public JTree arbol() {
         return formularioPrincipal.arbol();
     }
@@ -89,13 +90,13 @@ public class Control {
         //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
         //listadoProyectos(proyecto);
     }
-    
+
     public Proyecto crearObjetoProyecto(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) {
         return new Proyecto(nombre, cedula, descripcion, ruta, facturas);
         //Crear un metodo que escriba en un txt el nombre y la ruta del proyecto
         //listadoProyectos(proyecto);
     }
-    
+
     public void listadoProyectos(Proyecto p) {
         listadoProyecto.add(p);
     }
@@ -105,15 +106,27 @@ public class Control {
         JTable tabla = formularioListarXml.obtenerTabla();
         return tabla;
     }
-    
+
     public List<String> leerArchivoConfiguracion() {
         return lectorArchivoConfiguracion.leerArchivoFiltros(directorio);
     }
-    
+
     public void escribirArchivoConfiguracion(List<String> listaEstados) {
         lectorArchivoConfiguracion.escribirArchivoFiltros(directorio, listaEstados);
     }
-    
+
+    public void cambiarEstadoColumnasReporte() {
+        List<String> listaEstados = leerArchivoConfiguracion();
+        boolean estado;
+        for (int i = 0; i < listaEstados.size(); i++) {
+            estado = false;
+            if (listaEstados.get(i).equals("true")) {
+                estado = true;
+            }
+            ocultarMostrarColumnas(i, estado);
+        }
+    }
+
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
@@ -125,5 +138,5 @@ public class Control {
     LectorArchivoConfiguracion lectorArchivoConfiguracion;
     //filtroReporte ventanaFiltros;
     private String directorio = "../gafe//src//recursos//config.txt";
-    
+
 }
