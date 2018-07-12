@@ -14,5 +14,15 @@ public class DetalleServicio {
     public void agregarLinea(LineaDetalle e) {
         listaLineaDetalle.add(e);
     }
+    
+    public List<LineaDetalle> getListaLineaDetalle() {
+        return listaLineaDetalle;
+    }
+    
     private List<LineaDetalle> listaLineaDetalle;
+
+   
+    
+    
+    
 }
