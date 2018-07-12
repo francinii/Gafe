@@ -90,12 +90,12 @@ public class ControlFormularioPrincipal {
                                 //cargar datos tabla, el primer recorrido no entra porque es la factura en blanco
                                 if (i > 0) {
 
-                                    String consecutivo = lista.get(i).getClave().toString();
+                                    String consecutivo = lista.get(i).getConsecutivo().toString();
                                     String emisor = lista.get(i).getEmisor().getNombre().toString();
 
                                     String receptor = "";
                                     if (lista.get(i).getReceptor() != null) {
-                                        receptor = lista.get(i).getReceptor().getNombre();
+                                        receptor = lista.get(i).getReceptor().getNombre().toString();
                                     }
 
                                     String total = "";
@@ -294,12 +294,12 @@ public class ControlFormularioPrincipal {
         for (int i = 0; i < list.size(); i++) {
             proyect.agregarXMLProyecto(list.get(i));
             //Cargar la tabla con los datos de la factura.
-            String consecutivo = list.get(i).getClave().toString();
+            String consecutivo = list.get(i).getConsecutivo().toString();
             String emisor = list.get(i).getEmisor().getNombre().toString();
 
             String receptor = "";
             if (list.get(i).getReceptor() != null) {
-                receptor = list.get(i).getReceptor().toString();
+                receptor = list.get(i).getReceptor().getNombre().toString();
             }
 
             String total = "";
@@ -336,7 +336,7 @@ public class ControlFormularioPrincipal {
             proyect.agregarXMLProyecto(list.get(i));
 
             //Cargar la tabla con los datos de la factura.
-            String consecutivo = list.get(i).getClave().toString();
+            String consecutivo = list.get(i).getConsecutivo().toString();
             String emisor = list.get(i).getEmisor().toString();
 
             String receptor = "";
@@ -365,25 +365,12 @@ public class ControlFormularioPrincipal {
         Marshaller m = context.createMarshaller();
         Unmarshaller unmarshaller = context.createUnmarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        //Deserealizamos a partir de un documento XML
-        //Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
+        
         p = new Proyecto(p.getNombre(), p.getCedula(), p.getDescripcion(), p.getRuta());
-        /*if (proyecto.getListadoFacturas() != null) {
-            //List<Factura> lista = proyecto.getListadoFacturas();
-            for (int i = 0; i < lista.size(); i++) {
-                proyect.agregarXMLProyecto(lista.get(i));
-            }
-        }*/
-        //List<Factura> list = control.obtenerListadoFacturas(files);
+        
         for (int i = 0; i < lista.size(); i++) {
             p.agregarXMLProyecto(lista.get(i));
 
-            //Cargar la tabla con los datos de la factura.
-            /*AgregarDatosTabla(lista.get(i).getConsecutivo(), 
-                    lista.get(i).getEmisor().getNombre(),
-                    lista.get(i).getReceptor().getNombre(), 
-                    lista.get(i).getResumenFactura().getTotalVenta().toString(),
-                    tabla);*/
         }
         m.marshal(p, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
