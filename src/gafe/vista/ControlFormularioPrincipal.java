@@ -2,6 +2,7 @@ package gafe.vista;
 
 import gafe.control.Control;
 import gafe.modelo.ElementosArbol;
+import gafe.modelo.ExportarReporte;
 import gafe.modelo.Factura;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
@@ -495,8 +496,8 @@ public class ControlFormularioPrincipal {
                     if (p.getCedula().equals(listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion())) {
                         cedulas.add(cedula);
                         columna[0] = listFacturas.get(i).getEmisor().getNombre();
-                        columna[1] = cedula;                       
-                        if (listFacturas.get(i).getEmisor().getTelefono().get(0) != null  && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
+                        columna[1] = cedula;
+                        if (listFacturas.get(i).getEmisor().getTelefono().get(0) != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
                             columna[2] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
                         }
                         columna[3] = listFacturas.get(i).getEmisor().getCorreo();
@@ -517,15 +518,14 @@ public class ControlFormularioPrincipal {
         //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
         for (int i = 1; i < listFacturas.size(); i++) {
             Object[] columna = new Object[numeroColumnasTabla];
-            if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getReceptor().getIdenticacion() != null ) {
-                
+            if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getReceptor().getIdenticacion() != null) {
                 String cedula = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
                 if (p.getCedula().equals(listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion())) {
                     if (!cedulas.contains(cedula)) {
                         cedulas.add(cedula);
                         columna[0] = listFacturas.get(i).getReceptor().getNombre();
                         columna[1] = cedula;
-                        if (listFacturas.get(i).getReceptor().getTelefono()!= null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty() ) {
+                        if (listFacturas.get(i).getReceptor().getTelefono() != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
                             columna[2] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono();
                         }
                         columna[3] = listFacturas.get(i).getReceptor().getCorreo();
@@ -535,5 +535,33 @@ public class ControlFormularioPrincipal {
             }
         }
     }
+
+    public void exportarReporte(JTable jTable1) {
+        if (jTable1.getRowCount() > 0) {
+            JFileChooser chooser = new JFileChooser();
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
+            chooser.setFileFilter(filter);
+            chooser.setDialogTitle("Guardar archivo como");
+            chooser.setAcceptAllFileFilterUsed(false);
+            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                List tb = new ArrayList();
+                List nom = new ArrayList();
+                tb.add(jTable1);
+                nom.add("Reporte de facturas");
+                String file = chooser.getSelectedFile().toString().concat(".xls");
+                try {
+                    ExportarReporte e = new ExportarReporte(new File(file), tb, nom);
+                    if (e.export()) {
+                        JOptionPane.showMessageDialog(null, "Los datos fueron exportados a excel en el directorio seleccionado", "Mensaje de Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Hubo un error " + e.getMessage(), " Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay datos para exportar", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     private final Control control;
 }
