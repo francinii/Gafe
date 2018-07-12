@@ -34,15 +34,13 @@ import org.jdom2.Element;
 public class ControlFormularioPrincipal {
 
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
-    
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;
-    
+
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
     }
-    
-   
+
     public void abrirFormularioCrearProyecto(JPanel panelPrincipal) {
         formularioCrearProyecto formCrearProyecto = control.getFormularioCrearProyecto();
         panelPrincipal.removeAll();
@@ -105,11 +103,10 @@ public class ControlFormularioPrincipal {
                                         total = lista.get(i).getResumenFactura().getTotalVenta().toString();
                                     }
 
-                                   AgregarDatosTabla(consecutivo,emisor,receptor,total,control.obtenerTabla()); 
-                                    
-                                    
+                                    AgregarDatosTabla(consecutivo, emisor, receptor, total, control.obtenerTabla());
+
                                 }
-                                    /*System.out.println("numero recorrido " + i);
+                                /*System.out.println("numero recorrido " + i);
                                     AgregarDatosTabla(lista.get(i).getConsecutivo(),
                                             lista.get(i).getEmisor().getNombre(),
                                             lista.get(i).getReceptor().getNombre(),
@@ -128,11 +125,10 @@ public class ControlFormularioPrincipal {
         }
     }
 
-
     private void AbrirPaneles(String seleccionArbol, JPanel panelPrincipal) {
         if (seleccionArbol.equals(ElementosArbol.XML.getNombre())) {
             abrirFormularioListarXml(panelPrincipal);
-            
+
         } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
             abrirFormularioReportes(panelPrincipal);
         } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
@@ -144,11 +140,11 @@ public class ControlFormularioPrincipal {
         panelPrincipal.removeAll();
         formularioListarXml formlarioListarXml = control.getFormularioListarXml();
         formlarioListarXml.limpiarTabla();
-        formlarioListarXml.llenarDatosProyecto(EmpresaGlobal,CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
+        formlarioListarXml.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
         formlarioListarXml.setSize(599, 284);
         panelPrincipal.add(formlarioListarXml);
         panelPrincipal.revalidate();
-        panelPrincipal.repaint();     
+        panelPrincipal.repaint();
     }
 
     public void abrirFormularioReportes(JPanel panelPrincipal) {
@@ -179,6 +175,7 @@ public class ControlFormularioPrincipal {
         modelo.insertNodeInto(clientes, proyecto, 2);
         modelo.insertNodeInto(proveedores, proyecto, 3);
         modelo.insertNodeInto(rutas, proyecto, 4);
+
     }
 
     public String obtenerRutaFileChooser() {
@@ -253,7 +250,7 @@ public class ControlFormularioPrincipal {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             files = jfc.getSelectedFile();
         }
-       
+
         return files;
     }
 
@@ -277,7 +274,6 @@ public class ControlFormularioPrincipal {
         agregarNodoArbol(control.arbol(), nombre, ruta);
     }
 
-
     //Arreglar este metodo
     public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion, JTable tabla) throws JAXBException, PropertyException, IOException {
         File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion);
@@ -296,29 +292,29 @@ public class ControlFormularioPrincipal {
         }
         List<Factura> list = control.obtenerListadoFacturas(files);
         for (int i = 0; i < list.size(); i++) {
-            proyect.agregarXMLProyecto(list.get(i));          
-             //Cargar la tabla con los datos de la factura.
+            proyect.agregarXMLProyecto(list.get(i));
+            //Cargar la tabla con los datos de la factura.
             String consecutivo = list.get(i).getClave().toString();
             String emisor = list.get(i).getEmisor().getNombre().toString();
-            
+
             String receptor = "";
-                    if(list.get(i).getReceptor() !=null){
-                        receptor = list.get(i).getReceptor().toString();
-                    }
-                    
+            if (list.get(i).getReceptor() != null) {
+                receptor = list.get(i).getReceptor().toString();
+            }
+
             String total = "";
-                    if(list.get(i).getResumenFactura().getTotalVenta() !=null){
-                        total = list.get(i).getResumenFactura().getTotalVenta().toString();
-                    }                    
-            
-            AgregarDatosTabla(consecutivo,emisor,receptor,total,tabla);        
+            if (list.get(i).getResumenFactura().getTotalVenta() != null) {
+                total = list.get(i).getResumenFactura().getTotalVenta().toString();
+            }
+
+            AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
         }
         m.marshal(proyect, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             m.marshal(proyect, fos);
-        }     
+        }
     }
-    
+
     //Este metodo es desde el arrastar y soltar.
     public void agregarFacturaProyecto(File files[], String ruta, JTable tabla) throws JAXBException, FileNotFoundException, IOException {
 
@@ -342,18 +338,18 @@ public class ControlFormularioPrincipal {
             //Cargar la tabla con los datos de la factura.
             String consecutivo = list.get(i).getClave().toString();
             String emisor = list.get(i).getEmisor().toString();
-            
+
             String receptor = "";
-                    if((list.get(i).getReceptor().toString()) != null){
-                        receptor = list.get(i).getReceptor().toString();
-                    }
-                    
+            if ((list.get(i).getReceptor().toString()) != null) {
+                receptor = list.get(i).getReceptor().toString();
+            }
+
             String total = "";
-                    if((list.get(i).getResumenFactura().getTotalVenta().toString()) != null){
-                        total = list.get(i).getResumenFactura().getTotalVenta().toString();
-                    }                    
-            
-            AgregarDatosTabla(consecutivo,emisor,receptor,total,tabla);         
+            if ((list.get(i).getResumenFactura().getTotalVenta().toString()) != null) {
+                total = list.get(i).getResumenFactura().getTotalVenta().toString();
+            }
+
+            AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
         }
         m.marshal(proyect, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
@@ -361,9 +357,9 @@ public class ControlFormularioPrincipal {
 
         }
     }
-        
+
     //Resscribrir el archivo cuando se elimina una factura.
-        public void agregarFacturaProyecto(List<Factura> lista,Proyecto p,String ruta) throws JAXBException, FileNotFoundException, IOException {
+    public void agregarFacturaProyecto(List<Factura> lista, Proyecto p, String ruta) throws JAXBException, FileNotFoundException, IOException {
 
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
         Marshaller m = context.createMarshaller();
@@ -396,9 +392,8 @@ public class ControlFormularioPrincipal {
         }
 
     }
-        
-    
-    public void AgregarDatosTabla(String numero, String emisor, String receptor,String total, JTable tabla) {
+
+    public void AgregarDatosTabla(String numero, String emisor, String receptor, String total, JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel(); //Obtengo el modelo existente por defecto     
         Object[] fila = new Object[4];
         fila[0] = numero;
@@ -408,9 +403,6 @@ public class ControlFormularioPrincipal {
         modelo.addRow(fila);
     }
 
-
-    
-    
     public void abrirNuevoProyecto(JTree arbol) throws JAXBException {
         File files = abrirFileChooser("Gafe", "gafe");
         if (files != null) {
@@ -420,27 +412,25 @@ public class ControlFormularioPrincipal {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
             Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
-            
+
             if (proyecto.getListadoFacturas() != null) {
                 lista = proyecto.getListadoFacturas();
-                
+
                 for (int i = 0; i < lista.size(); i++) {
-                    proyect.agregarXMLProyecto(lista.get(i));       
+                    proyect.agregarXMLProyecto(lista.get(i));
                 }
             }
             agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
             agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
         }
     }
-           
-  
-    
+
     //Este metodo se usa para cargar los proyectos que son abiertos.
-    public void agregarProyectoAlista(String nombre, String cedula, String descripcion, String ruta,List<Factura> facturas){
-        Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta,facturas);
+    public void agregarProyectoAlista(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) {
+        Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta, facturas);
         control.listadoProyectos(proyecto);
     }
-        
+
     public Proyecto buscarProyecto(String rutaProyecto) {
         List<Proyecto> listado = control.obtenerListadoProyectos();
         Proyecto p = null;
@@ -451,8 +441,8 @@ public class ControlFormularioPrincipal {
             }
         }
         return p;
-    } 
-    
+    }
+
     public void eliminarFacturas(JTable tabla) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         int[] row = tabla.getSelectedRows();
@@ -469,48 +459,39 @@ public class ControlFormularioPrincipal {
                 Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
-    
-    public void eliminarFacturaListadoProyecto(String consecutivoEliminar) throws JAXBException, IOException{
+
+    public void eliminarFacturaListadoProyecto(String consecutivoEliminar) throws JAXBException, IOException {
         System.out.println("Eliminar");
         String ruta = RecursosCompartidos.getRuta();
         Proyecto p = buscarProyecto(ruta);
-    
         List<Factura> listado = p.getListadoFacturas();
-        
         for (int i = 0; i < listado.size(); i++) {
-            System.out.println("Consecutivo "+listado.get(i).getConsecutivo().toString());
-            if(listado.get(i).getConsecutivo().toString().equals(consecutivoEliminar)){
+            System.out.println("Consecutivo " + listado.get(i).getConsecutivo().toString());
+            if (listado.get(i).getConsecutivo().toString().equals(consecutivoEliminar)) {
                 listado.remove(i);
                 System.out.println("Entre consecutivo ");
-            }      
+            }
         }
-        agregarFacturaProyecto(listado,p,ruta);
-        
+        agregarFacturaProyecto(listado, p, ruta);
     }
-    
+
     /*  Esto es para el formulario de reportes    */
-    
-    public void ocultarMostrarColumnas(JTable tablaReportes, int columna, int status){
-        
-        if (status == 1) { // 1 cuando quiero mostrar
+    public void ocultarMostrarColumnas( int columna, boolean status) {
+        JTable tablaReportes = control.tablaReportes();
+        if (status == true) { // 1 cuando quiero mostrar
             tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(500);
             tablaReportes.getColumnModel().getColumn(columna).setMinWidth(75);
-            tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(75);    
-            tablaReportes.getColumnModel().getColumn(columna).setResizable(true);
+            tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(75);
+            tablaReportes.getColumnModel().getColumn(columna).setResizable(true);           
         } else { // 0 cuando quiero ocultar
             tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(0);
             tablaReportes.getColumnModel().getColumn(columna).setMinWidth(0);
             tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(0);
+            tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMaxWidth(0);
+            tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMinWidth(0);
         }
-        
-        
     }
-    
-    
-    
-    
-    
+
     private final Control control;
 }

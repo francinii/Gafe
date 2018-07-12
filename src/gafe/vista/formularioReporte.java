@@ -1,5 +1,7 @@
 package gafe.vista;
 
+import javax.swing.JTable;
+
 public class formularioReporte extends javax.swing.JPanel {
 
     ControlFormularioPrincipal controlVentanas;
@@ -7,6 +9,10 @@ public class formularioReporte extends javax.swing.JPanel {
     public formularioReporte(ControlFormularioPrincipal control) {
         this.controlVentanas = control;
         initComponents();
+    }
+    
+    public JTable tablaReportes(){
+        return TablaReportes;
     }
 
     @SuppressWarnings("unchecked")
