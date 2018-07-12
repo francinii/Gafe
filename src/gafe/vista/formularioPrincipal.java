@@ -1,14 +1,19 @@
 package gafe.vista;
 
 import gafe.control.Control;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.xml.bind.JAXBException;
 
 public class formularioPrincipal extends javax.swing.JFrame {
 
     public formularioPrincipal(Control control, ControlFormularioPrincipal controlFormularioPrincipal) {
+        this.setTitle("Gafe");
+        Image icon = new ImageIcon(getClass().getResource("/recursos/apple.png")).getImage();
+        setIconImage(icon);
         this.control = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;
         init();
@@ -47,6 +52,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 500));
@@ -75,7 +82,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
         jToolBar1.setToolTipText("");
 
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/nuevo2.png"))); // NOI18N
+        btnNuevo.setBackground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new32.png"))); // NOI18N
         btnNuevo.setToolTipText("Nuevo");
         btnNuevo.setFocusable(false);
         btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -87,7 +95,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnNuevo);
 
-        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/abrir2.png"))); // NOI18N
+        btnAbrir.setBackground(new java.awt.Color(255, 255, 255));
+        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Open32.png"))); // NOI18N
+        btnAbrir.setToolTipText("Abrir");
         btnAbrir.setFocusable(false);
         btnAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -98,7 +108,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnAbrir);
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardar2.png"))); // NOI18N
+        btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Save32.png"))); // NOI18N
+        btnGuardar.setToolTipText("Guardar");
         btnGuardar.setFocusable(false);
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -110,6 +122,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/nuevo.png"))); // NOI18N
         jMenuItem1.setText("Nuevo proyecto");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +131,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/abrir.png"))); // NOI18N
         jMenuItem2.setText("Abrir proyecto");
         jMenuItem2.setToolTipText("");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -127,16 +141,20 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardar.png"))); // NOI18N
         jMenuItem3.setText("Guardar");
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardarcomo.png"))); // NOI18N
         jMenuItem4.setText("Guardar como");
         jMenuItem4.setToolTipText("");
         jMenu1.add(jMenuItem4);
 
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir.png"))); // NOI18N
         jMenuItem5.setText("Cerrar todos los proyectos");
         jMenu1.add(jMenuItem5);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
         jMenuItem6.setText("Salir");
         jMenuItem6.setToolTipText("");
         jMenu1.add(jMenuItem6);
@@ -145,6 +163,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Preferencias");
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png"))); // NOI18N
         jMenuItem7.setText("Filtrar reportes");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +174,21 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Acerca de");
+        jMenu4.setText("Ayuda");
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/help.png"))); // NOI18N
+        jMenuItem8.setText("Ayuda");
+        jMenu4.add(jMenuItem8);
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/about.png"))); // NOI18N
+        jMenuItem9.setText("Acerca de");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem9);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -196,6 +229,10 @@ public class formularioPrincipal extends javax.swing.JFrame {
           ventanaFiltros.leerArchivoConfiguracion();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbol;
@@ -213,6 +250,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JToolBar jToolBar1;

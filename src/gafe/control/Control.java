@@ -1,5 +1,4 @@
 package gafe.control;
-
 import gafe.modelo.Factura;
 import gafe.modelo.LectorArchivoConfiguracion;
 import gafe.modelo.LectorFacturasXML;
