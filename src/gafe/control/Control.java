@@ -7,9 +7,11 @@ import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import gafe.vista.ControlFormularioPrincipal;
 import gafe.vista.filtroReporte;
+import gafe.vista.formularioClientes;
 import gafe.vista.formularioCrearProyecto;
 import gafe.vista.formularioListarXml;
 import gafe.vista.formularioPrincipal;
+import gafe.vista.formularioProveedores;
 import gafe.vista.formularioReporte;
 import java.io.File;
 import java.io.FileWriter;
@@ -33,18 +35,10 @@ public class Control {
         formCrearProyecto = new formularioCrearProyecto(controlVentanas);
         claseLectorFacturas = new LectorFacturasXML();
         formReporte = new formularioReporte(controlVentanas);
+        formClientes = new formularioClientes(controlVentanas);
+        formProveedores = new formularioProveedores(controlVentanas);
         recursosCompartidos = new RecursosCompartidos();
-
-      //  this.leerArchivoConfiguracion();
-//        for (int i = 1; i < 50; i++) {
-//            System.out.println("case " + i + ":");
-//            System.out.println("jCheckBox" + i + ".setSelected(estado);");
-//            System.out.println("break;");
-//
-//            //    System.out.println("listaEstados.add(jCheckBox" + i + ".isSelected()+ \"\"); ");
-//        }
         cambiarEstadoColumnasReporte();
-
     }
 
     public void ocultarMostrarColumnas(int columna, boolean status) {
@@ -62,9 +56,25 @@ public class Control {
     public formularioReporte getFormReporte() {
         return formReporte;
     }
+    
+    public formularioClientes getFormClientes(){
+        return formClientes;
+    }
+    
+    public formularioProveedores getFormProveedores(){
+        return formProveedores;
+    }
 
     public JTable tablaReportes() {
         return formReporte.tablaReportes();
+    }
+
+    public JTable tablaClientes() {
+        return formClientes.tablaClientes();
+    }
+
+    public JTable tablaProveedores() {
+        return formProveedores.tablaProveedores();
     }
 
     public List<Factura> obtenerListadoFacturas(File[] files) {
@@ -127,6 +137,8 @@ public class Control {
         }
     }
 
+
+
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
@@ -136,6 +148,8 @@ public class Control {
     ControlFormularioPrincipal controlVentanas;
     RecursosCompartidos recursosCompartidos;
     LectorArchivoConfiguracion lectorArchivoConfiguracion;
+    formularioClientes formClientes;
+    formularioProveedores formProveedores;
     //filtroReporte ventanaFiltros;
     private String directorio = "../gafe//src//recursos//config.txt";
 

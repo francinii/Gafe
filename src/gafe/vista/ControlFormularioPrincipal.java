@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,55 +57,40 @@ public class ControlFormularioPrincipal {
             String nombreNodo = nodoSeleccionado.toString();
             AbrirPaneles(nombreNodo, panelPrincipal);
             String a = nodoSeleccionado.getRoot().toString();
-
             System.out.println("nombre del nodo" + a);
-
             if (nodoSeleccionado.toString() == "Proyectos") { // no entra al nodo Proyecto
                 System.out.println("No puedo entrar");
             } else {
                 if (nodoSeleccionado.getChildCount() > 0) {
-
                     System.out.println("Tiene hijos");
                     String ruta = nodoSeleccionado.getLastChild().toString();
                     RecursosCompartidos.setRuta(ruta); // Cargo la variable estatica, cada vez que cambio de nodo
-
                 } else {
                     DefaultMutableTreeNode padre = (DefaultMutableTreeNode) nodoSeleccionado.getParent();
                     String ruta = padre.getLastChild().toString();
                     RecursosCompartidos.setRuta(ruta); // Cargo la variable estatica, cada vez que cambio de nodo
-
                     Proyecto p = buscarProyecto(ruta);
-
                     EmpresaGlobal = p.getNombre();
                     CedulaJuridicaGlobal = p.getCedula();
                     AbrirPaneles(nombreNodo, panelPrincipal);
-
                     System.out.println("listadoo " + p.getListadoFacturas().size());
-
                     if (nombreNodo == "Cargar Facturas") { // esto aplica solo para el nodo de Cargar Facturas
                         if (p.getListadoFacturas() != null) {
                             List<Factura> lista = p.getListadoFacturas();
-
                             for (int i = 0; i < lista.size(); i++) {
-
                                 //cargar datos tabla, el primer recorrido no entra porque es la factura en blanco
                                 if (i > 0) {
-
                                     String consecutivo = lista.get(i).getConsecutivo().toString();
                                     String emisor = lista.get(i).getEmisor().getNombre().toString();
-
                                     String receptor = "";
                                     if (lista.get(i).getReceptor() != null) {
                                         receptor = lista.get(i).getReceptor().getNombre().toString();
                                     }
-
                                     String total = "";
                                     if (lista.get(i).getResumenFactura().getTotalVenta() != null) {
                                         total = lista.get(i).getResumenFactura().getTotalVenta().toString();
                                     }
-
                                     AgregarDatosTabla(consecutivo, emisor, receptor, total, control.obtenerTabla());
-
                                 }
                                 /*System.out.println("numero recorrido " + i);
                                     AgregarDatosTabla(lista.get(i).getConsecutivo(),
@@ -118,9 +104,7 @@ public class ControlFormularioPrincipal {
                             System.out.println("vacio");
                         }
                     }
-
                 }
-
             }
         }
     }
@@ -128,11 +112,12 @@ public class ControlFormularioPrincipal {
     private void AbrirPaneles(String seleccionArbol, JPanel panelPrincipal) {
         if (seleccionArbol.equals(ElementosArbol.XML.getNombre())) {
             abrirFormularioListarXml(panelPrincipal);
-
         } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
             abrirFormularioReportes(panelPrincipal);
-        } else if (seleccionArbol.equals(ElementosArbol.REPORTES.getNombre())) {
-            //   control.abrirFormularioCrearProyecto(panelPrincipal);
+        } else if (seleccionArbol.equals(ElementosArbol.CLIENTE.getNombre())) {
+            abrirFormularioClientes(panelPrincipal);
+        } else if (seleccionArbol.equals(ElementosArbol.PROVEEDOR.getNombre())) {
+            abrirFormularioProveedores(panelPrincipal);
         }
     }
 
@@ -152,6 +137,30 @@ public class ControlFormularioPrincipal {
         formularioReporte fomrReporte = control.getFormReporte();
         fomrReporte.setSize(599, 284);
         panelPrincipal.add(fomrReporte);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+    }
+
+    public void abrirFormularioClientes(JPanel panelPrincipal) {
+        panelPrincipal.removeAll();
+        formularioClientes formClientes = control.getFormClientes();
+        formClientes.limpiarTabla();
+        llenarClientes();
+
+        formClientes.setSize(599, 284);
+        panelPrincipal.add(formClientes);
+        panelPrincipal.revalidate();
+        panelPrincipal.repaint();
+
+    }
+
+    public void abrirFormularioProveedores(JPanel panelPrincipal) {
+        panelPrincipal.removeAll();
+        formularioProveedores formProveedor = control.getFormProveedores();
+        formProveedor.limpiarTabla();
+        llenarProveedores();
+        formProveedor.setSize(599, 284);
+        panelPrincipal.add(formProveedor);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }
@@ -360,24 +369,18 @@ public class ControlFormularioPrincipal {
 
     //Resscribrir el archivo cuando se elimina una factura.
     public void agregarFacturaProyecto(List<Factura> lista, Proyecto p, String ruta) throws JAXBException, FileNotFoundException, IOException {
-
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
         Marshaller m = context.createMarshaller();
         Unmarshaller unmarshaller = context.createUnmarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        
         p = new Proyecto(p.getNombre(), p.getCedula(), p.getDescripcion(), p.getRuta());
-        
         for (int i = 0; i < lista.size(); i++) {
             p.agregarXMLProyecto(lista.get(i));
-
         }
         m.marshal(p, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             m.marshal(p, fos);
-
         }
-
     }
 
     public void AgregarDatosTabla(String numero, String emisor, String receptor, String total, JTable tabla) {
@@ -399,10 +402,8 @@ public class ControlFormularioPrincipal {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
             Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
-
             if (proyecto.getListadoFacturas() != null) {
                 lista = proyecto.getListadoFacturas();
-
                 for (int i = 0; i < lista.size(); i++) {
                     proyect.agregarXMLProyecto(lista.get(i));
                 }
@@ -421,7 +422,6 @@ public class ControlFormularioPrincipal {
     public Proyecto buscarProyecto(String rutaProyecto) {
         List<Proyecto> listado = control.obtenerListadoProyectos();
         Proyecto p = null;
-
         for (int i = 0; i < listado.size(); i++) {
             if (listado.get(i).getRuta() == rutaProyecto) {
                 p = listado.get(i);
@@ -464,21 +464,76 @@ public class ControlFormularioPrincipal {
     }
 
     /*  Esto es para el formulario de reportes    */
-    public void ocultarMostrarColumnas( int columna, boolean status) {
+    public void ocultarMostrarColumnas(int columna, boolean status) {
         JTable tablaReportes = control.tablaReportes();
         if (status == true) { // 1 cuando quiero mostrar
             tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(500);
             tablaReportes.getColumnModel().getColumn(columna).setMinWidth(75);
             tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(175);
-            tablaReportes.getColumnModel().getColumn(columna).setResizable(true);           
+            tablaReportes.getColumnModel().getColumn(columna).setResizable(true);
         } else { // 0 cuando quiero ocultar
             tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(0);
             tablaReportes.getColumnModel().getColumn(columna).setMinWidth(0);
             tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(0);
-           // tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMaxWidth(0);
-           // tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMinWidth(0);
+            // tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMaxWidth(0);
+            // tablaReportes.getTableHeader().getColumnModel().getColumn(columna).setMinWidth(0);
         }
     }
 
+    public void llenarProveedores() {
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
+        DefaultTableModel modelo = (DefaultTableModel) control.tablaProveedores().getModel();
+        List<Factura> listFacturas = p.getListadoFacturas();
+        int numeroColumnasTabla = 5;
+        List<String> cedulas = new ArrayList<>();
+        //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
+        for (int i = 1; i < listFacturas.size(); i++) {
+            Object[] columna = new Object[numeroColumnasTabla];
+            if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getEmisor().getIdenticacion() != null) {
+                String cedula = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
+                if (!cedulas.contains(cedula)) {
+                    if (p.getCedula().equals(listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion())) {
+                        cedulas.add(cedula);
+                        columna[0] = listFacturas.get(i).getEmisor().getNombre();
+                        columna[1] = cedula;                       
+                        if (listFacturas.get(i).getEmisor().getTelefono().get(0) != null  && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
+                            columna[2] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
+                        }
+                        columna[3] = listFacturas.get(i).getEmisor().getCorreo();
+                        //columna[4] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia();
+                        modelo.addRow(columna);
+                    }
+                }
+            }
+        }
+    }
+
+    public void llenarClientes() {
+        DefaultTableModel modelo = (DefaultTableModel) control.tablaClientes().getModel();
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
+        List<Factura> listFacturas = p.getListadoFacturas();
+        int numeroColumnasTabla = 5;
+        List<String> cedulas = new ArrayList<>();
+        //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
+        for (int i = 1; i < listFacturas.size(); i++) {
+            Object[] columna = new Object[numeroColumnasTabla];
+            if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getReceptor().getIdenticacion() != null ) {
+                
+                String cedula = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
+                if (p.getCedula().equals(listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion())) {
+                    if (!cedulas.contains(cedula)) {
+                        cedulas.add(cedula);
+                        columna[0] = listFacturas.get(i).getReceptor().getNombre();
+                        columna[1] = cedula;
+                        if (listFacturas.get(i).getReceptor().getTelefono()!= null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty() ) {
+                            columna[2] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono();
+                        }
+                        columna[3] = listFacturas.get(i).getReceptor().getCorreo();
+                        modelo.addRow(columna);
+                    }
+                }
+            }
+        }
+    }
     private final Control control;
 }

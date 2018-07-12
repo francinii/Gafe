@@ -160,8 +160,7 @@ public class formularioListarXml extends javax.swing.JPanel {
             System.out.println("Limpiar");
         }
         txtCedulaJ.setText("");
-        txtNombre.setText("");
-        
+        txtNombre.setText("");        
     }
     
     public void llenarDatosProyecto(String nombre, String cedula) {
