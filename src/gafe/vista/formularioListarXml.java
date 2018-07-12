@@ -220,16 +220,6 @@ public class formularioListarXml extends javax.swing.JPanel {
 
                     files = new File[listaArchivosArrastrados.size()];
                     files = listaArchivosArrastrados.toArray(files);
-
-                    //Cargar Tabla
-//                    for (int i = 0; i < files.length; i++) {
-//                        String nombre = files[i].getName();
-//                        String ruta = files[i].getAbsolutePath();
-//                        long tamano = files[i].length();
-//                        AgregarDatosTabla(nombre, ruta, tamano);
-//                    }
-                    //controlVentanas.controlLectorFacturas(files);
-                    
                     String guardarEn = RecursosCompartidos.getRuta(); 
                     
                     
