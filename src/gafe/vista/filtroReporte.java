@@ -7,6 +7,7 @@ package gafe.vista;
 //Fafiiiiiiiiiiiiiiiiiiiiiiiiiiiii
 
 import gafe.control.Control;
+import gafe.modelo.RecursosCompartidos;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -821,11 +822,11 @@ public class filtroReporte extends javax.swing.JFrame {
         listaEstados.add(jCheckBox42.isSelected() + "");
         listaEstados.add(jCheckBox43.isSelected() + "");
         listaEstados.add(jCheckBox44.isSelected() + "");
-        control.escribirArchivoConfiguracion(listaEstados);
+        control.escribirArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion(), listaEstados);
     }
 
     public void leerArchivoConfiguracion() {
-        List<String> listaEstados = control.leerArchivoConfiguracion();        
+        List<String> listaEstados = control.leerArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion());        
         boolean estado;
         for (int i = 0; i < listaEstados.size(); i++) {
             estado = false;
@@ -838,7 +839,7 @@ public class filtroReporte extends javax.swing.JFrame {
     }
 
     public void cambiarEstadoColumnasReporte(){
-        control.cambiarEstadoColumnasReporte();
+        control.cambiarEstadoColumnasReporte(RecursosCompartidos.getDiretorioArchivoConfiguracion());
 //         List<String> listaEstados = control.leerArchivoConfiguracion();
 //          boolean estado;
 //         for (int i = 0; i < listaEstados.size(); i++) {

@@ -14,7 +14,7 @@ public class LectorArchivoConfiguracion {
     public LectorArchivoConfiguracion() {
     }
 
-    public void escribirArchivoFiltros(String ruta, List<String> listaEstados) {
+    public void escribirArchivo(String ruta, List<String> listaEstados) {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
@@ -40,11 +40,11 @@ public class LectorArchivoConfiguracion {
         }
     }
 
-    public List<String> leerArchivoFiltros(String ruta) {
+    public List<String> leerArchivo(String ruta) {
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
-        List<String> listaEstados = new ArrayList();
+        List<String> listaEstados = new ArrayList<>();
         try {
             archivo = new File(ruta);
             if (archivo.exists()) {
@@ -59,7 +59,7 @@ public class LectorArchivoConfiguracion {
                 }
             } else {
                 System.out.println("NO existe ");             
-                escribirArchivoFiltros(ruta, null);
+                escribirArchivo(ruta, null);
             }
         } catch (Exception e) {
             e.printStackTrace();

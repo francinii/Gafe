@@ -17,12 +17,18 @@ public class formularioPrincipal extends javax.swing.JFrame {
         this.control = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;
         init();
+       
     }
 
     public void init() {
         initComponents();
         setVisible(true);
-      //  controlFormularioPrincipal.agregarNodoArbol(arbol);
+        //Abre proyectos recientes
+       try {
+            this.controlFormularioPrincipal.abrirProyectosRecientes(arbol);
+        } catch (JAXBException ex) {
+            Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public JTree arbol() {
