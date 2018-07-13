@@ -3,7 +3,7 @@ package gafe.modelo;
 
 public class RecursosCompartidos {
     
-    public static String ruta; //Alamacena la ruta del proyecto abierto 
+    public static String ruta; //Almacena la ruta del proyecto abierto 
           
 
     public RecursosCompartidos() {
