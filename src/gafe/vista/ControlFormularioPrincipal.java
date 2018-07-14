@@ -704,11 +704,12 @@ public class ControlFormularioPrincipal {
     }
 
     public void expandirArbol(JTree arbol) {
-        Object root = arbol.getModel().getRoot();
-        int cantidadNodos = arbol.getModel().getChildCount(root);
-        for (int i = 0; i <= cantidadNodos; i++) {
-            arbol.expandRow(i);
-        }
+      //  Object root = arbol.getModel().getRoot();
+      //  int cantidadNodos = arbol.getModel().getChildCount(root);
+      //  for (int i = 0; i <= cantidadNodos; i++) {
+       arbol.expandRow(0);
+           // arbol.expandRow(i);
+      //  }
     }
 
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
