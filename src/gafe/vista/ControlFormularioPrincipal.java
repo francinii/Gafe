@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.filechooser.FileFilter;
@@ -29,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -37,10 +39,6 @@ import javax.xml.bind.Unmarshaller;
 import org.jdom2.Element;
 
 public class ControlFormularioPrincipal {
-
-    //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
-    String EmpresaGlobal;
-    String CedulaJuridicaGlobal;
 
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
@@ -63,12 +61,16 @@ public class ControlFormularioPrincipal {
             String a = nodoSeleccionado.getRoot().toString();
             System.out.println("nombre del nodo" + a);
             if (nodoSeleccionado.toString() == "Proyectos") { // no entra al nodo Proyecto
+                //SETEAR LOS PROYECTOS A LA VARIABLE
                 System.out.println("No puedo entrar");
+                RecursosCompartidos.setNodoSeleccionado(0);
             } else {
+                RecursosCompartidos.setNodoSeleccionado(1);
                 if (nodoSeleccionado.getChildCount() > 0) {
                     System.out.println("Tiene hijos");
                     String ruta = nodoSeleccionado.getLastChild().toString();
                     RecursosCompartidos.setRuta(ruta); // Cargo la variable estatica, cada vez que cambio de nodo
+
                 } else {
                     DefaultMutableTreeNode padre = (DefaultMutableTreeNode) nodoSeleccionado.getParent();
                     String ruta = padre.getLastChild().toString();
@@ -139,7 +141,8 @@ public class ControlFormularioPrincipal {
     public void abrirFormularioReportes(JPanel panelPrincipal) {
         panelPrincipal.removeAll();
         formularioReporte fomrReporte = control.getFormReporte();
-        llenarFacturaReportes(control.tablaReportes(),RecursosCompartidos.getRuta());
+        fomrReporte.limpiarTabla();
+        llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta());
         fomrReporte.setSize(599, 284);
         panelPrincipal.add(fomrReporte);
         panelPrincipal.revalidate();
@@ -170,15 +173,35 @@ public class ControlFormularioPrincipal {
         panelPrincipal.repaint();
     }
 
+    public void eliminarTodoNodoArbol(JTree arbol) {
+        DefaultTreeModel modelo = (DefaultTreeModel) arbol.getModel();
+        //DefaultMutableTreeNode cabeza = (DefaultMutableTreeNode) modelo.getRoot();
+        final MutableTreeNode root = (MutableTreeNode) modelo.getRoot();
+        while (root.getChildCount() > 0) {
+            modelo.removeNodeFromParent((MutableTreeNode) root.getChildAt(0));
+        }
+        // modelo.removeNodeFromParent(cabeza);
+    }
+
+    public void eliminarUnNodoArbol(JTree arbol) {
+        try {
+            eliminarTodoNodoArbol(arbol);
+            abrirProyectosRecientes(arbol);
+        } catch (JAXBException ex) {
+            Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void agregarNodoArbol(JTree arbol, String nombre, String ruta) {
         DefaultTreeModel modelo = (DefaultTreeModel) arbol.getModel();
-        
         DefaultMutableTreeNode proyecto = new DefaultMutableTreeNode(nombre);
+
         DefaultMutableTreeNode cabeza = (DefaultMutableTreeNode) modelo.getRoot();
         modelo.insertNodeInto(proyecto, cabeza, 0);
+        // proyecto.setComponentPopupMenu(menuContextual);
         // DefaultTreeModel modelo = new DefaultTreeModel(proyecto);
         //  arbol.setModel(modelo);
-        DefaultTreeCellRenderer renderIcono= (DefaultTreeCellRenderer)arbol.getCellRenderer();
+        DefaultTreeCellRenderer renderIcono = (DefaultTreeCellRenderer) arbol.getCellRenderer();
         DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode(ElementosArbol.XML.getNombre());
         renderIcono.setLeafIcon(new ImageIcon(getClass().getResource("/recursos/leaf.png")));
         renderIcono.setOpenIcon(new ImageIcon(getClass().getResource("/recursos/apple.png")));
@@ -290,6 +313,11 @@ public class ControlFormularioPrincipal {
         marshaller.marshal(proyecto, fos);
         fos.close();
         agregarNodoArbol(control.arbol(), nombre, ruta);
+
+        //Agrega al archivo de configuracion la ruta del proyecto donde se encuentra para poder dejarlo abierto.
+        List<String> rutas = new ArrayList<String>();
+        rutas.add(ruta);
+        control.escribirArchivoConfiguracion(directorioGlobalConfig, rutas, true);
     }
 
     //Arreglar este metodo
@@ -330,13 +358,11 @@ public class ControlFormularioPrincipal {
         m.marshal(proyect, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             m.marshal(proyect, fos);
-        }catch(Exception e){
-            System.out.println("Error a la hora de crear el xml "+e);
-        
+        } catch (Exception e) {
+            System.out.println("Error a la hora de crear el xml " + e);
+
         }
-                
-                
-                          
+
     }
 
     //Este metodo es desde el arrastar y soltar.
@@ -425,6 +451,33 @@ public class ControlFormularioPrincipal {
             }
             agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
             agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
+
+            //Escribir los archivos para arbir proyectos recientes
+            List<String> listaEstados = new ArrayList<>();
+            listaEstados.add(ruta);
+            control.escribirArchivoConfiguracion(directorioGlobalConfig, listaEstados, true);
+            expandirArbol(arbol);
+        }
+    }
+
+    public void abrirProyectosRecientes(JTree arbol) throws JAXBException {
+        List<String> rutasArchivosRecientes = control.leerArchivoConfiguracion(directorioGlobalConfig);
+        if (rutasArchivosRecientes != null) {
+            for (String ruta : rutasArchivosRecientes) {
+                List<Factura> lista = null;
+                JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+                Unmarshaller unmarshaller = context.createUnmarshaller();
+                Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
+                Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
+                if (proyecto.getListadoFacturas() != null) {
+                    lista = proyecto.getListadoFacturas();
+                    for (int i = 0; i < lista.size(); i++) {
+                        proyect.agregarXMLProyecto(lista.get(i));
+                    }
+                }
+                agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
+                agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
+            }
         }
     }
 
@@ -577,12 +630,12 @@ public class ControlFormularioPrincipal {
         }
     }
 
-    public void llenarFacturaReportes(JTable tabla, String ruta){
+    public void llenarFacturaReportes(JTable tabla, String ruta) {
         System.out.println("Reportes Facturas ");
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         Proyecto p = buscarProyecto(ruta);
-        List<Factura> listFacturas = p.getListadoFacturas();        
-        int numeroColumnasTabla = 44;       
+        List<Factura> listFacturas = p.getListadoFacturas();
+        int numeroColumnasTabla = 44;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
 
@@ -603,7 +656,6 @@ public class ControlFormularioPrincipal {
                 columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton().toString();
                 columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito().toString();
 
-               
                 columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion().toString();
                 columna[16] = listFacturas.get(i).getReceptor().getNombre().toString();
                 columna[17] = listFacturas.get(i).getReceptor().getNombreComercial().toString();
@@ -611,34 +663,58 @@ public class ControlFormularioPrincipal {
                 columna[19] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono().toString();
 //                columna[20] = listFacturas.get(i).getReceptor().getTelefono().get(1).getNumeroTelefono().toString();
 
-                
                 columna[21] = listFacturas.get(i).getReceptor().getCorreo().toString();
                 columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia().toString();
                 columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton().toString();
                 columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito().toString();
-                
-                modelo.addRow(columna);
-                
-                System.out.println("lisatdoofsdaf"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
-                
+
+                //modelo.addRow(columna);
+
+                System.out.println("lisatdoofsdaf" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
+
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
-//                    if(j != 0){ /// OJOOOOO PRIMER RECORRIDO
-//                        //columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString();
-//                        System.out.println("numero de linea"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString());
-//                        modelo.addRow(columna);                         
-//                    } 
-                    System.out.println("entreweeefsdfafsdaf");
+
+                    columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString();
+                    //System.out.println("numero de linea"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString());
+                    modelo.addRow(columna);
+
                 }
 
             }
 
         }
     }
-    
-  
-    
-    
-    
-    
+
+    public void cerrarTodosLosProyectos(JTree arbol) {
+        List<String> listaEstados = new ArrayList<>();
+        control.escribirArchivoConfiguracion(directorioGlobalConfig, listaEstados, false);// al ser false sobreescirbe el archivo
+        eliminarTodoNodoArbol(arbol);
+    }
+
+    public void cerrarUnProyecto(JTree arbol) {
+        String ruta = RecursosCompartidos.getRuta();
+        List<String> rutas = control.leerArchivoConfiguracion(directorioGlobalConfig);
+        for (int i = 0; i < rutas.size(); i++) {
+            if (rutas.get(i).equals(ruta)) {
+                rutas.remove(i);
+            }
+        }
+        control.escribirArchivoConfiguracion(directorioGlobalConfig, rutas, false);
+        eliminarUnNodoArbol(arbol);
+    }
+
+    public void expandirArbol(JTree arbol) {
+      //  Object root = arbol.getModel().getRoot();
+      //  int cantidadNodos = arbol.getModel().getChildCount(root);
+      //  for (int i = 0; i <= cantidadNodos; i++) {
+       arbol.expandRow(0);
+           // arbol.expandRow(i);
+      //  }
+    }
+
+    //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
+    String EmpresaGlobal;
+    String CedulaJuridicaGlobal;
     private final Control control;
+    public String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 }

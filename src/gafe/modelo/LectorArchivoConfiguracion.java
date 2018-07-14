@@ -14,17 +14,21 @@ public class LectorArchivoConfiguracion {
     public LectorArchivoConfiguracion() {
     }
 
-    public void escribirArchivoFiltros(String ruta, List<String> listaEstados) {
+    public void escribirArchivo(String ruta, List<String> listaEstados, boolean noSobreescribir) {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter(ruta);
+            if (noSobreescribir) {
+                fichero = new FileWriter(ruta,true);
+            } else {
+                fichero = new FileWriter(ruta);
+            }
             pw = new PrintWriter(fichero);
-              System.out.println("Entro al try");
-            if (listaEstados != null) {               
+            System.out.println("Entro al try");
+            if (listaEstados != null) {
                 for (int i = 0; i < listaEstados.size(); i++) {
-                     System.out.println("Entro"+ i);
-                    pw.println(listaEstados.get(i));                    
+                    System.out.println("Entro" + i);
+                    pw.println(listaEstados.get(i));
                 }
             }
         } catch (Exception e) {
@@ -40,11 +44,11 @@ public class LectorArchivoConfiguracion {
         }
     }
 
-    public List<String> leerArchivoFiltros(String ruta) {
+    public List<String> leerArchivo(String ruta) {
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
-        List<String> listaEstados = new ArrayList();
+        List<String> listaEstados = new ArrayList<>();
         try {
             archivo = new File(ruta);
             if (archivo.exists()) {
@@ -58,8 +62,8 @@ public class LectorArchivoConfiguracion {
                     System.out.println(linea);
                 }
             } else {
-                System.out.println("NO existe ");             
-                escribirArchivoFiltros(ruta, null);
+                System.out.println("NO existe ");
+                escribirArchivo(ruta, null,false);
             }
         } catch (Exception e) {
             e.printStackTrace();

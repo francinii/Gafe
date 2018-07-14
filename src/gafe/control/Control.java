@@ -37,7 +37,7 @@ public class Control {
         formClientes = new formularioClientes(controlVentanas);
         formProveedores = new formularioProveedores(controlVentanas);
         recursosCompartidos = new RecursosCompartidos();
-        cambiarEstadoColumnasReporte();
+        cambiarEstadoColumnasReporte(directorio);
     }
 
     public void ocultarMostrarColumnas(int columna, boolean status) {
@@ -116,16 +116,18 @@ public class Control {
         return tabla;
     }
 
-    public List<String> leerArchivoConfiguracion() {
-        return lectorArchivoConfiguracion.leerArchivoFiltros(directorio);
+    public List<String> leerArchivoConfiguracion(String directorio) {
+        return lectorArchivoConfiguracion.leerArchivo(directorio);
     }
 
-    public void escribirArchivoConfiguracion(List<String> listaEstados) {
-        lectorArchivoConfiguracion.escribirArchivoFiltros(directorio, listaEstados);
-    }
+    public void escribirArchivoConfiguracion(String ruta, List<String> listaEstados, boolean sobreescribir) {
+        lectorArchivoConfiguracion.escribirArchivo(ruta, listaEstados,sobreescribir);
+    }  
+    
+ 
 
-    public void cambiarEstadoColumnasReporte() {
-        List<String> listaEstados = leerArchivoConfiguracion();
+    public void cambiarEstadoColumnasReporte(String ruta) {
+        List<String> listaEstados = leerArchivoConfiguracion(ruta);
         boolean estado;
         for (int i = 0; i < listaEstados.size(); i++) {
             estado = false;
@@ -135,8 +137,6 @@ public class Control {
             ocultarMostrarColumnas(i, estado);
         }
     }
-
-
 
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
@@ -151,5 +151,6 @@ public class Control {
     formularioProveedores formProveedores;
     //filtroReporte ventanaFiltros;
     private String directorio = "../gafe//src//recursos//config.txt";
+    //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
 }
