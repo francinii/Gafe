@@ -59,8 +59,6 @@ public class formularioListarXml extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaXml = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(247, 238, 212));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -116,7 +114,8 @@ public class formularioListarXml extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(247, 238, 212));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        jButton2.setText("Cargar facturas");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/plus.png"))); // NOI18N
+        jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -124,7 +123,7 @@ public class formularioListarXml extends javax.swing.JPanel {
         });
         jPanel2.add(jButton2);
 
-        jButton3.setText("-");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/minus.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -145,19 +144,6 @@ public class formularioListarXml extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tablaXml);
 
         add(jScrollPane1);
-
-        jPanel3.setBackground(new java.awt.Color(247, 238, 212));
-
-        jButton1.setText("Guardar");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1);
-
-        add(jPanel3);
     }// </editor-fold>//GEN-END:initComponents
 
     public void limpiarTabla() {
@@ -186,10 +172,6 @@ public class formularioListarXml extends javax.swing.JPanel {
             Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         controlVentanas.eliminarFacturas(tablaXml);
@@ -251,14 +233,12 @@ public class formularioListarXml extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaXml;
     private javax.swing.JLabel txtCedulaJ;
