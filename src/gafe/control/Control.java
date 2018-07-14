@@ -120,8 +120,8 @@ public class Control {
         return lectorArchivoConfiguracion.leerArchivo(directorio);
     }
 
-    public void escribirArchivoConfiguracion(String ruta, List<String> listaEstados) {
-        lectorArchivoConfiguracion.escribirArchivo(ruta, listaEstados);
+    public void escribirArchivoConfiguracion(String ruta, List<String> listaEstados, boolean sobreescribir) {
+        lectorArchivoConfiguracion.escribirArchivo(ruta, listaEstados,sobreescribir);
     }  
     
  
@@ -151,6 +151,6 @@ public class Control {
     formularioProveedores formProveedores;
     //filtroReporte ventanaFiltros;
     private String directorio = "../gafe//src//recursos//config.txt";
-    private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
+    //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
 }

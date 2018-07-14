@@ -34,12 +34,12 @@ public class formularioReporte extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(35, 114, 75));
+        setBackground(new java.awt.Color(247, 238, 212));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setMinimumSize(new java.awt.Dimension(500, 204));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(35, 114, 75));
+        jPanel1.setBackground(new java.awt.Color(247, 238, 212));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -54,7 +54,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 0);
         jPanel1.add(jComboBox1, gridBagConstraints);
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(52, 21, 0));
         jLabel1.setText("Categoría");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -66,7 +66,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 1, 1, 0);
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(52, 21, 0));
         jLabel2.setText("Desde");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -86,7 +86,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.1;
         jPanel1.add(jFormattedTextField3, gridBagConstraints);
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(52, 21, 0));
         jLabel3.setText("Hasta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -107,7 +107,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jPanel1.add(jFormattedTextField4, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(52, 21, 0));
         jLabel4.setText("Reportes");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -138,7 +138,7 @@ public class formularioReporte extends javax.swing.JPanel {
 
         add(jScrollPane1);
 
-        jPanel2.setBackground(new java.awt.Color(35, 114, 75));
+        jPanel2.setBackground(new java.awt.Color(247, 238, 212));
 
         jButton2.setText("Generar reporte");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

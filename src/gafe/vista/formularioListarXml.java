@@ -62,14 +62,14 @@ public class formularioListarXml extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(35, 114, 75));
+        setBackground(new java.awt.Color(247, 238, 212));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(35, 114, 75));
+        jPanel1.setBackground(new java.awt.Color(247, 238, 212));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        txtCedulaJ.setForeground(new java.awt.Color(255, 255, 255));
+        txtCedulaJ.setForeground(new java.awt.Color(52, 21, 0));
         txtCedulaJ.setText("Cedula Juridica");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -78,7 +78,8 @@ public class formularioListarXml extends javax.swing.JPanel {
         gridBagConstraints.weightx = 0.1;
         jPanel1.add(txtCedulaJ, gridBagConstraints);
 
-        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setBackground(new java.awt.Color(247, 238, 212));
+        txtNombre.setForeground(new java.awt.Color(52, 21, 0));
         txtNombre.setText("Empresa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -88,7 +89,7 @@ public class formularioListarXml extends javax.swing.JPanel {
         jPanel1.add(txtNombre, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(52, 21, 0));
         jLabel3.setText("Empresa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -99,7 +100,7 @@ public class formularioListarXml extends javax.swing.JPanel {
         jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(52, 21, 0));
         jLabel1.setText("Cédula jurídica:");
         jLabel1.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -112,7 +113,7 @@ public class formularioListarXml extends javax.swing.JPanel {
 
         add(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(35, 114, 75));
+        jPanel2.setBackground(new java.awt.Color(247, 238, 212));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jButton2.setText("Cargar facturas");
@@ -145,7 +146,7 @@ public class formularioListarXml extends javax.swing.JPanel {
 
         add(jScrollPane1);
 
-        jPanel3.setBackground(new java.awt.Color(35, 114, 75));
+        jPanel3.setBackground(new java.awt.Color(247, 238, 212));
 
         jButton1.setText("Guardar");
         jButton1.setToolTipText("");

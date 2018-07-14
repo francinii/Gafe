@@ -14,17 +14,21 @@ public class LectorArchivoConfiguracion {
     public LectorArchivoConfiguracion() {
     }
 
-    public void escribirArchivo(String ruta, List<String> listaEstados) {
+    public void escribirArchivo(String ruta, List<String> listaEstados, boolean noSobreescribir) {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter(ruta);
+            if (noSobreescribir) {
+                fichero = new FileWriter(ruta,true);
+            } else {
+                fichero = new FileWriter(ruta);
+            }
             pw = new PrintWriter(fichero);
-              System.out.println("Entro al try");
-            if (listaEstados != null) {               
+            System.out.println("Entro al try");
+            if (listaEstados != null) {
                 for (int i = 0; i < listaEstados.size(); i++) {
-                     System.out.println("Entro"+ i);
-                    pw.println(listaEstados.get(i));                    
+                    System.out.println("Entro" + i);
+                    pw.println(listaEstados.get(i));
                 }
             }
         } catch (Exception e) {
@@ -58,8 +62,8 @@ public class LectorArchivoConfiguracion {
                     System.out.println(linea);
                 }
             } else {
-                System.out.println("NO existe ");             
-                escribirArchivo(ruta, null);
+                System.out.println("NO existe ");
+                escribirArchivo(ruta, null,false);
             }
         } catch (Exception e) {
             e.printStackTrace();

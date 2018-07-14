@@ -1,11 +1,15 @@
 package gafe.vista;
 
 import gafe.control.Control;
+import gafe.modelo.RecursosCompartidos;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.xml.bind.JAXBException;
 
 public class formularioPrincipal extends javax.swing.JFrame {
@@ -17,28 +21,50 @@ public class formularioPrincipal extends javax.swing.JFrame {
         this.control = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;
         init();
-       
+        
     }
 
     public void init() {
-        initComponents();
-        setVisible(true);
+        initComponents();     
         //Abre proyectos recientes
-       try {
+        try {
             this.controlFormularioPrincipal.abrirProyectosRecientes(arbol);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
+        controlFormularioPrincipal.expandirArbol(arbol);
+        setVisible(true);   
     }
+
 
     public JTree arbol() {
         return arbol;
     }
 
+//    public void actionPerformed(ActionEvent ae) {
+//    DefaultMutableTreeNode dmtn, node;
+//
+//    TreePath path = this.getSelectionPath();
+//    dmtn = (DefaultMutableTreeNode) path.getLastPathComponent();
+//    if (ae.getActionCommand().equals("insert")) {
+//      node = new DefaultMutableTreeNode("children");
+//      dmtn.add(node);
+//      ((DefaultTreeModel) this.getModel()).nodeStructureChanged((TreeNode) dmtn);
+//    }
+//    if (ae.getActionCommand().equals("remove")) {
+//      node = (DefaultMutableTreeNode) dmtn.getParent();
+//      int nodeIndex = node.getIndex(dmtn);
+//      dmtn.removeAllChildren();
+//      node.remove(nodeIndex);
+//      ((DefaultTreeModel) this.getModel()).nodeStructureChanged((TreeNode) dmtn);
+//    }
+//  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuContextual = new javax.swing.JPopupMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbol = new javax.swing.JTree();
@@ -61,6 +87,15 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
 
+        jMenuItem10.setText("Cerrar");
+        jMenuItem10.setToolTipText("");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        menuContextual.add(jMenuItem10);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 500));
 
@@ -68,6 +103,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Proyectos");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.setComponentPopupMenu(menuContextual);
         arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         arbol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -84,11 +120,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
-        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jToolBar1.setBackground(new java.awt.Color(52, 21, 0));
         jToolBar1.setRollover(true);
         jToolBar1.setToolTipText("");
 
-        btnNuevo.setBackground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setBackground(new java.awt.Color(52, 21, 0));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/new32.png"))); // NOI18N
         btnNuevo.setToolTipText("Nuevo");
         btnNuevo.setFocusable(false);
@@ -101,7 +137,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnNuevo);
 
-        btnAbrir.setBackground(new java.awt.Color(255, 255, 255));
+        btnAbrir.setBackground(new java.awt.Color(52, 21, 0));
         btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Open32.png"))); // NOI18N
         btnAbrir.setToolTipText("Abrir");
         btnAbrir.setFocusable(false);
@@ -114,7 +150,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnAbrir);
 
-        btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setBackground(new java.awt.Color(52, 21, 0));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Save32.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar");
         btnGuardar.setFocusable(false);
@@ -124,7 +160,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
-        jMenuBar1.setBackground(new java.awt.Color(35, 114, 75));
+        jMenuBar1.setBackground(new java.awt.Color(66, 114, 215));
+        jMenuBar1.setBorderPainted(false);
 
         jMenu1.setText("Archivo");
 
@@ -158,6 +195,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir.png"))); // NOI18N
         jMenuItem5.setText("Cerrar todos los proyectos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
@@ -215,7 +257,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-         try {
+        try {
             controlFormularioPrincipal.abrirNuevoProyecto(arbol);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,15 +273,27 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-          filtroReporte  ventanaFiltros = new filtroReporte(control);
-          ventanaFiltros.leerArchivoConfiguracion();
+        filtroReporte ventanaFiltros = new filtroReporte(control);
+        ventanaFiltros.leerArchivoConfiguracion();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
 
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        if (RecursosCompartidos.getNodoSeleccionado() == 0) {
+            controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
+        } else {
+            controlFormularioPrincipal.cerrarUnProyecto(arbol);
+            controlFormularioPrincipal.expandirArbol(arbol);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbol;
     private javax.swing.JButton btnAbrir;
@@ -250,6 +304,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -261,9 +316,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JPopupMenu menuContextual;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
-    
+
     private final Control control;
     private final ControlFormularioPrincipal controlFormularioPrincipal;
+
 }

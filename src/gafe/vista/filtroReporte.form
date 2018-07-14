@@ -25,7 +25,7 @@
     <Container class="javax.swing.JPanel" name="jPanel4">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4b" green="72" red="23" type="rgb"/>
+          <Color blue="0" green="15" red="34" type="rgb"/>
         </Property>
       </Properties>
 
@@ -637,7 +637,7 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="d4" green="ee" red="f7" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -653,7 +653,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox16">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C&#xe9;dula receptor"/>
               </Properties>
@@ -666,7 +666,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox17">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nombre receptor"/>
               </Properties>
@@ -682,7 +682,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox18">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nombre Comercial"/>
               </Properties>
@@ -695,7 +695,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox23">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Provincia"/>
               </Properties>
@@ -708,7 +708,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox24">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Canton"/>
               </Properties>
@@ -721,7 +721,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox25">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Distrito"/>
               </Properties>
@@ -737,7 +737,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox20">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Telefono"/>
               </Properties>
@@ -753,7 +753,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox21">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Fax"/>
               </Properties>
@@ -766,7 +766,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox22">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Correo Electr&#xf3;nico"/>
               </Properties>
@@ -799,7 +799,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox19">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Identificacion Extranjero"/>
               </Properties>
@@ -816,7 +816,7 @@
     <Container class="javax.swing.JPanel" name="jPanel5">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="4b" green="72" red="23" type="rgb"/>
+          <Color blue="0" green="15" red="34" type="rgb"/>
         </Property>
       </Properties>
 
