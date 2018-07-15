@@ -550,25 +550,27 @@ public class ControlFormularioPrincipal {
     public void llenarProveedores() {
         Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
         DefaultTableModel modelo = (DefaultTableModel) control.tablaProveedores().getModel();
-        List<Factura> listFacturas = p.getListadoFacturas();
-        int numeroColumnasTabla = 5;
-        List<String> cedulas = new ArrayList<>();
-        //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
-        for (int i = 1; i < listFacturas.size(); i++) {
-            Object[] columna = new Object[numeroColumnasTabla];
-            if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getEmisor().getIdenticacion() != null) {
-                String cedula = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
-                if (!cedulas.contains(cedula)) {
-                    if (p.getCedula().equals(listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion())) {
-                        cedulas.add(cedula);
-                        columna[0] = listFacturas.get(i).getEmisor().getNombre();
-                        columna[1] = cedula;
-                        if (listFacturas.get(i).getEmisor().getTelefono().get(0) != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
-                            columna[2] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
+        if (p != null) {
+            List<Factura> listFacturas = p.getListadoFacturas();
+            int numeroColumnasTabla = 5;
+            List<String> cedulas = new ArrayList<>();
+            //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
+            for (int i = 1; i < listFacturas.size(); i++) {
+                Object[] columna = new Object[numeroColumnasTabla];
+                if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getEmisor().getIdenticacion() != null) {
+                    String cedula = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
+                    if (!cedulas.contains(cedula)) {
+                        if (p.getCedula().equals(listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion())) {
+                            cedulas.add(cedula);
+                            columna[0] = listFacturas.get(i).getEmisor().getNombre();
+                            columna[1] = cedula;
+                            if (listFacturas.get(i).getEmisor().getTelefono().get(0) != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
+                                columna[2] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
+                            }
+                            columna[3] = listFacturas.get(i).getEmisor().getCorreo();
+                            //columna[4] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia();
+                            modelo.addRow(columna);
                         }
-                        columna[3] = listFacturas.get(i).getEmisor().getCorreo();
-                        //columna[4] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia();
-                        modelo.addRow(columna);
                     }
                 }
             }
@@ -578,24 +580,26 @@ public class ControlFormularioPrincipal {
     public void llenarClientes() {
         DefaultTableModel modelo = (DefaultTableModel) control.tablaClientes().getModel();
         Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
-        List<Factura> listFacturas = p.getListadoFacturas();
-        int numeroColumnasTabla = 5;
-        List<String> cedulas = new ArrayList<>();
-        //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
-        for (int i = 1; i < listFacturas.size(); i++) {
-            Object[] columna = new Object[numeroColumnasTabla];
-            if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getReceptor().getIdenticacion() != null) {
-                String cedula = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
-                if (p.getCedula().equals(listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion())) {
-                    if (!cedulas.contains(cedula)) {
-                        cedulas.add(cedula);
-                        columna[0] = listFacturas.get(i).getReceptor().getNombre();
-                        columna[1] = cedula;
-                        if (listFacturas.get(i).getReceptor().getTelefono() != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
-                            columna[2] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono();
+        if (p != null) {
+            List<Factura> listFacturas = p.getListadoFacturas();
+            int numeroColumnasTabla = 5;
+            List<String> cedulas = new ArrayList<>();
+            //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
+            for (int i = 1; i < listFacturas.size(); i++) {
+                Object[] columna = new Object[numeroColumnasTabla];
+                if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getReceptor().getIdenticacion() != null) {
+                    String cedula = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
+                    if (p.getCedula().equals(listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion())) {
+                        if (!cedulas.contains(cedula)) {
+                            cedulas.add(cedula);
+                            columna[0] = listFacturas.get(i).getReceptor().getNombre();
+                            columna[1] = cedula;
+                            if (listFacturas.get(i).getReceptor().getTelefono() != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
+                                columna[2] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono();
+                            }
+                            columna[3] = listFacturas.get(i).getReceptor().getCorreo();
+                            modelo.addRow(columna);
                         }
-                        columna[3] = listFacturas.get(i).getReceptor().getCorreo();
-                        modelo.addRow(columna);
                     }
                 }
             }
@@ -704,12 +708,12 @@ public class ControlFormularioPrincipal {
     }
 
     public void expandirArbol(JTree arbol) {
-      //  Object root = arbol.getModel().getRoot();
-      //  int cantidadNodos = arbol.getModel().getChildCount(root);
-      //  for (int i = 0; i <= cantidadNodos; i++) {
-       arbol.expandRow(0);
-           // arbol.expandRow(i);
-      //  }
+        //  Object root = arbol.getModel().getRoot();
+        //  int cantidadNodos = arbol.getModel().getChildCount(root);
+        //  for (int i = 0; i <= cantidadNodos; i++) {
+        arbol.expandRow(0);
+        // arbol.expandRow(i);
+        //  }
     }
 
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
