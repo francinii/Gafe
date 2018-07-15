@@ -637,51 +637,79 @@ public class ControlFormularioPrincipal {
         List<Factura> listFacturas = p.getListadoFacturas();
         int numeroColumnasTabla = 44;
         Object[] columna = new Object[numeroColumnasTabla];
-        for (int i = 0; i < listFacturas.size(); i++) {
-
+        
+        ///llenar las columna todo con ""
+        for (int i = 0; i < columna.length; i++) {
+            columna[i] = "--------------";
+        }
+        //modelo.addRow(columna);
+        
+       for (int i = 0; i < listFacturas.size(); i++) {
+            //aqui manda a llamar al metodo que coloca todo en ""
             if (i != 0) {
+
                 columna[0] = listFacturas.get(i).getClave().toString();
                 columna[1] = listFacturas.get(i).getConsecutivo().toString();
                 columna[2] = listFacturas.get(i).getFechaEmision().toString();
                 columna[3] = listFacturas.get(i).getCondicionVenta().toString();
                 columna[4] = listFacturas.get(i).getPlazoCredito().toString();
                 columna[5] = listFacturas.get(i).getMedioPago().toString();
-                columna[6] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion().toString();
-                columna[7] = listFacturas.get(i).getEmisor().getNombre().toString();
-                columna[8] = listFacturas.get(i).getEmisor().getNombreComercial().toString();
-                columna[9] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
-                //columna[10] = listFacturas.get(i).getEmisor().getTelefono().get(1).getNumeroTelefono();
-                columna[11] = listFacturas.get(i).getEmisor().getCorreo().toString();
-                columna[12] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia().toString();
-                columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton().toString();
-                columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito().toString();
-
-                columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion().toString();
-                columna[16] = listFacturas.get(i).getReceptor().getNombre().toString();
-                columna[17] = listFacturas.get(i).getReceptor().getNombreComercial().toString();
-                columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero().toString();
-                columna[19] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono().toString();
+                if (listFacturas.get(i).getEmisor() != null) {
+                    if (listFacturas.get(i).getEmisor().getIdenticacion() != null) {
+                    columna[6] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion().toString();
+                    }
+                    columna[7] = listFacturas.get(i).getEmisor().getNombre().toString();
+                    columna[8] = listFacturas.get(i).getEmisor().getNombreComercial().toString();
+                    
+                    columna[9] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
+                    //columna[10] = listFacturas.get(i).getEmisor().getTelefono().get(1).getNumeroTelefono();
+                    columna[11] = listFacturas.get(i).getEmisor().getCorreo().toString();
+                    columna[12] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia().toString();
+                    columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton().toString();
+                    columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito().toString();
+                }
+                if (listFacturas.get(i).getReceptor() != null) {
+                    columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion().toString();
+                    columna[16] = listFacturas.get(i).getReceptor().getNombre().toString();
+                    columna[17] = listFacturas.get(i).getReceptor().getNombreComercial().toString();
+                    columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero().toString();
+                    columna[19] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono().toString();
 //                columna[20] = listFacturas.get(i).getReceptor().getTelefono().get(1).getNumeroTelefono().toString();
 
-                columna[21] = listFacturas.get(i).getReceptor().getCorreo().toString();
-                columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia().toString();
-                columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton().toString();
-                columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito().toString();
+                    columna[21] = listFacturas.get(i).getReceptor().getCorreo().toString();
+                    columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia().toString();
+                    columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton().toString();
+                    columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito().toString();
+                }
 
-                //modelo.addRow(columna);
 
                 System.out.println("lisatdoofsdaf" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
 
                     columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString();
-                    //System.out.println("numero de linea"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString());
+//                    columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo().toString();
+                    columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCantidad().toString();
+                    columna[28] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedida().toString();
+                  /*  columna[29] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedidaComercial().toString();
+                    columna[30] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getDetalle().toString();
+                    columna[31] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento().toString();
+                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento().toString();
+                    columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal().toString();
+                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea().toString();
+                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo().toString();
+                    columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto().toString();
+                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto().toString();
+                    columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto().toString();
+                    columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento().toString();
+                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNumeroDocumento().toString();
+                    columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion().toString();
+                    columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision().toString();
+                    columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra().toString();
+                     */
                     modelo.addRow(columna);
-
                 }
-
             }
-
         }
     }
 
@@ -704,12 +732,20 @@ public class ControlFormularioPrincipal {
     }
 
     public void expandirArbol(JTree arbol) {
-      //  Object root = arbol.getModel().getRoot();
-      //  int cantidadNodos = arbol.getModel().getChildCount(root);
-      //  for (int i = 0; i <= cantidadNodos; i++) {
-       arbol.expandRow(0);
-           // arbol.expandRow(i);
-      //  }
+        //  Object root = arbol.getModel().getRoot();
+        //  int cantidadNodos = arbol.getModel().getChildCount(root);
+        //  for (int i = 0; i <= cantidadNodos; i++) {
+        arbol.expandRow(0);
+        // arbol.expandRow(i);
+        //  }
+    }
+
+    private String verificarExistentcia(List<Factura> listado, int idColumna, String campo) {
+        if (listado.contains(listado.get(idColumna) + "." + "get" + campo)) {
+            String retorno = (listado.get(idColumna) + "." + "get" + campo);
+            return retorno;
+        }
+        return null;
     }
 
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
