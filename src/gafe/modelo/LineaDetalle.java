@@ -23,7 +23,7 @@ public class LineaDetalle {
     }
     
     public LineaDetalle(){
-        this("",null,"","","","","","","","","",null,"");
+        this("",new CodigoLineaDetalle(),"","","","","","","","","",new Impuesto(),"");
     }  
 
     public String getNumeroLinea() {

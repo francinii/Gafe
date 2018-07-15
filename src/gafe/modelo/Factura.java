@@ -1,12 +1,15 @@
 package gafe.modelo;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="factura")
+@XmlRootElement(name = "factura")
 public class Factura {
 
-    public Factura(){
-        this("", "", "", null, null, "", "", "", null, null, null, null);
-    };
+    public Factura() {
+        this("", "", "", new Emisor(), new Receptor(), "", "", "", new DetalleServicio(), new ResumenFactura(), new InformacionReferencia(), new Normativa());
+
+    }
+    
     
     public Factura(String clave, String consecutivo, String fechaEmision, Emisor emisor, Receptor receptor, String condicionVenta, String plazoCredito, String medioPago, DetalleServicio detalleServicio, ResumenFactura resumenFactura, InformacionReferencia informacionReferencia, Normativa normativa) {
         this.clave = clave;
@@ -22,8 +25,6 @@ public class Factura {
         this.informacionReferencia = informacionReferencia;
         this.normativa = normativa;
     }
-    
-    
 
     public String getClave() {
         return clave;
@@ -34,7 +35,7 @@ public class Factura {
     }
 
     public String
-         getFechaEmision() {
+            getFechaEmision() {
         return fechaEmision;
     }
 
@@ -49,14 +50,14 @@ public class Factura {
     public String getCondicionVenta() {
         return condicionVenta;
     }
-          
+
     public String getPlazoCredito() {
         return plazoCredito;
     }
 
     public String getMedioPago() {
         return medioPago;
-    } 
+    }
 
     public DetalleServicio getDetalleServicio() {
         return detalleServicio;
@@ -98,12 +99,10 @@ public class Factura {
         this.condicionVenta = condicionVenta;
     }
 
-
     public void setPlazoCredito(String plazoCredito) {
         this.plazoCredito = plazoCredito;
     }
 
-    
     public void setMedioPago(String medioPago) {
         this.medioPago = medioPago;
     }
@@ -123,7 +122,7 @@ public class Factura {
     public void setNormativa(Normativa otros) {
         this.normativa = otros;
     }
-    
+
     private String clave;
     private String consecutivo;
     private String fechaEmision;
@@ -136,11 +135,5 @@ public class Factura {
     private ResumenFactura resumenFactura;
     private InformacionReferencia informacionReferencia;
     private Normativa normativa;
-    
-    
-    
-    
-    
-    
-    
+
 }

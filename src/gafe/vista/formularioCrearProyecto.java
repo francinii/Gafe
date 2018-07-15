@@ -2,7 +2,6 @@ package gafe.vista;
 
 import gafe.control.Control;
 import gafe.modelo.Proyecto;
-import gafe.modelo.VariablesGlobales;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

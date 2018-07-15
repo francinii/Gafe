@@ -141,6 +141,7 @@ public class ControlFormularioPrincipal {
     public void abrirFormularioReportes(JPanel panelPrincipal) {
         panelPrincipal.removeAll();
         formularioReporte fomrReporte = control.getFormReporte();
+        fomrReporte.limpiarTabla();
         llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta());
         fomrReporte.setSize(599, 284);
         panelPrincipal.add(fomrReporte);
@@ -632,6 +633,11 @@ public class ControlFormularioPrincipal {
             JOptionPane.showMessageDialog(null, "No hay datos para exportar", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    public void limpiarTabla(Object[] columna){
+         for (int i = 0; i < columna.length; i++) {
+            columna[i] = "--------------";
+        }
+    }
 
     public void llenarFacturaReportes(JTable tabla, String ruta) {
         System.out.println("Reportes Facturas ");
@@ -640,52 +646,80 @@ public class ControlFormularioPrincipal {
         List<Factura> listFacturas = p.getListadoFacturas();
         int numeroColumnasTabla = 44;
         Object[] columna = new Object[numeroColumnasTabla];
+
+        ///llenar las columna todo con ""
+       
+        //modelo.addRow(columna);
         for (int i = 0; i < listFacturas.size(); i++) {
-
+            //aqui manda a llamar al metodo que coloca todo en ""
             if (i != 0) {
-                columna[0] = listFacturas.get(i).getClave().toString();
-                columna[1] = listFacturas.get(i).getConsecutivo().toString();
-                columna[2] = listFacturas.get(i).getFechaEmision().toString();
-                columna[3] = listFacturas.get(i).getCondicionVenta().toString();
-                columna[4] = listFacturas.get(i).getPlazoCredito().toString();
-                columna[5] = listFacturas.get(i).getMedioPago().toString();
-                columna[6] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion().toString();
-                columna[7] = listFacturas.get(i).getEmisor().getNombre().toString();
-                columna[8] = listFacturas.get(i).getEmisor().getNombreComercial().toString();
-                columna[9] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
-                //columna[10] = listFacturas.get(i).getEmisor().getTelefono().get(1).getNumeroTelefono();
-                columna[11] = listFacturas.get(i).getEmisor().getCorreo().toString();
-                columna[12] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia().toString();
-                columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton().toString();
-                columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito().toString();
-
-                columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion().toString();
-                columna[16] = listFacturas.get(i).getReceptor().getNombre().toString();
-                columna[17] = listFacturas.get(i).getReceptor().getNombreComercial().toString();
-                columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero().toString();
-                columna[19] = listFacturas.get(i).getReceptor().getTelefono().get(0).getNumeroTelefono().toString();
-//                columna[20] = listFacturas.get(i).getReceptor().getTelefono().get(1).getNumeroTelefono().toString();
-
-                columna[21] = listFacturas.get(i).getReceptor().getCorreo().toString();
-                columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia().toString();
-                columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton().toString();
-                columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito().toString();
-
-                modelo.addRow(columna);
+                columna[0] = listFacturas.get(i).getClave();
+                columna[1] = listFacturas.get(i).getConsecutivo();
+                columna[2] = listFacturas.get(i).getFechaEmision();
+                columna[3] = listFacturas.get(i).getCondicionVenta();
+                columna[4] = listFacturas.get(i).getPlazoCredito();
+                columna[5] = listFacturas.get(i).getMedioPago();
+                columna[6] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
+                columna[7] = listFacturas.get(i).getEmisor().getNombre();
+                columna[8] = listFacturas.get(i).getEmisor().getNombreComercial();
+                columna[9] = "";
+                columna[10] = "";
+                int a = 9;
+                for (int j = 0; j < listFacturas.get(i).getEmisor().getTelefono().size(); j++) {
+                    columna[a] = listFacturas.get(i).getEmisor().getTelefono().get(j).getNumeroTelefono();
+                    a = a++;
+                }
+                columna[11] = listFacturas.get(i).getEmisor().getCorreo();
+                columna[12] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia();
+                columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton();
+                columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito();
+                columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
+               columna[16] = listFacturas.get(i).getReceptor().getNombre();
+               columna[17] = listFacturas.get(i).getReceptor().getNombreComercial();
+                columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero();
+                columna[19] = "";
+                columna[20] = "";
+                a = 19;
+                for (int j = 0; j < listFacturas.get(i).getReceptor().getTelefono().size(); j++) {
+                    columna[a] = listFacturas.get(i).getReceptor().getTelefono().get(j).getNumeroTelefono();
+                    a = a++;
+                }
+                
+               
+                columna[21] = listFacturas.get(i).getReceptor().getCorreo();
+                columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia();
+                columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton();
+                columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito();
 
                 System.out.println("lisatdoofsdaf" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
-//                    if(j != 0){ /// OJOOOOO PRIMER RECORRIDO
-//                        //columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString();
-//                        System.out.println("numero de linea"+listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea().toString());
-//                        modelo.addRow(columna);                         
-//                    } 
-                    System.out.println("entreweeefsdfafsdaf");
+
+                    columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
+//                    columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
+                    columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCantidad();
+                    columna[28] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedida();
+                    columna[29] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedidaComercial();
+                    columna[30] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getDetalle();
+                    columna[31] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
+                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
+                    columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
+                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
+                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo();
+                    columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto();
+                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
+                    columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
+                    columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento();
+                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNumeroDocumento();
+                    columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
+                    columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
+                    columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra();
+
+                    modelo.addRow(columna);
+                    limpiarTabla(columna);
+                    
                 }
-
             }
-
         }
     }
 

@@ -13,7 +13,7 @@ public class Impuesto {
     }
     
     public Impuesto(){
-        this("","","",null);
+        this("","","",new Exoneracion());
     }
 
     public String getCodigo() {

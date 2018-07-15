@@ -19,7 +19,7 @@ public class Emisor {
     }
     
     Emisor(){
-        this("", null, "", null, "");    
+        this("", new Identificacion(), "", new Ubicacion(), "");    
     }
     
     @XmlElementWrapper(name="wrapperTelefonos")

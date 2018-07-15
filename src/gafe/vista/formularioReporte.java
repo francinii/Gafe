@@ -1,7 +1,9 @@
 package gafe.vista;
 
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class formularioReporte extends javax.swing.JPanel {
 
@@ -10,10 +12,20 @@ public class formularioReporte extends javax.swing.JPanel {
     public formularioReporte(ControlFormularioPrincipal control) {
         this.controlVentanas = control;
         initComponents();
+
+           
     }
     
     public JTable tablaReportes(){
         return TablaReportes;
+    }
+    public void limpiarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) TablaReportes.getModel();
+        int filas = TablaReportes.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            modelo.removeRow(0);
+            System.out.println("Limpiar");
+        }             
     }
 
     @SuppressWarnings("unchecked")

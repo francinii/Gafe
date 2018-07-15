@@ -21,7 +21,7 @@ public class Receptor {
     }
     
      Receptor(){
-        this("", null, "", "",null, "");    
+        this("", new Identificacion(), "", "",new Ubicacion(), "");    
     }
 
     public String getNombre() {
