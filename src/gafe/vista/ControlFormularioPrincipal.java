@@ -57,7 +57,7 @@ public class ControlFormularioPrincipal {
         DefaultMutableTreeNode nodoSeleccionado = (DefaultMutableTreeNode) arbol.getLastSelectedPathComponent();
         if (nodoSeleccionado != null) {
             String nombreNodo = nodoSeleccionado.toString();
-            AbrirPaneles(nombreNodo, panelPrincipal);
+            //AbrirPaneles(nombreNodo, panelPrincipal);
             String a = nodoSeleccionado.getRoot().toString();
             System.out.println("nombre del nodo" + a);
             if (nodoSeleccionado.toString() == "Proyectos") { // no entra al nodo Proyecto
@@ -78,9 +78,10 @@ public class ControlFormularioPrincipal {
                     Proyecto p = buscarProyecto(ruta);
                     EmpresaGlobal = p.getNombre();
                     CedulaJuridicaGlobal = p.getCedula();
-                    AbrirPaneles(nombreNodo, panelPrincipal);
+
                     System.out.println("listadoo " + p.getListadoFacturas().size());
                     if (nombreNodo == "Cargar Facturas") { // esto aplica solo para el nodo de Cargar Facturas
+                        AbrirPaneles(nombreNodo, panelPrincipal);
                         if (p.getListadoFacturas() != null) {
                             List<Factura> lista = p.getListadoFacturas();
                             for (int i = 0; i < lista.size(); i++) {
@@ -98,17 +99,20 @@ public class ControlFormularioPrincipal {
                                     }
                                     AgregarDatosTabla(consecutivo, emisor, receptor, total, control.obtenerTabla());
                                 }
-                                /*System.out.println("numero recorrido " + i);
-                                    AgregarDatosTabla(lista.get(i).getConsecutivo(),
-                                            lista.get(i).getEmisor().getNombre(),
-                                            lista.get(i).getReceptor().getNombre(),
-                                            lista.get(i).getResumenFactura().getTotalVenta().toString(),
-                                            control.obtenerTabla());
-                                }*/
+                               
                             }
                         } else {
                             System.out.println("vacio");
                         }
+                    }else if((nombreNodo == "Reportes")){
+                        RecursosCompartidos.setRuta(ruta);
+                        AbrirPaneles(nombreNodo, panelPrincipal);
+                    }else if(nombreNodo == "Clientes"){
+                        RecursosCompartidos.setRuta(ruta);
+                        AbrirPaneles(nombreNodo, panelPrincipal);
+                    }else if(nombreNodo == "Proovedores"){
+                        RecursosCompartidos.setRuta(ruta);
+                        AbrirPaneles(nombreNodo, panelPrincipal);
                     }
                 }
             }
@@ -336,30 +340,35 @@ public class ControlFormularioPrincipal {
                 proyect.agregarXMLProyecto(lista.get(i));
             }
         }
-        List<Factura> list = control.obtenerListadoFacturas(files);
-        for (int i = 0; i < list.size(); i++) {
-            proyect.agregarXMLProyecto(list.get(i));
-            //Cargar la tabla con los datos de la factura.
-            String consecutivo = list.get(i).getConsecutivo().toString();
-            String emisor = list.get(i).getEmisor().getNombre().toString();
+        
+        
+        if (files != null) { // Validacion para cuando el Chooser se cancela
+            List<Factura> list = control.obtenerListadoFacturas(files);
+            for (int i = 0; i < list.size(); i++) {
+                proyect.agregarXMLProyecto(list.get(i));
+                //Cargar la tabla con los datos de la factura.
+                String consecutivo = list.get(i).getConsecutivo().toString();
+                String emisor = list.get(i).getEmisor().getNombre().toString();
 
-            String receptor = "";
-            if (list.get(i).getReceptor() != null) {
-                receptor = list.get(i).getReceptor().getNombre().toString();
+                String receptor = "";
+                if (list.get(i).getReceptor() != null) {
+                    receptor = list.get(i).getReceptor().getNombre().toString();
+                }
+
+                String total = "";
+                if (list.get(i).getResumenFactura().getTotalVenta() != null) {
+                    total = list.get(i).getResumenFactura().getTotalVenta().toString();
+                }
+
+                AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
             }
+            m.marshal(proyect, System.out);
+            try (FileOutputStream fos = new FileOutputStream(ruta)) {
+                m.marshal(proyect, fos);
+            } catch (Exception e) {
+                System.out.println("Error a la hora de crear el xml " + e);
 
-            String total = "";
-            if (list.get(i).getResumenFactura().getTotalVenta() != null) {
-                total = list.get(i).getResumenFactura().getTotalVenta().toString();
             }
-
-            AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
-        }
-        m.marshal(proyect, System.out);
-        try (FileOutputStream fos = new FileOutputStream(ruta)) {
-            m.marshal(proyect, fos);
-        } catch (Exception e) {
-            System.out.println("Error a la hora de crear el xml " + e);
 
         }
 

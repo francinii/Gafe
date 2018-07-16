@@ -202,13 +202,10 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
             String nombreProyecto = txtNombreProyecto.getText();
             String descripcionProyecto = txtDescripcionProyecto.getText();
             String cedula = txtCedula.getText();
-            if (ruta == null || nombreProyecto == null || descripcionProyecto == null || cedula == null) {
+            if (ruta.equals("")|| nombreProyecto.equals("") || descripcionProyecto.equals("")) {
                 controlVentanas.mensaje("Debes ingresar todos los campos");
             } else {
                 String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
-                //  crearArchivo = new FileWriter(guardarEn);
-                // BufferedWriter escribirArchivo = new BufferedWriter(crearArchivo);
-                // escribirArchivo.close();
                 controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
                 
             }
