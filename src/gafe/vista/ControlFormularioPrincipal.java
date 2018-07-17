@@ -653,7 +653,7 @@ public class ControlFormularioPrincipal {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         Proyecto p = buscarProyecto(ruta);
         List<Factura> listFacturas = p.getListadoFacturas();
-        int numeroColumnasTabla = 44;
+        int numeroColumnasTabla = 57;
         Object[] columna = new Object[numeroColumnasTabla];
 
         ///llenar las columna todo con ""
@@ -683,8 +683,8 @@ public class ControlFormularioPrincipal {
                 columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getCanton();
                 columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito();
                 columna[15] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
-               columna[16] = listFacturas.get(i).getReceptor().getNombre();
-               columna[17] = listFacturas.get(i).getReceptor().getNombreComercial();
+                columna[16] = listFacturas.get(i).getReceptor().getNombre();
+                columna[17] = listFacturas.get(i).getReceptor().getNombreComercial();
                 columna[18] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero();
                 columna[19] = "";
                 columna[20] = "";
@@ -702,10 +702,25 @@ public class ControlFormularioPrincipal {
 
                 System.out.println("lisatdoofsdaf" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
 
+                
+                columna[44] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
+                columna[45] = listFacturas.get(i).getResumenFactura().getTipoCambio();
+                columna[46] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
+                columna[47] = listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos();
+                columna[48] = listFacturas.get(i).getResumenFactura().getTotalMercanciasGravadas();
+                columna[49] = listFacturas.get(i).getResumenFactura().getTotalMercanciasExcentas();
+                columna[50] = listFacturas.get(i).getResumenFactura().getTotalGravado();
+                columna[51] = listFacturas.get(i).getResumenFactura().getTotalExcento();
+                columna[52] = listFacturas.get(i).getResumenFactura().getTotalVenta();
+                columna[53] = listFacturas.get(i).getResumenFactura().getTotalDescuentos();
+                columna[54] = listFacturas.get(i).getResumenFactura().getTotalVentaNeta();
+                columna[55] = listFacturas.get(i).getResumenFactura().getTotalImpuesto();
+                columna[56] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
+
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
 
                     columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
-//                    columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
+                    columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCantidad();
                     columna[28] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedida();
                     columna[29] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedidaComercial();
