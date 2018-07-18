@@ -157,7 +157,7 @@
         <Component class="javax.swing.JTable" name="TablaReportes">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="TablaReportes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);">
-              <Table columnCount="44" rowCount="0">
+              <Table columnCount="57" rowCount="0">
                 <Column editable="true" title="Clave" type="java.lang.Object"/>
                 <Column editable="true" title="Consecutivo" type="java.lang.Object"/>
                 <Column editable="true" title="Fecha Emision" type="java.lang.Object"/>
@@ -202,10 +202,88 @@
                 <Column editable="false" title="Nombre Instituci&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="true" title="Fecha Emisi&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Porcentaje Compra Exoneraci&#xf3;n" type="java.lang.Object"/>
+                <Column editable="true" title="Codigo Moneda" type="java.lang.Object"/>
+                <Column editable="true" title="Tipo Cambio" type="java.lang.Object"/>
+                <Column editable="true" title="Total Serv Gravados" type="java.lang.Object"/>
+                <Column editable="true" title="Total Serv Excentos" type="java.lang.Object"/>
+                <Column editable="true" title="Total Mercancias Gravadas" type="java.lang.Object"/>
+                <Column editable="true" title="Total Mercancias Excentas" type="java.lang.Object"/>
+                <Column editable="true" title="Tota Gravado" type="java.lang.Object"/>
+                <Column editable="true" title="Total Excento" type="java.lang.Object"/>
+                <Column editable="true" title="Total Venta" type="java.lang.Object"/>
+                <Column editable="true" title="Total Descuentos" type="java.lang.Object"/>
+                <Column editable="true" title="Total Venta Neta" type="java.lang.Object"/>
+                <Column editable="true" title="Total Impuestos" type="java.lang.Object"/>
+                <Column editable="true" title="Total Comprobante" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

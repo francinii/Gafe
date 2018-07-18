@@ -46,6 +46,7 @@ public class LectorArchivoConfiguracion {
 
     public List<String> leerArchivo(String ruta) {
         File archivo = null;
+        File existenciaRuta = null;
         FileReader fr = null;
         BufferedReader br = null;
         List<String> listaEstados = new ArrayList<>();
@@ -58,12 +59,16 @@ public class LectorArchivoConfiguracion {
                 System.out.println("Leyendo el contendio del archivo.txt");
                 String linea;
                 while ((linea = br.readLine()) != null) {
-                    listaEstados.add(linea);
-                    System.out.println(linea);
+                    existenciaRuta = new File(linea);
+                    if (existenciaRuta.exists()) {
+                        listaEstados.add(linea);
+                        System.out.println(linea);
+                    }
                 }
+                escribirArchivo(ruta, listaEstados, false);
             } else {
                 System.out.println("NO existe ");
-                escribirArchivo(ruta, null,false);
+                escribirArchivo(ruta, null, false);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,5 +83,4 @@ public class LectorArchivoConfiguracion {
         }
         return listaEstados;
     }
-
 }
