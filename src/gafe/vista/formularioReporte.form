@@ -158,9 +158,9 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="TablaReportes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);">
               <Table columnCount="57" rowCount="0">
-                <Column editable="true" title="Clave" type="java.lang.Object"/>
-                <Column editable="true" title="Consecutivo" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha Emision" type="java.lang.Object"/>
+                <Column editable="false" title="Clave" type="java.lang.Object"/>
+                <Column editable="false" title="Consecutivo" type="java.lang.Object"/>
+                <Column editable="false" title="Fecha Emision" type="java.lang.Object"/>
                 <Column editable="false" title="Condicion Venta" type="java.lang.Object"/>
                 <Column editable="false" title="Plaza Credito" type="java.lang.Object"/>
                 <Column editable="false" title="Medio Pago" type="java.lang.Object"/>
@@ -198,23 +198,23 @@
                 <Column editable="false" title="Monto Impuesto" type="java.lang.Object"/>
                 <Column editable="false" title="Monto Impuesto Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Tipo documento Exoneracion" type="java.lang.Object"/>
-                <Column editable="true" title="Numero Documento Exoneracion" type="java.lang.Object"/>
+                <Column editable="false" title="Numero Documento Exoneracion" type="java.lang.Object"/>
                 <Column editable="false" title="Nombre Instituci&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha Emisi&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
+                <Column editable="false" title="Fecha Emisi&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Porcentaje Compra Exoneraci&#xf3;n" type="java.lang.Object"/>
-                <Column editable="true" title="Codigo Moneda" type="java.lang.Object"/>
-                <Column editable="true" title="Tipo Cambio" type="java.lang.Object"/>
-                <Column editable="true" title="Total Serv Gravados" type="java.lang.Object"/>
-                <Column editable="true" title="Total Serv Excentos" type="java.lang.Object"/>
-                <Column editable="true" title="Total Mercancias Gravadas" type="java.lang.Object"/>
-                <Column editable="true" title="Total Mercancias Excentas" type="java.lang.Object"/>
-                <Column editable="true" title="Tota Gravado" type="java.lang.Object"/>
-                <Column editable="true" title="Total Excento" type="java.lang.Object"/>
-                <Column editable="true" title="Total Venta" type="java.lang.Object"/>
-                <Column editable="true" title="Total Descuentos" type="java.lang.Object"/>
-                <Column editable="true" title="Total Venta Neta" type="java.lang.Object"/>
-                <Column editable="true" title="Total Impuestos" type="java.lang.Object"/>
-                <Column editable="true" title="Total Comprobante" type="java.lang.Object"/>
+                <Column editable="false" title="Codigo Moneda" type="java.lang.Object"/>
+                <Column editable="false" title="Tipo Cambio" type="java.lang.Object"/>
+                <Column editable="false" title="Total Serv Gravados" type="java.lang.Object"/>
+                <Column editable="false" title="Total Serv Excentos" type="java.lang.Object"/>
+                <Column editable="false" title="Total Mercancias Gravadas" type="java.lang.Object"/>
+                <Column editable="false" title="Total Mercancias Excentas" type="java.lang.Object"/>
+                <Column editable="false" title="Tota Gravado" type="java.lang.Object"/>
+                <Column editable="false" title="Total Excento" type="java.lang.Object"/>
+                <Column editable="false" title="Total Venta" type="java.lang.Object"/>
+                <Column editable="false" title="Total Descuentos" type="java.lang.Object"/>
+                <Column editable="false" title="Total Venta Neta" type="java.lang.Object"/>
+                <Column editable="false" title="Total Impuestos" type="java.lang.Object"/>
+                <Column editable="false" title="Total Comprobante" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

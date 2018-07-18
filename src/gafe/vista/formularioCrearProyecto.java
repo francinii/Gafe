@@ -3,6 +3,7 @@ package gafe.vista;
 import gafe.control.Control;
 import gafe.modelo.Proyecto;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,8 +19,10 @@ import javax.xml.bind.Marshaller;
 public class formularioCrearProyecto extends javax.swing.JPanel {
 
     ControlFormularioPrincipal controlVentanas;
+
     public formularioCrearProyecto(ControlFormularioPrincipal c) {
         initComponents();
+        validacion.setVisible(false);
         this.controlVentanas = c;
         setVisible(true);
     }
@@ -40,6 +43,8 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        validacion = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(247, 238, 212));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -51,7 +56,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.ipady = 8;
@@ -82,7 +87,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.ipady = 8;
@@ -99,7 +104,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.ipady = 8;
@@ -116,7 +121,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.ipady = 8;
@@ -132,7 +137,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(btnGuardar, gridBagConstraints);
@@ -178,6 +183,27 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 6;
         add(jLabel1, gridBagConstraints);
+
+        jButton2.setText("?");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 54);
+        add(jButton2, gridBagConstraints);
+
+        validacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/invalid.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 3);
+        add(validacion, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -196,18 +222,18 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRutaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-                        
+
         try {
             String ruta = txtRuta.getText();
             String nombreProyecto = txtNombreProyecto.getText();
             String descripcionProyecto = txtDescripcionProyecto.getText();
             String cedula = txtCedula.getText();
-            if (ruta.equals("")|| nombreProyecto.equals("") || descripcionProyecto.equals("")) {
+            if (ruta.equals("") || nombreProyecto.equals("") || descripcionProyecto.equals("")) {
                 controlVentanas.mensaje("Debes ingresar todos los campos");
             } else {
                 String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
                 controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
-                
+
             }
         } catch (IOException e) {
         } catch (JAXBException ex) {
@@ -220,10 +246,25 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        File ruta = controlVentanas.abrirFileChooser("xml", "xml");
+        if (ruta != null) {
+            String cedula = txtCedula.getText();
+            if (controlVentanas.validarCedulaProyecto(ruta, cedula)) {
+                validacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/valid.png")));
+                validacion.setVisible(true);
+            } else {
+                validacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/invalid.png")));
+                validacion.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -233,5 +274,6 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     private javax.swing.JTextArea txtDescripcionProyecto;
     private javax.swing.JTextField txtNombreProyecto;
     private javax.swing.JTextField txtRuta;
+    private javax.swing.JLabel validacion;
     // End of variables declaration//GEN-END:variables
 }

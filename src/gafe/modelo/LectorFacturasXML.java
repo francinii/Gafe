@@ -53,8 +53,8 @@ public class LectorFacturasXML {
     }
 
     public Factura crearFactura(String ruta) {
-         //public Factura crearFactura(String ruta) {
-         
+        //public Factura crearFactura(String ruta) {
+
         Document doc = crearArbolFactura(ruta);
         //Obtener la raiz
         Element nodoPadre = doc.getRootElement();
@@ -90,10 +90,25 @@ public class LectorFacturasXML {
 
     public List<Factura> listarFacturas(File[] rutas) {
         List<Factura> listadoFacturas = new ArrayList<>();
-        for (File ruta : rutas) {            
+        for (File ruta : rutas) {
             listadoFacturas.add(crearFactura(ruta.toString()));
         }
         return listadoFacturas;
+    }
+
+    public boolean validarCedulaProyecto(File ruta, String cedula) {        
+        Document doc = crearArbolFactura(ruta.toString());
+        //Obtener la raiz
+        Element nodoPadre = doc.getRootElement();
+        String namespace = nodoPadre.getNamespace().getURI();
+        if (nodoPadre.getChild("Emisor", Namespace.getNamespace(namespace)) != null) {
+            Element nodoEmisor = nodoPadre.getChild("Emisor", Namespace.getNamespace(namespace));
+            Identificacion identificacion = crearIdentifacion(nodoEmisor, namespace);
+            if (identificacion != null && identificacion.getNumeroIdentificacion().equals(cedula)) {
+                return true;
+            }
+        }
+        return false;
     }
 // <editor-fold defaultstate="collapsed" desc="CREAR OBJETOS DE LA FACTURA">
 

@@ -143,6 +143,10 @@ public class Control {
         acercaDe.activarVentana();
     }
     
+    public boolean validarCedulaProyecto(File ruta, String cedula){
+        return claseLectorFacturas.validarCedulaProyecto(ruta, cedula);
+    }
+        
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
