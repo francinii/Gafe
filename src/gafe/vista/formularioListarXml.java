@@ -23,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -34,13 +36,13 @@ import javax.xml.bind.JAXBException;
 public class formularioListarXml extends javax.swing.JPanel {
 
     ControlFormularioPrincipal controlVentanas;
-   
+
     public formularioListarXml(ControlFormularioPrincipal control) {
         System.out.println("Entre constructor");
         initComponents();
         this.controlVentanas = control;
         setVisible(true);
-        arrastrarSoltar(); 
+        arrastrarSoltar();
 
     }
 
@@ -140,7 +142,15 @@ public class formularioListarXml extends javax.swing.JPanel {
             new String [] {
                 "Numero Factura", "Emisor", "Receptor", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaXml);
 
         add(jScrollPane1);
@@ -154,18 +164,18 @@ public class formularioListarXml extends javax.swing.JPanel {
             System.out.println("Limpiar");
         }
         txtCedulaJ.setText("");
-        txtNombre.setText("");        
+        txtNombre.setText("");
     }
-    
+
     public void llenarDatosProyecto(String nombre, String cedula) {
         txtCedulaJ.setText(cedula);
         txtNombre.setText(nombre);
     }
-            
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {          
-            String guardarEn = RecursosCompartidos.getRuta();      
-            controlVentanas.agregarFacturaProyecto( guardarEn,"Archivos XML", "xml",true,tablaXml);
+        try {
+            String guardarEn = RecursosCompartidos.getRuta();
+            controlVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true, tablaXml);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -174,11 +184,13 @@ public class formularioListarXml extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        controlVentanas.eliminarFacturas(tablaXml);
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar las facturas seleccionadas?", "", JOptionPane.YES_NO_OPTION);
+        if (respuesta == 0) {
+            controlVentanas.eliminarFacturas(tablaXml);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
-      
-    public void arrastrarSoltar() {
 
+    public void arrastrarSoltar() {
         DropTarget target = new DropTarget(tablaXml, new DropTargetListener() {
             @Override
             public void dragEnter(DropTargetDragEvent dtde) {
@@ -210,12 +222,9 @@ public class formularioListarXml extends javax.swing.JPanel {
 
                     files = new File[listaArchivosArrastrados.size()];
                     files = listaArchivosArrastrados.toArray(files);
-                    String guardarEn = RecursosCompartidos.getRuta(); 
-                    
-                    
-                    controlVentanas.agregarFacturaProyecto(files,guardarEn,tablaXml);
-                    
-                    
+                    String guardarEn = RecursosCompartidos.getRuta();
+
+                    controlVentanas.agregarFacturaProyecto(files, guardarEn, tablaXml);
 
                 } catch (Exception ex) {
                     System.out.println("Error" + ex);
@@ -226,9 +235,9 @@ public class formularioListarXml extends javax.swing.JPanel {
         });
 
     }
-    
+
     //retornar la tabla para poder cargarla a la hora de abrir el archivo .GAFE
-    public JTable obtenerTabla(){
+    public JTable obtenerTabla() {
         return tablaXml;
     }
 

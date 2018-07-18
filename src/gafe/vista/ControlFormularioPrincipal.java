@@ -4,7 +4,6 @@ import gafe.control.Control;
 import gafe.modelo.ElementosArbol;
 import gafe.modelo.ExportarReporte;
 import gafe.modelo.Factura;
-import gafe.modelo.LineaDetalle;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import java.io.File;
@@ -20,7 +19,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.filechooser.FileFilter;
@@ -36,13 +34,17 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
-import org.jdom2.Element;
 
 public class ControlFormularioPrincipal {
 
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
     }
+    
+    public boolean validarCedulaProyecto(File ruta, String cedula){
+        return control.validarCedulaProyecto(ruta, cedula);
+    }
+    
 
     public void abrirFormularioCrearProyecto(JPanel panelPrincipal) {
         formularioCrearProyecto formCrearProyecto = control.getFormularioCrearProyecto();
@@ -340,8 +342,7 @@ public class ControlFormularioPrincipal {
                 proyect.agregarXMLProyecto(lista.get(i));
             }
         }
-        
-        
+                
         if (files != null) { // Validacion para cuando el Chooser se cancela
             List<Factura> list = control.obtenerListadoFacturas(files);
             for (int i = 0; i < list.size(); i++) {
