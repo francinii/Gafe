@@ -5,6 +5,7 @@ import gafe.modelo.LectorFacturasXML;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import gafe.vista.ControlFormularioPrincipal;
+import gafe.vista.acercaDe;
 import gafe.vista.filtroReporte;
 import gafe.vista.formularioClientes;
 import gafe.vista.formularioCrearProyecto;
@@ -38,6 +39,7 @@ public class Control {
         formProveedores = new formularioProveedores(controlVentanas);
         recursosCompartidos = new RecursosCompartidos();
         cambiarEstadoColumnasReporte(directorio);
+        acercaDe = new acercaDe();
     }
 
     public void ocultarMostrarColumnas(int columna, boolean status) {
@@ -122,8 +124,7 @@ public class Control {
 
     public void escribirArchivoConfiguracion(String ruta, List<String> listaEstados, boolean sobreescribir) {
         lectorArchivoConfiguracion.escribirArchivo(ruta, listaEstados,sobreescribir);
-    }  
-    
+    }     
  
 
     public void cambiarEstadoColumnasReporte(String ruta) {
@@ -138,6 +139,10 @@ public class Control {
         }
     }
 
+    public void mostrarAcercaDe() {
+        acercaDe.activarVentana();
+    }
+    
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
@@ -149,6 +154,7 @@ public class Control {
     LectorArchivoConfiguracion lectorArchivoConfiguracion;
     formularioClientes formClientes;
     formularioProveedores formProveedores;
+    acercaDe acercaDe;
     //filtroReporte ventanaFiltros;
     private String directorio = "../gafe//src//recursos//config.txt";
     //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";

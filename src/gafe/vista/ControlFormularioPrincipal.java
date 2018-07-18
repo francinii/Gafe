@@ -590,8 +590,8 @@ public class ControlFormularioPrincipal {
     }
 
     public void llenarProveedores() {
-        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
         DefaultTableModel modelo = (DefaultTableModel) control.tablaProveedores().getModel();
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());        
         if (p != null) {
             List<Factura> listFacturas = p.getListadoFacturas();
             int numeroColumnasTabla = 5;
@@ -606,7 +606,7 @@ public class ControlFormularioPrincipal {
                             cedulas.add(cedula);
                             columna[0] = listFacturas.get(i).getEmisor().getNombre();
                             columna[1] = cedula;
-                            if (listFacturas.get(i).getEmisor().getTelefono().get(0) != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
+                            if (listFacturas.get(i).getEmisor().getTelefono() != null && !listFacturas.get(i).getReceptor().getTelefono().isEmpty()) {
                                 columna[2] = listFacturas.get(i).getEmisor().getTelefono().get(0).getNumeroTelefono();
                             }
                             columna[3] = listFacturas.get(i).getEmisor().getCorreo();

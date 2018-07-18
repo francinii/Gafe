@@ -78,5 +78,4 @@ public class LectorArchivoConfiguracion {
         }
         return listaEstados;
     }
-
 }

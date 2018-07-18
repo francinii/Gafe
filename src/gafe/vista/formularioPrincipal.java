@@ -60,7 +60,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 //    }
 //  }
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         menuContextual = new javax.swing.JPopupMenu();
@@ -242,60 +242,59 @@ public class formularioPrincipal extends javax.swing.JFrame {
         setJMenuBar(jMenuBar1);
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
+    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {                                   
         controlFormularioPrincipal.arbolMouseClicked(arbol, panelPrincipal);
-    }//GEN-LAST:event_arbolMouseClicked
+    }                                  
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }                                          
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }                                        
 
-    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try {
             controlFormularioPrincipal.abrirNuevoProyecto(arbol);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnAbrirActionPerformed
+    }                                        
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         try {
             controlFormularioPrincipal.abrirNuevoProyecto(arbol);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }                                          
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         filtroReporte ventanaFiltros = new filtroReporte(control);
         ventanaFiltros.leerArchivoConfiguracion();
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }                                          
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        about ventanaAbout = new about();
-        ventanaAbout.show();
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        control.mostrarAcercaDe();
+    }                                          
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
 
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }                                          
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         if (RecursosCompartidos.getNodoSeleccionado() == 0) {
             controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
         } else {
             controlFormularioPrincipal.cerrarUnProyecto(arbol);
             controlFormularioPrincipal.expandirArbol(arbol);
         }
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    }                                           
+    // Variables declaration - do not modify                     
     private javax.swing.JTree arbol;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnGuardar;
@@ -319,7 +318,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPopupMenu menuContextual;
     private javax.swing.JPanel panelPrincipal;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private final Control control;
     private final ControlFormularioPrincipal controlFormularioPrincipal;
