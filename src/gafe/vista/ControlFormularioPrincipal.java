@@ -510,7 +510,7 @@ public class ControlFormularioPrincipal {
             
         }
         
-        if (listadoProyectos.size() > 0) {
+        if (listadoProyectos.size() > 0) { // Sobreescribir archivo de las rutas con los archivos que si existen
              control.escribirArchivoConfiguracion(directorioGlobalConfig, listadoProyectos, false);
         }
         

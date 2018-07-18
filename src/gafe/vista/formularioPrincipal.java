@@ -41,24 +41,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         return arbol;
     }
 
-//    public void actionPerformed(ActionEvent ae) {
-//    DefaultMutableTreeNode dmtn, node;
-//
-//    TreePath path = this.getSelectionPath();
-//    dmtn = (DefaultMutableTreeNode) path.getLastPathComponent();
-//    if (ae.getActionCommand().equals("insert")) {
-//      node = new DefaultMutableTreeNode("children");
-//      dmtn.add(node);
-//      ((DefaultTreeModel) this.getModel()).nodeStructureChanged((TreeNode) dmtn);
-//    }
-//    if (ae.getActionCommand().equals("remove")) {
-//      node = (DefaultMutableTreeNode) dmtn.getParent();
-//      int nodeIndex = node.getIndex(dmtn);
-//      dmtn.removeAllChildren();
-//      node.remove(nodeIndex);
-//      ((DefaultTreeModel) this.getModel()).nodeStructureChanged((TreeNode) dmtn);
-//    }
-//  }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
