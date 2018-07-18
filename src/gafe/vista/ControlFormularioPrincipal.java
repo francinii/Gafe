@@ -472,8 +472,11 @@ public class ControlFormularioPrincipal {
 
     public void abrirProyectosRecientes(JTree arbol) throws JAXBException {
         List<String> rutasArchivosRecientes = control.leerArchivoConfiguracion(directorioGlobalConfig);
-        if (rutasArchivosRecientes != null) {
-            for (String ruta : rutasArchivosRecientes) {
+        
+        List<String> listadoArchivosExistentes = verificarSiExistenProyectosRecientes(rutasArchivosRecientes);
+        
+        if (listadoArchivosExistentes != null) {
+            for (String ruta : listadoArchivosExistentes) {
                 List<Factura> lista = null;
                 JAXBContext context = JAXBContext.newInstance(Proyecto.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -485,11 +488,40 @@ public class ControlFormularioPrincipal {
                         proyect.agregarXMLProyecto(lista.get(i));
                     }
                 }
+                //control.escribirArchivoConfiguracion(ruta, listadoArchivosExistentes, true);
                 agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
                 agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
+                
             }
         }
     }
+    
+    
+    public List<String> verificarSiExistenProyectosRecientes(List<String> listadoProyectos){
+        File file;
+       // List<String> listaProyectosExistentes = new ArrayList<String>(); 
+        
+        for (int i = 0; i < listadoProyectos.size(); i++) {
+            file = new File(listadoProyectos.get(i));
+            
+            if(!file.exists()){
+                listadoProyectos.remove(i);
+              //  listaProyectosExistentes.add(listadoProyectos.get(i));
+            }
+            
+        }
+        
+        if (listadoProyectos.size() > 0) {
+             control.escribirArchivoConfiguracion(directorioGlobalConfig, listadoProyectos, false);
+        }
+        
+        return listadoProyectos;
+      //  return listaProyectosExistentes;
+        
+    }
+    
+    
+    
 
     //Este metodo se usa para cargar los proyectos que son abiertos.
     public void agregarProyectoAlista(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) {
