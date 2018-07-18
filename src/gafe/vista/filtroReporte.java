@@ -1,18 +1,17 @@
 package gafe.vista;
 
-
 import gafe.control.Control;
 import gafe.modelo.RecursosCompartidos;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class filtroReporte extends javax.swing.JFrame {
 
     public filtroReporte(Control control) {
-        this.control = control;         
-        initComponents();        
-      
-      
+        this.control = control;
+        initComponents();
+
         // JScrollPane scrollPane = new JScrollPane(jPanel1);
         // add(scrollPane);
     }
@@ -910,7 +909,12 @@ public class filtroReporte extends javax.swing.JFrame {
         jPanel5.add(jButton1);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir.png"))); // NOI18N
-        jButton2.setText("Cancelar");
+        jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton2);
 
         getContentPane().add(jPanel5);
@@ -923,7 +927,7 @@ public class filtroReporte extends javax.swing.JFrame {
 //        int status;
 //        if (ChkClave.isSelected()) {
 //            status = 1;
- //           controlVentanas.ocultarMostrarColumnas(TablaReportes, 0, status);
+        //           controlVentanas.ocultarMostrarColumnas(TablaReportes, 0, status);
 //        } else {
 //            status = 0;
 //            controlVentanas.ocultarMostrarColumnas(TablaReportes, 0, status);
@@ -949,6 +953,8 @@ public class filtroReporte extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         escribirArchivoConfiguracion();
         cambiarEstadoColumnasReporte();
+        JOptionPane.showMessageDialog(null, "La configuración ha sido guardada con éxito.", "Filtro de reportes", HEIGHT);
+        cerrarVentana();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox20ActionPerformed
@@ -966,6 +972,15 @@ public class filtroReporte extends javax.swing.JFrame {
     private void jCheckBox16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox16ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox16ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cerrarVentana();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public void cerrarVentana() {
+        super.setVisible(false);
+        super.dispose();
+    }
 
     public void escribirArchivoConfiguracion() {
         List<String> listaEstados = new ArrayList<>();
@@ -1013,7 +1028,7 @@ public class filtroReporte extends javax.swing.JFrame {
         listaEstados.add(jCheckBox42.isSelected() + "");
         listaEstados.add(jCheckBox43.isSelected() + "");
         listaEstados.add(jCheckBox44.isSelected() + "");
-        
+
         listaEstados.add(jCheckBox45.isSelected() + "");
         listaEstados.add(jCheckBox46.isSelected() + "");
         listaEstados.add(jCheckBox47.isSelected() + "");
@@ -1027,29 +1042,29 @@ public class filtroReporte extends javax.swing.JFrame {
         listaEstados.add(jCheckBox55.isSelected() + "");
         listaEstados.add(jCheckBox56.isSelected() + "");
         listaEstados.add(jCheckBox57.isSelected() + "");
-             
+
         control.escribirArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion(), listaEstados, false);
     }
 
     public void leerArchivoConfiguracion() {
-        List<String> listaEstados = control.leerArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion());        
+        List<String> listaEstados = control.leerArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion());
         boolean estado;
         for (int i = 0; i < listaEstados.size(); i++) {
             estado = false;
-            if (listaEstados.get(i).equals("true")) {            
+            if (listaEstados.get(i).equals("true")) {
                 estado = true;
             }
             checkSeleccionado(i, estado);
         }
-          setVisible(true);
+        setVisible(true);
     }
 
-    public void cambiarEstadoColumnasReporte(){
+    public void cambiarEstadoColumnasReporte() {
         control.cambiarEstadoColumnasReporte(RecursosCompartidos.getDiretorioArchivoConfiguracion());
     }
-    
+
     private void checkSeleccionado(int i, boolean estado) {
-        i = i+1;
+        i = i + 1;
         switch (i) {
             case 1:
                 jCheckBox1.setSelected(estado);
@@ -1185,29 +1200,29 @@ public class filtroReporte extends javax.swing.JFrame {
                 break;
             case 45:
                 jCheckBox45.setSelected(estado);
-                break;    
-                
+                break;
+
             case 46:
                 jCheckBox46.setSelected(estado);
-                break;    
+                break;
             case 47:
                 jCheckBox47.setSelected(estado);
-                break;    
-                
+                break;
+
             case 48:
                 jCheckBox48.setSelected(estado);
                 break;
             case 49:
                 jCheckBox49.setSelected(estado);
                 break;
-                
+
             case 50:
                 jCheckBox50.setSelected(estado);
-                break;    
-                
+                break;
+
             case 51:
                 jCheckBox51.setSelected(estado);
-                break;    
+                break;
 
             case 52:
                 jCheckBox52.setSelected(estado);

@@ -137,8 +137,9 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 9;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(btnGuardar, gridBagConstraints);
 
