@@ -21,7 +21,6 @@ public class formularioReporte extends javax.swing.JPanel {
         this.controlVentanas = control;
         initComponents();
         init();
-
     }
 
     public void init() {
@@ -43,7 +42,10 @@ public class formularioReporte extends javax.swing.JPanel {
     }
 
     private void llenarComboFacturas() {
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{TipoFactura.TODASFACTURAS.getNombre(), TipoFactura.FACTURAELECTRONICA.getNombre(), TipoFactura.NOTADEBITO.getNombre(), TipoFactura.NOTACREDITO.getNombre(), TipoFactura.TIQUETEELECTRONICO.getNombre()}));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{todo,
+            facturaElectronica,
+            notaCredito, notaDebito,
+            tiqueteElectronico}));
     }
 
     public void inicializarFechas() {
@@ -235,9 +237,20 @@ public class formularioReporte extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String categoria = jComboBox1.getSelectedItem().toString();
+        if (categoria.equals(todo)) {
+            categoria = TipoFactura.TODASFACTURAS.getNombre();
+        } else if (categoria.equals(facturaElectronica)) {
+            categoria = TipoFactura.FACTURAELECTRONICA.getNombre();
+        } else if (categoria.equals(notaCredito)) {
+            categoria = TipoFactura.NOTACREDITO.getNombre();
+        } else if (categoria.equals(notaDebito)) {
+            categoria = TipoFactura.NOTADEBITO.getNombre();
+        } else if (categoria.equals(tiqueteElectronico)) {
+            categoria = TipoFactura.TIQUETEELECTRONICO.getNombre();
+        }
         String fIncio = fechaInicio.getText();
         String fFinal = fechaFinal.getText();
-        controlVentanas.abrirFormularioReportes(categoria,  fIncio,  fFinal);
+        controlVentanas.abrirFormularioReportes(categoria, fIncio, fFinal);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void fechaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaInicioActionPerformed
@@ -263,4 +276,10 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    private String todo = "Todo";
+    private String facturaElectronica = "Factura electronica";
+    private String notaCredito = "Nota de credito";
+    private String notaDebito = "Noa de debito";
+    private String tiqueteElectronico = "Tiquete electronico";
+
 }

@@ -93,6 +93,10 @@ public class Control {
     public JTree arbol() {
         return formularioPrincipal.arbol();
     }
+    
+    public JPanel getPanelPrincipal(){
+        return formularioPrincipal.getPanelPrincipal();
+    }
 
     /*------------------CREAR XML -----------------*/
     //public void crearXml(Factura factura){

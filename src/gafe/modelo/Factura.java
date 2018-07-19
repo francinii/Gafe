@@ -75,6 +75,15 @@ public class Factura {
     public Normativa getOtros() {
         return normativa;
     }
+    
+    public String getCategoria(){
+        return categoria;
+    }
+    
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
 
     public void setClave(String clave) {
         this.clave = clave;
@@ -124,9 +133,7 @@ public class Factura {
         this.normativa = otros;
     }
     
-    public String getCategoria(){
-        return categoria;
-    }
+
     
     private String categoria;
     private String clave;

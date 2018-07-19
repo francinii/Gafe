@@ -6,6 +6,7 @@ import gafe.modelo.ExportarReporte;
 import gafe.modelo.Factura;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
+import gafe.modelo.TipoFactura;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -158,33 +159,43 @@ public class ControlFormularioPrincipal {
 
     //Este abre el formulario con filtros de categoria y fecha
     public void abrirFormularioReportes(String categoria, String fechaInicio, String fechaFinal) {
-        //panelPrincipal.removeAll();
+        JPanel panelPrincipal = panelPrincipal();
+        panelPrincipal.removeAll();
         formularioReporte fomrReporte = control.getFormReporte();
         fomrReporte.limpiarTabla();
         //Agregue esto
         Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
-        List<Factura> listFacturas = p.getListadoFacturas();
+        List<Factura> listFacturas = new ArrayList<>(p.getListadoFacturas());
         //Final de la agregación
         int tamanio = listFacturas.size();
         String fechaComparar = "00/00/0000";
-        for (int i = 1; i < tamanio; i++) {
+        //Recordar empezar en cero cuando se elimine la factura vacía
+        for (int i = tamanio - 1; i > 0; i--) {
             fechaComparar = formatoFecha(listFacturas.get(i).getFechaEmision());
-            System.out.println("ESTO ES LA CATEGORIA DE LA FACTURA"+listFacturas.get(i).getCategoria());
-            if (!categoria.equals(listFacturas.get(i).getCategoria())) {
+            // System.out.println("ESTO ES LA CATEGORIA DE LA FACTURA" + listFacturas.get(i).getCategoria());
+            if (categoria.equals(TipoFactura.TODASFACTURAS.getNombre())) {
+                if (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar))) {
+                    listFacturas.remove(i);
+                  //  tamanio = tamanio - 1;
+                 //   listFacturas.get(i).setClave("-1");
+                }
+            } else if (!categoria.equals(listFacturas.get(i).getCategoria()) || (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar)))) {
                 listFacturas.remove(i);
-                tamanio = tamanio - 1;
-            } else if (!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar)) {
-                listFacturas.remove(i);
-                tamanio = tamanio - 1;
+               // tamanio = tamanio - 1;
+              //  listFacturas.get(i).setClave("-1");
             }
         }
         llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
-        // pintarReportes(panelPrincipal, fomrReporte);
+        pintarReportes(panelPrincipal, fomrReporte);
+    }
+
+    public JPanel panelPrincipal() {
+        return control.getPanelPrincipal();
     }
 
     public String formatoFecha(String fecha) {
         if (!fecha.equals("")) {
-            fecha = fecha.substring(0, 9);
+            fecha = fecha.substring(0, 10);
             // 2018-02-14T10:51:04.707
             String[] fechaFinal = fecha.split("-");
             String anio = fechaFinal[0];
@@ -197,13 +208,17 @@ public class ControlFormularioPrincipal {
 
     public boolean compararFecha(String fechaI, String fechaF, String fechaComparar) {
         try {
-            SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             Date fecha1 = formato.parse(fechaI);
             Date fecha2 = formato.parse(fechaF);
             Date fechaComp = formato.parse(fechaComparar);
             if ((fechaComp.compareTo(fecha1) == 0 || fechaComp.compareTo(fecha1) > 0) && (fechaComp.compareTo(fecha2) == 0 || fechaComp.compareTo(fecha2) < 0)) {
                 return true;
             }
+//            if (!fechaComp.after(fecha1) && !fechaComp.before(fecha2)) {
+//                return true;
+//                /* historyDate <= todayDate <= futureDate */
+//            }
         } catch (ParseException ex) {
             Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -278,7 +293,6 @@ public class ControlFormularioPrincipal {
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode(ElementosArbol.CLIENTE.getNombre());
         DefaultMutableTreeNode proveedores = new DefaultMutableTreeNode(ElementosArbol.PROVEEDOR.getNombre());
         DefaultMutableTreeNode rutas = new DefaultMutableTreeNode(ruta);
-
         modelo.insertNodeInto(cargarXml, proyecto, 0);
         modelo.insertNodeInto(reportes, proyecto, 1);
         modelo.insertNodeInto(clientes, proyecto, 2);
@@ -457,7 +471,7 @@ public class ControlFormularioPrincipal {
             proyect.agregarXMLProyecto(list.get(i));
 
             //Cargar la tabla con los datos de la factura.
-            String consecutivo = list.get(i).getConsecutivo().toString();
+            String consecutivo = list.get(i).getConsecutivo();
             String emisor = list.get(i).getEmisor().toString();
 
             String receptor = "";
@@ -466,8 +480,8 @@ public class ControlFormularioPrincipal {
             }
 
             String total = "";
-            if ((list.get(i).getResumenFactura().getTotalVenta().toString()) != null) {
-                total = list.get(i).getResumenFactura().getTotalVenta().toString();
+            if ((list.get(i).getResumenFactura().getTotalVenta()) != null) {
+                total = list.get(i).getResumenFactura().getTotalVenta();
             }
 
             AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
