@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -227,6 +228,10 @@ public class formularioPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
+    public JPanel getPanelPrincipal(){
+        return panelPrincipal;
+    }
+    
     private void arbolMouseClicked(java.awt.event.MouseEvent evt) {                                   
         controlFormularioPrincipal.arbolMouseClicked(arbol, panelPrincipal);
     }                                  

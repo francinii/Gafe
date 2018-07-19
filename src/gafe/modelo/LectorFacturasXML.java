@@ -59,6 +59,8 @@ public class LectorFacturasXML {
         //Obtener la raiz
         Element nodoPadre = doc.getRootElement();
         String namespace = nodoPadre.getNamespace().getURI();
+       // System.out.println(nodoPadre.getName());
+        String categoria = nodoPadre.getName();
         String clave = crearElemento("Clave", nodoPadre, namespace);
         String numeroConsecutivo = crearElemento("NumeroConsecutivo", nodoPadre, namespace);
         String fechaEmision = crearElemento("FechaEmision", nodoPadre, namespace);
@@ -84,7 +86,7 @@ public class LectorFacturasXML {
         //Obtener normativa
         normativa = crearNormativa(nodoPadre, namespace);
 
-        return new Factura(clave, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio, resumenFactura, informacionReferencia, normativa);
+        return new Factura(categoria,clave, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio, resumenFactura, informacionReferencia, normativa);
 
     }
 

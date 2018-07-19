@@ -6,13 +6,17 @@ import gafe.modelo.ExportarReporte;
 import gafe.modelo.Factura;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
+import gafe.modelo.TipoFactura;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -44,11 +48,10 @@ public class ControlFormularioPrincipal {
         this.control = control;
  
     }
-    
-    public boolean validarCedulaProyecto(File ruta, String cedula){
+
+    public boolean validarCedulaProyecto(File ruta, String cedula) {
         return control.validarCedulaProyecto(ruta, cedula);
     }
-    
 
     public void abrirFormularioCrearProyecto(JPanel panelPrincipal) {
         formularioCrearProyecto formCrearProyecto = control.getFormularioCrearProyecto();
@@ -84,7 +87,6 @@ public class ControlFormularioPrincipal {
                     Proyecto p = buscarProyecto(ruta);
                     EmpresaGlobal = p.getNombre();
                     CedulaJuridicaGlobal = p.getCedula();
-
                     System.out.println("listadoo " + p.getListadoFacturas().size());
                     if (nombreNodo == "Cargar Facturas") { // esto aplica solo para el nodo de Cargar Facturas
                         AbrirPaneles(nombreNodo, panelPrincipal);
@@ -105,18 +107,17 @@ public class ControlFormularioPrincipal {
                                     }
                                     AgregarDatosTabla(consecutivo, emisor, receptor, total, control.obtenerTabla());
                                 }
-                               
                             }
                         } else {
                             System.out.println("vacio");
                         }
-                    }else if((nombreNodo == "Reportes")){
+                    } else if ((nombreNodo == "Reportes")) {
                         RecursosCompartidos.setRuta(ruta);
                         AbrirPaneles(nombreNodo, panelPrincipal);
-                    }else if(nombreNodo == "Clientes"){
+                    } else if (nombreNodo == "Clientes") {
                         RecursosCompartidos.setRuta(ruta);
                         AbrirPaneles(nombreNodo, panelPrincipal);
-                    }else if(nombreNodo == "Proovedores"){
+                    } else if (nombreNodo == "Proovedores") {
                         RecursosCompartidos.setRuta(ruta);
                         AbrirPaneles(nombreNodo, panelPrincipal);
                     }
@@ -152,7 +153,83 @@ public class ControlFormularioPrincipal {
         panelPrincipal.removeAll();
         formularioReporte fomrReporte = control.getFormReporte();
         fomrReporte.limpiarTabla();
-        llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta());
+        //Agregué esto
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
+        List<Factura> listFacturas = p.getListadoFacturas();
+        //Final de la agregación
+        llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
+        pintarReportes(panelPrincipal, fomrReporte);
+    }
+
+    //Este abre el formulario con filtros de categoria y fecha
+    public void abrirFormularioReportes(String categoria, String fechaInicio, String fechaFinal) {
+        JPanel panelPrincipal = panelPrincipal();
+        panelPrincipal.removeAll();
+        formularioReporte fomrReporte = control.getFormReporte();
+        fomrReporte.limpiarTabla();
+        //Agregue esto
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
+        List<Factura> listFacturas = new ArrayList<>(p.getListadoFacturas());
+        //Final de la agregación
+        int tamanio = listFacturas.size();
+        String fechaComparar = "00/00/0000";
+        //Recordar empezar en cero cuando se elimine la factura vacía
+        for (int i = tamanio - 1; i > 0; i--) {
+            fechaComparar = formatoFecha(listFacturas.get(i).getFechaEmision());
+            // System.out.println("ESTO ES LA CATEGORIA DE LA FACTURA" + listFacturas.get(i).getCategoria());
+            if (categoria.equals(TipoFactura.TODASFACTURAS.getNombre())) {
+                if (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar))) {
+                    listFacturas.remove(i);
+                  //  tamanio = tamanio - 1;
+                 //   listFacturas.get(i).setClave("-1");
+                }
+            } else if (!categoria.equals(listFacturas.get(i).getCategoria()) || (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar)))) {
+                listFacturas.remove(i);
+               // tamanio = tamanio - 1;
+              //  listFacturas.get(i).setClave("-1");
+            }
+        }
+        llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
+        pintarReportes(panelPrincipal, fomrReporte);
+    }
+
+    public JPanel panelPrincipal() {
+        return control.getPanelPrincipal();
+    }
+
+    public String formatoFecha(String fecha) {
+        if (!fecha.equals("")) {
+            fecha = fecha.substring(0, 10);
+            // 2018-02-14T10:51:04.707
+            String[] fechaFinal = fecha.split("-");
+            String anio = fechaFinal[0];
+            String mes = fechaFinal[1];
+            String dia = fechaFinal[2];
+            return dia + "/" + mes + "/" + anio;
+        }
+        return "";
+    }
+
+    public boolean compararFecha(String fechaI, String fechaF, String fechaComparar) {
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha1 = formato.parse(fechaI);
+            Date fecha2 = formato.parse(fechaF);
+            Date fechaComp = formato.parse(fechaComparar);
+            if ((fechaComp.compareTo(fecha1) == 0 || fechaComp.compareTo(fecha1) > 0) && (fechaComp.compareTo(fecha2) == 0 || fechaComp.compareTo(fecha2) < 0)) {
+                return true;
+            }
+//            if (!fechaComp.after(fecha1) && !fechaComp.before(fecha2)) {
+//                return true;
+//                /* historyDate <= todayDate <= futureDate */
+//            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public void pintarReportes(JPanel panelPrincipal, formularioReporte fomrReporte) {
         fomrReporte.setSize(599, 284);
         panelPrincipal.add(fomrReporte);
         panelPrincipal.revalidate();
@@ -220,7 +297,6 @@ public class ControlFormularioPrincipal {
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode(ElementosArbol.CLIENTE.getNombre());
         DefaultMutableTreeNode proveedores = new DefaultMutableTreeNode(ElementosArbol.PROVEEDOR.getNombre());
         DefaultMutableTreeNode rutas = new DefaultMutableTreeNode(ruta);
-
         modelo.insertNodeInto(cargarXml, proyecto, 0);
         modelo.insertNodeInto(reportes, proyecto, 1);
         modelo.insertNodeInto(clientes, proyecto, 2);
@@ -436,7 +512,7 @@ public class ControlFormularioPrincipal {
             proyect.agregarXMLProyecto(list.get(i));
 
             //Cargar la tabla con los datos de la factura.
-            String consecutivo = list.get(i).getConsecutivo().toString();
+            String consecutivo = list.get(i).getConsecutivo();
             String emisor = list.get(i).getEmisor().toString();
 
             String receptor = "";
@@ -445,8 +521,8 @@ public class ControlFormularioPrincipal {
             }
 
             String total = "";
-            if ((list.get(i).getResumenFactura().getTotalVenta().toString()) != null) {
-                total = list.get(i).getResumenFactura().getTotalVenta().toString();
+            if ((list.get(i).getResumenFactura().getTotalVenta()) != null) {
+                total = list.get(i).getResumenFactura().getTotalVenta();
             }
 
             AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
@@ -573,9 +649,9 @@ public class ControlFormularioPrincipal {
 
     public void abrirProyectosRecientes(JTree arbol) throws JAXBException {
         List<String> rutasArchivosRecientes = control.leerArchivoConfiguracion(directorioGlobalConfig);
-        
+
         List<String> listadoArchivosExistentes = verificarSiExistenProyectosRecientes(rutasArchivosRecientes);
-        
+
         if (listadoArchivosExistentes != null) {
             for (String ruta : listadoArchivosExistentes) {
                 List<Factura> lista = null;
@@ -592,37 +668,33 @@ public class ControlFormularioPrincipal {
                 //control.escribirArchivoConfiguracion(ruta, listadoArchivosExistentes, true);
                 agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
                 agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
-                
+
             }
         }
     }
-    
-    
-    public List<String> verificarSiExistenProyectosRecientes(List<String> listadoProyectos){
+
+    public List<String> verificarSiExistenProyectosRecientes(List<String> listadoProyectos) {
         File file;
-       // List<String> listaProyectosExistentes = new ArrayList<String>(); 
-        
+        // List<String> listaProyectosExistentes = new ArrayList<String>(); 
+
         for (int i = 0; i < listadoProyectos.size(); i++) {
             file = new File(listadoProyectos.get(i));
-            
-            if(!file.exists()){
+
+            if (!file.exists()) {
                 listadoProyectos.remove(i);
-              //  listaProyectosExistentes.add(listadoProyectos.get(i));
+                //  listaProyectosExistentes.add(listadoProyectos.get(i));
             }
-            
+
         }
         
         if (listadoProyectos.size() > 0) { // Sobreescribir archivo de las rutas con los archivos que si existen
              control.escribirArchivoConfiguracion(directorioGlobalConfig, listadoProyectos, false);
         }
-        
+
         return listadoProyectos;
-      //  return listaProyectosExistentes;
-        
+        //  return listaProyectosExistentes;
+
     }
-    
-    
-    
 
     //Este metodo se usa para cargar los proyectos que son abiertos.
     public void agregarProyectoAlista(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) {
@@ -692,7 +764,7 @@ public class ControlFormularioPrincipal {
 
     public void llenarProveedores() {
         DefaultTableModel modelo = (DefaultTableModel) control.tablaProveedores().getModel();
-        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());        
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
         if (p != null) {
             List<Factura> listFacturas = p.getListadoFacturas();
             int numeroColumnasTabla = 5;
@@ -775,25 +847,20 @@ public class ControlFormularioPrincipal {
             JOptionPane.showMessageDialog(null, "No hay datos para exportar", "Mensaje de error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public void limpiarTabla(Object[] columna){
-         for (int i = 0; i < columna.length; i++) {
-            columna[i] = "--------------";
+
+    public void limpiarTabla(Object[] columna) {
+        for (int i = 0; i < columna.length; i++) {
+            columna[i] = "";
         }
     }
 
-    public void llenarFacturaReportes(JTable tabla, String ruta) {
-        System.out.println("Reportes Facturas ");
+    public void llenarFacturaReportes(JTable tabla, String ruta, List<Factura> listFacturas) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        Proyecto p = buscarProyecto(ruta);
-        List<Factura> listFacturas = p.getListadoFacturas();
+//        Proyecto p = buscarProyecto(ruta);
+//        List<Factura> listFacturas = p.getListadoFacturas(); 
         int numeroColumnasTabla = 57;
         Object[] columna = new Object[numeroColumnasTabla];
-
-        ///llenar las columna todo con ""
-       
-        //modelo.addRow(columna);
         for (int i = 0; i < listFacturas.size(); i++) {
-            //aqui manda a llamar al metodo que coloca todo en ""
             if (i != 0) {
                 columna[0] = listFacturas.get(i).getClave();
                 columna[1] = listFacturas.get(i).getConsecutivo();
@@ -826,16 +893,11 @@ public class ControlFormularioPrincipal {
                     columna[a] = listFacturas.get(i).getReceptor().getTelefono().get(j).getNumeroTelefono();
                     a = a++;
                 }
-                
-               
                 columna[21] = listFacturas.get(i).getReceptor().getCorreo();
                 columna[22] = listFacturas.get(i).getReceptor().getUbicacion().getProvincia();
                 columna[23] = listFacturas.get(i).getReceptor().getUbicacion().getCanton();
                 columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito();
 
-                System.out.println("lisatdoofsdaf" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size());
-
-                
                 columna[44] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
                 columna[45] = listFacturas.get(i).getResumenFactura().getTipoCambio();
                 columna[46] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
@@ -851,7 +913,6 @@ public class ControlFormularioPrincipal {
                 columna[56] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
-
                     columna[25] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCantidad();
@@ -871,10 +932,9 @@ public class ControlFormularioPrincipal {
                     columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
                     columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
                     columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra();
-
                     modelo.addRow(columna);
                     limpiarTabla(columna);
-                    
+
                 }
             }
         }

@@ -6,12 +6,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Factura {
 
     public Factura() {
-        this("", "", "", new Emisor(), new Receptor(), "", "", "", new DetalleServicio(), new ResumenFactura(), new InformacionReferencia(), new Normativa());
+        this("","", "", "", new Emisor(), new Receptor(), "", "", "", new DetalleServicio(), new ResumenFactura(), new InformacionReferencia(), new Normativa());
 
     }
     
     
-    public Factura(String clave, String consecutivo, String fechaEmision, Emisor emisor, Receptor receptor, String condicionVenta, String plazoCredito, String medioPago, DetalleServicio detalleServicio, ResumenFactura resumenFactura, InformacionReferencia informacionReferencia, Normativa normativa) {
+    public Factura(String categoria, String clave, String consecutivo, String fechaEmision, Emisor emisor, Receptor receptor, String condicionVenta, String plazoCredito, String medioPago, DetalleServicio detalleServicio, ResumenFactura resumenFactura, InformacionReferencia informacionReferencia, Normativa normativa) {
+        this.categoria = categoria;
         this.clave = clave;
         this.consecutivo = consecutivo;
         this.fechaEmision = fechaEmision;
@@ -74,6 +75,15 @@ public class Factura {
     public Normativa getOtros() {
         return normativa;
     }
+    
+    public String getCategoria(){
+        return categoria;
+    }
+    
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
 
     public void setClave(String clave) {
         this.clave = clave;
@@ -122,7 +132,10 @@ public class Factura {
     public void setNormativa(Normativa otros) {
         this.normativa = otros;
     }
+    
 
+    
+    private String categoria;
     private String clave;
     private String consecutivo;
     private String fechaEmision;
