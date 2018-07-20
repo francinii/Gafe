@@ -591,7 +591,54 @@ public class ControlFormularioPrincipal {
             System.out.println("Error a la hora de crear el xml " + e);
         }
     }
+    
 
+//    public void eliminarFacturasRepetidas(Proyecto p, Marshaller m, JTable tabla, String ruta) throws JAXBException {
+//
+//        List<Factura> listaFacturas = p.getListadoFacturas();
+//        List<Factura> listaSinRepetidos = new ArrayList<>();
+//        
+//        Map<String, Factura> mapFacturas = new  HashMap<String, Factura>(listaFacturas.size());
+//        
+//        for (Factura f : listaFacturas) {
+//            mapFacturas.put(f.getClave(), f);
+//        }
+//        
+//        for (Entry<String, Factura> f: mapFacturas.entrySet()) {
+//            listaSinRepetidos.add(f.getValue());
+//        }
+//    
+//        p.getListadoFacturas().clear(); // limpiar la lista, para que ingresen sin repeticiones
+//        limpiarTablaListadoF(tabla); //limpiar la tabla de listadosFacturas.
+//        
+//        
+//        for (int i = 0; i < listaSinRepetidos.size(); i++) { // llenar nueva lista de facturas sin repeticiones   
+//            p.agregarXMLProyecto(listaSinRepetidos.get(i)); 
+//            String consecutivo = listaSinRepetidos.get(i).getConsecutivo().toString();
+//                String emisor = listaSinRepetidos.get(i).getEmisor().getNombre().toString();
+//
+//                String receptor = "";
+//                if (listaSinRepetidos.get(i).getReceptor() != null) {
+//                    receptor = listaSinRepetidos.get(i).getReceptor().getNombre().toString();
+//                }
+//
+//                String total = "";
+//                if (listaSinRepetidos.get(i).getResumenFactura().getTotalVenta() != null) {
+//                    total = listaSinRepetidos.get(i).getResumenFactura().getTotalVenta().toString();
+//                }
+//                
+//                AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
+//        }
+//        
+//        m.marshal(p, System.out);
+//            try (FileOutputStream fos = new FileOutputStream(ruta)) {
+//                m.marshal(p, fos);
+//                fos.close();
+//            } catch (Exception e) {
+//                System.out.println("Error a la hora de crear el xml " + e);
+//            }                      
+//    }
+//    
     //Resscribrir el archivo cuando se elimina una factura.
     public void agregarFacturaProyecto(List<Factura> lista, Proyecto p, String ruta) throws JAXBException, FileNotFoundException, IOException {
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
@@ -627,6 +674,23 @@ public class ControlFormularioPrincipal {
             System.out.println("Limpiar");
         }
     }
+    
+    
+    
+   ///  OJO A ESTE METODO ESTA REPETIDO 
+    
+//    public void limpiarTablaListadoF(JTable tabla) {
+//        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+//        int filas = tabla.getRowCount();
+//        for (int i = 0; filas > i; i++) {
+//            modelo.removeRow(0);
+//            System.out.println("Limpiar");
+//        }
+//    }
+    
+    
+    
+    
 
     public void abrirNuevoProyecto(JTree arbol) throws JAXBException {
         File files = abrirFileChooser("Gafe", "gafe");
