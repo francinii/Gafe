@@ -157,6 +157,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void limpiarTabla() {
+        System.out.println("Limpiar tabla listar");
         DefaultTableModel modelo = (DefaultTableModel) tablaXml.getModel();
         int filas = tablaXml.getRowCount();
         for (int i = 0; filas > i; i++) {

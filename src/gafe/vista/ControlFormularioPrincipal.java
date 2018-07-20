@@ -15,8 +15,11 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -43,6 +46,7 @@ public class ControlFormularioPrincipal {
 
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
+
     }
 
     public boolean validarCedulaProyecto(File ruta, String cedula) {
@@ -65,7 +69,7 @@ public class ControlFormularioPrincipal {
             //AbrirPaneles(nombreNodo, panelPrincipal);
             String a = nodoSeleccionado.getRoot().toString();
             System.out.println("nombre del nodo" + a);
-            if (nodoSeleccionado.toString() == "Proyectos") { // no entra al nodo Proyecto
+            if (nodoSeleccionado.toString().equals("Proyectos")) { // no entra al nodo Proyecto
                 //SETEAR LOS PROYECTOS A LA VARIABLE
                 System.out.println("No puedo entrar");
                 RecursosCompartidos.setNodoSeleccionado(0);
@@ -81,16 +85,16 @@ public class ControlFormularioPrincipal {
                     String ruta = padre.getLastChild().toString();
                     RecursosCompartidos.setRuta(ruta); // Cargo la variable estatica, cada vez que cambio de nodo
                     Proyecto p = buscarProyecto(ruta);
-                    EmpresaGlobal = p.getNombre();
-                    CedulaJuridicaGlobal = p.getCedula();
-                    System.out.println("listadoo " + p.getListadoFacturas().size());
-                    if (nombreNodo == "Cargar Facturas") { // esto aplica solo para el nodo de Cargar Facturas
-                        AbrirPaneles(nombreNodo, panelPrincipal);
-                        if (p.getListadoFacturas() != null) {
-                            List<Factura> lista = p.getListadoFacturas();
-                            for (int i = 0; i < lista.size(); i++) {
-                                //cargar datos tabla, el primer recorrido no entra porque es la factura en blanco
-                                if (i > 0) {
+                    if (p != null) {
+                        EmpresaGlobal = p.getNombre();
+                        CedulaJuridicaGlobal = p.getCedula();
+                        System.out.println("listadoo " + p.getListadoFacturas().size());
+                        if (nombreNodo == "Cargar Facturas") { // esto aplica solo para el nodo de Cargar Facturas
+                            AbrirPaneles(nombreNodo, panelPrincipal);
+                            if (p.getListadoFacturas() != null) {
+                                List<Factura> lista = p.getListadoFacturas();
+                                for (int i = 0; i < lista.size(); i++) {
+                                    //cargar datos tabla, el primer recorrido no entra porque es la factura en blanco
                                     String consecutivo = lista.get(i).getConsecutivo().toString();
                                     String emisor = lista.get(i).getEmisor().getNombre().toString();
                                     String receptor = "";
@@ -102,21 +106,23 @@ public class ControlFormularioPrincipal {
                                         total = lista.get(i).getResumenFactura().getTotalVenta().toString();
                                     }
                                     AgregarDatosTabla(consecutivo, emisor, receptor, total, control.obtenerTabla());
+
                                 }
+                            } else {
+                                System.out.println("vacio");
                             }
-                        } else {
-                            System.out.println("vacio");
+                        } else if ((nombreNodo == "Reportes")) {
+                            RecursosCompartidos.setRuta(ruta);
+                            AbrirPaneles(nombreNodo, panelPrincipal);
+                        } else if (nombreNodo == "Clientes") {
+                            RecursosCompartidos.setRuta(ruta);
+                            AbrirPaneles(nombreNodo, panelPrincipal);
+                        } else if (nombreNodo == "Proovedores") {
+                            RecursosCompartidos.setRuta(ruta);
+                            AbrirPaneles(nombreNodo, panelPrincipal);
                         }
-                    } else if ((nombreNodo == "Reportes")) {
-                        RecursosCompartidos.setRuta(ruta);
-                        AbrirPaneles(nombreNodo, panelPrincipal);
-                    } else if (nombreNodo == "Clientes") {
-                        RecursosCompartidos.setRuta(ruta);
-                        AbrirPaneles(nombreNodo, panelPrincipal);
-                    } else if (nombreNodo == "Proovedores") {
-                        RecursosCompartidos.setRuta(ruta);
-                        AbrirPaneles(nombreNodo, panelPrincipal);
                     }
+
                 }
             }
         }
@@ -151,9 +157,11 @@ public class ControlFormularioPrincipal {
         fomrReporte.limpiarTabla();
         //Agregué esto
         Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
-        List<Factura> listFacturas = p.getListadoFacturas();
-        //Final de la agregación
-        llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
+        if (p != null) {
+            List<Factura> listFacturas = p.getListadoFacturas();
+            //Final de la agregación
+            llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
+        }
         pintarReportes(panelPrincipal, fomrReporte);
     }
 
@@ -165,28 +173,30 @@ public class ControlFormularioPrincipal {
         fomrReporte.limpiarTabla();
         //Agregue esto
         Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
-        List<Factura> listFacturas = new ArrayList<>(p.getListadoFacturas());
-        //Final de la agregación
-        int tamanio = listFacturas.size();
-        String fechaComparar = "00/00/0000";
-        //Recordar empezar en cero cuando se elimine la factura vacía
-        for (int i = tamanio - 1; i > 0; i--) {
-            fechaComparar = formatoFecha(listFacturas.get(i).getFechaEmision());
-            // System.out.println("ESTO ES LA CATEGORIA DE LA FACTURA" + listFacturas.get(i).getCategoria());
-            if (categoria.equals(TipoFactura.TODASFACTURAS.getNombre())) {
-                if (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar))) {
+        if (p != null) {
+            List<Factura> listFacturas = new ArrayList<>(p.getListadoFacturas());
+            //Final de la agregación
+            int tamanio = listFacturas.size();
+            String fechaComparar = "00/00/0000";
+            //Recordar empezar en cero cuando se elimine la factura vacía
+            for (int i = tamanio - 1; i > 0; i--) {
+                fechaComparar = formatoFecha(listFacturas.get(i).getFechaEmision());
+                // System.out.println("ESTO ES LA CATEGORIA DE LA FACTURA" + listFacturas.get(i).getCategoria());
+                if (categoria.equals(TipoFactura.TODASFACTURAS.getNombre())) {
+                    if (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar))) {
+                        listFacturas.remove(i);
+                        //  tamanio = tamanio - 1;
+                        //   listFacturas.get(i).setClave("-1");
+                    }
+                } else if (!categoria.equals(listFacturas.get(i).getCategoria()) || (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar)))) {
                     listFacturas.remove(i);
-                  //  tamanio = tamanio - 1;
-                 //   listFacturas.get(i).setClave("-1");
+                    // tamanio = tamanio - 1;
+                    //  listFacturas.get(i).setClave("-1");
                 }
-            } else if (!categoria.equals(listFacturas.get(i).getCategoria()) || (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar)))) {
-                listFacturas.remove(i);
-               // tamanio = tamanio - 1;
-              //  listFacturas.get(i).setClave("-1");
             }
+            llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
+            pintarReportes(panelPrincipal, fomrReporte);
         }
-        llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
-        pintarReportes(panelPrincipal, fomrReporte);
     }
 
     public JPanel panelPrincipal() {
@@ -386,16 +396,15 @@ public class ControlFormularioPrincipal {
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta);
-        Factura f = new Factura();
-        proyecto.agregarXMLProyecto(f);
-        //Anadimos el proyecto creado a la lista de proyectos
-        control.listadoProyectos(proyecto);
+        //  Factura f = new Factura();
+        // proyecto.agregarXMLProyecto(f);
+        //Anadimos el proyecto creado a la lista de proyectos      
         marshaller.marshal(proyecto, System.out);
         FileOutputStream fos = new FileOutputStream(ruta);
         marshaller.marshal(proyecto, fos);
         fos.close();
         agregarNodoArbol(control.arbol(), nombre, ruta);
-
+        control.agregarElementolistadoProyectos(proyecto);
         //Agrega al archivo de configuracion la ruta del proyecto donde se encuentra para poder dejarlo abierto.
         List<String> rutas = new ArrayList<String>();
         rutas.add(ruta);
@@ -418,42 +427,32 @@ public class ControlFormularioPrincipal {
                 proyect.agregarXMLProyecto(lista.get(i));
             }
         }
-
         if (files != null) { // Validacion para cuando el Chooser se cancela
             List<Factura> list = control.obtenerListadoFacturas(files);
             for (int i = 0; i < list.size(); i++) {
                 proyect.agregarXMLProyecto(list.get(i));
-                //Cargar la tabla con los datos de la factura.
-                String consecutivo = list.get(i).getConsecutivo().toString();
-                String emisor = list.get(i).getEmisor().getNombre().toString();
-
-                String receptor = "";
-                if (list.get(i).getReceptor() != null) {
-                    receptor = list.get(i).getReceptor().getNombre().toString();
-                }
-
-                String total = "";
-                if (list.get(i).getResumenFactura().getTotalVenta() != null) {
-                    total = list.get(i).getResumenFactura().getTotalVenta().toString();
-                }
-
-                AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
             }
-            m.marshal(proyect, System.out);
-            try (FileOutputStream fos = new FileOutputStream(ruta)) {
-                m.marshal(proyect, fos);
-            } catch (Exception e) {
-                System.out.println("Error a la hora de crear el xml " + e);
-
-            }
-
+            eliminarFacturasRepetidas(proyect, m, tabla, ruta);
+            modificarProyecto(proyect);
         }
+    }
 
+    public void modificarProyecto(Proyecto proyect) {
+        int tamanio = control.obtenerListadoProyectos().size();
+        for (int i = 0; i < tamanio; i++) {
+            if (control.obtenerListadoProyectos().get(i).getRuta().equals(proyect.getRuta())) {
+                control.obtenerListadoProyectos().set(i, proyect);
+                break;
+                //control.obtenerListadoProyectos();
+                // agregarProyectoAlista(proyect);
+            }
+        }
     }
 
     //Este metodo es desde el arrastar y soltar.
     public void agregarFacturaProyecto(File files[], String ruta, JTable tabla) throws JAXBException, FileNotFoundException, IOException {
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+        List<Factura> listaDelXml = null;
         Marshaller m = context.createMarshaller();
         Unmarshaller unmarshaller = context.createUnmarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -461,13 +460,68 @@ public class ControlFormularioPrincipal {
         Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
         Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
         if (proyecto.getListadoFacturas() != null) {
-            List<Factura> lista = proyecto.getListadoFacturas();
-            for (int i = 0; i < lista.size(); i++) {
-                proyect.agregarXMLProyecto(lista.get(i));
+            listaDelXml = proyecto.getListadoFacturas(); // facturas que ya existen
+            for (int i = 0; i < listaDelXml.size(); i++) {
+                proyect.agregarXMLProyecto(listaDelXml.get(i));
             }
         }
-        List<Factura> list = control.obtenerListadoFacturas(files);
+
+        if (files != null) { // Validacion para cuando el Chooser se cancela   
+
+            List<Factura> list = control.obtenerListadoFacturas(files); // Facturas nuevas que van a entrar.
+
+            for (int i = 0; i < list.size(); i++) {
+                int existencia = 0;
+
+                for (int j = 0; j < listaDelXml.size(); j++) {  // Validar si la factura entrante ya existe en el XML
+                    if (listaDelXml.get(j).getClave().equals(list.get(i).getClave())) {
+                        System.out.println("Ya Existe");
+                        existencia++;
+                        break;
+                    } else {
+                        System.out.println("No Existe");
+                    }
+                }
+                if (existencia > 0) {
+                    JOptionPane.showMessageDialog(null, "La Factura " + list.get(i).getClave() + " está repetida", " Información", JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("la factura " + list.get(i).getClave());
+
+                } else {
+                    proyect.agregarXMLProyecto(list.get(i));
+                    String consecutivo = list.get(i).getConsecutivo().toString();
+                    String emisor = list.get(i).getEmisor().getNombre().toString();
+
+                    String receptor = "";
+                    if (list.get(i).getReceptor() != null) {
+                        receptor = list.get(i).getReceptor().getNombre().toString();
+                    }
+
+                    String total = "";
+                    if (list.get(i).getResumenFactura().getTotalVenta() != null) {
+                        total = list.get(i).getResumenFactura().getTotalVenta().toString();
+                    }
+
+                    AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
+                    m.marshal(proyect, System.out);
+                    try (FileOutputStream fos = new FileOutputStream(ruta)) {
+                        m.marshal(proyect, fos);
+                        fos.close();
+                    } catch (Exception e) {
+                        System.out.println("Error a la hora de crear el xml " + e);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        /*
+        List<Factura> list = control.obtenerListadoFacturas(files); // cargarlas al XML
         for (int i = 0; i < list.size(); i++) {
+                       
+            
             proyect.agregarXMLProyecto(list.get(i));
 
             //Cargar la tabla con los datos de la factura.
@@ -490,6 +544,51 @@ public class ControlFormularioPrincipal {
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             m.marshal(proyect, fos);
 
+        }*/
+    }
+
+    public void eliminarFacturasRepetidas(Proyecto p, Marshaller m, JTable tabla, String ruta) throws JAXBException {
+
+        List<Factura> listaFacturas = p.getListadoFacturas();
+        List<Factura> listaSinRepetidos = new ArrayList<>();
+
+        Map<String, Factura> mapFacturas = new HashMap<String, Factura>(listaFacturas.size());
+
+        for (Factura f : listaFacturas) {
+            mapFacturas.put(f.getClave(), f);
+        }
+
+        for (Entry<String, Factura> f : mapFacturas.entrySet()) {
+            listaSinRepetidos.add(f.getValue());
+        }
+
+        p.getListadoFacturas().clear(); // limpiar la lista, para que ingresen sin repeticiones
+        limpiarTablaListadoF(tabla); //limpiar la tabla de listadosFacturas.
+
+        for (int i = 0; i < listaSinRepetidos.size(); i++) { // llenar nueva lista de facturas sin repeticiones   
+            p.agregarXMLProyecto(listaSinRepetidos.get(i));
+            String consecutivo = listaSinRepetidos.get(i).getConsecutivo().toString();
+            String emisor = listaSinRepetidos.get(i).getEmisor().getNombre().toString();
+
+            String receptor = "";
+            if (listaSinRepetidos.get(i).getReceptor() != null) {
+                receptor = listaSinRepetidos.get(i).getReceptor().getNombre().toString();
+            }
+
+            String total = "";
+            if (listaSinRepetidos.get(i).getResumenFactura().getTotalVenta() != null) {
+                total = listaSinRepetidos.get(i).getResumenFactura().getTotalVenta().toString();
+            }
+
+            AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
+        }
+
+        m.marshal(p, System.out);
+        try (FileOutputStream fos = new FileOutputStream(ruta)) {
+            m.marshal(p, fos);
+            fos.close();
+        } catch (Exception e) {
+            System.out.println("Error a la hora de crear el xml " + e);
         }
     }
 
@@ -511,12 +610,22 @@ public class ControlFormularioPrincipal {
 
     public void AgregarDatosTabla(String numero, String emisor, String receptor, String total, JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel(); //Obtengo el modelo existente por defecto     
+
         Object[] fila = new Object[4];
         fila[0] = numero;
         fila[1] = emisor;
         fila[2] = receptor;
         fila[3] = total;
         modelo.addRow(fila);
+    }
+
+    public void limpiarTablaListadoF(JTable tabla) {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        int filas = tabla.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            modelo.removeRow(0);
+            System.out.println("Limpiar");
+        }
     }
 
     public void abrirNuevoProyecto(JTree arbol) throws JAXBException {
@@ -580,13 +689,13 @@ public class ControlFormularioPrincipal {
 
             if (!file.exists()) {
                 listadoProyectos.remove(i);
-                //  listaProyectosExistentes.add(listadoProyectos.get(i));
+                //  listaProyectosExistentes.add(agregarElementolistadoProyectos.get(i));
             }
 
         }
-        
+
         if (listadoProyectos.size() > 0) { // Sobreescribir archivo de las rutas con los archivos que si existen
-             control.escribirArchivoConfiguracion(directorioGlobalConfig, listadoProyectos, false);
+            control.escribirArchivoConfiguracion(directorioGlobalConfig, listadoProyectos, false);
         }
 
         return listadoProyectos;
@@ -597,14 +706,14 @@ public class ControlFormularioPrincipal {
     //Este metodo se usa para cargar los proyectos que son abiertos.
     public void agregarProyectoAlista(String nombre, String cedula, String descripcion, String ruta, List<Factura> facturas) {
         Proyecto proyecto = control.crearObjetoProyecto(nombre, cedula, descripcion, ruta, facturas);
-        control.listadoProyectos(proyecto);
+        control.agregarElementolistadoProyectos(proyecto);
     }
 
     public Proyecto buscarProyecto(String rutaProyecto) {
         List<Proyecto> listado = control.obtenerListadoProyectos();
         Proyecto p = null;
         for (int i = 0; i < listado.size(); i++) {
-            if (listado.get(i).getRuta() == rutaProyecto) {
+            if (listado.get(i).getRuta().equals(rutaProyecto)) {
                 p = listado.get(i);
             }
         }
@@ -633,15 +742,16 @@ public class ControlFormularioPrincipal {
         System.out.println("Eliminar");
         String ruta = RecursosCompartidos.getRuta();
         Proyecto p = buscarProyecto(ruta);
-        List<Factura> listado = p.getListadoFacturas();
-        for (int i = 0; i < listado.size(); i++) {
-            System.out.println("Consecutivo " + listado.get(i).getConsecutivo().toString());
-            if (listado.get(i).getConsecutivo().toString().equals(consecutivoEliminar)) {
-                listado.remove(i);
-                System.out.println("Entre consecutivo ");
+        if (p != null) {
+            List<Factura> listado = p.getListadoFacturas();
+            for (int i = 0; i < listado.size(); i++) {
+                System.out.println("Consecutivo " + listado.get(i).getConsecutivo().toString());
+                if (listado.get(i).getConsecutivo().toString().equals(consecutivoEliminar)) {
+                    listado.remove(i);
+                }
             }
+            agregarFacturaProyecto(listado, p, ruta);
         }
-        agregarFacturaProyecto(listado, p, ruta);
     }
 
     /*  Esto es para el formulario de reportes    */
@@ -669,7 +779,7 @@ public class ControlFormularioPrincipal {
             int numeroColumnasTabla = 5;
             List<String> cedulas = new ArrayList<>();
             //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
-            for (int i = 1; i < listFacturas.size(); i++) {
+            for (int i = 0; i < listFacturas.size(); i++) {
                 Object[] columna = new Object[numeroColumnasTabla];
                 if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getEmisor().getIdenticacion() != null) {
                     String cedula = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
@@ -699,7 +809,7 @@ public class ControlFormularioPrincipal {
             int numeroColumnasTabla = 5;
             List<String> cedulas = new ArrayList<>();
             //ESTOY CAMBIANDO ESTO QUE EMPIECE CON 1 POR QUE LA PRIMERA FACTURA ESTA VACIA SE DEBE CAMBAIR
-            for (int i = 1; i < listFacturas.size(); i++) {
+            for (int i = 0; i < listFacturas.size(); i++) {
                 Object[] columna = new Object[numeroColumnasTabla];
                 if (listFacturas.get(i).getReceptor() != null && listFacturas.get(i).getEmisor() != null && listFacturas.get(i).getReceptor().getIdenticacion() != null) {
                     String cedula = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
@@ -760,7 +870,7 @@ public class ControlFormularioPrincipal {
         int numeroColumnasTabla = 57;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
-            if (i != 0) {
+            
                 columna[0] = listFacturas.get(i).getClave();
                 columna[1] = listFacturas.get(i).getConsecutivo();
                 columna[2] = listFacturas.get(i).getFechaEmision();
@@ -835,7 +945,7 @@ public class ControlFormularioPrincipal {
                     limpiarTabla(columna);
 
                 }
-            }
+            
         }
     }
 

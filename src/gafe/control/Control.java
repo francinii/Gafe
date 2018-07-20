@@ -112,9 +112,11 @@ public class Control {
         //listadoProyectos(proyecto);
     }
 
-    public void listadoProyectos(Proyecto p) {
+    public void agregarElementolistadoProyectos(Proyecto p) {
         listadoProyecto.add(p);
+        System.out.println("ESTO ES EL NUEMRO DE LOS PROYECTOS:"+listadoProyecto.size() );
     }
+   
 
     // este meotodo me retorna la tabla del fromulario principal, para poder cargarl cuando abro el archivo .Gafe
     public JTable obtenerTabla() {
