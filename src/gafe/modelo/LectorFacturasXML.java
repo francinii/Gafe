@@ -1,21 +1,15 @@
 package gafe.modelo;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.Namespace;
-import org.jdom2.input.DOMBuilder;
+
 import org.jdom2.input.SAXBuilder;
 
 /**
@@ -67,24 +61,19 @@ public class LectorFacturasXML {
         String condicionVenta = crearElemento("CondicionVenta", nodoPadre, namespace);
         String plazoCredito = crearElemento("PlazoCredito", nodoPadre, namespace);
         String medioPago = crearElemento("MedioPago", nodoPadre, namespace);
-        Emisor emisorObjeto = null;
-        Receptor receptorObjeto = null;
-        DetalleServicio detalleServicio = null;
-        ResumenFactura resumenFactura = null;
-        InformacionReferencia informacionReferencia = null;
-        Normativa normativa = null;
+        
         //Obtener Nodo de Emisor    
-        emisorObjeto = crearEmisor(nodoPadre, namespace); //Emisor corresponde al nodo padre         
+        Emisor emisorObjeto = crearEmisor(nodoPadre, namespace); //Emisor corresponde al nodo padre         
         //Obtener nodo de Receptor
-        receptorObjeto = crearReceptor(nodoPadre, namespace); //Emisor corresponde al nodo padre 
+        Receptor receptorObjeto = crearReceptor(nodoPadre, namespace); //Emisor corresponde al nodo padre 
         //Obtener nodo detalle del servicio
-        detalleServicio = crearDetalleServicio(nodoPadre, namespace);
+        DetalleServicio detalleServicio = crearDetalleServicio(nodoPadre, namespace);
         //Obtener ResumenFactura
-        resumenFactura = crearResumenFactura(nodoPadre, namespace);
+        ResumenFactura resumenFactura = crearResumenFactura(nodoPadre, namespace);
         //Obtener informacionReferencia
-        informacionReferencia = crearInformacionReferencia(nodoPadre, namespace);
+       InformacionReferencia informacionReferencia = crearInformacionReferencia(nodoPadre, namespace);
         //Obtener normativa
-        normativa = crearNormativa(nodoPadre, namespace);
+       Normativa normativa = crearNormativa(nodoPadre, namespace);
 
         return new Factura(categoria,clave, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio, resumenFactura, informacionReferencia, normativa);
 
@@ -120,18 +109,16 @@ public class LectorFacturasXML {
             String nombreEmisor = crearElemento("Nombre", nodoEmisor, namespace);
             String correoElectronico = crearElemento("CorreoElectronico", nodoEmisor, namespace);
             String nombreComercial = crearElemento("NombreComercial", nodoEmisor, namespace);
-            Identificacion identificacion = null;
-            Telefono telefono = null;
-            Ubicacion ubicacion = null;
-            identificacion = crearIdentifacion(nodoEmisor, namespace);
-            telefono = crearTelefono(nodoEmisor, namespace);
-            ubicacion = crearUbicacion(nodoEmisor, namespace);
+     
+            Identificacion identificacion = crearIdentifacion(nodoEmisor, namespace);
+            Telefono telefono = crearTelefono(nodoEmisor, namespace);
+            Ubicacion ubicacion = crearUbicacion(nodoEmisor, namespace);
             //hacer para fax     
             Emisor emisor = new Emisor(nombreEmisor, identificacion, nombreComercial, ubicacion, correoElectronico);
             emisor.agregarTelefono(telefono);
             return emisor;
         }
-        return null;
+        return new Emisor(); 
     }
 
     private Receptor crearReceptor(Element nodoPadre, String namespace) {
@@ -141,18 +128,16 @@ public class LectorFacturasXML {
             String nombreComercial = crearElemento("NombreComercial", nodoReceptor, namespace);
             String identificacionExtranjero = crearElemento("IdentificacionExtranjero", nodoReceptor, namespace);
             String correoElectronico = crearElemento("CorreoElectronico", nodoReceptor, namespace);
-            Identificacion identificacion = null;
-            Telefono telefono = null;
-            Ubicacion ubicacion = null;
-            identificacion = crearIdentifacion(nodoReceptor, namespace);
-            telefono = crearTelefono(nodoReceptor, namespace);
-            ubicacion = crearUbicacion(nodoReceptor, namespace);
+           
+            Identificacion identificacion = crearIdentifacion(nodoReceptor, namespace);
+            Telefono telefono = crearTelefono(nodoReceptor, namespace);
+            Ubicacion ubicacion = crearUbicacion(nodoReceptor, namespace);
             //  nodosConHijosDelReceptor.add("Fax");
             Receptor receptor = new Receptor(nombreReceptor, identificacion, identificacionExtranjero, nombreComercial, ubicacion, correoElectronico);
             receptor.agregarTelefono(telefono);
             return receptor;
         }
-        return null;
+        return new Receptor();
     }
 
     private Exoneracion crearExoneracion(Element nodoPadre, String namespace) {
@@ -166,7 +151,7 @@ public class LectorFacturasXML {
             String porcentajeCompra = crearElemento("PorcentajeCompra", exonera, namespace);
             return new Exoneracion(tipoDocumento, numeroDocumento, nombreInstitucion, fechaEmision, montoImpuesto, porcentajeCompra);
         }
-        return null;
+        return new Exoneracion();
     }
 
     private Identificacion crearIdentifacion(Element nodoPadreSuperior, String namespace) {
@@ -176,7 +161,7 @@ public class LectorFacturasXML {
             String idenNumero = crearElemento("Numero", nodoPadre, namespace);
             return new Identificacion(idenTipo, idenNumero);
         }
-        return null;
+        return new Identificacion();
     }
 
     private Ubicacion crearUbicacion(Element nodoPadreSuperior, String namespace) {
@@ -189,7 +174,7 @@ public class LectorFacturasXML {
             String otrasSenas = crearElemento("OtrasSenas", nodoPadre, namespace);
             return new Ubicacion(provincia, canton, distrito, barrio, otrasSenas);
         }
-        return null;
+        return new Ubicacion();
     }
 
     private Telefono crearTelefono(Element nodoPadreSuperior, String namespace) {
@@ -199,7 +184,7 @@ public class LectorFacturasXML {
             String numTelefono = crearElemento("NumTelefono", nodoPadre, namespace);
             return new Telefono(codigoPais, numTelefono);
         }
-        return null;
+        return new Telefono();
     }
 
     private DetalleServicio crearDetalleServicio(Element nodoPadre, String namespace) {
@@ -225,7 +210,7 @@ public class LectorFacturasXML {
             }
             return listarDetalleServicio;
         }
-        return null;
+        return new DetalleServicio();
     }
 
     private CodigoLineaDetalle crearCodigo(Element nodoPadre, String namespace) {
@@ -234,7 +219,7 @@ public class LectorFacturasXML {
             String codigo = crearElemento("Codigo", nodoPadre, namespace);
             return new CodigoLineaDetalle(tipo, codigo);
         }
-        return null;
+        return new CodigoLineaDetalle();
     }
 
     private Impuesto crearImpuesto(Element nodoPadre, String namespace) {
@@ -243,12 +228,10 @@ public class LectorFacturasXML {
             String codigo = crearElemento("Codigo", impuesto, namespace);
             String tarifa = crearElemento("Tarifa", impuesto, namespace);
             String monto = crearElemento("Monto", impuesto, namespace);
-
-            Exoneracion exoneracion = crearExoneracion(impuesto, namespace);
-
-            return null; ///por hacer
+            Exoneracion exoneracion = crearExoneracion(impuesto, namespace);            
+            return new Impuesto(codigo,tarifa,monto,exoneracion); 
         }
-        return null;
+        return new Impuesto(); 
     }
 
     private String crearElemento(String nombreNodo, Element nodoPadre, String namespace) {
@@ -276,7 +259,7 @@ public class LectorFacturasXML {
             String totalComprobante = crearElemento("TotalComprobante", resumenFactura, namespace);
             return new ResumenFactura(codigoMoneda, tipoCambio, totalServiciosGravados, totalServiciosExcentos, totalMercanciasGravadas, totalMercanciasExentas, totalGravado, totalExcento, totalVenta, totalDescuento, totalVentaNeta, totalImpuesto, totalComprobante);
         }
-        return null;
+        return new ResumenFactura();
     }
 
     private InformacionReferencia crearInformacionReferencia(Element nodoPadre, String namespace) {
@@ -289,7 +272,7 @@ public class LectorFacturasXML {
             String razon = crearElemento("Razon", informacionReferencia, namespace);
             return new InformacionReferencia(tipoDoc, numeroDoc, fechaEmision, codigo, razon);
         }
-        return null;
+        return new InformacionReferencia();
     }
 
     private Normativa crearNormativa(Element nodoPadre, String namespace) {
@@ -299,7 +282,7 @@ public class LectorFacturasXML {
             String fechaResolucion = crearElemento("FechaResolucion", normativa, namespace);
             return new Normativa(numResolucion, fechaResolucion);
         }
-        return null;
+        return new Normativa();
     }
 // </editor-fold>
 

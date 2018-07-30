@@ -74,7 +74,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -85,7 +85,7 @@
                 <Property name="text" type="java.lang.String" value="Clave"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -93,7 +93,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -109,7 +109,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox29">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox30">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -125,7 +125,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox28">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox29">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -141,7 +141,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox30">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox31">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -157,7 +157,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox31">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox32">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -173,7 +173,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox26">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox27">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -189,7 +189,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox36">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox37">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -205,7 +205,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox32">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox33">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -218,7 +218,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox33">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox34">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -231,7 +231,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox34">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox35">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -244,7 +244,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox38">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox39">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -255,7 +255,7 @@
                 <Property name="text" type="java.lang.String" value="Monto Impuesto"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox38ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox39ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -263,7 +263,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox40">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox41">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -279,7 +279,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox41">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox42">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -295,7 +295,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox42">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox43">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -306,7 +306,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre Institucion Exoneraci&#xf3;n"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox42ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox43ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -314,7 +314,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox37">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox38">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -330,7 +330,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox43">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox44">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -346,7 +346,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox39">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox40">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -362,7 +362,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox44">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox45">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -372,7 +372,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Porcentaje Compra Exoneraci&#xf3;n"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -381,7 +381,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox35">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox36">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -394,13 +394,6 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="2" gridY="21" gridWidth="1" gridHeight="1" fill="2" ipadX="2" ipadY="0" insetsTop="0" insetsLeft="25" insetsBottom="0" insetsRight="6" anchor="10" weightX="0.0" weightY="0.0"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator2">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="1" gridWidth="5" gridHeight="1" fill="2" ipadX="17" ipadY="15" insetsTop="0" insetsLeft="25" insetsBottom="0" insetsRight="25" anchor="10" weightX="0.0" weightY="0.0"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -466,7 +459,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -482,7 +475,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -498,7 +491,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox5">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -514,7 +507,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox6">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox7">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -525,7 +518,7 @@
                 <Property name="text" type="java.lang.String" value="Medio Pago"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox7ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -533,7 +526,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox27">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox28">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -546,6 +539,19 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
                   <GridBagConstraints gridX="0" gridY="19" gridWidth="1" gridHeight="1" fill="2" ipadX="2" ipadY="0" insetsTop="0" insetsLeft="25" insetsBottom="0" insetsRight="6" anchor="10" weightX="0.0" weightY="0.0"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="d4" green="ee" red="f7" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Categoria"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="2" ipadX="2" ipadY="0" insetsTop="0" insetsLeft="25" insetsBottom="0" insetsRight="6" anchor="10" weightX="0.0" weightY="0.0"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -590,7 +596,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox7">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox8">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -601,7 +607,7 @@
                 <Property name="text" type="java.lang.String" value="C&#xe9;dula emisor"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox7ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox8ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -609,7 +615,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox8">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox9">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -625,7 +631,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox9">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox10">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -641,7 +647,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox10">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox11">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -657,7 +663,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox11">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox12">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -673,7 +679,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox12">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox13">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -689,7 +695,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox13">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox14">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -705,7 +711,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox14">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox15">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -721,7 +727,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox15">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox16">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -755,7 +761,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox16">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox17">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -766,7 +772,7 @@
                 <Property name="text" type="java.lang.String" value="C&#xe9;dula receptor"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox16ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox17ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -774,7 +780,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox17">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox18">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -785,7 +791,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre receptor"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox17ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox18ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -793,7 +799,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox18">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox19">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -809,7 +815,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox23">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox24">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -825,7 +831,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox24">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox25">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -841,7 +847,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox25">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox26">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -852,7 +858,7 @@
                 <Property name="text" type="java.lang.String" value="Distrito"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox25ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox26ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -860,7 +866,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox20">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox21">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -871,7 +877,7 @@
                 <Property name="text" type="java.lang.String" value="Telefono"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox20ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox21ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -879,7 +885,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox21">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox22">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -895,7 +901,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox22">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox23">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -934,7 +940,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox19">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox20">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -968,7 +974,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox45">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox46">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -981,7 +987,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox46">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox47">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -994,7 +1000,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox47">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox48">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1007,7 +1013,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox48">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox49">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1020,7 +1026,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox49">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox50">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1033,7 +1039,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox50">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox51">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1046,7 +1052,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox51">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox52">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1059,7 +1065,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox52">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox53">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1072,7 +1078,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox53">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox54">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1085,7 +1091,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox54">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox55">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1098,7 +1104,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox55">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox56">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1111,7 +1117,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox56">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox57">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
@@ -1124,7 +1130,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="jCheckBox57">
+            <Component class="javax.swing.JCheckBox" name="jCheckBox58">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d4" green="ee" red="f7" type="rgb"/>
