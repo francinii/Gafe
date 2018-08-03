@@ -233,7 +233,9 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
                 controlVentanas.mensaje("Debes ingresar todos los campos");
             } else {
                 String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
+                limpiarFormulario();
                 controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
+                controlVentanas.mensaje("Proyecto creado satisfactoriamente");
 
             }
         } catch (IOException e) {
@@ -261,6 +263,13 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void limpiarFormulario() {
+        txtRuta.setText("");
+        txtNombreProyecto.setText("");
+        txtDescripcionProyecto.setText("");
+        txtCedula.setText("");
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;

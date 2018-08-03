@@ -216,7 +216,7 @@ public class formularioListarXml extends javax.swing.JPanel {
                     File[] files = null;
                     // Aceptar el Drop
                     e.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
-
+                    
                     // Get the files that are dropped as java.util.List
                     //java.util.List list=(java.util.List) e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
                     List<File> listaArchivosArrastrados = (List<File>) e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
