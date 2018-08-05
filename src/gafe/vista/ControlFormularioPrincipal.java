@@ -940,7 +940,12 @@ public class ControlFormularioPrincipal {
                 columna[0] = listFacturas.get(i).getCategoria();
                 columna[1] = listFacturas.get(i).getClave();
                 columna[2] = listFacturas.get(i).getConsecutivo();
-                columna[3] = listFacturas.get(i).getFechaEmision();
+                
+                String formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
+                columna[3] = formFecha;
+                
+                
+                
                 columna[4] = listFacturas.get(i).getCondicionVenta();
                 columna[5] = listFacturas.get(i).getPlazoCredito();
                 columna[6] = listFacturas.get(i).getMedioPago();

@@ -42,8 +42,6 @@ public class formularioListarXml extends javax.swing.JPanel {
         initComponents();
         this.controlVentanas = control;
         setVisible(true);
-        arrastrarSoltar();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -190,53 +188,7 @@ public class formularioListarXml extends javax.swing.JPanel {
             controlVentanas.eliminarFacturas(tablaXml);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    public void arrastrarSoltar() {
-        DropTarget target = new DropTarget(tablaXml, new DropTargetListener() {
-            @Override
-            public void dragEnter(DropTargetDragEvent dtde) {
-            }
-
-            @Override
-            public void dragOver(DropTargetDragEvent dtde) {
-            }
-
-            @Override
-            public void dropActionChanged(DropTargetDragEvent dtde) {
-            }
-
-            @Override
-            public void dragExit(DropTargetEvent dte) {
-            }
-
-            @Override
-            public void drop(DropTargetDropEvent e) {
-
-                try {
-                    File[] files = null;
-                    // Aceptar el Drop
-                    e.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
-                    
-                    // Get the files that are dropped as java.util.List
-                    //java.util.List list=(java.util.List) e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
-                    List<File> listaArchivosArrastrados = (List<File>) e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
-
-                    files = new File[listaArchivosArrastrados.size()];
-                    files = listaArchivosArrastrados.toArray(files);
-                    String guardarEn = RecursosCompartidos.getRuta();
-
-                    controlVentanas.agregarFacturaProyecto(files, guardarEn, tablaXml);
-
-                } catch (Exception ex) {
-                    System.out.println("Error" + ex);
-
-                }
-
-            }
-        });
-
-    }
-
+    
     //retornar la tabla para poder cargarla a la hora de abrir el archivo .GAFE
     public JTable obtenerTabla() {
         return tablaXml;
