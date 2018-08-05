@@ -314,7 +314,7 @@ public class ControlFormularioPrincipal {
     public String obtenerRutaFileChooser() {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setDialogTitle("Seleccione la ruta: ");
-        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int returnValue = jfc.showSaveDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             if (jfc.getSelectedFile().isDirectory()) {
@@ -360,9 +360,10 @@ public class ControlFormularioPrincipal {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         FileFilter xmlFilter = new FileNameExtensionFilter(nombreArchivo, extension);
         jfc.setDialogTitle("Seleccione los archivos");
-        jfc.setMultiSelectionEnabled(multipleEleccion);
-        jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        jfc.setMultiSelectionEnabled(multipleEleccion);      
+        jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         jfc.setFileFilter(xmlFilter);
+        jfc.setAcceptAllFileFilterUsed(false);
         File[] files = null;
         int returnValue = jfc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -376,8 +377,9 @@ public class ControlFormularioPrincipal {
         FileFilter xmlFilter = new FileNameExtensionFilter(nombreArchivo, extension);
         jfc.setDialogTitle("Seleccione los archivos");
         jfc.setMultiSelectionEnabled(false);
-        jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         jfc.setFileFilter(xmlFilter);
+        jfc.setAcceptAllFileFilterUsed(false);
         File files = null;
         int returnValue = jfc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
