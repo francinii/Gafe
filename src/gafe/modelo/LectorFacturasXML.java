@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -17,7 +18,16 @@ import org.jdom2.input.SAXBuilder;
  * @author HP_810G2
  */
 public class LectorFacturasXML {
+    
+    ArrayList<String> listadoError = new ArrayList<String>();     
 
+    public ArrayList<String> getListadoError() {
+        return listadoError;
+    }
+
+    public void vaciarListaError(){ 
+        listadoError.clear();
+    }  
     public LectorFacturasXML() {
 
     }
@@ -47,47 +57,62 @@ public class LectorFacturasXML {
     }
 
     public Factura crearFactura(String ruta) {
-        //public Factura crearFactura(String ruta) {
+        try {
+            Document doc = crearArbolFactura(ruta);
+            String tipoDocumento = doc.getRootElement().getName();
 
-        Document doc = crearArbolFactura(ruta);
-        //Obtener la raiz
-        Element nodoPadre = doc.getRootElement();
-        String namespace = nodoPadre.getNamespace().getURI();
-       // System.out.println(nodoPadre.getName());
-        String categoria = nodoPadre.getName();
-        String clave = crearElemento("Clave", nodoPadre, namespace);
-        String numeroConsecutivo = crearElemento("NumeroConsecutivo", nodoPadre, namespace);
-        String fechaEmision = crearElemento("FechaEmision", nodoPadre, namespace);
-        String condicionVenta = crearElemento("CondicionVenta", nodoPadre, namespace);
-        String plazoCredito = crearElemento("PlazoCredito", nodoPadre, namespace);
-        String medioPago = crearElemento("MedioPago", nodoPadre, namespace);
-        
-        //Obtener Nodo de Emisor    
-        Emisor emisorObjeto = crearEmisor(nodoPadre, namespace); //Emisor corresponde al nodo padre         
-        //Obtener nodo de Receptor
-        Receptor receptorObjeto = crearReceptor(nodoPadre, namespace); //Emisor corresponde al nodo padre 
-        //Obtener nodo detalle del servicio
-        DetalleServicio detalleServicio = crearDetalleServicio(nodoPadre, namespace);
-        //Obtener ResumenFactura
-        ResumenFactura resumenFactura = crearResumenFactura(nodoPadre, namespace);
-        //Obtener informacionReferencia
-       InformacionReferencia informacionReferencia = crearInformacionReferencia(nodoPadre, namespace);
-        //Obtener normativa
-       Normativa normativa = crearNormativa(nodoPadre, namespace);
+            if (tipoDocumento.equals("FacturaElectronica") || tipoDocumento.equals("NotaCreditoElectronica") || tipoDocumento.equals("NotaDebitoElectronica")
+                    || tipoDocumento.equals("TiqueteElectronico")) {
+                //Obtener la raiz
+                Element nodoPadre = doc.getRootElement();
+                String namespace = nodoPadre.getNamespace().getURI();
+                // System.out.println(nodoPadre.getName());
+                String categoria = nodoPadre.getName();
+                String clave = crearElemento("Clave", nodoPadre, namespace);
+                String numeroConsecutivo = crearElemento("NumeroConsecutivo", nodoPadre, namespace);
+                String fechaEmision = crearElemento("FechaEmision", nodoPadre, namespace);
+                String condicionVenta = crearElemento("CondicionVenta", nodoPadre, namespace);
+                String plazoCredito = crearElemento("PlazoCredito", nodoPadre, namespace);
+                String medioPago = crearElemento("MedioPago", nodoPadre, namespace);
 
-        return new Factura(categoria,clave, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio, resumenFactura, informacionReferencia, normativa);
+                //Obtener Nodo de Emisor    
+                Emisor emisorObjeto = crearEmisor(nodoPadre, namespace); //Emisor corresponde al nodo padre         
+                //Obtener nodo de Receptor
+                Receptor receptorObjeto = crearReceptor(nodoPadre, namespace); //Emisor corresponde al nodo padre 
+                //Obtener nodo detalle del servicio
+                DetalleServicio detalleServicio = crearDetalleServicio(nodoPadre, namespace);
+                //Obtener ResumenFactura
+                ResumenFactura resumenFactura = crearResumenFactura(nodoPadre, namespace);
+                //Obtener informacionReferencia
+                InformacionReferencia informacionReferencia = crearInformacionReferencia(nodoPadre, namespace);
+                //Obtener normativa
+                Normativa normativa = crearNormativa(nodoPadre, namespace);
+
+                return new Factura(categoria, clave, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio, resumenFactura, informacionReferencia, normativa);
+            } else {
+                listadoError.add(ruta);
+            }
+
+        } catch (Exception e) {
+            listadoError.add(ruta);
+        }
+
+        return null;
 
     }
 
     public List<Factura> listarFacturas(File[] rutas) {
         List<Factura> listadoFacturas = new ArrayList<>();
         for (File ruta : rutas) {
-            listadoFacturas.add(crearFactura(ruta.toString()));
+            Factura fact = crearFactura(ruta.toString());
+            if(fact != null){
+            listadoFacturas.add(fact);
+            }
         }
         return listadoFacturas;
     }
 
-    public boolean validarCedulaProyecto(File ruta, String cedula) {        
+    public boolean validarCedulaProyecto(File ruta, String cedula) {
         Document doc = crearArbolFactura(ruta.toString());
         //Obtener la raiz
         Element nodoPadre = doc.getRootElement();
@@ -109,7 +134,7 @@ public class LectorFacturasXML {
             String nombreEmisor = crearElemento("Nombre", nodoEmisor, namespace);
             String correoElectronico = crearElemento("CorreoElectronico", nodoEmisor, namespace);
             String nombreComercial = crearElemento("NombreComercial", nodoEmisor, namespace);
-     
+
             Identificacion identificacion = crearIdentifacion(nodoEmisor, namespace);
             Telefono telefono = crearTelefono(nodoEmisor, namespace);
             Ubicacion ubicacion = crearUbicacion(nodoEmisor, namespace);
@@ -118,7 +143,7 @@ public class LectorFacturasXML {
             emisor.agregarTelefono(telefono);
             return emisor;
         }
-        return new Emisor(); 
+        return new Emisor();
     }
 
     private Receptor crearReceptor(Element nodoPadre, String namespace) {
@@ -128,7 +153,7 @@ public class LectorFacturasXML {
             String nombreComercial = crearElemento("NombreComercial", nodoReceptor, namespace);
             String identificacionExtranjero = crearElemento("IdentificacionExtranjero", nodoReceptor, namespace);
             String correoElectronico = crearElemento("CorreoElectronico", nodoReceptor, namespace);
-           
+
             Identificacion identificacion = crearIdentifacion(nodoReceptor, namespace);
             Telefono telefono = crearTelefono(nodoReceptor, namespace);
             Ubicacion ubicacion = crearUbicacion(nodoReceptor, namespace);
@@ -228,10 +253,10 @@ public class LectorFacturasXML {
             String codigo = crearElemento("Codigo", impuesto, namespace);
             String tarifa = crearElemento("Tarifa", impuesto, namespace);
             String monto = crearElemento("Monto", impuesto, namespace);
-            Exoneracion exoneracion = crearExoneracion(impuesto, namespace);            
-            return new Impuesto(codigo,tarifa,monto,exoneracion); 
+            Exoneracion exoneracion = crearExoneracion(impuesto, namespace);
+            return new Impuesto(codigo, tarifa, monto, exoneracion);
         }
-        return new Impuesto(); 
+        return new Impuesto();
     }
 
     private String crearElemento(String nombreNodo, Element nodoPadre, String namespace) {

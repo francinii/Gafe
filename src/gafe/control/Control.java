@@ -152,6 +152,17 @@ public class Control {
     public boolean validarCedulaProyecto(File ruta, String cedula){
         return claseLectorFacturas.validarCedulaProyecto(ruta, cedula);
     }
+    
+    
+    public List<String> obtenerListadoError(){
+        return claseLectorFacturas.getListadoError();
+    }
+    
+    public void limpiarListadoError(){
+        claseLectorFacturas.vaciarListaError();
+    }
+    
+    
         
     List<Proyecto> listadoProyecto = new ArrayList<>();
     formularioPrincipal formularioPrincipal;

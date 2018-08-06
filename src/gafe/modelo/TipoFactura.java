@@ -10,7 +10,7 @@ package gafe.modelo;
  * @author HP_810G2
  */
 public enum TipoFactura {
-    TODASFACTURAS("Todos"), FACTURAELECTRONICA("FacturaElectronica"), NOTADEBITO("NotaDebito"), NOTACREDITO("NotaCredito"), TIQUETEELECTRONICO("TiqueteElectronico");
+    TODASFACTURAS("Todos"), FACTURAELECTRONICA("FacturaElectronica"), NOTADEBITO("NotaDebito"), NOTACREDITO("NotaCreditoElectronica"), TIQUETEELECTRONICO("TiqueteElectronico");
 
     private TipoFactura(String nombre) {
         this.nombre = nombre;
