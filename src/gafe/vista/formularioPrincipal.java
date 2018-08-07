@@ -168,15 +168,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardar.png"))); // NOI18N
-        jMenuItem3.setText("Guardar");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/guardarcomo.png"))); // NOI18N
-        jMenuItem4.setText("Guardar como");
-        jMenuItem4.setToolTipText("");
-        jMenu1.add(jMenuItem4);
-
+        
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir.png"))); // NOI18N
         jMenuItem5.setText("Cerrar todos los proyectos");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {

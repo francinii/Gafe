@@ -236,6 +236,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
                 limpiarFormulario();
                 controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
                 controlVentanas.mensaje("Proyecto creado satisfactoriamente");
+                validacion.setVisible(false);
 
             }
         } catch (IOException e) {

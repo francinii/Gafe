@@ -473,75 +473,7 @@ public class ControlFormularioPrincipal {
         }
     }
 
-    //Este metodo es desde el arrastar y soltar.
-    public void agregarFacturaProyecto(File files[], String ruta, JTable tabla) throws JAXBException, FileNotFoundException, IOException {
-        JAXBContext context = JAXBContext.newInstance(Proyecto.class);
-        List<Factura> listaDelXml = null;
-        Marshaller m = context.createMarshaller();
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        //Deserealizamos a partir de un documento XML
-        Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
-        Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
-        if (proyecto.getListadoFacturas() != null) {
-            listaDelXml = proyecto.getListadoFacturas(); // facturas que ya existen
-            for (int i = 0; i < listaDelXml.size(); i++) {
-                proyect.agregarXMLProyecto(listaDelXml.get(i));
-            }
-        }
-
-        if (files != null) { // Validacion para cuando el Chooser se cancela   
-
-            List<Factura> list = control.obtenerListadoFacturas(files); // Facturas nuevas que van a entrar.
-
-            for (int i = 0; i < list.size(); i++) {
-                int existencia = 0;
-
-                for (int j = 0; j < listaDelXml.size(); j++) {  // Validar si la factura entrante ya existe en el XML
-                    if (listaDelXml.get(j).getClave().equals(list.get(i).getClave())) {
-                        System.out.println("Ya Existe");
-                        existencia++;
-                        break;
-                    } else {
-                        System.out.println("No Existe");
-                    }
-                }
-                if (existencia > 0) {
-                    JOptionPane.showMessageDialog(null, "La Factura " + list.get(i).getClave() + " está repetida", " Información", JOptionPane.INFORMATION_MESSAGE);
-                    System.out.println("la factura " + list.get(i).getClave());
-
-                } else {
-                    proyect.agregarXMLProyecto(list.get(i));
-                    String consecutivo = list.get(i).getConsecutivo().toString();
-                    String emisor = list.get(i).getEmisor().getNombre().toString();
-
-                    String receptor = "";
-                    if (list.get(i).getReceptor() != null) {
-                        receptor = list.get(i).getReceptor().getNombre().toString();
-                    }
-
-                    String total = "";
-                    if (list.get(i).getResumenFactura().getTotalVenta() != null) {
-                        total = list.get(i).getResumenFactura().getTotalVenta().toString();
-                    }
-
-                    AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
-                    m.marshal(proyect, System.out);
-                    try (FileOutputStream fos = new FileOutputStream(ruta)) {
-                        m.marshal(proyect, fos);
-                        fos.close();
-                    } catch (Exception e) {
-                        System.out.println("Error a la hora de crear el xml " + e);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
+   
 
     public void eliminarFacturasRepetidas(Proyecto p, Marshaller m, JTable tabla, String ruta) throws JAXBException {
 
@@ -588,53 +520,6 @@ public class ControlFormularioPrincipal {
         }
     }
     
-
-//    public void eliminarFacturasRepetidas(Proyecto p, Marshaller m, JTable tabla, String ruta) throws JAXBException {
-//
-//        List<Factura> listaFacturas = p.getListadoFacturas();
-//        List<Factura> listaSinRepetidos = new ArrayList<>();
-//        
-//        Map<String, Factura> mapFacturas = new  HashMap<String, Factura>(listaFacturas.size());
-//        
-//        for (Factura f : listaFacturas) {
-//            mapFacturas.put(f.getClave(), f);
-//        }
-//        
-//        for (Entry<String, Factura> f: mapFacturas.entrySet()) {
-//            listaSinRepetidos.add(f.getValue());
-//        }
-//    
-//        p.getListadoFacturas().clear(); // limpiar la lista, para que ingresen sin repeticiones
-//        limpiarTablaListadoF(tabla); //limpiar la tabla de listadosFacturas.
-//        
-//        
-//        for (int i = 0; i < listaSinRepetidos.size(); i++) { // llenar nueva lista de facturas sin repeticiones   
-//            p.agregarXMLProyecto(listaSinRepetidos.get(i)); 
-//            String consecutivo = listaSinRepetidos.get(i).getConsecutivo().toString();
-//                String emisor = listaSinRepetidos.get(i).getEmisor().getNombre().toString();
-//
-//                String receptor = "";
-//                if (listaSinRepetidos.get(i).getReceptor() != null) {
-//                    receptor = listaSinRepetidos.get(i).getReceptor().getNombre().toString();
-//                }
-//
-//                String total = "";
-//                if (listaSinRepetidos.get(i).getResumenFactura().getTotalVenta() != null) {
-//                    total = listaSinRepetidos.get(i).getResumenFactura().getTotalVenta().toString();
-//                }
-//                
-//                AgregarDatosTabla(consecutivo, emisor, receptor, total, tabla);
-//        }
-//        
-//        m.marshal(p, System.out);
-//            try (FileOutputStream fos = new FileOutputStream(ruta)) {
-//                m.marshal(p, fos);
-//                fos.close();
-//            } catch (Exception e) {
-//                System.out.println("Error a la hora de crear el xml " + e);
-//            }                      
-//    }
-//    
     //Resscribrir el archivo cuando se elimina una factura.
     public void agregarFacturaProyecto(List<Factura> lista, Proyecto p, String ruta) throws JAXBException, FileNotFoundException, IOException {
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
@@ -645,7 +530,7 @@ public class ControlFormularioPrincipal {
         for (int i = 0; i < lista.size(); i++) {
             p.agregarXMLProyecto(lista.get(i));
         }
-        m.marshal(p, System.out);
+        //m.marshal(p, System.out);
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             m.marshal(p, fos);
         }
@@ -780,37 +665,41 @@ public class ControlFormularioPrincipal {
         return p;
     }
 
-    public void eliminarFacturas(JTable tabla) {
+    public void eliminarFacturas(JTable tabla) throws JAXBException, IOException {
+        String ruta = RecursosCompartidos.getRuta();
+        Proyecto p = buscarProyecto(ruta);
+        List<Factura> listado = p.getListadoFacturas();
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         int[] row = tabla.getSelectedRows();
+        String dato = "";
         for (int i = 0; i < row.length; i++) {
-            String dato = String.valueOf(model.getValueAt(tabla.getSelectedRow(), 0));
-            System.out.println("Dato a eliminar " + dato);
+            dato = String.valueOf(model.getValueAt(tabla.getSelectedRow(), 0));
             model.removeRow(row[i] - i);
 
             try {
-                eliminarFacturaListadoProyecto(dato);
+               eliminarFacturaListadoProyecto(dato,p,ruta,listado);
+               
             } catch (IOException ex) {
                 Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JAXBException ex) {
                 Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        agregarFacturaProyecto(listado, p, ruta);
+        
+        
     }
 
-    public void eliminarFacturaListadoProyecto(String consecutivoEliminar) throws JAXBException, IOException {
-        System.out.println("Eliminar");
-        String ruta = RecursosCompartidos.getRuta();
-        Proyecto p = buscarProyecto(ruta);
-        if (p != null) {
-            List<Factura> listado = p.getListadoFacturas();
+    public void eliminarFacturaListadoProyecto(String consecutivoEliminar, Proyecto p,String ruta,List<Factura> listado) throws JAXBException, IOException {
+        
+        if (p != null) {          
             for (int i = 0; i < listado.size(); i++) {
-                System.out.println("Consecutivo " + listado.get(i).getConsecutivo().toString());
+                //System.out.println("Consecutivo " + listado.get(i).getConsecutivo().toString());
                 if (listado.get(i).getConsecutivo().toString().equals(consecutivoEliminar)) {
                     listado.remove(i);
                 }
             }
-            agregarFacturaProyecto(listado, p, ruta);
+            
         }
     }
 
@@ -972,18 +861,18 @@ public class ControlFormularioPrincipal {
                 columna[25] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito();
 
                 columna[45] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
-                columna[46] = listFacturas.get(i).getResumenFactura().getTipoCambio().replace(".", ",");
-                columna[47] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados().replace(".", ",");
-                columna[48] = listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos().replace(".", ",");
-                columna[49] = listFacturas.get(i).getResumenFactura().getTotalMercanciasGravadas().replace(".", ",");
-                columna[50] = listFacturas.get(i).getResumenFactura().getTotalMercanciasExcentas().replace(".", ",");
-                columna[51] = listFacturas.get(i).getResumenFactura().getTotalGravado().replace(".", ",");
-                columna[52] = listFacturas.get(i).getResumenFactura().getTotalExcento().replace(".", ",");
-                columna[53] = listFacturas.get(i).getResumenFactura().getTotalVenta().replace(".", ",");
-                columna[54] = listFacturas.get(i).getResumenFactura().getTotalDescuentos().replace(".", ",");
-                columna[55] = listFacturas.get(i).getResumenFactura().getTotalVentaNeta().replace(".", ",");
-                columna[56] = listFacturas.get(i).getResumenFactura().getTotalImpuesto().replace(".", ",");
-                columna[57] = listFacturas.get(i).getResumenFactura().getTotalComprobante().replace(".", ",");
+                columna[46] = listFacturas.get(i).getResumenFactura().getTipoCambio();
+                columna[47] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
+                columna[48] = listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos();
+                columna[49] = listFacturas.get(i).getResumenFactura().getTotalMercanciasGravadas();
+                columna[50] = listFacturas.get(i).getResumenFactura().getTotalMercanciasExcentas();
+                columna[51] = listFacturas.get(i).getResumenFactura().getTotalGravado();
+                columna[52] = listFacturas.get(i).getResumenFactura().getTotalExcento();
+                columna[53] = listFacturas.get(i).getResumenFactura().getTotalVenta();
+                columna[54] = listFacturas.get(i).getResumenFactura().getTotalDescuentos();
+                columna[55] = listFacturas.get(i).getResumenFactura().getTotalVentaNeta();
+                columna[56] = listFacturas.get(i).getResumenFactura().getTotalImpuesto();
+                columna[57] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
@@ -992,15 +881,15 @@ public class ControlFormularioPrincipal {
                     columna[29] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedida();
                     columna[30] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedidaComercial();
                     columna[31] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getDetalle();
-                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento().replace(".", ",");
+                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
                     columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
-                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal().replace(".", ",");
+                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
                     columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
                     columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo();
-                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto().replace(".", ",");
-                    columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto().replace(".", ",");
-                    columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto().replace(".", ",");
-                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento().replace(".", ",");
+                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto();
+                    columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
+                    columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
+                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento();
                     columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNumeroDocumento();
                     columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
                     columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
@@ -1017,6 +906,7 @@ public class ControlFormularioPrincipal {
         List<String> listaEstados = new ArrayList<>();
         control.escribirArchivoConfiguracion(directorioGlobalConfig, listaEstados, false);// al ser false sobreescirbe el archivo
         eliminarTodoNodoArbol(arbol);
+        abrirFormularioCrearProyecto(control.getPanelPrincipal());
     }
 
     public void cerrarUnProyecto(JTree arbol) {

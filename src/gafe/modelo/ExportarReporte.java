@@ -27,17 +27,20 @@ public class ExportarReporte {
 
     public boolean export() {
         try {
+
+            
             DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
             WritableWorkbook w = Workbook.createWorkbook(out);
             // for (int index = 0; index < tabla.size(); index++) {
             int index = 0;
             JTable table = tabla.get(index);
             WritableSheet s = w.createSheet(nom_files.get(index), 0);
-           int k = 0;
+            int k = 0;
             for (int i = 0; i < table.getColumnCount(); i++) {
                 if (tabla.get(index).getColumnModel().getColumn(i).getMinWidth() != 0) {
+
                     s.addCell(new Label(k, 0, table.getColumnName(i)));
-                    k = k+1;
+                    k = k + 1;
                 }
             }
             k = 0;
@@ -47,12 +50,13 @@ public class ExportarReporte {
                     for (int j = 0; j < table.getRowCount(); j++) {
                         Object object = table.getValueAt(j, i);
                         if (object != null) {
-                            s.addCell(new Label(k, j+1, String.valueOf(object)));
+                            s.addCell(new Label(k, j + 1, String.valueOf(object)));
+                                                        
                         } else {
-                            s.addCell(new Label(k, j+1, "hola"));
+                            s.addCell(new Label(k, j + 1, "hola"));
                         }
                     }
-                    k = k +1;
+                    k = k + 1;
                 }
                 //   }
             }

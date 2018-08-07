@@ -185,7 +185,13 @@ public class formularioListarXml extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar las facturas seleccionadas?", "", JOptionPane.YES_NO_OPTION);
         if (respuesta == 0) {
-            controlVentanas.eliminarFacturas(tablaXml);
+            try {
+                controlVentanas.eliminarFacturas(tablaXml);
+            } catch (JAXBException ex) {
+                Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
     

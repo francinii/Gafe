@@ -110,12 +110,21 @@ public class acercaDe extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(52, 21, 0));
 
         jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1);
 
         getContentPane().add(jPanel2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cerrarVentana();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void configurar() {
         setSize(600,400);
