@@ -296,9 +296,9 @@ public class ControlFormularioPrincipal {
         //  arbol.setModel(modelo);
         DefaultTreeCellRenderer renderIcono = (DefaultTreeCellRenderer) arbol.getCellRenderer();
         DefaultMutableTreeNode cargarXml = new DefaultMutableTreeNode(ElementosArbol.XML.getNombre());
-        renderIcono.setLeafIcon(new ImageIcon(getClass().getResource("/recursos/leaf.png")));
-        renderIcono.setOpenIcon(new ImageIcon(getClass().getResource("/recursos/apple.png")));
-        renderIcono.setClosedIcon(new ImageIcon(getClass().getResource("/recursos/apple.png")));
+        renderIcono.setLeafIcon(new ImageIcon(getClass().getResource("/recursos/Subicono.png")));
+        renderIcono.setOpenIcon(new ImageIcon(getClass().getResource("/recursos/proyecto.png")));
+        renderIcono.setClosedIcon(new ImageIcon(getClass().getResource("/recursos/proyecto.png")));
         DefaultMutableTreeNode reportes = new DefaultMutableTreeNode(ElementosArbol.REPORTES.getNombre());
         DefaultMutableTreeNode clientes = new DefaultMutableTreeNode(ElementosArbol.CLIENTE.getNombre());
         DefaultMutableTreeNode proveedores = new DefaultMutableTreeNode(ElementosArbol.PROVEEDOR.getNombre());

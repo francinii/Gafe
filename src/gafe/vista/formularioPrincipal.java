@@ -16,8 +16,8 @@ import javax.xml.bind.JAXBException;
 public class formularioPrincipal extends javax.swing.JFrame {
 
     public formularioPrincipal(Control control, ControlFormularioPrincipal controlFormularioPrincipal) {
-        this.setTitle("Gafe");
-        Image icon = new ImageIcon(getClass().getResource("/recursos/apple.png")).getImage();
+        this.setTitle("Gestor de Facturación Electrónica");
+        Image icon = new ImageIcon(getClass().getResource("/recursos/gafe.png")).getImage();
         setIconImage(icon);
         this.control = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;
