@@ -7,19 +7,27 @@ import gafe.modelo.Factura;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import gafe.modelo.TipoFactura;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -46,8 +54,27 @@ public class ControlFormularioPrincipal {
 
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
+        
+        verificarFolder();
+                     
+    }
+
+    public void verificarFolder() {
+
+        String filename = "recursos/GlobalConfig.txt";
+
+        String a = ControlFormularioPrincipal.class.getClassLoader().getResource(filename).getPath();
+
+        a.replace("!","");
+        
+        
+        System.out.println("ORACLE  "+a );
+        
+        
+        directorioGlobalConfig = a;
 
     }
+
 
     public boolean validarCedulaProyecto(File ruta, String cedula) {
         return control.validarCedulaProyecto(ruta, cedula);
@@ -934,5 +961,7 @@ public class ControlFormularioPrincipal {
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;
     private final Control control;
-    public String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
+    ///public String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
+
+    public String directorioGlobalConfig = null;
 }
