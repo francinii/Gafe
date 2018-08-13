@@ -6,7 +6,8 @@ public class RecursosCompartidos {
     public static String ruta; //Almacena la ruta del proyecto abierto 
     
     //ARchivo de configuracion
-    public static String directorio ="../gafe//src//recursos//config.txt";
+    //public static String directorio ="../gafe//src//recursos//config.txt";
+    public static String directorio ="config.txt";
     public static int nodoSeleccionado = 0;      
 
     public RecursosCompartidos() {

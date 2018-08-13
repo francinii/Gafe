@@ -53,7 +53,7 @@ public class ExportarReporte {
                             s.addCell(new Label(k, j + 1, String.valueOf(object)));
                                                         
                         } else {
-                            s.addCell(new Label(k, j + 1, "hola"));
+                            s.addCell(new Label(k, j + 1, ""));
                         }
                     }
                     k = k + 1;

@@ -15,6 +15,7 @@ public class LectorArchivoConfiguracion {
     }
 
     public void escribirArchivo(String ruta, List<String> listaEstados, boolean noSobreescribir) {
+        
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {

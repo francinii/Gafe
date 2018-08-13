@@ -55,24 +55,32 @@ public class ControlFormularioPrincipal {
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
         
-        verificarFolder();
+        //verificarFolder();
+        
+        //miRuta();
                      
     }
+     
 
     public void verificarFolder() {
 
-        String filename = "recursos/GlobalConfig.txt";
+       InputStream is = ControlFormularioPrincipal.class.getResourceAsStream("/recursos/GlobalConfig.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String line;
+        
+        String url = ControlFormularioPrincipal.class.getResource("/recursos/GlobalConfig.txt").getPath();
+        /*try {
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                line += line;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        System.out.println("RUTA "+url);
 
-        String a = ControlFormularioPrincipal.class.getClassLoader().getResource(filename).getPath();
-
-        a.replace("!","");
-        
-        
-        System.out.println("ORACLE  "+a );
-        
-        
-        directorioGlobalConfig = a;
-
+        directorioGlobalConfig = url;
     }
 
 
@@ -961,7 +969,8 @@ public class ControlFormularioPrincipal {
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;
     private final Control control;
-    ///public String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
+    // String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
-    public String directorioGlobalConfig = null;
+    public String directorioGlobalConfig = "GlobalConfig.txt";
+    
 }
