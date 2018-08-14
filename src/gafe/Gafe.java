@@ -8,10 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Gafe {
     public static void main(String[] args) {
         
-        
-        
-        
-        //hola
+      
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             JFrame.setDefaultLookAndFeelDecorated(true);

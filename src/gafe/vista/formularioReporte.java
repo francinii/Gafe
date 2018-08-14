@@ -69,6 +69,7 @@ public class formularioReporte extends javax.swing.JPanel {
                 fechaFinal = new JFormattedTextField(new FormatoFecha());
                 jLabel4 = new javax.swing.JLabel();
                 jButton1 = new javax.swing.JButton();
+                jTextField1 = new javax.swing.JTextField();
                 jScrollPane1 = new javax.swing.JScrollPane(TablaReportes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 TablaReportes = new javax.swing.JTable();
                 jPanel2 = new javax.swing.JPanel();
@@ -189,6 +190,13 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 2, 3, 0);
         jPanel1.add(jButton1, gridBagConstraints);
 
+        jTextField1.setText("jTextField1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel1.add(jTextField1, gridBagConstraints);
+
         add(jPanel1);
 
         TablaReportes.setModel(new javax.swing.table.DefaultTableModel(
@@ -275,6 +283,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     private String todo = "Todo";
     private String facturaElectronica = "Factura electronica";

@@ -591,48 +591,55 @@ public class ControlFormularioPrincipal {
         }
     }
     
-    
-    
-   ///  OJO A ESTE METODO ESTA REPETIDO 
-    
-//    public void limpiarTablaListadoF(JTable tabla) {
-//        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-//        int filas = tabla.getRowCount();
-//        for (int i = 0; filas > i; i++) {
-//            modelo.removeRow(0);
-//            System.out.println("Limpiar");
-//        }
-//    }
-    
-    
-    
-    
-
     public void abrirNuevoProyecto(JTree arbol) throws JAXBException {
         File files = abrirFileChooser("Gafe", "gafe");
         if (files != null) {
             String ruta = files.getPath();
             List<Factura> lista = null;
-            JAXBContext context = JAXBContext.newInstance(Proyecto.class);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
-            Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
-            if (proyecto.getListadoFacturas() != null) {
-                lista = proyecto.getListadoFacturas();
-                for (int i = 0; i < lista.size(); i++) {
-                    proyect.agregarXMLProyecto(lista.get(i));
-                }
-            }
-            agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
-            agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
 
-            //Escribir los archivos para arbir proyectos recientes
-            List<String> listaEstados = new ArrayList<>();
-            listaEstados.add(ruta);
-            control.escribirArchivoConfiguracion(directorioGlobalConfig, listaEstados, true);
-            expandirArbol(arbol);
+            boolean verificarExistencia = noAbrirElmismoProyecto(ruta);
+
+            if (verificarExistencia == false) { // si es falso es porque no existe por lo que se puede abrir
+                JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+                Unmarshaller unmarshaller = context.createUnmarshaller();
+                Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
+                Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
+                if (proyecto.getListadoFacturas() != null) {
+                    lista = proyecto.getListadoFacturas();
+                    for (int i = 0; i < lista.size(); i++) {
+                        proyect.agregarXMLProyecto(lista.get(i));
+                    }
+                }
+                agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
+                agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
+
+                //Escribir los archivos para arbir proyectos recientes
+                List<String> listaEstados = new ArrayList<>();
+                listaEstados.add(ruta);
+                control.escribirArchivoConfiguracion(directorioGlobalConfig, listaEstados, true);
+                expandirArbol(arbol);
+
+            }
+
         }
     }
+    
+    public boolean noAbrirElmismoProyecto(String rutaAbrir){
+    
+        List<String> rutasArchivosRecientes = control.leerArchivoConfiguracion(directorioGlobalConfig);
+        boolean existencia = false;
+        for (String rutas : rutasArchivosRecientes) {
+            
+            if (rutas.equals(rutaAbrir)) {
+                existencia = true; // Si existe
+                System.out.println("Si existe en el arbol, por lo tanto no se abre");
+                break;
+            }     
+        }
+        return existencia;
+    }
+    
+    
 
     public void abrirProyectosRecientes(JTree arbol) throws JAXBException {
         List<String> rutasArchivosRecientes = control.leerArchivoConfiguracion(directorioGlobalConfig);
@@ -849,11 +856,18 @@ public class ControlFormularioPrincipal {
 
     public void llenarFacturaReportes(JTable tabla, String ruta, List<Factura> listFacturas) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        String categoria = "";
+        String clave = "";
+                
+        
 //        Proyecto p = buscarProyecto(ruta);
 //        List<Factura> listFacturas = p.getListadoFacturas(); 
         int numeroColumnasTabla = 58;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
+            
+                categoria = listFacturas.get(i).getCategoria();
+                clave = listFacturas.get(i).getClave();
             
                 columna[0] = listFacturas.get(i).getCategoria();
                 columna[1] = listFacturas.get(i).getClave();
@@ -910,6 +924,10 @@ public class ControlFormularioPrincipal {
                 columna[57] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
+                    
+                    columna[0] = categoria;
+                    columna[1] = clave;
+                    
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
                     columna[28] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCantidad();
@@ -969,8 +987,8 @@ public class ControlFormularioPrincipal {
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;
     private final Control control;
-    // String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
+    String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
-    public String directorioGlobalConfig = "GlobalConfig.txt";
+    //public String directorioGlobalConfig = "GlobalConfig.txt";
     
 }
