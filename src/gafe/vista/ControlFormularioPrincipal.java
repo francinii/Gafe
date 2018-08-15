@@ -449,7 +449,7 @@ public class ControlFormularioPrincipal {
         control.escribirArchivoConfiguracion(directorioGlobalConfig, rutas, true);
     }
 
-    //Arreglar este metodo
+    
     public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion, JTable tabla) throws JAXBException, PropertyException, IOException {
         File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion);
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
@@ -858,6 +858,13 @@ public class ControlFormularioPrincipal {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         String categoria = "";
         String clave = "";
+        String consecutivo = "";
+        String nombreEmisor = "";
+        String nombreComercialEmisor = "";  
+        String cedulaEmisor = "";
+        String nombreReceptor = "";
+        String nombreComercialReceptor = "";
+        String cedulaReceptor = "";
                 
         
 //        Proyecto p = buscarProyecto(ruta);
@@ -868,10 +875,18 @@ public class ControlFormularioPrincipal {
             
                 categoria = listFacturas.get(i).getCategoria();
                 clave = listFacturas.get(i).getClave();
-            
+                consecutivo = listFacturas.get(i).getConsecutivo();
+                nombreEmisor = listFacturas.get(i).getEmisor().getNombre();
+                nombreComercialEmisor = listFacturas.get(i).getEmisor().getNombreComercial();
+                cedulaEmisor = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
+                nombreReceptor = listFacturas.get(i).getReceptor().getNombre();
+                nombreComercialReceptor = listFacturas.get(i).getReceptor().getNombreComercial();
+                cedulaReceptor = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
+                
+                /*
                 columna[0] = listFacturas.get(i).getCategoria();
                 columna[1] = listFacturas.get(i).getClave();
-                columna[2] = listFacturas.get(i).getConsecutivo();
+                columna[2] = listFacturas.get(i).getConsecutivo();*/
                 
                 String formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
                 columna[3] = formFecha;
@@ -879,12 +894,12 @@ public class ControlFormularioPrincipal {
                 columna[4] = listFacturas.get(i).getCondicionVenta();
                 columna[5] = listFacturas.get(i).getPlazoCredito();
                 columna[6] = listFacturas.get(i).getMedioPago();
-                columna[7] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
+                /*columna[7] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
                 columna[8] = listFacturas.get(i).getEmisor().getNombre();
-                columna[9] = listFacturas.get(i).getEmisor().getNombreComercial();
+                columna[9] = listFacturas.get(i).getEmisor().getNombreComercial();*/
                 columna[10] = "";
                 columna[11] = "";
-                int a = 9;
+                int a = 10;
                 for (int j = 0; j < listFacturas.get(i).getEmisor().getTelefono().size(); j++) {
                     columna[a] = listFacturas.get(i).getEmisor().getTelefono().get(j).getNumeroTelefono();
                     a = a++;
@@ -893,13 +908,13 @@ public class ControlFormularioPrincipal {
                 columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia();
                 columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getCanton();
                 columna[15] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito();
-                columna[16] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
+                /*columna[16] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
                 columna[17] = listFacturas.get(i).getReceptor().getNombre();
-                columna[18] = listFacturas.get(i).getReceptor().getNombreComercial();
+                columna[18] = listFacturas.get(i).getReceptor().getNombreComercial();*/
                 columna[19] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero();
                 columna[20] = "";
                 columna[21] = "";
-                a = 19;
+                a = 20;
                 for (int j = 0; j < listFacturas.get(i).getReceptor().getTelefono().size(); j++) {
                     columna[a] = listFacturas.get(i).getReceptor().getTelefono().get(j).getNumeroTelefono();
                     a = a++;
@@ -927,6 +942,13 @@ public class ControlFormularioPrincipal {
                     
                     columna[0] = categoria;
                     columna[1] = clave;
+                    columna[2] = consecutivo;
+                    columna[7] = cedulaEmisor;
+                    columna[8] = nombreEmisor;
+                    columna[9] = nombreComercialEmisor;
+                    columna[16] = cedulaReceptor;
+                    columna[17] = nombreReceptor;
+                    columna[18] = nombreComercialReceptor;                  
                     
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();

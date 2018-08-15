@@ -229,8 +229,8 @@ public class LectorFacturasXML {
                 String naturalezaDescuento = crearElemento("NaturalezaDescuento", lineaDetalle, namespace);
                 String subTotal = crearElemento("SubTotal", lineaDetalle, namespace);
                 String montoTotalLinea = crearElemento("MontoTotalLinea", lineaDetalle, namespace);
-                CodigoLineaDetalle codigo = crearCodigo(nodoPadre, namespace);
-                Impuesto impuesto = crearImpuesto(nodoPadre, namespace); //POR TERMINAR
+                CodigoLineaDetalle codigo = crearCodigo(detallaServicio, namespace);
+                Impuesto impuesto = crearImpuesto(lineaDetalle, namespace); //POR TERMINAR
                 listarDetalleServicio.agregarLinea(new LineaDetalle(numeroLinea, codigo, cantidad, unidadMedida, unidadMedidaComercial, detalle, precioUnitario, montoTotal, montoDescuento, naturalezaDescuento, subTotal, impuesto, montoTotalLinea));
             }
             return listarDetalleServicio;
@@ -248,6 +248,7 @@ public class LectorFacturasXML {
     }
 
     private Impuesto crearImpuesto(Element nodoPadre, String namespace) {
+
         if (nodoPadre.getChild("Impuesto", Namespace.getNamespace(namespace)) != null) {
             Element impuesto = nodoPadre.getChild("Impuesto", Namespace.getNamespace(namespace));
             String codigo = crearElemento("Codigo", impuesto, namespace);
