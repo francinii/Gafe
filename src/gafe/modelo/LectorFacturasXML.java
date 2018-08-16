@@ -107,7 +107,6 @@ public class LectorFacturasXML {
 
             Factura fact = crearFactura(ruta.toString());
             if (fact != null) {
-
                 // Verificar si las facturas no corresponden a un proyecto
                 String identificacionEmisor = fact.getEmisor().getIdenticacion().getNumeroIdentificacion();
                 String identificacionReceptor = fact.getReceptor().getIdenticacion().getNumeroIdentificacion();
