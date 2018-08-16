@@ -120,9 +120,11 @@ public class ControlFormularioPrincipal {
                     String ruta = padre.getLastChild().toString();
                     RecursosCompartidos.setRuta(ruta); // Cargo la variable estatica, cada vez que cambio de nodo
                     Proyecto p = buscarProyecto(ruta);
+                    
                     if (p != null) {
                         EmpresaGlobal = p.getNombre();
                         CedulaJuridicaGlobal = p.getCedula();
+                        RecursosCompartidos.setCedulaJuridicaProyecto(CedulaJuridicaGlobal); // Almacenar la cedula juridica
                         System.out.println("listadoo " + p.getListadoFacturas().size());
                         if (nombreNodo == "Cargar Facturas") { // esto aplica solo para el nodo de Cargar Facturas
                             AbrirPaneles(nombreNodo, panelPrincipal);
@@ -148,12 +150,15 @@ public class ControlFormularioPrincipal {
                             }
                         } else if ((nombreNodo == "Reportes")) {
                             RecursosCompartidos.setRuta(ruta);
+                            RecursosCompartidos.setCedulaJuridicaProyecto(CedulaJuridicaGlobal); // Almacenar la cedula juridica
                             AbrirPaneles(nombreNodo, panelPrincipal);
                         } else if (nombreNodo == "Clientes") {
                             RecursosCompartidos.setRuta(ruta);
+                            RecursosCompartidos.setCedulaJuridicaProyecto(CedulaJuridicaGlobal); // Almacenar la cedula juridica
                             AbrirPaneles(nombreNodo, panelPrincipal);
                         } else if (nombreNodo == "Proovedores") {
                             RecursosCompartidos.setRuta(ruta);
+                            RecursosCompartidos.setCedulaJuridicaProyecto(CedulaJuridicaGlobal); // Almacenar la cedula juridica
                             AbrirPaneles(nombreNodo, panelPrincipal);
                         }
                     }
@@ -509,7 +514,6 @@ public class ControlFormularioPrincipal {
     }
 
    
-
     public void eliminarFacturasRepetidas(Proyecto p, Marshaller m, JTable tabla, String ruta) throws JAXBException {
 
         List<Factura> listaFacturas = p.getListadoFacturas();

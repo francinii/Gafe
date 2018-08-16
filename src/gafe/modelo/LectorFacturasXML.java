@@ -104,9 +104,27 @@ public class LectorFacturasXML {
     public List<Factura> listarFacturas(File[] rutas) {
         List<Factura> listadoFacturas = new ArrayList<>();
         for (File ruta : rutas) {
+
             Factura fact = crearFactura(ruta.toString());
-            if(fact != null){
-            listadoFacturas.add(fact);
+            if (fact != null) {
+
+                // Verificar si las facturas no corresponden a un proyecto
+                String identificacionEmisor = fact.getEmisor().getIdenticacion().getNumeroIdentificacion();
+                String identificacionReceptor = fact.getReceptor().getIdenticacion().getNumeroIdentificacion();
+                String numFactura = fact.getClave();
+
+                if (identificacionEmisor.equals(RecursosCompartidos.cedulaJuridicaProyecto) || identificacionReceptor.equals(RecursosCompartidos.cedulaJuridicaProyecto)) {                  
+                    listadoFacturas.add(fact);
+                } else {
+                    int reply = JOptionPane.showConfirmDialog(null, "La factura " + numFactura + " no coincide con la cédula jurídica del proyecto \n"+ "¿Desea incluirla?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                    if (reply == JOptionPane.YES_OPTION) {
+                        listadoFacturas.add(fact);
+                    } else {
+                        System.out.println("Factura no incluida");
+                    }
+
+                }
+
             }
         }
         return listadoFacturas;

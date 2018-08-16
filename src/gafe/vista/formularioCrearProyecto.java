@@ -229,7 +229,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
             String nombreProyecto = txtNombreProyecto.getText();
             String descripcionProyecto = txtDescripcionProyecto.getText();
             String cedula = txtCedula.getText();
-            if (ruta.equals("") || nombreProyecto.equals("") || descripcionProyecto.equals("")) {
+            if (ruta.equals("") || nombreProyecto.equals("") || descripcionProyecto.equals("")|| cedula.equals("")) {
                 controlVentanas.mensaje("Debes ingresar todos los campos");
             } else {
                 String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
