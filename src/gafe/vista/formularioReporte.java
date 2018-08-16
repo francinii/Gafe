@@ -120,7 +120,6 @@ public class formularioReporte extends javax.swing.JPanel {
                 gridBagConstraints.gridy = 1;
                 gridBagConstraints.gridwidth = 4;
                 gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.ipadx = 262;
                 gridBagConstraints.ipady = 4;
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
                 gridBagConstraints.weightx = 0.2;
@@ -132,11 +131,8 @@ public class formularioReporte extends javax.swing.JPanel {
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 1;
                 gridBagConstraints.gridy = 1;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.ipadx = 8;
-                gridBagConstraints.ipady = 8;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                 gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-                gridBagConstraints.insets = new java.awt.Insets(3, 1, 1, 0);
                 jPanel1.add(jLabel1, gridBagConstraints);
 
                 jLabel2.setForeground(new java.awt.Color(52, 21, 0));
@@ -144,11 +140,8 @@ public class formularioReporte extends javax.swing.JPanel {
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 1;
                 gridBagConstraints.gridy = 2;
-                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                gridBagConstraints.ipadx = 8;
-                gridBagConstraints.ipady = 8;
-                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-                gridBagConstraints.insets = new java.awt.Insets(3, 6, 1, 0);
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
                 jPanel1.add(jLabel2, gridBagConstraints);
 
             }catch (ParseException ex) {
@@ -164,6 +157,7 @@ public class formularioReporte extends javax.swing.JPanel {
             gridBagConstraints.gridy = 2;
             gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 0.1;
+            gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
             jPanel1.add(fechaInicio, gridBagConstraints);
 
             jLabel3.setForeground(new java.awt.Color(52, 21, 0));
@@ -171,11 +165,8 @@ public class formularioReporte extends javax.swing.JPanel {
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.gridx = 3;
             gridBagConstraints.gridy = 2;
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.ipadx = 8;
-            gridBagConstraints.ipady = 8;
+            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints.insets = new java.awt.Insets(5, 2, 1, 0);
             jPanel1.add(jLabel3, gridBagConstraints);
 
         }catch (ParseException ex) {
@@ -191,6 +182,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(fechaFinal, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -231,18 +223,21 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroNombre, gridBagConstraints);
 
         jLabel5.setText("Nombre Receptor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(jLabel5, gridBagConstraints);
 
         jLabel6.setText("Nombre Emisor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel6, gridBagConstraints);
 
@@ -256,6 +251,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroEmisor, gridBagConstraints);
 
         txtNombreComercial.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -267,18 +263,22 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtNombreComercial, gridBagConstraints);
 
         jLabel7.setText("Nom Comercial Emisor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel7, gridBagConstraints);
 
         jLabel8.setText("Nom Comecial Receptor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(jLabel8, gridBagConstraints);
 
         txtNombreComercialRecep.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -290,6 +290,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtNombreComercialRecep, gridBagConstraints);
 
         txtFiltroCedEmisor.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -301,18 +302,22 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroCedEmisor, gridBagConstraints);
 
         jLabel9.setText("Ced. Emisor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel9, gridBagConstraints);
 
         jLabel10.setText("Ced. Receptor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(jLabel10, gridBagConstraints);
 
         txtFiltroCedReceptor.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -324,12 +329,15 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroCedReceptor, gridBagConstraints);
 
         jLabel11.setText("Numero de Factura");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel11, gridBagConstraints);
 
         txtFiltroFactura.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -341,6 +349,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroFactura, gridBagConstraints);
 
         add(jPanel1);

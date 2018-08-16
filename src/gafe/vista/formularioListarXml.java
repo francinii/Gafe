@@ -49,6 +49,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txtCedulaJ = new javax.swing.JLabel();
         txtNombre = new javax.swing.JLabel();
@@ -63,6 +64,9 @@ public class formularioListarXml extends javax.swing.JPanel {
         setBackground(new java.awt.Color(247, 238, 212));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel3.setMaximumSize(new java.awt.Dimension(2147483647, 200));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(247, 238, 212));
         jPanel1.setLayout(new java.awt.GridBagLayout());
@@ -109,7 +113,7 @@ public class formularioListarXml extends javax.swing.JPanel {
         gridBagConstraints.ipady = 10;
         jPanel1.add(jLabel1, gridBagConstraints);
 
-        add(jPanel1);
+        jPanel3.add(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(247, 238, 212));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
@@ -131,7 +135,11 @@ public class formularioListarXml extends javax.swing.JPanel {
         });
         jPanel2.add(jButton3);
 
-        add(jPanel2);
+        jPanel3.add(jPanel2);
+
+        add(jPanel3);
+
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(82767, 82767));
 
         tablaXml.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,6 +215,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaXml;
     private javax.swing.JLabel txtCedulaJ;
