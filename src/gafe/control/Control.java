@@ -177,7 +177,9 @@ public class Control {
     formularioProveedores formProveedores;
     acercaDe acercaDe;
     //filtroReporte ventanaFiltros;
-    private String directorio = "../gafe//src//recursos//config.txt";
+    //private String directorio = "../gafe//src//recursos//config.txt";
+    
+    private String directorio = "config.txt";
     //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
 }

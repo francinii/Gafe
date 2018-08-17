@@ -2,6 +2,8 @@ package gafe.vista;
 
 import gafe.modelo.FormatoFecha;
 import gafe.modelo.TipoFactura;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
@@ -113,6 +115,11 @@ public class formularioReporte extends javax.swing.JPanel {
                 jComboBox1.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         jComboBox1ActionPerformed(evt);
+                    }
+                });
+                jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
+                    public void keyTyped(java.awt.event.KeyEvent evt) {
+                        jComboBox1KeyTyped(evt);
                     }
                 });
                 gridBagConstraints = new java.awt.GridBagConstraints();
@@ -395,7 +402,7 @@ public class formularioReporte extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-
+       
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -518,6 +525,11 @@ public class formularioReporte extends javax.swing.JPanel {
         trs = new TableRowSorter(modelo);
         TablaReportes.setRowSorter(trs);
     }//GEN-LAST:event_txtFiltroFacturaKeyTyped
+
+    private void jComboBox1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyTyped
+        
+        
+    }//GEN-LAST:event_jComboBox1KeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaReportes;
