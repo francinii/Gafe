@@ -28,7 +28,14 @@ public class formularioProveedores extends javax.swing.JPanel {
         for (int i = 0; filas > i; i++) {
             modelo.removeRow(0);
             System.out.println("Limpiar");
-        }             
+        }   
+        lblEmpresa.setText("");
+        lblCedulaJuridica.setText("");
+    }
+        
+    public void llenarDatosProyecto(String nombre, String cedula) {
+        lblEmpresa.setText(cedula);
+        lblCedulaJuridica.setText(nombre);
     }
 
     /**
@@ -39,7 +46,13 @@ public class formularioProveedores extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel3 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        lblEmpresa = new javax.swing.JLabel();
+        lblCedulaJuridica = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -50,6 +63,43 @@ public class formularioProveedores extends javax.swing.JPanel {
         setBackground(new java.awt.Color(247, 238, 212));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel3.setBackground(new java.awt.Color(247, 238, 212));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Cédula: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel13, gridBagConstraints);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Empresa:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel3.add(jLabel12, gridBagConstraints);
+
+        lblEmpresa.setText("jLabel14");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        jPanel3.add(lblEmpresa, gridBagConstraints);
+
+        lblCedulaJuridica.setText("jLabel15");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        jPanel3.add(lblCedulaJuridica, gridBagConstraints);
+
+        add(jPanel3);
 
         jPanel1.setBackground(new java.awt.Color(247, 238, 212));
         jPanel1.setMaximumSize(new java.awt.Dimension(600, 150));
@@ -108,10 +158,15 @@ public class formularioProveedores extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCedulaJuridica;
+    private javax.swing.JLabel lblEmpresa;
     // End of variables declaration//GEN-END:variables
 ControlFormularioPrincipal controlVentanas;
 }

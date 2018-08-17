@@ -195,6 +195,8 @@ public class ControlFormularioPrincipal {
         panelPrincipal.removeAll();
         formularioReporte fomrReporte = control.getFormReporte();
         fomrReporte.limpiarTabla();
+        fomrReporte.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
+
         //Agregué esto
         Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
         if (p != null) {
@@ -286,6 +288,8 @@ public class ControlFormularioPrincipal {
         panelPrincipal.removeAll();
         formularioClientes formClientes = control.getFormClientes();
         formClientes.limpiarTabla();
+        formClientes.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
+
         llenarClientes();
 
         formClientes.setSize(599, 284);
@@ -299,6 +303,7 @@ public class ControlFormularioPrincipal {
         panelPrincipal.removeAll();
         formularioProveedores formProveedor = control.getFormProveedores();
         formProveedor.limpiarTabla();
+        formProveedor.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
         llenarProveedores();
         formProveedor.setSize(599, 284);
         panelPrincipal.add(formProveedor);

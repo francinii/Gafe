@@ -38,7 +38,6 @@ public class formularioListarXml extends javax.swing.JPanel {
     ControlFormularioPrincipal controlVentanas;
 
     public formularioListarXml(ControlFormularioPrincipal control) {
-        System.out.println("Entre constructor");
         initComponents();
         this.controlVentanas = control;
         setVisible(true);
@@ -103,7 +102,7 @@ public class formularioListarXml extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(52, 21, 0));
-        jLabel1.setText("Cédula jurídica:");
+        jLabel1.setText("Cédula:");
         jLabel1.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
