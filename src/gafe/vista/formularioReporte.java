@@ -148,7 +148,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel2.setText("Desde");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel2, gridBagConstraints);
@@ -157,7 +157,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel3.setText("Hasta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel1.add(jLabel3, gridBagConstraints);
@@ -182,7 +182,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.insets = new java.awt.Insets(3, 2, 3, 0);
         jPanel1.add(jButton1, gridBagConstraints);
 
@@ -198,7 +198,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -207,14 +207,14 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel5.setText("Nombre Receptor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(jLabel5, gridBagConstraints);
 
         jLabel6.setText("Nombre Emisor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel6, gridBagConstraints);
@@ -226,7 +226,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -239,7 +239,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtNombreComercial, gridBagConstraints);
@@ -247,7 +247,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel7.setText("Nom Comercial Emisor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel7, gridBagConstraints);
@@ -255,7 +255,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel8.setText("Nom Comecial Receptor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(jLabel8, gridBagConstraints);
 
@@ -266,7 +266,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtNombreComercialRecep, gridBagConstraints);
@@ -278,7 +278,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroCedEmisor, gridBagConstraints);
@@ -286,7 +286,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel9.setText("Ced. Emisor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel9, gridBagConstraints);
@@ -294,7 +294,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel10.setText("Ced. Receptor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel1.add(jLabel10, gridBagConstraints);
 
@@ -305,7 +305,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(txtFiltroCedReceptor, gridBagConstraints);
@@ -337,13 +337,13 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(FechaAntes, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(FechaDespues, gridBagConstraints);
@@ -426,19 +426,8 @@ public class formularioReporte extends javax.swing.JPanel {
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String categoria = jComboBox1.getSelectedItem().toString();
-        if (categoria.equals(todo)) {
-            categoria = TipoFactura.TODASFACTURAS.getNombre();
-        } else if (categoria.equals(facturaElectronica)) {
-            categoria = TipoFactura.FACTURAELECTRONICA.getNombre();
-        } else if (categoria.equals(notaCredito)) {
-            categoria = TipoFactura.NOTACREDITO.getNombre();
-        } else if (categoria.equals(notaDebito)) {
-            categoria = TipoFactura.NOTADEBITO.getNombre();
-        } else if (categoria.equals(tiqueteElectronico)) {
-            categoria = TipoFactura.TIQUETEELECTRONICO.getNombre();
-        }
         
+       
         Calendar ini = Calendar.getInstance();
         SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
         formaterIni.format(FechaAntes.getDate());
@@ -446,9 +435,7 @@ public class formularioReporte extends javax.swing.JPanel {
         Calendar fin = Calendar.getInstance();
         SimpleDateFormat formaterFin = new SimpleDateFormat("dd/MM/yyyy");
         formaterFin.format(FechaDespues.getDate());
-        /*
-        String fIncio = fechaInicio.getText();
-        String fFinal = fechaFinal.getText();*/
+        
         
         String fIncio = formaterIni.format(FechaAntes.getDate());
         String fFinal =  formaterFin.format(FechaDespues.getDate());
@@ -456,11 +443,74 @@ public class formularioReporte extends javax.swing.JPanel {
         
         System.out.println("fInicio "+ fIncio);
         System.out.println("fFinal "+ fFinal);
-
         
-        controlVentanas.abrirFormularioReportes(categoria, fIncio, fFinal);
+        /*
+        String fechaComparar = "00/00/0000";
+        
+        int numFilas = TablaReportes.getRowCount();
+        for (int i = numFilas - 1; i <= numFilas; i--) {
+
+           
+                String fechaFactura = modelo.getValueAt(i, 3).toString();
+                fechaComparar = fechaFactura;
+                System.out.println("Fechas Facturas " + fechaComparar);
+                System.out.println("num " + i);
+                if (!fechaComparar.equals("")) {
+                    if (compararFecha(fIncio, fFinal, fechaComparar) == false) {
+                        modelo.removeRow(i);
+                        numFilas = numFilas - 1;
+                    }
+                }
+                
+                if(i == 0){ // para que cuando llegue a 0 no busque el 0-1 osea num negativo.
+                    break;
+                }
+
+           
+        }
+        TablaReportes.setModel(modelo);
+
+        //TablaReportes.setModel(modelo);
+        //controlVentanas.abrirFormularioReportes(modelo,fIncio, fFinal);
+*/
+        
+        controlVentanas.abrirFormularioReportes(TablaReportes,fIncio, fFinal);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public String formatoFecha(String fecha) {
+        if (!fecha.equals("")) {
+            fecha = fecha.substring(0, 10);
+            // 2018-02-14T10:51:04.707
+            String[] fechaFinal = fecha.split("-");
+            String anio = fechaFinal[0];
+            String mes = fechaFinal[1];
+            String dia = fechaFinal[2];
+            return dia + "/" + mes + "/" + anio;
+        }
+        return "";
+    }
+
+    public boolean compararFecha(String fechaI, String fechaF, String fechaComparar) {
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha1 = formato.parse(fechaI);
+            Date fecha2 = formato.parse(fechaF);
+            Date fechaComp = formato.parse(fechaComparar);
+            if ((fechaComp.compareTo(fecha1) == 0 || fechaComp.compareTo(fecha1) > 0) && (fechaComp.compareTo(fecha2) == 0 || fechaComp.compareTo(fecha2) < 0)) {
+                return true;
+            }
+//            if (!fechaComp.after(fecha1) && !fechaComp.before(fecha2)) {
+//                return true;
+//                /* historyDate <= todayDate <= futureDate */
+//            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }  
+    
+    
+    
     
     private void txtFiltroNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroNombreKeyTyped
 

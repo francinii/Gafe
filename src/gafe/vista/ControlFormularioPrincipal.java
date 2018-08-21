@@ -208,37 +208,38 @@ public class ControlFormularioPrincipal {
     }
 
     //Este abre el formulario con filtros de categoria y fecha
-    public void abrirFormularioReportes(String categoria, String fechaInicio, String fechaFinal) {
-        JPanel panelPrincipal = panelPrincipal();
-        panelPrincipal.removeAll();
-        formularioReporte fomrReporte = control.getFormReporte();
-        fomrReporte.limpiarTabla();
-        //Agregue esto
-        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
-        if (p != null) {
-            List<Factura> listFacturas = new ArrayList<>(p.getListadoFacturas());
-            //Final de la agregación
-            int tamanio = listFacturas.size();
-            String fechaComparar = "00/00/0000";
-            //Recordar empezar en cero cuando se elimine la factura vacía
-            for (int i = tamanio - 1; i > 0; i--) {
-                fechaComparar = formatoFecha(listFacturas.get(i).getFechaEmision());
-                // System.out.println("ESTO ES LA CATEGORIA DE LA FACTURA" + listFacturas.get(i).getCategoria());
-                if (categoria.equals(TipoFactura.TODASFACTURAS.getNombre())) {
-                    if (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar))) {
-                        listFacturas.remove(i);
-                        //  tamanio = tamanio - 1;
-                        //   listFacturas.get(i).setClave("-1");
+    public void abrirFormularioReportes(JTable TablaReportes,String fIncio, String fFinal) {
+       
+        String fechaComparar = "00/00/0000";
+        
+        DefaultTableModel modelo = (DefaultTableModel) TablaReportes.getModel();
+        
+        int numFilas = TablaReportes.getRowCount();
+        for (int i = numFilas - 1; i <= numFilas; i--) {
+
+           
+                String fechaFactura = modelo.getValueAt(i, 3).toString();
+                fechaComparar = fechaFactura;
+                System.out.println("Fechas Facturas " + fechaComparar);
+                System.out.println("num " + i);
+                if (!fechaComparar.equals("")) {
+                    if (compararFecha(fIncio, fFinal, fechaComparar) == false) {
+                        modelo.removeRow(i);
+                        numFilas = numFilas - 1;
                     }
-                } else if (!categoria.equals(listFacturas.get(i).getCategoria()) || (!(!fechaComparar.equals("") && compararFecha(fechaInicio, fechaFinal, fechaComparar)))) {
-                    listFacturas.remove(i);
-                    // tamanio = tamanio - 1;
-                    //  listFacturas.get(i).setClave("-1");
                 }
-            }
-            llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
-            pintarReportes(panelPrincipal, fomrReporte);
+                
+                if(i == 0){ // para que cuando llegue a 0 no busque el 0-1 osea num negativo.
+                    break;
+                }
+
+           
         }
+        TablaReportes.setModel(modelo);
+        
+        
+        
+        
     }
 
     public JPanel panelPrincipal() {
@@ -874,6 +875,7 @@ public class ControlFormularioPrincipal {
         String nombreReceptor = "";
         String nombreComercialReceptor = "";
         String cedulaReceptor = "";
+        String fechaEmision = "";
                 
         
 //        Proyecto p = buscarProyecto(ruta);
@@ -890,15 +892,11 @@ public class ControlFormularioPrincipal {
                 cedulaEmisor = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
                 nombreReceptor = listFacturas.get(i).getReceptor().getNombre();
                 nombreComercialReceptor = listFacturas.get(i).getReceptor().getNombreComercial();
-                cedulaReceptor = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
-                
-                /*
-                columna[0] = listFacturas.get(i).getCategoria();
-                columna[1] = listFacturas.get(i).getClave();
-                columna[2] = listFacturas.get(i).getConsecutivo();*/
-                
+                cedulaReceptor = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();               
                 String formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
-                columna[3] = formFecha;
+                
+                
+                
                
                 columna[4] = listFacturas.get(i).getCondicionVenta();
                 columna[5] = listFacturas.get(i).getPlazoCredito();
@@ -952,6 +950,7 @@ public class ControlFormularioPrincipal {
                     columna[0] = categoria;
                     columna[1] = clave;
                     columna[2] = consecutivo;
+                    columna[3] = formFecha;
                     columna[7] = cedulaEmisor;
                     columna[8] = nombreEmisor;
                     columna[9] = nombreComercialEmisor;
