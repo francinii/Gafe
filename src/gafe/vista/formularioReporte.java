@@ -428,44 +428,60 @@ public class formularioReporte extends javax.swing.JPanel {
     
     
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
-        
-        if ((FechaAntes.getDate() != null)) {
-            Calendar ini = Calendar.getInstance();
-            SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
-            formaterIni.format(FechaAntes.getDate());
 
-            Calendar fin = Calendar.getInstance();
-            SimpleDateFormat formaterFin = new SimpleDateFormat("dd/MM/yyyy");
-            formaterFin.format(FechaDespues.getDate());
+        if ((FechaAntes.getDate() != null)) { // Validacion campos en Blanco 
+            try {
+                Calendar ini = Calendar.getInstance();
+                SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
+                formaterIni.format(FechaAntes.getDate());
 
-            String fIncio = formaterIni.format(FechaAntes.getDate());
-            String fFinal = formaterFin.format(FechaDespues.getDate());
+                Calendar fin = Calendar.getInstance();
+                SimpleDateFormat formaterFin = new SimpleDateFormat("dd/MM/yyyy");
+                formaterFin.format(FechaDespues.getDate());
 
-            System.out.println("fInicio " + fIncio);
-            System.out.println("fFinal " + fFinal);
+                String fIncio = formaterIni.format(FechaAntes.getDate());
+                String fFinal = formaterFin.format(FechaDespues.getDate());
 
-            if (statusBtnFiltrar == false) {
-                btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/quitar.png")));
-                FechaAntes.setEditable(false);
-                FechaDespues.setEditable(false);
-                controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);
-                statusBtnFiltrar = true;
-            } else {
-                btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
-                statusBtnFiltrar = false;
-                FechaAntes.setEditable(true);
-                FechaDespues.setEditable(true);
+                /* Validacio para evitar traslape de fechas
+                    Convertir dechas a Date.
+                
+                el compare to devuelve 
+                1 - bien
+                -1 si esta mal
+                
+                 */
+                Date fecha1 = formaterIni.parse(fIncio);
+                Date fecha2 = formaterIni.parse(fFinal);
 
-                controlVentanas.abrirFormularioReportes(controlVentanas.getControl().getPanelPrincipal());
+                int fechasComparadas = fecha2.compareTo(fecha1);
+
+                if (fechasComparadas > 0) {
+                    if (statusBtnFiltrar == false) {
+                        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/quitar.png")));
+                        FechaAntes.setEditable(false);
+                        FechaDespues.setEditable(false);
+                        controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);
+                        statusBtnFiltrar = true;
+                    } else {
+                        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
+                        statusBtnFiltrar = false;
+                        FechaAntes.setEditable(true);
+                        FechaDespues.setEditable(true);
+
+                        controlVentanas.abrirFormularioReportes(controlVentanas.getControl().getPanelPrincipal());
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "La fecha inicial no puede ser mayor que la fecha final", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+
+            } catch (ParseException ex) {
+                Logger.getLogger(formularioReporte.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debes ingresar las fechas en el filtro", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-
         }
-
-        
-        
-        
     }//GEN-LAST:event_btnFiltroActionPerformed
 
     public String formatoFecha(String fecha) {
