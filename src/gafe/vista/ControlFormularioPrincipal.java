@@ -855,11 +855,10 @@ public class ControlFormularioPrincipal {
         String nombreComercialReceptor = "";
         String cedulaReceptor = "";
         String fechaEmision = "";
-                
+        String emitidaRecibida = "";
+
         
-//        Proyecto p = buscarProyecto(ruta);
-//        List<Factura> listFacturas = p.getListadoFacturas(); 
-        int numeroColumnasTabla = 58;
+        int numeroColumnasTabla = 59;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
             
@@ -875,14 +874,21 @@ public class ControlFormularioPrincipal {
                 String formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
                 
                 
+                /*Validacion para el status si es recibida o emitida*/
+                if (cedulaEmisor.equals(RecursosCompartidos.getCedulaJuridicaProyecto())) {
+                    emitidaRecibida = "Emitida";
+                }else if(cedulaReceptor.equals(RecursosCompartidos.getCedulaJuridicaProyecto())){
+                    emitidaRecibida = "Recibida";
+                }else{
+                    emitidaRecibida = "N/A";
+                }
+                        
+                
                 
                
                 columna[4] = listFacturas.get(i).getCondicionVenta();
                 columna[5] = listFacturas.get(i).getPlazoCredito();
                 columna[6] = listFacturas.get(i).getMedioPago();
-                /*columna[7] = listFacturas.get(i).getEmisor().getIdenticacion().getNumeroIdentificacion();
-                columna[8] = listFacturas.get(i).getEmisor().getNombre();
-                columna[9] = listFacturas.get(i).getEmisor().getNombreComercial();*/
                 columna[10] = "";
                 columna[11] = "";
                 int a = 10;
@@ -894,9 +900,6 @@ public class ControlFormularioPrincipal {
                 columna[13] = listFacturas.get(i).getEmisor().getUbicacion().getProvincia();
                 columna[14] = listFacturas.get(i).getEmisor().getUbicacion().getCanton();
                 columna[15] = listFacturas.get(i).getEmisor().getUbicacion().getDistrito();
-                /*columna[16] = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();
-                columna[17] = listFacturas.get(i).getReceptor().getNombre();
-                columna[18] = listFacturas.get(i).getReceptor().getNombreComercial();*/
                 columna[19] = listFacturas.get(i).getReceptor().getIdentificacionExtranjero();
                 columna[20] = "";
                 columna[21] = "";
@@ -935,7 +938,8 @@ public class ControlFormularioPrincipal {
                     columna[9] = nombreComercialEmisor;
                     columna[16] = cedulaReceptor;
                     columna[17] = nombreReceptor;
-                    columna[18] = nombreComercialReceptor;                  
+                    columna[18] = nombreComercialReceptor;   
+                    columna[58] = emitidaRecibida;
                     
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
@@ -983,13 +987,8 @@ public class ControlFormularioPrincipal {
         eliminarUnNodoArbol(arbol);
     }
 
-    public void expandirArbol(JTree arbol) {
-        //  Object root = arbol.getModel().getRoot();
-        //  int cantidadNodos = arbol.getModel().getChildCount(root);
-        //  for (int i = 0; i <= cantidadNodos; i++) {
-        arbol.expandRow(0);
-        // arbol.expandRow(i);
-        //  }
+    public void expandirArbol(JTree arbol) {      
+        arbol.expandRow(0);   
     }
 
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"

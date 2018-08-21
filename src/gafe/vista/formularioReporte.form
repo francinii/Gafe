@@ -328,6 +328,39 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel14">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Emitidas/Recibidas"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="1" gridY="3" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="12" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="JComboEmitidasRecibidas">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="JComboEmitidasRecibidasItemStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="2" gridY="3" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="4" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -341,7 +374,7 @@
         <Component class="javax.swing.JTable" name="TablaReportes">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="TablaReportes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);">
-              <Table columnCount="58" rowCount="0">
+              <Table columnCount="59" rowCount="0">
                 <Column editable="false" title="Categoria" type="java.lang.Object"/>
                 <Column editable="false" title="Clave" type="java.lang.Object"/>
                 <Column editable="false" title="Consecutivo" type="java.lang.Object"/>
@@ -395,15 +428,21 @@
                 <Column editable="false" title="Total Mercancias Excentas" type="java.lang.Object"/>
                 <Column editable="false" title="Tota Gravado" type="java.lang.Object"/>
                 <Column editable="false" title="Total Excento" type="java.lang.Object"/>
-                <Column editable="false" title="Total Venta" type="java.lang.Object"/>
+                <Column editable="true" title="Total Venta" type="java.lang.Object"/>
                 <Column editable="false" title="Total Descuentos" type="java.lang.Object"/>
                 <Column editable="false" title="Total Venta Neta" type="java.lang.Object"/>
                 <Column editable="false" title="Total Impuestos" type="java.lang.Object"/>
                 <Column editable="false" title="Total Comprobante" type="java.lang.Object"/>
+                <Column editable="true" title="Estatus" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

@@ -44,6 +44,7 @@ public class formularioReporte extends javax.swing.JPanel {
 
     public void init() {
         llenarComboFacturas();
+        llenarComboEmitidosRecibidos();
          
         //Crear los filtros en los header de las tablas.
         modelo = (DefaultTableModel) TablaReportes.getModel();
@@ -79,6 +80,12 @@ public class formularioReporte extends javax.swing.JPanel {
             tiqueteElectronico}));
     }
 
+    private void llenarComboEmitidosRecibidos() {
+        JComboEmitidasRecibidas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+            todo,noAplica, emitidas, recibidas
+        }));
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,6 +118,8 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         lblEmpresa = new javax.swing.JLabel();
         lblCedulaJuridica = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        JComboEmitidasRecibidas = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane(TablaReportes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TablaReportes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -382,6 +391,27 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(lblCedulaJuridica, gridBagConstraints);
 
+        jLabel14.setText("Emitidas/Recibidas");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        jPanel1.add(jLabel14, gridBagConstraints);
+
+        JComboEmitidasRecibidas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboEmitidasRecibidas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JComboEmitidasRecibidasItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 4;
+        jPanel1.add(JComboEmitidasRecibidas, gridBagConstraints);
+
         add(jPanel1);
 
         TablaReportes.setModel(new javax.swing.table.DefaultTableModel(
@@ -389,11 +419,11 @@ public class formularioReporte extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Categoria", "Clave", "Consecutivo", "Fecha Emision", "Condicion Venta", "Plaza Credito", "Medio Pago", "Cédula Emisor", "Nombre Emisor", "Nombre Comercial Emisor", "Telefono Emisor", "Fax Emisor", "Correo Electrónico Emisor", "Provincia Emisor", "Cantón Emisor", "Distrito Emisor", "Cédula Receptor", "Nombre Receptor", "Nombre Comercial Receptor", "Identificacion Extranjero", "Telefono Receptor", "Fax Receptor", "Correo Electrónico Receptor", "Provincia Receptor", "Cantón Receptor", "Distrito Receptor", "Numero de Linea", "Codigo del Producto", "Cantidad", "Unidad de Medida", "Unidad de Medida Comercial", "Detalle", "Monto Descuento", "Naturaleza Descuento", "SubTotal", "Monto Total", "Codigo Impuesto", "Tarifa Impuesto", "Monto Impuesto", "Monto Impuesto Exoneración", "Tipo documento Exoneracion", "Numero Documento Exoneracion", "Nombre Institución Exoneración", "Fecha Emisión Exoneración", "Porcentaje Compra Exoneración", "Codigo Moneda", "Tipo Cambio", "Total Serv Gravados", "Total Serv Excentos", "Total Mercancias Gravadas", "Total Mercancias Excentas", "Tota Gravado", "Total Excento", "Total Venta", "Total Descuentos", "Total Venta Neta", "Total Impuestos", "Total Comprobante"
+                "Categoria", "Clave", "Consecutivo", "Fecha Emision", "Condicion Venta", "Plaza Credito", "Medio Pago", "Cédula Emisor", "Nombre Emisor", "Nombre Comercial Emisor", "Telefono Emisor", "Fax Emisor", "Correo Electrónico Emisor", "Provincia Emisor", "Cantón Emisor", "Distrito Emisor", "Cédula Receptor", "Nombre Receptor", "Nombre Comercial Receptor", "Identificacion Extranjero", "Telefono Receptor", "Fax Receptor", "Correo Electrónico Receptor", "Provincia Receptor", "Cantón Receptor", "Distrito Receptor", "Numero de Linea", "Codigo del Producto", "Cantidad", "Unidad de Medida", "Unidad de Medida Comercial", "Detalle", "Monto Descuento", "Naturaleza Descuento", "SubTotal", "Monto Total", "Codigo Impuesto", "Tarifa Impuesto", "Monto Impuesto", "Monto Impuesto Exoneración", "Tipo documento Exoneracion", "Numero Documento Exoneracion", "Nombre Institución Exoneración", "Fecha Emisión Exoneración", "Porcentaje Compra Exoneración", "Codigo Moneda", "Tipo Cambio", "Total Serv Gravados", "Total Serv Excentos", "Total Mercancias Gravadas", "Total Mercancias Excentas", "Tota Gravado", "Total Excento", "Total Venta", "Total Descuentos", "Total Venta Neta", "Total Impuestos", "Total Comprobante", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -633,9 +663,31 @@ public class formularioReporte extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
+    private void JComboEmitidasRecibidasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEmitidasRecibidasItemStateChanged
+        
+        trs = new TableRowSorter(modelo);
+        String dato = (JComboEmitidasRecibidas.getSelectedItem().toString());
+        
+        System.out.println("dat  "+dato);
+        if (dato.equals("Todos")) {
+            trs.setRowFilter(RowFilter.regexFilter(""));
+        } else {
+            trs.setRowFilter(RowFilter.regexFilter(dato,58));
+        }
+        
+        TablaReportes.setRowSorter(trs);
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_JComboEmitidasRecibidasItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker FechaAntes;
     private org.jdesktop.swingx.JXDatePicker FechaDespues;
+    private javax.swing.JComboBox<String> JComboEmitidasRecibidas;
     private javax.swing.JTable TablaReportes;
     private javax.swing.JButton btnFiltro;
     private javax.swing.JButton jButton2;
@@ -645,6 +697,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -671,5 +724,11 @@ public class formularioReporte extends javax.swing.JPanel {
     private String notaCredito = "Nota Credito Electronica";
     private String notaDebito = "Nota Debito Electronica";
     private String tiqueteElectronico = "Tiquete electronico";
+    
+    //Datos del combo emitidasRecibidas;
+    private String noAplica = "N/A";
+    private String emitidas = "Emitida";
+    private String recibidas = "Recibida";
+    
 
 }

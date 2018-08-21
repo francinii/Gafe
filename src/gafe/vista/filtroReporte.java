@@ -56,6 +56,7 @@ public class filtroReporte extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox28 = new javax.swing.JCheckBox();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox59 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -474,6 +475,16 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox1, gridBagConstraints);
+
+        jCheckBox59.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox59.setText("Emitidas/Recibidas");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
+        jPanel1.add(jCheckBox59, gridBagConstraints);
 
         jTabbedPane1.addTab("Facturas", jPanel1);
 
@@ -1044,6 +1055,7 @@ public class filtroReporte extends javax.swing.JFrame {
         listaEstados.add(jCheckBox56.isSelected() + "");
         listaEstados.add(jCheckBox57.isSelected() + "");
         listaEstados.add(jCheckBox58.isSelected() + "");
+        listaEstados.add(jCheckBox59.isSelected() + "");
                
         control.escribirArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion(), listaEstados, false);
     }
@@ -1251,7 +1263,9 @@ public class filtroReporte extends javax.swing.JFrame {
             case 58:
                 jCheckBox58.setSelected(estado);
                 break;
-                
+            case 59:
+                jCheckBox59.setSelected(estado);
+                break;
             default:
                 break;
 
@@ -1316,6 +1330,7 @@ public class filtroReporte extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox56;
     private javax.swing.JCheckBox jCheckBox57;
     private javax.swing.JCheckBox jCheckBox58;
+    private javax.swing.JCheckBox jCheckBox59;
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
