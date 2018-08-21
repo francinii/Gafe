@@ -54,36 +54,15 @@ public class ControlFormularioPrincipal {
 
     public ControlFormularioPrincipal(Control control) {
         this.control = control;
-        
-        //verificarFolder();
-        
-        //miRuta();
-                     
+            
     }
+
+    public Control getControl() {
+        return control;
+    }
+    
+    
      
-
-    public void verificarFolder() {
-
-       InputStream is = ControlFormularioPrincipal.class.getResourceAsStream("/recursos/GlobalConfig.txt");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        String line;
-        
-        String url = ControlFormularioPrincipal.class.getResource("/recursos/GlobalConfig.txt").getPath();
-        /*try {
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-                line += line;
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
-        System.out.println("RUTA "+url);
-
-        directorioGlobalConfig = url;
-    }
-
-
     public boolean validarCedulaProyecto(File ruta, String cedula) {
         return control.validarCedulaProyecto(ruta, cedula);
     }

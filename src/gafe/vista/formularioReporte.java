@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,6 +32,8 @@ public class formularioReporte extends javax.swing.JPanel {
     ControlFormularioPrincipal controlVentanas;
     DefaultTableModel modelo;
     TableRowSorter trs;
+    
+    boolean statusBtnFiltrar = false;
 
     public formularioReporte(ControlFormularioPrincipal control) {
         this.controlVentanas = control;
@@ -87,7 +90,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnFiltro = new javax.swing.JButton();
         txtFiltroNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -172,19 +175,18 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         jPanel1.add(jLabel4, gridBagConstraints);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png"))); // NOI18N
-        jButton1.setText("Filtrar");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png"))); // NOI18N
+        btnFiltro.setToolTipText("");
+        btnFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFiltroActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.insets = new java.awt.Insets(3, 2, 3, 0);
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(btnFiltro, gridBagConstraints);
 
         txtFiltroNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,57 +427,46 @@ public class formularioReporte extends javax.swing.JPanel {
 
     
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
         
-       
-        Calendar ini = Calendar.getInstance();
-        SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
-        formaterIni.format(FechaAntes.getDate());
-        
-        Calendar fin = Calendar.getInstance();
-        SimpleDateFormat formaterFin = new SimpleDateFormat("dd/MM/yyyy");
-        formaterFin.format(FechaDespues.getDate());
-        
-        
-        String fIncio = formaterIni.format(FechaAntes.getDate());
-        String fFinal =  formaterFin.format(FechaDespues.getDate());
-        
-        
-        System.out.println("fInicio "+ fIncio);
-        System.out.println("fFinal "+ fFinal);
-        
-        /*
-        String fechaComparar = "00/00/0000";
-        
-        int numFilas = TablaReportes.getRowCount();
-        for (int i = numFilas - 1; i <= numFilas; i--) {
+        if ((FechaAntes.getDate() != null)) {
+            Calendar ini = Calendar.getInstance();
+            SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
+            formaterIni.format(FechaAntes.getDate());
 
-           
-                String fechaFactura = modelo.getValueAt(i, 3).toString();
-                fechaComparar = fechaFactura;
-                System.out.println("Fechas Facturas " + fechaComparar);
-                System.out.println("num " + i);
-                if (!fechaComparar.equals("")) {
-                    if (compararFecha(fIncio, fFinal, fechaComparar) == false) {
-                        modelo.removeRow(i);
-                        numFilas = numFilas - 1;
-                    }
-                }
-                
-                if(i == 0){ // para que cuando llegue a 0 no busque el 0-1 osea num negativo.
-                    break;
-                }
+            Calendar fin = Calendar.getInstance();
+            SimpleDateFormat formaterFin = new SimpleDateFormat("dd/MM/yyyy");
+            formaterFin.format(FechaDespues.getDate());
 
-           
+            String fIncio = formaterIni.format(FechaAntes.getDate());
+            String fFinal = formaterFin.format(FechaDespues.getDate());
+
+            System.out.println("fInicio " + fIncio);
+            System.out.println("fFinal " + fFinal);
+
+            if (statusBtnFiltrar == false) {
+                btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/quitar.png")));
+                FechaAntes.setEditable(false);
+                FechaDespues.setEditable(false);
+                controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);
+                statusBtnFiltrar = true;
+            } else {
+                btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
+                statusBtnFiltrar = false;
+                FechaAntes.setEditable(true);
+                FechaDespues.setEditable(true);
+
+                controlVentanas.abrirFormularioReportes(controlVentanas.getControl().getPanelPrincipal());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes ingresar las fechas en el filtro", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+
         }
-        TablaReportes.setModel(modelo);
 
-        //TablaReportes.setModel(modelo);
-        //controlVentanas.abrirFormularioReportes(modelo,fIncio, fFinal);
-*/
         
-        controlVentanas.abrirFormularioReportes(TablaReportes,fIncio, fFinal);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        
+    }//GEN-LAST:event_btnFiltroActionPerformed
 
     public String formatoFecha(String fecha) {
         if (!fecha.equals("")) {
@@ -630,7 +621,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXDatePicker FechaAntes;
     private org.jdesktop.swingx.JXDatePicker FechaDespues;
     private javax.swing.JTable TablaReportes;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnFiltro;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
