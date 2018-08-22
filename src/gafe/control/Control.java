@@ -67,7 +67,7 @@ public class Control {
     }
 
     public JTable tablaReportes() {
-        return formReporte.tablaReportes();
+        return formReporte.ObtenerTablaReportes();
     }
 
     public JTable tablaClientes() {
@@ -77,7 +77,11 @@ public class Control {
     public JTable tablaProveedores() {
         return formProveedores.tablaProveedores();
     }
-
+    
+    public JTable tablaListar() {
+        return formularioListarXml.ObtenerTablaListar();
+    }
+    
     public List<Factura> obtenerListadoFacturas(File[] files) {
         return claseLectorFacturas.listarFacturas(files);
     }
@@ -117,12 +121,7 @@ public class Control {
         System.out.println("ESTO ES EL NUEMRO DE LOS PROYECTOS:"+listadoProyecto.size() );
     }
    
-
-    // este meotodo me retorna la tabla del fromulario principal, para poder cargarl cuando abro el archivo .Gafe
-    public JTable obtenerTabla() {
-        JTable tabla = formularioListarXml.obtenerTabla();
-        return tabla;
-    }
+    
 
     public List<String> leerArchivoConfiguracion(String directorio) {
         return lectorArchivoConfiguracion.leerArchivo(directorio);

@@ -53,21 +53,11 @@ public class formularioReporte extends javax.swing.JPanel {
 
     }
 
-    public JTable tablaReportes() {
+    public JTable ObtenerTablaReportes() {
         return TablaReportes;
     }
 
-    public void limpiarTabla() {
-        DefaultTableModel modelo = (DefaultTableModel) TablaReportes.getModel();
-        int filas = TablaReportes.getRowCount();
-        for (int i = 0; filas > i; i++) {
-            modelo.removeRow(0);
-            System.out.println("Limpiar");
-        }
-        lblEmpresa.setText("");
-        lblCedulaJuridica.setText("");
-    }
-    
+        
     public void llenarDatosProyecto(String nombre, String cedula) {
         lblEmpresa.setText(cedula);
         lblCedulaJuridica.setText(nombre);
@@ -489,15 +479,17 @@ public class formularioReporte extends javax.swing.JPanel {
                     if (statusBtnFiltrar == false) {
                         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/quitar.png")));
                         FechaAntes.setEditable(false);
-                        FechaDespues.setEditable(false);
-                        controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);
+                        FechaDespues.setEditable(false);   
+                        controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);                       
                         statusBtnFiltrar = true;
                     } else {
                         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
                         statusBtnFiltrar = false;
                         FechaAntes.setEditable(true);
-                        FechaDespues.setEditable(true);
-
+                        FechaDespues.setEditable(true);                       
+                        FechaAntes.setDate(null);
+                        FechaDespues.setDate(null);
+                        controlVentanas.limpiarTablaGenerico(TablaReportes);
                         controlVentanas.abrirFormularioReportes(controlVentanas.getControl().getPanelPrincipal());
                     }
 
@@ -581,6 +573,7 @@ public class formularioReporte extends javax.swing.JPanel {
 
         trs = new TableRowSorter(modelo);
         TablaReportes.setRowSorter(trs);
+        
     }//GEN-LAST:event_txtFiltroEmisorKeyTyped
 
     private void txtNombreComercialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreComercialKeyTyped

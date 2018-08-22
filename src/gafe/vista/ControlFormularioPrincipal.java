@@ -121,13 +121,13 @@ public class ControlFormularioPrincipal {
                                     if (lista.get(i).getResumenFactura().getTotalVenta() != null) {
                                         total = lista.get(i).getResumenFactura().getTotalVenta().toString();
                                     }
-                                    AgregarDatosTabla(consecutivo, emisor, receptor, total, control.obtenerTabla());
+                                    AgregarDatosTabla(consecutivo, emisor, receptor, total, control.tablaListar());
 
                                 }
                             } else {
                                 System.out.println("vacio");
                             }
-                        } else if ((nombreNodo == "Reportes")) {
+                        } else if ((nombreNodo == "Reportes")) {                           
                             RecursosCompartidos.setRuta(ruta);
                             RecursosCompartidos.setCedulaJuridicaProyecto(CedulaJuridicaGlobal); // Almacenar la cedula juridica
                             AbrirPaneles(nombreNodo, panelPrincipal);
@@ -162,7 +162,7 @@ public class ControlFormularioPrincipal {
     public void abrirFormularioListarXml(JPanel panelPrincipal) {
         panelPrincipal.removeAll();
         formularioListarXml formlarioListarXml = control.getFormularioListarXml();
-        formlarioListarXml.limpiarTabla();
+        limpiarTablaGenerico(control.getFormularioListarXml().ObtenerTablaListar());
         formlarioListarXml.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
         formlarioListarXml.setSize(599, 284);
         panelPrincipal.add(formlarioListarXml);
@@ -173,7 +173,7 @@ public class ControlFormularioPrincipal {
     public void abrirFormularioReportes(JPanel panelPrincipal) {
         panelPrincipal.removeAll();
         formularioReporte fomrReporte = control.getFormReporte();
-        fomrReporte.limpiarTabla();
+        limpiarTablaGenerico(control.getFormReporte().ObtenerTablaReportes());
         fomrReporte.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
 
         //Agregué esto
@@ -188,7 +188,7 @@ public class ControlFormularioPrincipal {
 
     //Este abre el formulario con filtros de categoria y fecha
     public void abrirFormularioReportes(JTable TablaReportes,String fIncio, String fFinal) {
-       
+        
         String fechaComparar = "00/00/0000";
         
         DefaultTableModel modelo = (DefaultTableModel) TablaReportes.getModel();
@@ -210,17 +210,26 @@ public class ControlFormularioPrincipal {
                 
                 if(i == 0){ // para que cuando llegue a 0 no busque el 0-1 osea num negativo.
                     break;
-                }
-
-           
+                }           
         }
         TablaReportes.setModel(modelo);
-        
-        
-        
-        
+                
     }
 
+    
+    public void limpiarTablaGenerico(JTable table){
+        DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+        for (int i = 0; i < table.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i-=1;
+        }
+    
+    
+    }
+    
+    
+    
+    
     public JPanel panelPrincipal() {
         return control.getPanelPrincipal();
     }

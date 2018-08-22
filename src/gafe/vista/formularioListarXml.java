@@ -203,7 +203,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
     
     //retornar la tabla para poder cargarla a la hora de abrir el archivo .GAFE
-    public JTable obtenerTabla() {
+    public JTable ObtenerTablaListar() {
         return tablaXml;
     }
 
