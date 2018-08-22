@@ -21,17 +21,7 @@ public class formularioProveedores extends javax.swing.JPanel {
         initComponents();
         this.controlVentanas = controlFormularioPrincipal;
     }
-    
-        public void limpiarTabla() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        int filas = jTable1.getRowCount();
-        for (int i = 0; filas > i; i++) {
-            modelo.removeRow(0);
-            System.out.println("Limpiar");
-        }   
-        lblEmpresa.setText("");
-        lblCedulaJuridica.setText("");
-    }
+
         
     public void llenarDatosProyecto(String nombre, String cedula) {
         lblEmpresa.setText(cedula);

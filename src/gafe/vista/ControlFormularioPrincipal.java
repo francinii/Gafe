@@ -53,16 +53,13 @@ import javax.xml.bind.Unmarshaller;
 public class ControlFormularioPrincipal {
 
     public ControlFormularioPrincipal(Control control) {
-        this.control = control;
-            
+        this.control = control;         
     }
 
     public Control getControl() {
         return control;
     }
-    
-    
-     
+         
     public boolean validarCedulaProyecto(File ruta, String cedula) {
         return control.validarCedulaProyecto(ruta, cedula);
     }
@@ -122,7 +119,6 @@ public class ControlFormularioPrincipal {
                                         total = lista.get(i).getResumenFactura().getTotalVenta().toString();
                                     }
                                     AgregarDatosTabla(consecutivo, emisor, receptor, total, control.tablaListar());
-
                                 }
                             } else {
                                 System.out.println("vacio");
@@ -276,22 +272,19 @@ public class ControlFormularioPrincipal {
     public void abrirFormularioClientes(JPanel panelPrincipal) {
         panelPrincipal.removeAll();
         formularioClientes formClientes = control.getFormClientes();
-        formClientes.limpiarTabla();
+        limpiarTablaGenerico(control.getFormClientes().tablaClientes());
         formClientes.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
-
         llenarClientes();
-
         formClientes.setSize(599, 284);
         panelPrincipal.add(formClientes);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
-
     }
 
     public void abrirFormularioProveedores(JPanel panelPrincipal) {
         panelPrincipal.removeAll();
         formularioProveedores formProveedor = control.getFormProveedores();
-        formProveedor.limpiarTabla();
+        limpiarTablaGenerico(control.getFormProveedores().tablaProveedores());
         formProveedor.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
         llenarProveedores();
         formProveedor.setSize(599, 284);
