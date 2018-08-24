@@ -17,7 +17,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
     public formularioPrincipal(Control control, ControlFormularioPrincipal controlFormularioPrincipal) {
         this.setTitle("Gestor de Facturación Electrónica");
-        Image icon = new ImageIcon(getClass().getResource("/recursos/gafe.png")).getImage();
+        Image icon = new ImageIcon(getClass().getResource("/recursos/Camelot.png")).getImage();
         setIconImage(icon);
         this.control = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;

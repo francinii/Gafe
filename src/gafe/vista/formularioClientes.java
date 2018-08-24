@@ -2,12 +2,21 @@ package gafe.vista;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class formularioClientes extends javax.swing.JPanel {
 
+    DefaultTableModel modelo;
+    
     public formularioClientes(ControlFormularioPrincipal controlFormularioPrincipal) {
         this.controlVentanas = controlFormularioPrincipal;
         initComponents();
+        
+        //Crear los filtros en los header de las tablas.
+        modelo = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
+        jTable1.setRowSorter(elQueOrdena);
     }
 
     public JTable tablaClientes() {

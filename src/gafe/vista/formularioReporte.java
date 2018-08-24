@@ -11,9 +11,11 @@ import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,20 +33,19 @@ public class formularioReporte extends javax.swing.JPanel {
 
     ControlFormularioPrincipal controlVentanas;
     DefaultTableModel modelo;
-    TableRowSorter trs;
-    
+    TableRowSorter trs;   
     boolean statusBtnFiltrar = false;
 
     public formularioReporte(ControlFormularioPrincipal control) {
         this.controlVentanas = control;
         initComponents();
-        init();
-       
+        init();     
     }
 
     public void init() {
         llenarComboFacturas();
         llenarComboEmitidosRecibidos();
+        llenarComboTipoFiltro();
          
         //Crear los filtros en los header de las tablas.
         modelo = (DefaultTableModel) TablaReportes.getModel();
@@ -75,7 +76,13 @@ public class formularioReporte extends javax.swing.JPanel {
             todo,noAplica, emitidas, recibidas
         }));
     }
-
+    
+    private void llenarComboTipoFiltro() {
+        ComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+            todo,emisor, comercialEmisor, cedEmisor,receptor,comercialReceptor,cedReceptor,numFactura
+        }));  
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -88,20 +95,8 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnFiltro = new javax.swing.JButton();
-        txtFiltroNombre = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtFiltroEmisor = new javax.swing.JTextField();
-        txtNombreComercial = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtNombreComercialRecep = new javax.swing.JTextField();
-        txtFiltroCedEmisor = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        txtFiltroCedReceptor = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtFiltroFactura = new javax.swing.JTextField();
+        txtFiltro = new javax.swing.JTextField();
         FechaAntes = new org.jdesktop.swingx.JXDatePicker();
         FechaDespues = new org.jdesktop.swingx.JXDatePicker();
         jLabel12 = new javax.swing.JLabel();
@@ -110,6 +105,7 @@ public class formularioReporte extends javax.swing.JPanel {
         lblCedulaJuridica = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         JComboEmitidasRecibidas = new javax.swing.JComboBox<>();
+        ComboFiltro = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane(TablaReportes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TablaReportes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -130,20 +126,22 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(7, 6, 1, 1);
         jPanel1.add(jComboBox1, gridBagConstraints);
 
         jLabel1.setForeground(new java.awt.Color(52, 21, 0));
         jLabel1.setText("Categoría");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel2.setForeground(new java.awt.Color(52, 21, 0));
@@ -153,6 +151,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel2, gridBagConstraints);
 
         jLabel3.setForeground(new java.awt.Color(52, 21, 0));
@@ -162,6 +161,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 9, 4, 4);
         jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -170,8 +170,9 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel4, gridBagConstraints);
 
         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png"))); // NOI18N
@@ -184,152 +185,30 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.insets = new java.awt.Insets(3, 2, 3, 0);
+        gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 1);
         jPanel1.add(btnFiltro, gridBagConstraints);
 
-        txtFiltroNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFiltroNombreActionPerformed(evt);
-            }
-        });
-        txtFiltroNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFiltroNombreKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtFiltroNombre, gridBagConstraints);
-
-        jLabel5.setText("Nombre Receptor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jLabel5, gridBagConstraints);
-
-        jLabel6.setText("Nombre Emisor");
+        jLabel6.setText("Filtro");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel6, gridBagConstraints);
 
-        txtFiltroEmisor.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFiltroEmisorKeyTyped(evt);
+                txtFiltroKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtFiltroEmisor, gridBagConstraints);
-
-        txtNombreComercial.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreComercialKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtNombreComercial, gridBagConstraints);
-
-        jLabel7.setText("Nom Comercial Emisor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel1.add(jLabel7, gridBagConstraints);
-
-        jLabel8.setText("Nom Comecial Receptor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jLabel8, gridBagConstraints);
-
-        txtNombreComercialRecep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreComercialRecepKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtNombreComercialRecep, gridBagConstraints);
-
-        txtFiltroCedEmisor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFiltroCedEmisorKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtFiltroCedEmisor, gridBagConstraints);
-
-        jLabel9.setText("Ced. Emisor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel1.add(jLabel9, gridBagConstraints);
-
-        jLabel10.setText("Ced. Receptor");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jLabel10, gridBagConstraints);
-
-        txtFiltroCedReceptor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFiltroCedReceptorKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtFiltroCedReceptor, gridBagConstraints);
-
-        jLabel11.setText("Numero de Factura");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel1.add(jLabel11, gridBagConstraints);
-
-        txtFiltroFactura.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFiltroFacturaKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        jPanel1.add(txtFiltroFactura, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(8, 9, 4, 4);
+        jPanel1.add(txtFiltro, gridBagConstraints);
 
         FechaAntes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,52 +219,66 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(1, 6, 1, 1);
         jPanel1.add(FechaAntes, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 5;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(FechaDespues, gridBagConstraints);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Empresa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel12, gridBagConstraints);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Cédula: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel13, gridBagConstraints);
 
         lblEmpresa.setText("jLabel14");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(lblEmpresa, gridBagConstraints);
 
         lblCedulaJuridica.setText("jLabel15");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(lblCedulaJuridica, gridBagConstraints);
 
         jLabel14.setText("Emitidas/Recibidas");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel14, gridBagConstraints);
 
         JComboEmitidasRecibidas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -396,10 +289,20 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 4;
+        gridBagConstraints.insets = new java.awt.Insets(5, 6, 1, 1);
         jPanel1.add(JComboEmitidasRecibidas, gridBagConstraints);
+
+        ComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 6, 1, 1);
+        jPanel1.add(ComboFiltro, gridBagConstraints);
 
         add(jPanel1);
 
@@ -443,12 +346,124 @@ public class formularioReporte extends javax.swing.JPanel {
         controlVentanas.exportarReporte(TablaReportes);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void JComboEmitidasRecibidasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEmitidasRecibidasItemStateChanged
 
-    
-    
+        /*
+        trs = new TableRowSorter(modelo);
+        String dato = (JComboEmitidasRecibidas.getSelectedItem().toString());
+
+        String d = (jComboBox1.getSelectedItem().toString()).replace(" ", "");
+
+        System.out.println("dat  "+dato);
+        System.out.println("d  "+d);
+        /*  if (dato.equals("Todos")) {
+            trs.setRowFilter(RowFilter.regexFilter(""));
+        } else {*/
+            //trs.setRowFilter(RowFilter.regexFilter(dato,58));
+
+            /*  List<RowFilter<Object, Object>> rfs = new ArrayList<RowFilter<Object, Object>>(2);
+            rfs.add(RowFilter.regexFilter(dato, 58));
+            rfs.add(RowFilter.regexFilter(d, 0));
+            RowFilter<Object, Object> af = RowFilter.andFilter(rfs);
+
+            //}
+
+        TablaReportes.setRowSorter(trs);
+        trs.setRowFilter(af);
+
+        */
+
+        FiltroTabla();
+
+    }//GEN-LAST:event_JComboEmitidasRecibidasItemStateChanged
+
+    private void FechaAntesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaAntesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaAntesActionPerformed
+
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        FiltroTabla();
+        
+        
+        /*String tipoFiltro = (ComboFiltro.getSelectedItem().toString());
+
+        
+        if (tipoFiltro.equals("Nombre Emisor")) {
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 8));
+                }
+
+            });
+
+        }else if(tipoFiltro.equals("Nombre Comercial Emisor")){
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 9));
+                }
+
+            });        
+        }else if(tipoFiltro.equals("Cédula Emisor")){
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 7));
+                }
+
+            });        
+        }else if(tipoFiltro.equals("Nombre Receptor")){
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 17));
+                }
+
+            });        
+        }else if(tipoFiltro.equals("Nombre Comercial Receptor")){
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 18));
+                }
+
+            });        
+        }else if(tipoFiltro.equals("Cédula Receptor")){
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 16));
+                }
+
+            });        
+        }else if(tipoFiltro.equals("Numero de Factura")){
+            txtFiltro.addKeyListener(new KeyAdapter() {
+
+                @Override
+                public void keyReleased(KeyEvent ke) {
+                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 2));
+                }
+
+            });        
+        }
+               
+        
+       
+
+        trs = new TableRowSorter(modelo);
+        TablaReportes.setRowSorter(trs);*/
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
 
-        if ((FechaAntes.getDate() != null)) { // Validacion campos en Blanco 
+        if ((FechaAntes.getDate() != null)) { // Validacion campos en Blanco
             try {
                 Calendar ini = Calendar.getInstance();
                 SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
@@ -462,13 +477,13 @@ public class formularioReporte extends javax.swing.JPanel {
                 String fFinal = formaterFin.format(FechaDespues.getDate());
 
                 /* Validacio para evitar traslape de fechas
-                    Convertir dechas a Date.
-                
-                el compare to devuelve 
+                Convertir dechas a Date.
+
+                el compare to devuelve
                 1 - bien
                 -1 si esta mal
-                
-                 */
+
+                */
                 Date fecha1 = formaterIni.parse(fIncio);
                 Date fecha2 = formaterIni.parse(fFinal);
 
@@ -478,14 +493,14 @@ public class formularioReporte extends javax.swing.JPanel {
                     if (statusBtnFiltrar == false) {
                         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/quitar.png")));
                         FechaAntes.setEditable(false);
-                        FechaDespues.setEditable(false);   
-                        controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);                       
+                        FechaDespues.setEditable(false);
+                        controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);
                         statusBtnFiltrar = true;
                     } else {
                         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
                         statusBtnFiltrar = false;
                         FechaAntes.setEditable(true);
-                        FechaDespues.setEditable(true);                       
+                        FechaDespues.setEditable(true);
                         FechaAntes.setDate(null);
                         FechaDespues.setDate(null);
                         controlVentanas.limpiarTablaGenerico(TablaReportes);
@@ -505,6 +520,10 @@ public class formularioReporte extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnFiltroActionPerformed
 
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        FiltroTabla();
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+    
     public String formatoFecha(String fecha) {
         if (!fecha.equals("")) {
             fecha = fecha.substring(0, 10);
@@ -537,146 +556,77 @@ public class formularioReporte extends javax.swing.JPanel {
         return false;
     }  
     
-    
-    
-    
-    private void txtFiltroNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroNombreKeyTyped
-
-        txtFiltroNombre.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)"+txtFiltroNombre.getText(), 17));
-            }
-
-        });
-
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
-
-    }//GEN-LAST:event_txtFiltroNombreKeyTyped
-
-    private void txtFiltroNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFiltroNombreActionPerformed
-
-    private void txtFiltroEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroEmisorKeyTyped
-        txtFiltroEmisor.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)"+txtFiltroEmisor.getText(), 8));
-            }
-
-        });
-
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
         
-    }//GEN-LAST:event_txtFiltroEmisorKeyTyped
-
-    private void txtNombreComercialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreComercialKeyTyped
-        txtNombreComercial.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtNombreComercial.getText(), 9));
-            }
-
-        });
-
+    public void FiltroTabla(){
+    
         trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
-    }//GEN-LAST:event_txtNombreComercialKeyTyped
-
-    private void txtNombreComercialRecepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreComercialRecepKeyTyped
-        txtNombreComercialRecep.addKeyListener(new KeyAdapter() {
-
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtNombreComercialRecep.getText(), 18));
-            }
-        });
-
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
-    }//GEN-LAST:event_txtNombreComercialRecepKeyTyped
-
-    private void txtFiltroCedEmisorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroCedEmisorKeyTyped
-        txtFiltroCedEmisor.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltroCedEmisor.getText(), 7));
-            }
-        });
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
-    }//GEN-LAST:event_txtFiltroCedEmisorKeyTyped
-
-    private void txtFiltroCedReceptorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroCedReceptorKeyTyped
-        txtFiltroCedReceptor.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltroCedReceptor.getText(), 16));
-            }
-        });
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
-    }//GEN-LAST:event_txtFiltroCedReceptorKeyTyped
-
-    private void txtFiltroFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroFacturaKeyTyped
-        txtFiltroFactura.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltroFactura.getText(), 2));
-            }
-        });
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);
-    }//GEN-LAST:event_txtFiltroFacturaKeyTyped
-
-    private void FechaAntesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaAntesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FechaAntesActionPerformed
-
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        trs = new TableRowSorter(modelo);
-        String dato = (jComboBox1.getSelectedItem().toString()).replace(" ", "");
+        List<RowFilter<Object, Object>> rfs = new ArrayList<RowFilter<Object, Object>>(3);
         
-        System.out.println("dat  "+dato);
-        if (dato.equals("Todos")) {
-            trs.setRowFilter(RowFilter.regexFilter(""));
-        } else {
-            trs.setRowFilter(RowFilter.regexFilter(dato,0));
+        String tipoFiltro = (ComboFiltro.getSelectedItem().toString()); // obtiende categoria del combo de filtros general
+        String emitidasRecibidas = (JComboEmitidasRecibidas.getSelectedItem().toString());
+        String tipoComprobante = (jComboBox1.getSelectedItem().toString()).replace(" ", "");
+            
+        String obtenerTxtFiltro = "";
+        
+        if (tipoFiltro.equals("Todos")) {
+            obtenerTxtFiltro = "";
+        }        
+        if (emitidasRecibidas.equals("Todos")) {
+            emitidasRecibidas = "";
+        }
+
+        if (tipoComprobante.equals("Todos")) {
+            tipoComprobante = "";
         }
         
+        
+                
+        
+        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 58));
+        rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
+        
+        /*  Validacion del filtro para el combo box     */ 
+        if (tipoFiltro.equals("Nombre Emisor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            System.out.println("engtreee "+txtFiltro.getText());
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 8));  // Case sensitive
+        } else if (tipoFiltro.equals("Nombre Comercial Emisor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 9));
+        } else if (tipoFiltro.equals("Cédula Emisor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 7));
+        } else if (tipoFiltro.equals("Nombre Receptor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 17));
+        } else if (tipoFiltro.equals("Nombre Comercial Receptor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 18));
+        } else if (tipoFiltro.equals("Cédula Receptor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 16));
+        } else if (tipoFiltro.equals("Numero de Factura")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 2));
+        }     
+        
+        System.out.println("EmitidasRecibidas  "+obtenerTxtFiltro);
+        System.out.println("tipoComprobante  "+tipoComprobante);
+        System.out.println("Filtro del txt "+obtenerTxtFiltro);
+       
+          
+        
+        System.out.println("Tamano "+rfs.size());
+        
+        
+        RowFilter<Object, Object> af = RowFilter.andFilter(rfs);       
         TablaReportes.setRowSorter(trs);
-
-
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
-    private void JComboEmitidasRecibidasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEmitidasRecibidasItemStateChanged
-        
-        trs = new TableRowSorter(modelo);
-        String dato = (JComboEmitidasRecibidas.getSelectedItem().toString());
-        
-        System.out.println("dat  "+dato);
-        if (dato.equals("Todos")) {
-            trs.setRowFilter(RowFilter.regexFilter(""));
-        } else {
-            trs.setRowFilter(RowFilter.regexFilter(dato,58));
-        }
-        
-        TablaReportes.setRowSorter(trs);
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_JComboEmitidasRecibidasItemStateChanged
-
+        trs.setRowFilter(af);          
+    }
+            
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboFiltro;
     private org.jdesktop.swingx.JXDatePicker FechaAntes;
     private org.jdesktop.swingx.JXDatePicker FechaDespues;
     private javax.swing.JComboBox<String> JComboEmitidasRecibidas;
@@ -685,31 +635,19 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCedulaJuridica;
     private javax.swing.JLabel lblEmpresa;
-    private javax.swing.JTextField txtFiltroCedEmisor;
-    private javax.swing.JTextField txtFiltroCedReceptor;
-    private javax.swing.JTextField txtFiltroEmisor;
-    private javax.swing.JTextField txtFiltroFactura;
-    private javax.swing.JTextField txtFiltroNombre;
-    private javax.swing.JTextField txtNombreComercial;
-    private javax.swing.JTextField txtNombreComercialRecep;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
     private String todo = "Todos";
     private String facturaElectronica = "Factura Electronica";
@@ -722,5 +660,15 @@ public class formularioReporte extends javax.swing.JPanel {
     private String emitidas = "Emitida";
     private String recibidas = "Recibida";
     
-
+    //Datos del combo filtro.
+    
+    private String emisor = "Nombre Emisor";
+    private String comercialEmisor = "Nombre Comercial Emisor";
+    private String cedEmisor = "Cédula Emisor";
+    private String receptor = "Nombre Receptor";
+    private String comercialReceptor = "Nombre Comercial Receptor";
+    private String cedReceptor = "Cédula Receptor";
+    private String numFactura = "Numero de Factura";
+    
+    
 }

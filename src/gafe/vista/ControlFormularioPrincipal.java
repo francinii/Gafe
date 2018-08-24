@@ -997,8 +997,8 @@ public class ControlFormularioPrincipal {
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;
     private final Control control;
-    String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
+    //String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
-    //public String directorioGlobalConfig = "GlobalConfig.txt";
+    public String directorioGlobalConfig = "GlobalConfig.txt";
     
 }
