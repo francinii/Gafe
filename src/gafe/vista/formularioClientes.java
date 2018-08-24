@@ -17,6 +17,9 @@ public class formularioClientes extends javax.swing.JPanel {
         modelo = (DefaultTableModel) jTable1.getModel();
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
         jTable1.setRowSorter(elQueOrdena);
+        
+        //formato a la tabla para dar colores a las celdas
+        jTable1.setDefaultRenderer(Object.class, new formatoTabla(3));
     }
 
     public JTable tablaClientes() {
@@ -38,7 +41,6 @@ public class formularioClientes extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         lblEmpresa = new javax.swing.JLabel();
         lblCedulaJuridica = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -57,6 +59,7 @@ public class formularioClientes extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -67,42 +70,43 @@ public class formularioClientes extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel3.add(jLabel12, gridBagConstraints);
 
         lblEmpresa.setText("jLabel14");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.1;
         jPanel3.add(lblEmpresa, gridBagConstraints);
 
         lblCedulaJuridica.setText("jLabel15");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.1;
         jPanel3.add(lblCedulaJuridica, gridBagConstraints);
-
-        add(jPanel3);
-
-        jPanel1.setBackground(new java.awt.Color(247, 238, 212));
-        jPanel1.setFocusable(false);
-        jPanel1.setMaximumSize(new java.awt.Dimension(100, 150));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(52, 21, 0));
         jLabel1.setText("Clientes");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weighty = 0.4;
-        jPanel1.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weighty = 0.6;
+        jPanel3.add(jLabel1, gridBagConstraints);
 
-        add(jPanel1);
+        add(jPanel3);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(37767, 37767));
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(37767, 230));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(230, 230));
         jScrollPane1.setName(""); // NOI18N
 
@@ -122,6 +126,8 @@ public class formularioClientes extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setMaximumSize(new java.awt.Dimension(2147483647, 0));
+        jTable1.setMinimumSize(new java.awt.Dimension(60, 0));
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
@@ -150,7 +156,6 @@ public class formularioClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

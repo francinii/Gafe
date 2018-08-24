@@ -22,6 +22,8 @@ DefaultTableModel modelo;
         modelo = (DefaultTableModel) jTable1.getModel();
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
         jTable1.setRowSorter(elQueOrdena);
+        
+        jTable1.setDefaultRenderer(Object.class, new formatoTabla(2));
     }
 
         
@@ -41,7 +43,6 @@ DefaultTableModel modelo;
         jLabel12 = new javax.swing.JLabel();
         lblEmpresa = new javax.swing.JLabel();
         lblCedulaJuridica = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -60,6 +61,7 @@ DefaultTableModel modelo;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -70,36 +72,39 @@ DefaultTableModel modelo;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel3.add(jLabel12, gridBagConstraints);
 
-        lblEmpresa.setText("jLabel14");
+        lblEmpresa.setText("Cedula Juridica");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.1;
         jPanel3.add(lblEmpresa, gridBagConstraints);
 
-        lblCedulaJuridica.setText("jLabel15");
+        lblCedulaJuridica.setText("Empresa");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.1;
         jPanel3.add(lblCedulaJuridica, gridBagConstraints);
-
-        add(jPanel3);
-
-        jPanel1.setBackground(new java.awt.Color(247, 238, 212));
-        jPanel1.setMaximumSize(new java.awt.Dimension(600, 150));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(52, 21, 0));
         jLabel1.setText("Proveedores");
-        jPanel1.add(jLabel1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        jPanel3.add(jLabel1, gridBagConstraints);
 
-        add(jPanel1);
+        add(jPanel3);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,7 +153,6 @@ DefaultTableModel modelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

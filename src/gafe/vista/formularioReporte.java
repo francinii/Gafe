@@ -52,6 +52,11 @@ public class formularioReporte extends javax.swing.JPanel {
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
         TablaReportes.setRowSorter(elQueOrdena);
 
+        // quitar que se muevan las columnas
+        TablaReportes.getTableHeader().setReorderingAllowed(false); 
+        
+        //formato a la tabla para dar colores a las celdas
+        TablaReportes.setDefaultRenderer(Object.class, new formatoTabla(0));
     }
 
     public JTable ObtenerTablaReportes() {
@@ -347,34 +352,7 @@ public class formularioReporte extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void JComboEmitidasRecibidasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEmitidasRecibidasItemStateChanged
-
-        /*
-        trs = new TableRowSorter(modelo);
-        String dato = (JComboEmitidasRecibidas.getSelectedItem().toString());
-
-        String d = (jComboBox1.getSelectedItem().toString()).replace(" ", "");
-
-        System.out.println("dat  "+dato);
-        System.out.println("d  "+d);
-        /*  if (dato.equals("Todos")) {
-            trs.setRowFilter(RowFilter.regexFilter(""));
-        } else {*/
-            //trs.setRowFilter(RowFilter.regexFilter(dato,58));
-
-            /*  List<RowFilter<Object, Object>> rfs = new ArrayList<RowFilter<Object, Object>>(2);
-            rfs.add(RowFilter.regexFilter(dato, 58));
-            rfs.add(RowFilter.regexFilter(d, 0));
-            RowFilter<Object, Object> af = RowFilter.andFilter(rfs);
-
-            //}
-
-        TablaReportes.setRowSorter(trs);
-        trs.setRowFilter(af);
-
-        */
-
         FiltroTabla();
-
     }//GEN-LAST:event_JComboEmitidasRecibidasItemStateChanged
 
     private void FechaAntesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaAntesActionPerformed
@@ -382,83 +360,7 @@ public class formularioReporte extends javax.swing.JPanel {
     }//GEN-LAST:event_FechaAntesActionPerformed
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
-        FiltroTabla();
-        
-        
-        /*String tipoFiltro = (ComboFiltro.getSelectedItem().toString());
-
-        
-        if (tipoFiltro.equals("Nombre Emisor")) {
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 8));
-                }
-
-            });
-
-        }else if(tipoFiltro.equals("Nombre Comercial Emisor")){
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 9));
-                }
-
-            });        
-        }else if(tipoFiltro.equals("Cédula Emisor")){
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 7));
-                }
-
-            });        
-        }else if(tipoFiltro.equals("Nombre Receptor")){
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 17));
-                }
-
-            });        
-        }else if(tipoFiltro.equals("Nombre Comercial Receptor")){
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 18));
-                }
-
-            });        
-        }else if(tipoFiltro.equals("Cédula Receptor")){
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 16));
-                }
-
-            });        
-        }else if(tipoFiltro.equals("Numero de Factura")){
-            txtFiltro.addKeyListener(new KeyAdapter() {
-
-                @Override
-                public void keyReleased(KeyEvent ke) {
-                    trs.setRowFilter(RowFilter.regexFilter("(?i)" + txtFiltro.getText(), 2));
-                }
-
-            });        
-        }
-               
-        
-       
-
-        trs = new TableRowSorter(modelo);
-        TablaReportes.setRowSorter(trs);*/
+        FiltroTabla();        
     }//GEN-LAST:event_txtFiltroKeyTyped
 
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
@@ -546,10 +448,6 @@ public class formularioReporte extends javax.swing.JPanel {
             if ((fechaComp.compareTo(fecha1) == 0 || fechaComp.compareTo(fecha1) > 0) && (fechaComp.compareTo(fecha2) == 0 || fechaComp.compareTo(fecha2) < 0)) {
                 return true;
             }
-//            if (!fechaComp.after(fecha1) && !fechaComp.before(fecha2)) {
-//                return true;
-//                /* historyDate <= todayDate <= futureDate */
-//            }
         } catch (ParseException ex) {
             Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -578,10 +476,7 @@ public class formularioReporte extends javax.swing.JPanel {
         if (tipoComprobante.equals("Todos")) {
             tipoComprobante = "";
         }
-        
-        
                 
-        
         rfs.add(RowFilter.regexFilter(emitidasRecibidas, 58));
         rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
         

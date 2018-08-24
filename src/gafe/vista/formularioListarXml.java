@@ -41,6 +41,11 @@ public class formularioListarXml extends javax.swing.JPanel {
         initComponents();
         this.controlVentanas = control;
         setVisible(true);
+        
+        
+        //formato a la tabla para dar colores a las celdas
+        tablaXml.setDefaultRenderer(Object.class, new formatoTabla(1));
+        
     }
 
     @SuppressWarnings("unchecked")
