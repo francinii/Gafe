@@ -1,5 +1,6 @@
 package gafe.vista;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import gafe.modelo.FormatoFecha;
 import gafe.modelo.TipoFactura;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.RowFilter.ComparisonType;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -131,7 +133,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 4;
@@ -143,7 +145,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel1.setText("Categoría");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
@@ -153,7 +155,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel2.setText("Desde");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
@@ -163,7 +165,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel3.setText("Hasta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(8, 9, 4, 4);
@@ -189,14 +191,14 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.insets = new java.awt.Insets(4, 3, 4, 1);
         jPanel1.add(btnFiltro, gridBagConstraints);
 
         jLabel6.setText("Filtro");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
@@ -209,7 +211,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(8, 9, 4, 4);
@@ -222,13 +224,13 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(1, 6, 1, 1);
         jPanel1.add(FechaAntes, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 5;
         gridBagConstraints.weightx = 0.1;
@@ -280,7 +282,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel14.setText("Emitidas/Recibidas");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
@@ -294,7 +296,7 @@ public class formularioReporte extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 4;
@@ -304,7 +306,7 @@ public class formularioReporte extends javax.swing.JPanel {
         ComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 1, 1);
         jPanel1.add(ComboFiltro, gridBagConstraints);
@@ -353,6 +355,16 @@ public class formularioReporte extends javax.swing.JPanel {
 
     private void JComboEmitidasRecibidasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEmitidasRecibidasItemStateChanged
         FiltroTabla();
+        
+        //Lo que viene aqui es para cuando esta seleccionada la fecha, y se cambian los parametros, lo que hace 
+        // reiniciar los parametros de fecha.
+        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
+        statusBtnFiltrar = false;
+        FechaAntes.setEditable(true);
+        FechaDespues.setEditable(true);  
+        FechaAntes.setDate(null);
+        FechaDespues.setDate(null);
+        
     }//GEN-LAST:event_JComboEmitidasRecibidasItemStateChanged
 
     private void FechaAntesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaAntesActionPerformed
@@ -360,53 +372,52 @@ public class formularioReporte extends javax.swing.JPanel {
     }//GEN-LAST:event_FechaAntesActionPerformed
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
-        FiltroTabla();        
+        FiltroTabla(); 
+        
+        //Lo que viene aqui es para cuando esta seleccionada la fecha, y se cambian los parametros, lo que hace 
+        // reiniciar los parametros de fecha.       
+        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
+        statusBtnFiltrar = false;
+        FechaAntes.setEditable(true);
+        FechaDespues.setEditable(true);  
+        FechaAntes.setDate(null);
+        FechaDespues.setDate(null);
+        
     }//GEN-LAST:event_txtFiltroKeyTyped
 
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
 
         if ((FechaAntes.getDate() != null)) { // Validacion campos en Blanco
-            try {
+            //try {
                 Calendar ini = Calendar.getInstance();
-                SimpleDateFormat formaterIni = new SimpleDateFormat("dd/MM/yyyy");
-                formaterIni.format(FechaAntes.getDate());
-
-                Calendar fin = Calendar.getInstance();
-                SimpleDateFormat formaterFin = new SimpleDateFormat("dd/MM/yyyy");
-                formaterFin.format(FechaDespues.getDate());
-
-                String fIncio = formaterIni.format(FechaAntes.getDate());
-                String fFinal = formaterFin.format(FechaDespues.getDate());
-
-                /* Validacio para evitar traslape de fechas
-                Convertir dechas a Date.
-
-                el compare to devuelve
-                1 - bien
-                -1 si esta mal
-
-                */
-                Date fecha1 = formaterIni.parse(fIncio);
-                Date fecha2 = formaterIni.parse(fFinal);
-
-                int fechasComparadas = fecha2.compareTo(fecha1);
-
+                
+                Date desde = FechaAntes.getDate();
+                Date hasta = FechaDespues.getDate();
+                
+                int fechasComparadas = hasta.compareTo(desde);
+                  
                 if (fechasComparadas > 0) {
                     if (statusBtnFiltrar == false) {
                         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/quitar.png")));
                         FechaAntes.setEditable(false);
                         FechaDespues.setEditable(false);
-                        controlVentanas.abrirFormularioReportes(TablaReportes, fIncio, fFinal);
                         statusBtnFiltrar = true;
+                        FiltroTabla(desde,hasta);
+                         
                     } else {
                         btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
                         statusBtnFiltrar = false;
                         FechaAntes.setEditable(true);
-                        FechaDespues.setEditable(true);
+                        FechaDespues.setEditable(true);                 
+                        FiltroTabla(null,null);
+                        
+                        // al quitar el filtro de fecha quitar todos los demas filtros
+                        jComboBox1.setSelectedIndex(0);
+                        JComboEmitidasRecibidas.setSelectedIndex(0);
+                        ComboFiltro.setSelectedIndex(0);
+                        txtFiltro.setText("");
                         FechaAntes.setDate(null);
                         FechaDespues.setDate(null);
-                        controlVentanas.limpiarTablaGenerico(TablaReportes);
-                        controlVentanas.abrirFormularioReportes(controlVentanas.getControl().getPanelPrincipal());
                     }
 
                 } else {
@@ -414,16 +425,26 @@ public class formularioReporte extends javax.swing.JPanel {
 
                 }
 
-            } catch (ParseException ex) {
-                Logger.getLogger(formularioReporte.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
         } else {
             JOptionPane.showMessageDialog(null, "Debes ingresar las fechas en el filtro", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         }
+                        
+        
     }//GEN-LAST:event_btnFiltroActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         FiltroTabla();
+        
+        //Lo que viene aqui es para cuando esta seleccionada la fecha, y se cambian los parametros, lo que hace 
+        // reiniciar los parametros de fecha.
+        btnFiltro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Filter List.png")));
+        statusBtnFiltrar = false;
+        FechaAntes.setEditable(true);
+        FechaDespues.setEditable(true);  
+        FechaAntes.setDate(null);
+        FechaDespues.setDate(null);
+        
     }//GEN-LAST:event_jComboBox1ItemStateChanged
     
     public String formatoFecha(String fecha) {
@@ -518,7 +539,83 @@ public class formularioReporte extends javax.swing.JPanel {
         TablaReportes.setRowSorter(trs);
         trs.setRowFilter(af);          
     }
+    
+    
+    public void FiltroTabla(Date desde , Date hasta){
+    
+        /* 
+            Este filtro solo aplica para cuando queremos fechas.
+        */
+        
+        trs = new TableRowSorter(modelo);
+        List<RowFilter<Object, Object>> rfs = new ArrayList<RowFilter<Object, Object>>(5);
+        
+        String tipoFiltro = (ComboFiltro.getSelectedItem().toString()); // obtiende categoria del combo de filtros general
+        String emitidasRecibidas = (JComboEmitidasRecibidas.getSelectedItem().toString());
+        String tipoComprobante = (jComboBox1.getSelectedItem().toString()).replace(" ", "");
             
+        String obtenerTxtFiltro = "";
+        
+        if (tipoFiltro.equals("Todos")) {
+            obtenerTxtFiltro = "";
+        }        
+        if (emitidasRecibidas.equals("Todos")) {
+            emitidasRecibidas = "";
+        }
+
+        if (tipoComprobante.equals("Todos")) {
+            tipoComprobante = "";
+        }
+           
+                
+        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 58));
+        rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
+        
+        /*  Validacion del filtro para el combo box     */ 
+        if (tipoFiltro.equals("Nombre Emisor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            System.out.println("engtreee "+txtFiltro.getText());
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 8));  // Case sensitive
+        } else if (tipoFiltro.equals("Nombre Comercial Emisor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 9));
+        } else if (tipoFiltro.equals("Cédula Emisor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 7));
+        } else if (tipoFiltro.equals("Nombre Receptor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 17));
+        } else if (tipoFiltro.equals("Nombre Comercial Receptor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 18));
+        } else if (tipoFiltro.equals("Cédula Receptor")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 16));
+        } else if (tipoFiltro.equals("Numero de Factura")) {
+            obtenerTxtFiltro = txtFiltro.getText();
+            rfs.add(2, RowFilter.regexFilter("(?i)" + obtenerTxtFiltro, 2));
+        }
+
+        System.out.println("EmitidasRecibidas  " + obtenerTxtFiltro);
+        System.out.println("tipoComprobante  " + tipoComprobante);
+        System.out.println("Filtro del txt " + obtenerTxtFiltro);
+
+        
+        if ((desde != null) || (hasta != null)) {
+            rfs.add(RowFilter.dateFilter(ComparisonType.AFTER, desde, 3));
+            rfs.add(RowFilter.dateFilter(ComparisonType.BEFORE, hasta, 3));
+
+        }else { //esto es para cuando quiero quitar el filtro de las fechas.
+            rfs.add(RowFilter.regexFilter(""));
+            rfs.add(RowFilter.regexFilter(""));
+        }
+        
+        RowFilter<Object, Object> af = RowFilter.andFilter(rfs);       
+        TablaReportes.setRowSorter(trs);
+        trs.setRowFilter(af);          
+    }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboFiltro;

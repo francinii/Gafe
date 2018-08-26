@@ -100,10 +100,8 @@ public class formularioClientes extends javax.swing.JPanel {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
-        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.weighty = 0.1;
         jPanel3.add(jLabel1, gridBagConstraints);
-
-        add(jPanel3);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setMaximumSize(new java.awt.Dimension(37767, 230));
@@ -130,7 +128,15 @@ public class formularioClientes extends javax.swing.JPanel {
         jTable1.setMinimumSize(new java.awt.Dimension(60, 0));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.4;
+        jPanel3.add(jScrollPane1, gridBagConstraints);
+
+        add(jPanel3);
 
         jPanel2.setBackground(new java.awt.Color(247, 238, 212));
 

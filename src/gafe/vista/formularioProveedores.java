@@ -102,9 +102,9 @@ DefaultTableModel modelo;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
         jPanel3.add(jLabel1, gridBagConstraints);
-
-        add(jPanel3);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,7 +124,16 @@ DefaultTableModel modelo;
         });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.4;
+        jPanel3.add(jScrollPane1, gridBagConstraints);
+
+        add(jPanel3);
 
         jPanel2.setBackground(new java.awt.Color(247, 238, 212));
 

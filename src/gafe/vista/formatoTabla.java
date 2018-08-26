@@ -3,6 +3,9 @@ package gafe.vista;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -27,20 +30,19 @@ public class formatoTabla extends DefaultTableCellRenderer{
     
     Color seleccionado = new Color(102, 179, 255);
 
+     DateFormat formatter;
+     
     public formatoTabla(int identificadorTabla) {
         this.identificadorTabla = identificadorTabla;
     }
-    
-    
-    
+        
     public Component getTableCellRendererComponent(JTable table,
-      Object value,
-      boolean isSelected,
-      boolean hasFocus,
-      int row,
-      int column)
-    {
-
+            Object value,
+            boolean isSelected,
+            boolean hasFocus,
+            int row,
+            int column) {              
+        
         if (identificadorTabla == 0) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (row % 2 == 0) {
@@ -49,40 +51,40 @@ public class formatoTabla extends DefaultTableCellRenderer{
             } else {
                 this.setBackground(Color.WHITE);
             }
-            
+
             if (isSelected) {
                 this.setBackground(seleccionado);
             }
-            
-            
-            
-       }if (identificadorTabla == 1) {
+
+        }
+        if (identificadorTabla == 1) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (row % 2 == 0) {
                 this.setBackground(MiNegro);
 
             } else {
                 this.setBackground(Color.WHITE);
-            }  
-            
+            }
+
             if (isSelected) {
                 this.setBackground(seleccionado);
             }
-       }
-       if (identificadorTabla == 2) {
+        }
+        if (identificadorTabla == 2) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (row % 2 == 0) {
                 this.setBackground(MiAzul);
 
             } else {
                 this.setBackground(Color.WHITE);
-            } 
-            
+            }
+
             if (isSelected) {
                 this.setBackground(seleccionado);
             }
-            
-       }if (identificadorTabla == 3) {
+
+        }
+        if (identificadorTabla == 3) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (row % 2 == 0) {
                 this.setBackground(MiAmarillo);
@@ -90,14 +92,11 @@ public class formatoTabla extends DefaultTableCellRenderer{
             } else {
                 this.setBackground(Color.WHITE);
             }
-            
+
             if (isSelected) {
                 this.setBackground(seleccionado);
             }
-       }
-       
-       
-       
-      return this;
-   }  
+        }
+        return this;
+    }
 }

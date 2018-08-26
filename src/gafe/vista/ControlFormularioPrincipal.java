@@ -18,8 +18,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
@@ -190,7 +192,7 @@ public class ControlFormularioPrincipal {
         DefaultTableModel modelo = (DefaultTableModel) TablaReportes.getModel();
         
         int numFilas = TablaReportes.getRowCount();
-        for (int i = numFilas - 1; i <= numFilas; i--) {
+        /*for (int i = numFilas - 1; i <= numFilas; i--) {
 
            
                 String fechaFactura = modelo.getValueAt(i, 3).toString();
@@ -204,9 +206,39 @@ public class ControlFormularioPrincipal {
                     }
                 }
                 
-                if(i == 0){ // para que cuando llegue a 0 no busque el 0-1 osea num negativo.
+                System.out.println("Numero de filas "+numFilas);
+                if(numFilas == 0){ // para que cuando llegue a 0 no busque el 0-1 osea num negativo.
                     break;
                 }           
+        }*/
+        
+        
+        for (int i = 0; i <= numFilas; i++) {
+
+            if (i != numFilas) { // cuando el tamano del la lista es igual a la del recorrido este termina
+                String fechaFactura = modelo.getValueAt(i, 3).toString();
+                fechaComparar = fechaFactura;
+                System.out.println("Fechas Facturas " + fechaComparar);
+                System.out.println("i " + i);
+                System.out.println("tamano "+numFilas);
+                if (!fechaComparar.equals("")) {
+                    if (compararFecha(fIncio, fFinal, fechaComparar) == false) {
+                        modelo.removeRow(i);
+                        numFilas = numFilas - 1;                
+                        i = i-1;
+  
+                        System.out.println("tamano 2 "+numFilas);
+                    }
+                }
+                
+                if(numFilas == 0){ // al ir eliminando las filas puede llegar un momento en el que el modelo vale 0, y por eso no salimos
+                    break;
+                }
+               
+            }else {
+                break;
+            }
+
         }
         TablaReportes.setModel(modelo);
                 
@@ -230,7 +262,9 @@ public class ControlFormularioPrincipal {
         return control.getPanelPrincipal();
     }
 
-    public String formatoFecha(String fecha) {
+    public Date formatoFecha(String fecha) {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
         if (!fecha.equals("")) {
             fecha = fecha.substring(0, 10);
             // 2018-02-14T10:51:04.707
@@ -238,9 +272,18 @@ public class ControlFormularioPrincipal {
             String anio = fechaFinal[0];
             String mes = fechaFinal[1];
             String dia = fechaFinal[2];
-            return dia + "/" + mes + "/" + anio;
+            String fechaAconvertir = dia + "/" + mes + "/" + anio;
+            
+            try {
+                Date date = formatter.parse(fechaAconvertir);
+                
+                return date;
+               // Date a = (DateTimeFormatter.ofPattern("dd/MM/yyyy")).format(date);
+            } catch (ParseException ex) {
+                System.out.println("Error al convertir la fecha");
+            }
         }
-        return "";
+        return null;
     }
 
     public boolean compararFecha(String fechaI, String fechaF, String fechaComparar) {
@@ -873,7 +916,7 @@ public class ControlFormularioPrincipal {
                 nombreReceptor = listFacturas.get(i).getReceptor().getNombre();
                 nombreComercialReceptor = listFacturas.get(i).getReceptor().getNombreComercial();
                 cedulaReceptor = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();               
-                String formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
+                Date formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
                 
                 
                 /*Validacion para el status si es recibida o emitida*/
