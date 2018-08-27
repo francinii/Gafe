@@ -1,6 +1,6 @@
 package gafe.vista;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+
 import gafe.modelo.FormatoFecha;
 import gafe.modelo.TipoFactura;
 import java.awt.event.ActionEvent;

@@ -56,7 +56,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         btnNuevo = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
+       
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -134,14 +134,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnAbrir);
 
-        btnGuardar.setBackground(new java.awt.Color(52, 21, 0));
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Save32.png"))); // NOI18N
-        btnGuardar.setToolTipText("Guardar");
-        btnGuardar.setFocusable(false);
-        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnGuardar);
-
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         jMenuBar1.setBackground(new java.awt.Color(66, 114, 215));
@@ -181,6 +173,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
         jMenuItem6.setText("Salir");
         jMenuItem6.setToolTipText("");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                System.exit(0);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
@@ -277,7 +274,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JTree arbol;
     private javax.swing.JButton btnAbrir;
-    private javax.swing.JButton btnGuardar;
+    
     private javax.swing.JButton btnNuevo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;

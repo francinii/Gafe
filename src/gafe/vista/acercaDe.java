@@ -36,7 +36,7 @@ public class acercaDe extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(247, 238, 212));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/gafe.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Camelot.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(300, 250));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
