@@ -867,7 +867,8 @@ public class ControlFormularioPrincipal {
                 List nom = new ArrayList();
                 tb.add(jTable1);
                 nom.add("Reporte de facturas");
-                String file = chooser.getSelectedFile().toString().concat(".xls");
+                //String file = chooser.getSelectedFile().toString().concat(".xls");
+                String file = chooser.getSelectedFile().toString();
                 try {
                     ExportarReporte e = new ExportarReporte(new File(file), tb, nom);
                     if (e.export()) {

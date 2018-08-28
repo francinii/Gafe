@@ -42,7 +42,7 @@ public class ExportarReporte {
     }
 
     public boolean export() {
-        boolean existencia;
+        boolean existencia = false;
         try {
             existencia = verificarExistencia();
 
@@ -52,7 +52,7 @@ public class ExportarReporte {
             Logger.getLogger(ExportarReporte.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (existencia = true) {
+        if (existencia) {
             // ya existe
             int dialogResult = JOptionPane.showConfirmDialog(null, "El archivo ya existe, desea sobreescribirlo", "Advertencia", JOptionPane.YES_NO_OPTION);
 
@@ -62,7 +62,11 @@ public class ExportarReporte {
                     File af = new File(file.getPath());
                     af.delete();
                     
-                    DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+                    // se le quita la eel .xls por si el usuario lo puso y despues lo vuelvo a poner
+                    String obtenerPath = new File(file.getPath()).toString();
+                    String sinExtencion = obtenerPath.replace(".xls","");
+                    
+                    DataOutputStream out = new DataOutputStream(new FileOutputStream(sinExtencion+".xls"));
                     WritableWorkbook w = Workbook.createWorkbook(out);
 
                     // for (int index = 0; index < tabla.size(); index++) {
@@ -112,7 +116,7 @@ public class ExportarReporte {
                     }
                     w.write();
                     w.close();
-
+                    resultado = true;
                 } catch (IOException ex) {
                     Logger.getLogger(ExportarReporte.class.getName()).log(Level.SEVERE, null, ex);
                  
@@ -199,12 +203,16 @@ public class ExportarReporte {
     public boolean verificarExistencia() throws IOException, BiffException {
 
         boolean verificarExistencia = false;
-        File af = new File(file.getPath());
+        
+        //Esta validacion es por si se agregar el .xls a la generar el reporte.
+        String obtenerPath = new File(file.getPath()).toString();
+        String sinExtencion = obtenerPath.replace(".xls","");
+        
+        File af = new File(sinExtencion+".xls");
         //Workbook workbook = Workbook.getWorkbook(file);
         
-        if (af != null) {
+        if (af.exists()) {
             System.out.println("Existe");
-            
             return true;
         } else {
             System.out.println("No existe");

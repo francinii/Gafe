@@ -23,6 +23,7 @@ DefaultTableModel modelo;
         TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(modelo);
         jTable1.setRowSorter(elQueOrdena);
         
+        //Dar formato a la tabla 
         jTable1.setDefaultRenderer(Object.class, new formatoTabla(2));
     }
 
