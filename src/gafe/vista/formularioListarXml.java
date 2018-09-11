@@ -46,6 +46,10 @@ public class formularioListarXml extends javax.swing.JPanel {
         //formato a la tabla para dar colores a las celdas
         tablaXml.setDefaultRenderer(Object.class, new formatoTabla(1));
         
+        
+        // quitar que se muevan las columnas
+        tablaXml.getTableHeader().setReorderingAllowed(false);
+        
     }
 
     @SuppressWarnings("unchecked")

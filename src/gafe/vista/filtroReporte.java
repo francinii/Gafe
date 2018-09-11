@@ -2,8 +2,10 @@ package gafe.vista;
 
 import gafe.control.Control;
 import gafe.modelo.RecursosCompartidos;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class filtroReporte extends javax.swing.JFrame {
@@ -11,9 +13,9 @@ public class filtroReporte extends javax.swing.JFrame {
     public filtroReporte(Control control) {
         this.control = control;
         initComponents();
-
-        // JScrollPane scrollPane = new JScrollPane(jPanel1);
-        // add(scrollPane);
+        this.setTitle("Filtros");
+        Image icon = new ImageIcon(getClass().getResource("/recursos/Filter List.png")).getImage();
+        setIconImage(icon);
     }
 
     @SuppressWarnings("unchecked")

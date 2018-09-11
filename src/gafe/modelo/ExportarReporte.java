@@ -140,8 +140,10 @@ public class ExportarReporte {
     public void crearArchivoDesdeCero() {
 
         try {
-
-            DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+            String obtenerPath = new File(file.getPath()).toString();
+            String sinExtencion = obtenerPath.replace(".xls","");
+                    
+            DataOutputStream out = new DataOutputStream(new FileOutputStream(sinExtencion+".xls"));
             WritableWorkbook w = Workbook.createWorkbook(out);
 
             // for (int index = 0; index < tabla.size(); index++) {

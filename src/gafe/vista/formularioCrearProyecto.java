@@ -160,7 +160,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         add(jLabel6, gridBagConstraints);
 
         jLabel7.setForeground(new java.awt.Color(52, 21, 0));
-        jLabel7.setText("Cédula jurídica");
+        jLabel7.setText("Cédula");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;

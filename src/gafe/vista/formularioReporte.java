@@ -204,6 +204,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel6, gridBagConstraints);
 
+        txtFiltro.setEditable(false);
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFiltroKeyTyped(evt);
@@ -304,6 +305,11 @@ public class formularioReporte extends javax.swing.JPanel {
         jPanel1.add(JComboEmitidasRecibidas, gridBagConstraints);
 
         ComboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboFiltro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboFiltroItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
@@ -387,7 +393,7 @@ public class formularioReporte extends javax.swing.JPanel {
 
     private void btnFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltroActionPerformed
 
-        if ((FechaAntes.getDate() != null)) { // Validacion campos en Blanco
+        if ((FechaAntes.getDate() != null) || FechaDespues.getDate() != null) { // Validacion campos en Blanco
             //try {
                 Calendar ini = Calendar.getInstance();
                 
@@ -446,6 +452,19 @@ public class formularioReporte extends javax.swing.JPanel {
         FechaDespues.setDate(null);
         
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void ComboFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboFiltroItemStateChanged
+
+        String seleccion = (String) ComboFiltro.getSelectedItem();
+        
+        if (!seleccion.equals("Todos")) {
+            txtFiltro.setEditable(true);
+            txtFiltro.setText("");
+        }else{
+            txtFiltro.setEditable(false);
+            txtFiltro.setText("");
+        }
+    }//GEN-LAST:event_ComboFiltroItemStateChanged
     
     public String formatoFecha(String fecha) {
         if (!fecha.equals("")) {

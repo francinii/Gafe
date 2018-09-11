@@ -114,6 +114,8 @@ public class LectorFacturasXML {
 
                 if (identificacionEmisor.equals(RecursosCompartidos.cedulaJuridicaProyecto) || identificacionReceptor.equals(RecursosCompartidos.cedulaJuridicaProyecto)) {                  
                     listadoFacturas.add(fact);
+                    JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+
                 } else {
                     int reply = JOptionPane.showConfirmDialog(null, "La factura " + numFactura + " no coincide con la cédula jurídica del proyecto \n"+ "¿Desea incluirla?", "Advertencia", JOptionPane.YES_NO_OPTION);
                     if (reply == JOptionPane.YES_OPTION) {

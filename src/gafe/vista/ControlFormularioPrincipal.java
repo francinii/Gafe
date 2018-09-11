@@ -7,6 +7,7 @@ import gafe.modelo.Factura;
 import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import gafe.modelo.TipoFactura;
+import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,6 +33,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -41,6 +43,7 @@ import javax.swing.JTree;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.filechooser.FileView;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -429,12 +432,18 @@ public class ControlFormularioPrincipal {
 
     public File[] abrirFileChooser(String nombreArchivo, String extension, boolean multipleEleccion) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        
+             
+        
+        
         FileFilter xmlFilter = new FileNameExtensionFilter(nombreArchivo, extension);
         jfc.setDialogTitle("Seleccione los archivos");
         jfc.setMultiSelectionEnabled(multipleEleccion);      
         jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         jfc.setFileFilter(xmlFilter);
         jfc.setAcceptAllFileFilterUsed(false);
+        Image icon = new ImageIcon(getClass().getResource("/recursos/Camelot.png")).getImage();
+        
         File[] files = null;
         int returnValue = jfc.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -521,11 +530,11 @@ public class ControlFormularioPrincipal {
             JOptionPane.showMessageDialog(null, "Problemas en las siguientes facturas "+factuasMalas,"Mensaje", JOptionPane.ERROR_MESSAGE);
 
            
-        } else {
+        }/* else {
             if (files != null) { // al cancelar el chooser que no muestre el mensaje
                 JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
+        }*/
         
         control.limpiarListadoError();
         
