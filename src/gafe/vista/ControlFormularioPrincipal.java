@@ -10,13 +10,16 @@ import gafe.modelo.TipoFactura;
 import java.awt.Image;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -1045,7 +1048,7 @@ public class ControlFormularioPrincipal {
     public void expandirArbol(JTree arbol) {      
         arbol.expandRow(0);   
     }
-
+    
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;

@@ -6,6 +6,7 @@ import gafe.modelo.Proyecto;
 import gafe.modelo.RecursosCompartidos;
 import gafe.vista.ControlFormularioPrincipal;
 import gafe.vista.acercaDe;
+import gafe.vista.cargarLicencia;
 import gafe.vista.filtroReporte;
 import gafe.vista.formularioClientes;
 import gafe.vista.formularioCrearProyecto;
@@ -16,8 +17,14 @@ import gafe.vista.formularioReporte;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTree;
@@ -28,20 +35,88 @@ import javax.xml.bind.Marshaller;
 public class Control {
 
     public Control() {
+
         lectorArchivoConfiguracion = new LectorArchivoConfiguracion();
-        controlVentanas = new ControlFormularioPrincipal(this);
-        formularioPrincipal = new formularioPrincipal(this, controlVentanas);
-        formularioListarXml = new formularioListarXml(controlVentanas);
-        formCrearProyecto = new formularioCrearProyecto(controlVentanas);
-        claseLectorFacturas = new LectorFacturasXML();
-        formReporte = new formularioReporte(controlVentanas);
-        formClientes = new formularioClientes(controlVentanas);
-        formProveedores = new formularioProveedores(controlVentanas);
-        recursosCompartidos = new RecursosCompartidos();
-        cambiarEstadoColumnasReporte(directorio);
-        acercaDe = new acercaDe();
+        List<String> licencia = null;
+        licencia = lectorArchivoConfiguracion.leerArchivo(directorioLicencia);
+        String lic;
+        
+        
+        if (licencia.size() > 0) {
+            // si el arhivo licencia tiene algo, lo convertimos y comparamos las fechas
+            lic = licencia.get(0);
+
+            Date date = leerLicencia(lic);
+            int resultadoFechas = compararFechaLicencia(date);
+
+            if (resultadoFechas >= 0) {
+                //Fechas correctas porque es positivo, la licencia esta bien
+                controlVentanas = new ControlFormularioPrincipal(this);
+                formularioPrincipal = new formularioPrincipal(this, controlVentanas);
+                formularioListarXml = new formularioListarXml(controlVentanas);
+                formCrearProyecto = new formularioCrearProyecto(controlVentanas);
+                claseLectorFacturas = new LectorFacturasXML();
+                formReporte = new formularioReporte(controlVentanas);
+                formClientes = new formularioClientes(controlVentanas);
+                formProveedores = new formularioProveedores(controlVentanas);
+                recursosCompartidos = new RecursosCompartidos();
+                cambiarEstadoColumnasReporte(directorio);
+                acercaDe = new acercaDe();
+            } else {
+                //formulario que indica que esta vencido el sitema.
+                formularioLicencia = new cargarLicencia(directorioLicencia);
+                formularioLicencia.setVisible(true);
+            }
+
+        } else {
+            //Si el archivo licencia esta vacio debe mostrar que se necesita la licencia para poder iniciar
+            formularioLicencia = new cargarLicencia(directorioLicencia);
+            formularioLicencia.setVisible(true);
+        }
+
     }
 
+    public Date leerLicencia(String licencia) {
+
+        DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US);
+        Date date;
+        try {
+            // desencripta la fecha.
+            String fechaDesencriptada = Encriptar.Desencriptar(licencia);
+            date = formatter.parse(fechaDesencriptada);
+            System.out.println("fechaaa " + date);
+
+        } catch (Exception ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+            date = null;
+        }
+
+        return date;
+
+    }
+
+    public int compararFechaLicencia(Date fechaVecimiento) {
+
+        /* 
+        s1 > s2, it returns positive number  
+        s1 < s2, it returns negative number  
+        s1 == s2, it returns 0  
+        
+        Pare este caso mi fecha de vencimiento tiene que se mayor que la facha actual, por lo tanto 
+        devuelve positivo 1.
+        
+         */
+        int resultado;
+
+        Date miFechaActual = new Date();
+
+        resultado = fechaVecimiento.compareTo(miFechaActual);
+
+        return resultado;
+    }
+
+    
+    
     public void ocultarMostrarColumnas(int columna, boolean status) {
         controlVentanas.ocultarMostrarColumnas(columna, status);
     }
@@ -164,6 +239,7 @@ public class Control {
     
         
     List<Proyecto> listadoProyecto = new ArrayList<>();
+    cargarLicencia formularioLicencia;
     formularioPrincipal formularioPrincipal;
     formularioListarXml formularioListarXml;
     formularioCrearProyecto formCrearProyecto;
@@ -175,8 +251,13 @@ public class Control {
     formularioClientes formClientes;
     formularioProveedores formProveedores;
     acercaDe acercaDe;
+   
+    
+    
     
     private String directorio = "config.txt";
+    
+    private String directorioLicencia = "licencia.lic";
     //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
 }
