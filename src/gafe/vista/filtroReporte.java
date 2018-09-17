@@ -16,6 +16,7 @@ public class filtroReporte extends javax.swing.JFrame {
         this.setTitle("Filtros");
         Image icon = new ImageIcon(getClass().getResource("/recursos/Filter List.png")).getImage();
         setIconImage(icon);
+        this.setLocationRelativeTo(null); // centrar la pantalla.
     }
 
     @SuppressWarnings("unchecked")

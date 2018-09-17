@@ -28,7 +28,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
         
     }
     public void init() {
-        initComponents();     
+        initComponents();  
+        this.setLocationRelativeTo(null); // centrar la pantalla.
         //Abre proyectos recientes
         try {
             this.controlFormularioPrincipal.abrirProyectosRecientes(arbol);
@@ -49,6 +50,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         menuContextual = new javax.swing.JPopupMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbol = new javax.swing.JTree();
@@ -68,12 +70,22 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
 
+        jMenuItem10.setText("Cerrar");
+        jMenuItem10.setToolTipText("");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        menuContextual.add(jMenuItem10);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setMinimumSize(new java.awt.Dimension(110, 23));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Proyectos");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.setComponentPopupMenu(menuContextual);
         arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         arbol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -288,6 +300,15 @@ public class formularioPrincipal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        if (RecursosCompartidos.getNodoSeleccionado() == 0) {
+            controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
+        } else {
+            controlFormularioPrincipal.cerrarUnProyecto(arbol);
+            controlFormularioPrincipal.expandirArbol(arbol);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
     
          
 
@@ -300,6 +321,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

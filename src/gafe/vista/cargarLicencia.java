@@ -26,6 +26,7 @@ public class cargarLicencia extends javax.swing.JFrame {
         this.setTitle("Advertencia");
         Image icon = new ImageIcon(getClass().getResource("/recursos/alerta.png")).getImage();
         setIconImage(icon);
+        this.setLocationRelativeTo(null); // centrar la pantalla.
         initComponents();
 
         this.rutaLicencia = rutLicencia;

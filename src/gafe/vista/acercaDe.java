@@ -152,6 +152,7 @@ public class acercaDe extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void configurar() {
+        this.setLocationRelativeTo(null); // centrar la pantalla.
         setSize(600,400);
         setResizable(false); 
         //Dimension d = getSize();
