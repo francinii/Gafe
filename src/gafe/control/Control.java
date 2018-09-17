@@ -11,9 +11,9 @@ import gafe.vista.filtroReporte;
 import gafe.vista.formularioClientes;
 import gafe.vista.formularioCrearProyecto;
 import gafe.vista.formularioListarXml;
-import gafe.vista.formularioPrincipal;
 import gafe.vista.formularioProveedores;
 import gafe.vista.formularioReporte;
+import gafe.vista.formularioPrincipal;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -41,18 +41,23 @@ public class Control {
         licencia = lectorArchivoConfiguracion.leerArchivo(directorioLicencia);
         String lic;
         
-        
-        if (licencia.size() > 0) {
+                if (licencia.size() > 0) {
             // si el arhivo licencia tiene algo, lo convertimos y comparamos las fechas
             lic = licencia.get(0);
 
             Date date = leerLicencia(lic);
+            // Guardar la fecha de vencimiento de licencia
+            RecursosCompartidos.setFechaLicencia(date.toString());
+
+            System.out.println("Fecha Vencimiento Lic " + date.toString());
             int resultadoFechas = compararFechaLicencia(date);
 
             if (resultadoFechas >= 0) {
                 //Fechas correctas porque es positivo, la licencia esta bien
                 controlVentanas = new ControlFormularioPrincipal(this);
+                
                 formularioPrincipal = new formularioPrincipal(this, controlVentanas);
+                //formularioPrincipal = new formularioPrincipalRes(this, controlVentanas);
                 formularioListarXml = new formularioListarXml(controlVentanas);
                 formCrearProyecto = new formularioCrearProyecto(controlVentanas);
                 claseLectorFacturas = new LectorFacturasXML();
@@ -62,6 +67,8 @@ public class Control {
                 recursosCompartidos = new RecursosCompartidos();
                 cambiarEstadoColumnasReporte(directorio);
                 acercaDe = new acercaDe();
+
+
             } else {
                 //formulario que indica que esta vencido el sitema.
                 formularioLicencia = new cargarLicencia(directorioLicencia);
@@ -236,7 +243,6 @@ public class Control {
         claseLectorFacturas.vaciarListaError();
     }
     
-    
         
     List<Proyecto> listadoProyecto = new ArrayList<>();
     cargarLicencia formularioLicencia;
@@ -255,7 +261,7 @@ public class Control {
     
     
     
-    private String directorio = "config.txt";
+    private String directorio = "config.data";
     
     private String directorioLicencia = "licencia.lic";
     //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";

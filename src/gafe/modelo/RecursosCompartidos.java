@@ -7,9 +7,11 @@ public class RecursosCompartidos {
     
     //ARchivo de configuracion
     //public static String directorio ="../gafe//src//recursos//config.txt";
-    public static String directorio ="config.txt";
+    public static String directorio ="config.data";
     public static int nodoSeleccionado = 0;  
     public static String cedulaJuridicaProyecto;
+    public static String fechaLicencia;
+    
 
     public RecursosCompartidos() {
     }
@@ -40,6 +42,24 @@ public class RecursosCompartidos {
     public static void setCedulaJuridicaProyecto(String cedulaJuridicaProyecto) {
         RecursosCompartidos.cedulaJuridicaProyecto = cedulaJuridicaProyecto;
     }
+
+    public static String getDirectorio() {
+        return directorio;
+    }
+
+    public static void setDirectorio(String directorio) {
+        RecursosCompartidos.directorio = directorio;
+    }
+
+    public static String getFechaLicencia() {
+        return fechaLicencia;
+    }
+
+    public static void setFechaLicencia(String fechaLicencia) {
+        RecursosCompartidos.fechaLicencia = fechaLicencia;
+    }
+    
+    
   
     
     

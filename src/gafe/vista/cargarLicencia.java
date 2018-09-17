@@ -1,6 +1,7 @@
 
 package gafe.vista;
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
@@ -21,6 +23,9 @@ public class cargarLicencia extends javax.swing.JFrame {
 
 
     public cargarLicencia(String rutLicencia) {
+        this.setTitle("Advertencia");
+        Image icon = new ImageIcon(getClass().getResource("/recursos/alerta.png")).getImage();
+        setIconImage(icon);
         initComponents();
 
         this.rutaLicencia = rutLicencia;
@@ -90,6 +95,11 @@ public class cargarLicencia extends javax.swing.JFrame {
         jPanel1.add(jButton1, gridBagConstraints);
 
         jButton2.setText("Aceptar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -110,8 +120,7 @@ public class cargarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        File file = abrirFileChooserLicencia(); 
-        
+        File file = abrirFileChooserLicencia();        
        
         txtRutaLicencia.setText(file.getPath());
 
@@ -126,6 +135,10 @@ public class cargarLicencia extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
         public String leerArhivoLicencia(File abre){

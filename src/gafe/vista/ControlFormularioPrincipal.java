@@ -251,7 +251,6 @@ public class ControlFormularioPrincipal {
         TablaReportes.setModel(modelo);
                 
     }
-
     
     public void limpiarTablaGenerico(JTable table){
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
@@ -262,8 +261,6 @@ public class ControlFormularioPrincipal {
     
     
     }
-    
-    
     
     
     public JPanel panelPrincipal() {
@@ -1053,6 +1050,6 @@ public class ControlFormularioPrincipal {
     private final Control control;
     //String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
-    public String directorioGlobalConfig = "GlobalConfig.txt";
+    public String directorioGlobalConfig = "GlobalConfig.data";
     
 }

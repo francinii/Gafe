@@ -36,14 +36,14 @@ import javax.xml.bind.JAXBException;
 
 public class formularioListarXml extends javax.swing.JPanel {
 
-    ControlFormularioPrincipal controlVentanas;
+    ControlFormularioPrincipal MicontrolVentanas;
 
     public formularioListarXml(ControlFormularioPrincipal control) {
         initComponents();
-        this.controlVentanas = control;
+        this.MicontrolVentanas = control;
         setVisible(true);
         
-        JPanel frame = control.getControl().getPanelPrincipal();
+        JPanel frame = MicontrolVentanas.getControl().getPanelPrincipal();
         
         this.FramePrincipal = frame;
         
@@ -195,7 +195,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             String guardarEn = RecursosCompartidos.getRuta();
-            controlVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true, tablaXml,FramePrincipal);
+            MicontrolVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true, tablaXml,FramePrincipal);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -207,7 +207,7 @@ public class formularioListarXml extends javax.swing.JPanel {
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea eliminar las facturas seleccionadas?", "", JOptionPane.YES_NO_OPTION);
         if (respuesta == 0) {
             try {
-                controlVentanas.eliminarFacturas(tablaXml);
+                MicontrolVentanas.eliminarFacturas(tablaXml);
             } catch (JAXBException ex) {
                 Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {

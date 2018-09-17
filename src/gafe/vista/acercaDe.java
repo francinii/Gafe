@@ -2,13 +2,20 @@
 package gafe.vista;
 
 import gafe.control.configuracion.Configuracion;
+import gafe.modelo.RecursosCompartidos;
 import java.awt.Dimension;
 import static java.awt.Frame.NORMAL;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
 
 
 public class acercaDe extends javax.swing.JFrame {
     public acercaDe() {
+        this.setTitle("Acerca de...");
+        Image icon = new ImageIcon(getClass().getResource("/recursos/acercade.png")).getImage();
+        setIconImage(icon);
+        
         initComponents();
         configurar();
     }
@@ -27,6 +34,8 @@ public class acercaDe extends javax.swing.JFrame {
         version = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        lblLicencia = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -48,7 +57,7 @@ public class acercaDe extends javax.swing.JFrame {
 
         aplicacion.setText("aplicacion");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
@@ -57,7 +66,7 @@ public class acercaDe extends javax.swing.JFrame {
 
         derechos.setText("derechos");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
@@ -68,7 +77,7 @@ public class acercaDe extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(4, 27, 4, 27);
@@ -76,7 +85,7 @@ public class acercaDe extends javax.swing.JFrame {
 
         proyecto.setText("proyecto");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
@@ -85,7 +94,7 @@ public class acercaDe extends javax.swing.JFrame {
 
         version.setText("version");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
@@ -100,11 +109,26 @@ public class acercaDe extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(12, 23, 0, 23);
         jPanel1.add(jScrollPane1, gridBagConstraints);
+
+        lblLicencia.setText("Licencia");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(4, 27, 4, 27);
+        jPanel1.add(lblLicencia, gridBagConstraints);
+
+        jLabel3.setText("Licencia");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(jLabel3, gridBagConstraints);
 
         getContentPane().add(jPanel1);
 
@@ -142,7 +166,7 @@ public class acercaDe extends javax.swing.JFrame {
             organizacion.setText(c.obtenerValorPropiedad("organizacion"));
             proyecto.setText(c.obtenerValorPropiedad("proyecto"));
             version.setText(String.format("Versión %s", c.obtenerValorPropiedad("version")));
-
+            lblLicencia.setText(RecursosCompartidos.getFechaLicencia());
         } catch (Exception e) {
             System.err.println("No se puede obtener la información de configuración..");
         }
@@ -167,10 +191,12 @@ public class acercaDe extends javax.swing.JFrame {
     private javax.swing.JLabel derechos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblLicencia;
     private javax.swing.JLabel organizacion;
     private javax.swing.JLabel proyecto;
     private javax.swing.JLabel version;

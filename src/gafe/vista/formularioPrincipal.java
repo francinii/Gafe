@@ -1,31 +1,32 @@
+
 package gafe.vista;
 
 import gafe.control.Control;
 import gafe.modelo.RecursosCompartidos;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import javax.xml.bind.JAXBException;
+
 
 public class formularioPrincipal extends javax.swing.JFrame {
 
+        
     public formularioPrincipal(Control control, ControlFormularioPrincipal controlFormularioPrincipal) {
-        this.setTitle("Gestor de Facturación Electrónica");
+        this.setTitle("Gestor de Facturación Electrónica CAMELOT");
         Image icon = new ImageIcon(getClass().getResource("/recursos/Camelot.png")).getImage();
         setIconImage(icon);
-        this.control = control; //puede que no se use mas adelante
+        this.MiControl = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;
         
         init();
         
     }
-
     public void init() {
         initComponents();     
         //Abre proyectos recientes
@@ -42,28 +43,23 @@ public class formularioPrincipal extends javax.swing.JFrame {
     public JTree arbol() {
         return arbol;
     }
-
-
+    
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         menuContextual = new javax.swing.JPopupMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbol = new javax.swing.JTree();
-        panelPrincipal = new javax.swing.JPanel();
+        panelPrincipalNuevo = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         btnNuevo = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
-       
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -72,23 +68,12 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
 
-        jMenuItem10.setText("Cerrar");
-        jMenuItem10.setToolTipText("");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        menuContextual.add(jMenuItem10);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 500));
 
         jScrollPane1.setMinimumSize(new java.awt.Dimension(110, 23));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Proyectos");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        arbol.setComponentPopupMenu(menuContextual);
         arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         arbol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -99,11 +84,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jScrollPane1);
 
-        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-        panelPrincipal.setLayout(new java.awt.BorderLayout());
-        jSplitPane1.setRightComponent(panelPrincipal);
-
-        getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
+        panelPrincipalNuevo.setBackground(new java.awt.Color(255, 255, 255));
+        panelPrincipalNuevo.setLayout(new java.awt.BorderLayout());
+        jSplitPane1.setRightComponent(panelPrincipalNuevo);
 
         jToolBar1.setBackground(new java.awt.Color(52, 21, 0));
         jToolBar1.setRollover(true);
@@ -135,8 +118,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btnAbrir);
 
-        getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
-
         jMenuBar1.setBackground(new java.awt.Color(66, 114, 215));
         jMenuBar1.setBorderPainted(false);
 
@@ -161,7 +142,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salir.png"))); // NOI18N
         jMenuItem5.setText("Cerrar todos los proyectos");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +156,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenuItem6.setToolTipText("");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                System.exit(0);
+                jMenuItem6ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem6);
@@ -200,6 +180,11 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/help.png"))); // NOI18N
         jMenuItem8.setText("Ayuda");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem8);
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/about.png"))); // NOI18N
@@ -215,77 +200,107 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 434, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(41, Short.MAX_VALUE)
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
     public JPanel getPanelPrincipal(){
-        return panelPrincipal;
-    }
-        
-    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {                                   
-        controlFormularioPrincipal.arbolMouseClicked(arbol, panelPrincipal);
-    }                                  
+        return panelPrincipalNuevo;
+    }      
+    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipalNuevo);
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
-    }                                          
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipal);
-    }                                        
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        controlFormularioPrincipal.abrirFormularioCrearProyecto(panelPrincipalNuevo);
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
-            controlFormularioPrincipal.abrirNuevoProyecto(arbol,control.getPanelPrincipal());
+            controlFormularioPrincipal.abrirNuevoProyecto(arbol,MiControl.getPanelPrincipal());
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }                                        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        try {
-            controlFormularioPrincipal.abrirNuevoProyecto(arbol,control.getPanelPrincipal());
-        } catch (JAXBException ex) {
-            Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }                                          
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        filtroReporte ventanaFiltros = new filtroReporte(control);
-        ventanaFiltros.leerArchivoConfiguracion();
-    }                                          
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        control.mostrarAcercaDe();
-    }                                          
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    }                                          
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        if (RecursosCompartidos.getNodoSeleccionado() == 0) {
-            controlFormularioPrincipal.cerrarTodosLosProyectos(arbol);
-        } else {
-            controlFormularioPrincipal.cerrarUnProyecto(arbol);
-            controlFormularioPrincipal.expandirArbol(arbol);
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        filtroReporte ventanaFiltros = new filtroReporte(MiControl);
+        ventanaFiltros.leerArchivoConfiguracion();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        MiControl.mostrarAcercaDe();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+         try {
+            controlFormularioPrincipal.abrirNuevoProyecto(arbol,MiControl.getPanelPrincipal());
+        } catch (JAXBException ex) {
+            Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }                                           
-    // Variables declaration - do not modify                     
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
+        controlFormularioPrincipal.arbolMouseClicked(arbol, panelPrincipalNuevo);
+    }//GEN-LAST:event_arbolMouseClicked
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        System.out.println("ENtre manual ...");
+
+        //ruta del archivo en el pc
+        String file = new String("Manual.pdf");
+
+        try {
+            //definiendo la ruta en la propiedad file
+            Runtime.getRuntime().exec("cmd /c start " + file);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    
+         
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbol;
     private javax.swing.JButton btnAbrir;
-    
     private javax.swing.JButton btnNuevo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -295,10 +310,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPopupMenu menuContextual;
-    private javax.swing.JPanel panelPrincipal;
-    // End of variables declaration                   
+    private javax.swing.JPanel panelPrincipalNuevo;
+    // End of variables declaration//GEN-END:variables
 
-    private final Control control;
+    private final Control MiControl;
     private final ControlFormularioPrincipal controlFormularioPrincipal;
-
 }
