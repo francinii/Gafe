@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileSystemView;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -24,6 +25,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         initComponents();
         validacion.setVisible(false);
         this.controlVentanas = c;
+        this.FramePrincipal = c.getControl().getPanelPrincipal();
         setVisible(true);
     }
 
@@ -251,7 +253,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        File ruta = controlVentanas.abrirFileChooser("xml", "xml");
+        File ruta = controlVentanas.abrirFileChooser("xml", "xml",FramePrincipal);
         if (ruta != null) {
             String cedula = txtCedula.getText();
             if (controlVentanas.validarCedulaProyecto(ruta, cedula)) {
@@ -271,6 +273,8 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         txtCedula.setText("");
 
     }
+    
+    private JPanel FramePrincipal;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;

@@ -38,7 +38,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -433,29 +435,27 @@ public class ControlFormularioPrincipal {
         }
     }
 
-    public File[] abrirFileChooser(String nombreArchivo, String extension, boolean multipleEleccion) {
+    public File[] abrirFileChooser(String nombreArchivo, String extension, boolean multipleEleccion,JPanel frame) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        
-             
-        
+
         
         FileFilter xmlFilter = new FileNameExtensionFilter(nombreArchivo, extension);
+        
         jfc.setDialogTitle("Seleccione los archivos");
         jfc.setMultiSelectionEnabled(multipleEleccion);      
         jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         jfc.setFileFilter(xmlFilter);
         jfc.setAcceptAllFileFilterUsed(false);
-        Image icon = new ImageIcon(getClass().getResource("/recursos/Camelot.png")).getImage();
         
         File[] files = null;
-        int returnValue = jfc.showOpenDialog(null);
+        int returnValue = jfc.showOpenDialog(frame); // este frame es para que traiga el icono del principio y lo muestre en el JChooser
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             files = jfc.getSelectedFiles();
-        }
+        } 
         return files;
     }
 
-    public File abrirFileChooser(String nombreArchivo, String extension) {
+    public File abrirFileChooser(String nombreArchivo, String extension, JPanel frame) {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         FileFilter xmlFilter = new FileNameExtensionFilter(nombreArchivo, extension);
         jfc.setDialogTitle("Seleccione los archivos");
@@ -464,7 +464,7 @@ public class ControlFormularioPrincipal {
         jfc.setFileFilter(xmlFilter);
         jfc.setAcceptAllFileFilterUsed(false);
         File files = null;
-        int returnValue = jfc.showOpenDialog(null);
+        int returnValue = jfc.showOpenDialog(frame);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             files = jfc.getSelectedFile();
         }
@@ -497,8 +497,8 @@ public class ControlFormularioPrincipal {
     }
 
     
-    public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion, JTable tabla) throws JAXBException, PropertyException, IOException {
-        File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion);
+    public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion, JTable tabla,JPanel frame) throws JAXBException, PropertyException, IOException {
+        File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion,frame);
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
         Marshaller m = context.createMarshaller();
         Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -519,28 +519,26 @@ public class ControlFormularioPrincipal {
             }
             eliminarFacturasRepetidas(proyect, m, tabla, ruta);
             modificarProyecto(proyect);
-            
-        }
-       
-        List<String>listadosErrores = control.obtenerListadoError(); //Esta lista se carga cuando hay errores a la hora de crear las facturas
 
-        if (listadosErrores.size() > 0) {
-            String factuasMalas = "";
-            for (int i = 0; i < listadosErrores.size(); i++) {
-                factuasMalas +=  listadosErrores.get(i)+"\n";
-            }
-            System.out.println("Facturas malas "+factuasMalas);
-            JOptionPane.showMessageDialog(null, "Problemas en las siguientes facturas "+factuasMalas,"Mensaje", JOptionPane.ERROR_MESSAGE);
+            List<String> listadosErrores = control.obtenerListadoError(); //Esta lista se carga cuando hay errores a la hora de crear las facturas
 
-           
-        }/* else {
-            if (files != null) { // al cancelar el chooser que no muestre el mensaje
+            if (listadosErrores.size() > 0) {
+                String factuasMalas = "";
+                for (int i = 0; i < listadosErrores.size(); i++) {
+                    factuasMalas += listadosErrores.get(i) + "\n";
+                }
+                System.out.println("Facturas malas " + factuasMalas);
+                JOptionPane.showMessageDialog(null, "Problemas en las siguientes facturas " + factuasMalas, "Mensaje", JOptionPane.ERROR_MESSAGE);
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+
             }
-        }*/
-        
+
+        }
+
         control.limpiarListadoError();
-        
+
     }
 
     public void modificarProyecto(Proyecto proyect) {
@@ -637,8 +635,8 @@ public class ControlFormularioPrincipal {
         }
     }
     
-    public void abrirNuevoProyecto(JTree arbol) throws JAXBException {
-        File files = abrirFileChooser("Gafe", "gafe");
+    public void abrirNuevoProyecto(JTree arbol,JPanel frame) throws JAXBException {
+        File files = abrirFileChooser("Gafe", "gafe",frame);
         if (files != null) {
             String ruta = files.getPath();
             List<Factura> lista = null;

@@ -25,6 +25,7 @@ import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -41,6 +42,10 @@ public class formularioListarXml extends javax.swing.JPanel {
         initComponents();
         this.controlVentanas = control;
         setVisible(true);
+        
+        JPanel frame = control.getControl().getPanelPrincipal();
+        
+        this.FramePrincipal = frame;
         
         
         //formato a la tabla para dar colores a las celdas
@@ -190,7 +195,7 @@ public class formularioListarXml extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             String guardarEn = RecursosCompartidos.getRuta();
-            controlVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true, tablaXml);
+            controlVentanas.agregarFacturaProyecto(guardarEn, "Archivos XML", "xml", true, tablaXml,FramePrincipal);
         } catch (JAXBException ex) {
             Logger.getLogger(formularioListarXml.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -215,6 +220,9 @@ public class formularioListarXml extends javax.swing.JPanel {
     public JTable ObtenerTablaListar() {
         return tablaXml;
     }
+    
+    
+    private JPanel FramePrincipal;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

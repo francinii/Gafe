@@ -21,6 +21,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         setIconImage(icon);
         this.control = control; //puede que no se use mas adelante
         this.controlFormularioPrincipal = controlFormularioPrincipal;
+        
         init();
         
     }
@@ -220,7 +221,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     public JPanel getPanelPrincipal(){
         return panelPrincipal;
     }
-    
+        
     private void arbolMouseClicked(java.awt.event.MouseEvent evt) {                                   
         controlFormularioPrincipal.arbolMouseClicked(arbol, panelPrincipal);
     }                                  
@@ -235,7 +236,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try {
-            controlFormularioPrincipal.abrirNuevoProyecto(arbol);
+            controlFormularioPrincipal.abrirNuevoProyecto(arbol,control.getPanelPrincipal());
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -243,7 +244,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         try {
-            controlFormularioPrincipal.abrirNuevoProyecto(arbol);
+            controlFormularioPrincipal.abrirNuevoProyecto(arbol,control.getPanelPrincipal());
         } catch (JAXBException ex) {
             Logger.getLogger(formularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
