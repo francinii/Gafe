@@ -81,6 +81,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jSplitPane1.setPreferredSize(new java.awt.Dimension(800, 500));
+
         jScrollPane1.setMinimumSize(new java.awt.Dimension(110, 23));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Proyectos");
@@ -99,6 +101,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
         panelPrincipalNuevo.setBackground(new java.awt.Color(255, 255, 255));
         panelPrincipalNuevo.setLayout(new java.awt.BorderLayout());
         jSplitPane1.setRightComponent(panelPrincipalNuevo);
+
+        getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
         jToolBar1.setBackground(new java.awt.Color(52, 21, 0));
         jToolBar1.setRollover(true);
@@ -129,6 +133,8 @@ public class formularioPrincipal extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(btnAbrir);
+
+        getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         jMenuBar1.setBackground(new java.awt.Color(66, 114, 215));
         jMenuBar1.setBorderPainted(false);
@@ -211,26 +217,6 @@ public class formularioPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 434, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(41, Short.MAX_VALUE)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
