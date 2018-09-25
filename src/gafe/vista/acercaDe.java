@@ -3,19 +3,21 @@ package gafe.vista;
 
 import gafe.control.configuracion.Configuracion;
 import gafe.modelo.RecursosCompartidos;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import static java.awt.Frame.NORMAL;
 import java.awt.Image;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
 
 
 public class acercaDe extends javax.swing.JFrame {
     public acercaDe() {
+        
         this.setTitle("Acerca de...");
         Image icon = new ImageIcon(getClass().getResource("/recursos/acercade.png")).getImage();
         setIconImage(icon);
-        
         initComponents();
         configurar();
     }
@@ -32,10 +34,9 @@ public class acercaDe extends javax.swing.JFrame {
         organizacion = new javax.swing.JLabel();
         proyecto = new javax.swing.JLabel();
         version = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         lblLicencia = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -101,20 +102,6 @@ public class acercaDe extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 27, 4, 27);
         jPanel1.add(version, gridBagConstraints);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.2;
-        gridBagConstraints.insets = new java.awt.Insets(12, 23, 0, 23);
-        jPanel1.add(jScrollPane1, gridBagConstraints);
-
         lblLicencia.setText("Licencia");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
@@ -129,6 +116,24 @@ public class acercaDe extends javax.swing.JFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         jPanel1.add(jLabel3, gridBagConstraints);
+
+        jLabel2.setBackground(new java.awt.Color(51, 51, 255));
+        jLabel2.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel2.setText("Terminos y Condiciones");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 27, 4, 27);
+        jPanel1.add(jLabel2, gridBagConstraints);
 
         getContentPane().add(jPanel1);
 
@@ -150,6 +155,24 @@ public class acercaDe extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cerrarVentana();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        
+        
+        String file = new String("Licencia.pdf");
+        
+        try {
+            //definiendo la ruta en la propiedad file
+            Runtime.getRuntime().exec("cmd /c start " + file);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        jLabel2.setCursor(new Cursor(HAND_CURSOR));
+    }//GEN-LAST:event_jLabel2MouseEntered
 
     private void configurar() {
         this.setLocationRelativeTo(null); // centrar la pantalla.
@@ -185,6 +208,8 @@ public class acercaDe extends javax.swing.JFrame {
         requestFocus();
         setExtendedState(NORMAL);
     }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,11 +217,10 @@ public class acercaDe extends javax.swing.JFrame {
     private javax.swing.JLabel derechos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblLicencia;
     private javax.swing.JLabel organizacion;
     private javax.swing.JLabel proyecto;

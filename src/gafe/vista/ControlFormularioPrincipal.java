@@ -117,7 +117,6 @@ public class ControlFormularioPrincipal {
                             if (p.getListadoFacturas() != null) {
                                 List<Factura> lista = p.getListadoFacturas();
                                 for (int i = 0; i < lista.size(); i++) {
-                                    //cargar datos tabla, el primer recorrido no entra porque es la factura en blanco
                                     String consecutivo = lista.get(i).getConsecutivo().toString();
                                     String emisor = lista.get(i).getEmisor().getNombre().toString();
                                     String receptor = "";
@@ -495,6 +494,11 @@ public class ControlFormularioPrincipal {
 
     
     public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion, JTable tabla,JPanel frame) throws JAXBException, PropertyException, IOException {
+        // estas dos variables son para verificar si se agrego una nueva factura, obtengo el tama;o de la lista en las dos ocaciones
+        int cantidadFacturasAntes = 0; 
+        int cantidadFacturasDespues = 0;
+        
+        List<Factura> lista = null;
         File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion,frame);
         JAXBContext context = JAXBContext.newInstance(Proyecto.class);
         Marshaller m = context.createMarshaller();
@@ -504,38 +508,36 @@ public class ControlFormularioPrincipal {
         Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
         Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
         if (proyecto.getListadoFacturas() != null) {
-            List<Factura> lista = proyecto.getListadoFacturas();
+            lista = proyecto.getListadoFacturas();
             for (int i = 0; i < lista.size(); i++) {
                 proyect.agregarXMLProyecto(lista.get(i));
             }
         }
         if (files != null) { // Validacion para cuando el Chooser se cancela
+
             List<Factura> list = control.obtenerListadoFacturas(files);
-            for (int i = 0; i < list.size(); i++) {
-                proyect.agregarXMLProyecto(list.get(i));
-            }
-            eliminarFacturasRepetidas(proyect, m, tabla, ruta);
-            modificarProyecto(proyect);
 
-            List<String> listadosErrores = control.obtenerListadoError(); //Esta lista se carga cuando hay errores a la hora de crear las facturas
-
-            if (listadosErrores.size() > 0) {
-                String factuasMalas = "";
-                for (int i = 0; i < listadosErrores.size(); i++) {
-                    factuasMalas += listadosErrores.get(i) + "\n";
+            if (list != null) { // caundo no se agregar una factura retona null
+                for (int i = 0; i < list.size(); i++) {
+                    proyect.agregarXMLProyecto(list.get(i));
                 }
-                System.out.println("Facturas malas " + factuasMalas);
-                JOptionPane.showMessageDialog(null, "Problemas en las siguientes facturas " + factuasMalas, "Mensaje", JOptionPane.ERROR_MESSAGE);
+                eliminarFacturasRepetidas(proyect, m, tabla, ruta);
+                modificarProyecto(proyect);
 
-            } else {
+                List<String> listadosErrores = control.obtenerListadoError(); //Esta lista se carga cuando hay errores a la hora de crear las facturas
+
+                if (listadosErrores.size() > 0) {
+                    String factuasMalas = "";
+                    for (int i = 0; i < listadosErrores.size(); i++) {
+                        factuasMalas += listadosErrores.get(i) + "\n";
+                    }
+                    System.out.println("Facturas malas " + factuasMalas);
+                    JOptionPane.showMessageDialog(null, "Problemas en las siguientes facturas " + factuasMalas, "Mensaje", JOptionPane.ERROR_MESSAGE);
+                }
                 JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-
             }
-
         }
-
         control.limpiarListadoError();
-
     }
 
     public void modificarProyecto(Proyecto proyect) {

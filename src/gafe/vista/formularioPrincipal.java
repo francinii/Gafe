@@ -272,7 +272,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_arbolMouseClicked
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        System.out.println("ENtre manual ...");
+        System.out.println("Entre manual ...");
 
         //ruta del archivo en el pc
         String file = new String("Manual.pdf");

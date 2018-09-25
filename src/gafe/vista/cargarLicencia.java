@@ -30,6 +30,7 @@ public class cargarLicencia extends javax.swing.JFrame {
         initComponents();
 
         this.rutaLicencia = rutLicencia;
+        this.setLocationRelativeTo(null); // centrar la pantalla.
     }
 
     

@@ -122,6 +122,7 @@ public class LectorFacturasXML {
                         listadoFacturas.add(fact);
                     } else {
                         System.out.println("Factura no incluida");
+                        return null;
                     }
 
                 }
