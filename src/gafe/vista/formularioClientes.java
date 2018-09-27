@@ -1,5 +1,6 @@
 package gafe.vista;
 
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -20,6 +21,9 @@ public class formularioClientes extends javax.swing.JPanel {
         
         //formato a la tabla para dar colores a las celdas
         jTable1.setDefaultRenderer(Object.class, new formatoTabla(3));
+        
+        
+        FramePrincipal = controlFormularioPrincipal.getControl().getPanelPrincipal();
     }
 
     public JTable tablaClientes() {
@@ -153,7 +157,7 @@ public class formularioClientes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controlVentanas.exportarReporte(jTable1);
+        controlVentanas.exportarReporte(jTable1,FramePrincipal);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -170,4 +174,5 @@ public class formularioClientes extends javax.swing.JPanel {
     private javax.swing.JLabel lblEmpresa;
     // End of variables declaration//GEN-END:variables
     ControlFormularioPrincipal controlVentanas;
+    private JPanel FramePrincipal;
 }

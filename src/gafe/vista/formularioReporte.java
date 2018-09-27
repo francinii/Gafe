@@ -41,7 +41,8 @@ public class formularioReporte extends javax.swing.JPanel {
     public formularioReporte(ControlFormularioPrincipal control) {
         this.controlVentanas = control;
         initComponents();
-        init();     
+        init(); 
+        FramePrincipal = control.getControl().getPanelPrincipal();
     }
 
     public void init() {
@@ -357,7 +358,7 @@ public class formularioReporte extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controlVentanas.exportarReporte(TablaReportes);
+        controlVentanas.exportarReporte(TablaReportes,FramePrincipal);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void JComboEmitidasRecibidasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JComboEmitidasRecibidasItemStateChanged
@@ -661,6 +662,8 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JLabel lblEmpresa;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
+    
+    private JPanel FramePrincipal;
     private String todo = "Todos";
     private String facturaElectronica = "Factura Electronica";
     private String notaCredito = "Nota Credito Electronica";

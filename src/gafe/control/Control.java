@@ -54,10 +54,8 @@ public class Control {
 
             if (resultadoFechas >= 0) {
                 //Fechas correctas porque es positivo, la licencia esta bien
-                controlVentanas = new ControlFormularioPrincipal(this);
-                
+                controlVentanas = new ControlFormularioPrincipal(this);           
                 formularioPrincipal = new formularioPrincipal(this, controlVentanas);
-                //formularioPrincipal = new formularioPrincipalRes(this, controlVentanas);
                 formularioListarXml = new formularioListarXml(controlVentanas);
                 formCrearProyecto = new formularioCrearProyecto(controlVentanas);
                 claseLectorFacturas = new LectorFacturasXML();

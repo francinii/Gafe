@@ -507,9 +507,6 @@ public class ControlFormularioPrincipal {
 
     
     public void agregarFacturaProyecto(String ruta, String nombreArchivo, String extension, boolean multipleEleccion, JTable tabla,JPanel frame) throws JAXBException, PropertyException, IOException {
-        // estas dos variables son para verificar si se agrego una nueva factura, obtengo el tama;o de la lista en las dos ocaciones
-        int cantidadFacturasAntes = 0; 
-        int cantidadFacturasDespues = 0;
         
         List<Factura> lista = null;
         File[] files = abrirFileChooser(nombreArchivo, extension, multipleEleccion,frame);
@@ -877,14 +874,14 @@ public class ControlFormularioPrincipal {
         }
     }
 
-    public void exportarReporte(JTable jTable1) {
+    public void exportarReporte(JTable jTable1,JPanel frame) {
         if (jTable1.getRowCount() > 0) {
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
             chooser.setFileFilter(filter);
             chooser.setDialogTitle("Guardar archivo como");
             chooser.setAcceptAllFileFilterUsed(false);
-            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            if (chooser.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION) {
                 List tb = new ArrayList();
                 List nom = new ArrayList();
                 tb.add(jTable1);

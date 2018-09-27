@@ -5,6 +5,7 @@
  */
 package gafe.vista;
 
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -25,6 +26,7 @@ DefaultTableModel modelo;
         
         //Dar formato a la tabla 
         jTable1.setDefaultRenderer(Object.class, new formatoTabla(2));
+        FramePrincipal = controlFormularioPrincipal.getControl().getPanelPrincipal();
     }
 
         
@@ -151,7 +153,7 @@ DefaultTableModel modelo;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        controlVentanas.exportarReporte(jTable1);
+        controlVentanas.exportarReporte(jTable1,FramePrincipal);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public JTable tablaProveedores(){
@@ -172,4 +174,5 @@ DefaultTableModel modelo;
     // End of variables declaration//GEN-END:variables
 
     ControlFormularioPrincipal controlVentanas;
+    private JPanel FramePrincipal;
 }
