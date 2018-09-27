@@ -289,6 +289,19 @@ public class ControlFormularioPrincipal {
         }
         return null;
     }
+    
+    public String formatoFechasReporte(String fecha) {
+        if (!fecha.equals("")) {
+            fecha = fecha.substring(0, 10);
+            // 2018-02-14T10:51:04.707
+            String[] fechaFinal = fecha.split("-");
+            String anio = fechaFinal[0];
+            String mes = fechaFinal[1];
+            String dia = fechaFinal[2];
+            return dia + "/" + mes + "/" + anio;
+        }
+        return "";
+    }
 
     public boolean compararFecha(String fechaI, String fechaF, String fechaComparar) {
         try {
@@ -911,9 +924,9 @@ public class ControlFormularioPrincipal {
         String cedulaReceptor = "";
         String fechaEmision = "";
         String emitidaRecibida = "";
-
+        String fechaReporte = "";
         
-        int numeroColumnasTabla = 59;
+        int numeroColumnasTabla = 60;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
             
@@ -927,7 +940,7 @@ public class ControlFormularioPrincipal {
                 nombreComercialReceptor = listFacturas.get(i).getReceptor().getNombreComercial();
                 cedulaReceptor = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();               
                 Date formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
-                
+                fechaReporte = formatoFechasReporte(listFacturas.get(i).getFechaEmision()); // esta fecha es para los reportes.
                 
                 /*Validacion para el status si es recibida o emitida*/
                 if (cedulaEmisor.equals(RecursosCompartidos.getCedulaJuridicaProyecto())) {
@@ -995,6 +1008,7 @@ public class ControlFormularioPrincipal {
                     columna[17] = nombreReceptor;
                     columna[18] = nombreComercialReceptor;   
                     columna[58] = emitidaRecibida;
+                    columna[59] = fechaReporte;
                     
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();

@@ -17,6 +17,8 @@ public class filtroReporte extends javax.swing.JFrame {
         Image icon = new ImageIcon(getClass().getResource("/recursos/Filter List.png")).getImage();
         setIconImage(icon);
         this.setLocationRelativeTo(null); // centrar la pantalla.
+        
+        jCheckBox4.setVisible(false); // este es para que la fecha con la que se realizan los reportes no aparezca.
     }
 
     @SuppressWarnings("unchecked")
@@ -60,6 +62,7 @@ public class filtroReporte extends javax.swing.JFrame {
         jCheckBox28 = new javax.swing.JCheckBox();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox59 = new javax.swing.JCheckBox();
+        jCheckBox60 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -415,8 +418,8 @@ public class filtroReporte extends javax.swing.JFrame {
         jCheckBox4.setForeground(new java.awt.Color(52, 21, 0));
         jCheckBox4.setText("Fecha Emision");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 0);
         jPanel1.add(jCheckBox4, gridBagConstraints);
@@ -488,6 +491,16 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox59, gridBagConstraints);
+
+        jCheckBox60.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox60.setText("Fecha Factura");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
+        jPanel1.add(jCheckBox60, gridBagConstraints);
 
         jTabbedPane1.addTab("Facturas", jPanel1);
 
@@ -938,15 +951,7 @@ public class filtroReporte extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-//        int i = 0;
-//        int status;
-//        if (ChkClave.isSelected()) {
-//            status = 1;
-        //           controlVentanas.ocultarMostrarColumnas(TablaReportes, 0, status);
-//        } else {
-//            status = 0;
-//            controlVentanas.ocultarMostrarColumnas(TablaReportes, 0, status);
-//        }
+
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
@@ -1059,6 +1064,7 @@ public class filtroReporte extends javax.swing.JFrame {
         listaEstados.add(jCheckBox57.isSelected() + "");
         listaEstados.add(jCheckBox58.isSelected() + "");
         listaEstados.add(jCheckBox59.isSelected() + "");
+        listaEstados.add(jCheckBox60.isSelected() + "");
                
         control.escribirArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion(), listaEstados, false);
     }
@@ -1269,6 +1275,8 @@ public class filtroReporte extends javax.swing.JFrame {
             case 59:
                 jCheckBox59.setSelected(estado);
                 break;
+            case 60:
+                jCheckBox60.setSelected(estado);
             default:
                 break;
 
@@ -1335,6 +1343,7 @@ public class filtroReporte extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox58;
     private javax.swing.JCheckBox jCheckBox59;
     private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox60;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;

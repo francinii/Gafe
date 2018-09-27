@@ -1,4 +1,3 @@
-
 package gafe.vista;
 
 import java.awt.Image;
