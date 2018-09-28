@@ -240,7 +240,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(FechaDespues, gridBagConstraints);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel12.setText("Empresa:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -251,7 +251,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel12, gridBagConstraints);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel13.setText("Cédula: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -262,6 +262,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(jLabel13, gridBagConstraints);
 
+        lblEmpresa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEmpresa.setText("jLabel14");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -272,6 +273,7 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         jPanel1.add(lblEmpresa, gridBagConstraints);
 
+        lblCedulaJuridica.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblCedulaJuridica.setText("jLabel15");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
