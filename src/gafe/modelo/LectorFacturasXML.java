@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -103,6 +104,11 @@ public class LectorFacturasXML {
 
     public List<Factura> listarFacturas(File[] rutas) {
         List<Factura> listadoFacturas = new ArrayList<>();
+        String[] options = {"Si", "Si a todo", "No"}; // Opciones para mensaje 
+        Icon icon = null;
+        int reply = 0;
+        
+        
         for (File ruta : rutas) {
 
             Factura fact = crearFactura(ruta.toString());
@@ -117,21 +123,32 @@ public class LectorFacturasXML {
                     //JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
 
                 } else {
-                    int reply = JOptionPane.showConfirmDialog(null, "La factura " + numFactura + " no coincide con la cédula jurídica del proyecto \n"+ "¿Desea incluirla?", "Advertencia", JOptionPane.YES_NO_OPTION);
-                    if (reply == JOptionPane.YES_OPTION) {
+                   
+                    if(reply != 1){ // cuando se selecciona el SI A TODO
+                        reply = JOptionPane.showOptionDialog(null, "La factura " + numFactura + " no coincide con la cédula jurídica del proyecto \n"+ "¿Desea incluirla?", "Advertencia", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options[0]);
+                    }
+                                       
+                    System.out.println("res"+reply);
+                   
+                   if (reply == 0) {
+                       //si
                         listadoFacturas.add(fact);
-                    } else {
+                    }else if(reply == 1){
+                        //Si a todo
+                        listadoFacturas.add(fact);
+                    }else {
                         System.out.println("Factura no incluida");
-                        return null;
+                        //return null;
                     }
 
                 }
 
             }
+            
         }
+        reply = 0; // reiniciar variable del cuadro de si a todo
         
-       //JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-
+        
         return listadoFacturas;
     }
 

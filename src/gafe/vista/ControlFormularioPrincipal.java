@@ -117,7 +117,7 @@ public class ControlFormularioPrincipal {
                             if (p.getListadoFacturas() != null) {
                                 List<Factura> lista = p.getListadoFacturas();
                                 for (int i = 0; i < lista.size(); i++) {
-                                    String consecutivo = lista.get(i).getConsecutivo().toString();
+                                    String consecutivo = lista.get(i).getClave().toString();
                                     String emisor = lista.get(i).getEmisor().getNombre().toString();
                                     String receptor = "";
                                     if (lista.get(i).getReceptor() != null) {
@@ -525,11 +525,12 @@ public class ControlFormularioPrincipal {
         }
         if (files != null) { // Validacion para cuando el Chooser se cancela
 
-            List<Factura> list = control.obtenerListadoFacturas(files);
-
+            List<Factura> list = control.obtenerListadoFacturas(files); // aqui se agregan las facturas nuevas, retorna mi lista de tipo facturas que estan incluyendose
+            boolean insertaronNuevasFacturas = false;
             if (list != null) { // caundo no se agregar una factura retona null
                 for (int i = 0; i < list.size(); i++) {
                     proyect.agregarXMLProyecto(list.get(i));
+                    insertaronNuevasFacturas = true;
                 }
                 eliminarFacturasRepetidas(proyect, m, tabla, ruta);
                 modificarProyecto(proyect);
@@ -544,7 +545,10 @@ public class ControlFormularioPrincipal {
                     System.out.println("Facturas malas " + factuasMalas);
                     JOptionPane.showMessageDialog(null, "Problemas en las siguientes facturas " + factuasMalas, "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
-                JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                
+                if (insertaronNuevasFacturas) {
+                    JOptionPane.showMessageDialog(null, "Las facturas han sido cargadas con éxito", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                }            
             }
         }
         control.limpiarListadoError();
@@ -564,10 +568,8 @@ public class ControlFormularioPrincipal {
 
    
     public void eliminarFacturasRepetidas(Proyecto p, Marshaller m, JTable tabla, String ruta) throws JAXBException {
-
         List<Factura> listaFacturas = p.getListadoFacturas();
         List<Factura> listaSinRepetidos = new ArrayList<>();
-
         Map<String, Factura> mapFacturas = new HashMap<String, Factura>(listaFacturas.size());
 
         for (Factura f : listaFacturas) {
@@ -583,7 +585,7 @@ public class ControlFormularioPrincipal {
 
         for (int i = 0; i < listaSinRepetidos.size(); i++) { // llenar nueva lista de facturas sin repeticiones   
             p.agregarXMLProyecto(listaSinRepetidos.get(i));
-            String consecutivo = listaSinRepetidos.get(i).getConsecutivo().toString();
+            String consecutivo = listaSinRepetidos.get(i).getClave().toString();
             String emisor = listaSinRepetidos.get(i).getEmisor().getNombre().toString();
 
             String receptor = "";
@@ -790,7 +792,7 @@ public class ControlFormularioPrincipal {
         if (p != null) {          
             for (int i = 0; i < listado.size(); i++) {
                 //System.out.println("Consecutivo " + listado.get(i).getConsecutivo().toString());
-                if (listado.get(i).getConsecutivo().toString().equals(consecutivoEliminar)) {
+                if (listado.get(i).getClave().toString().equals(consecutivoEliminar)) {
                     listado.remove(i);
                 }
             }

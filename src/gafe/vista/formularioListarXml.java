@@ -161,7 +161,7 @@ public class formularioListarXml extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Numero Factura", "Emisor", "Receptor", "Total"
+                "Clave Factura", "Emisor", "Receptor", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {

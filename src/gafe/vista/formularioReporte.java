@@ -263,7 +263,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jPanel1.add(jLabel13, gridBagConstraints);
 
         lblEmpresa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblEmpresa.setText("jLabel14");
+        lblEmpresa.setText("lblcedula");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -274,7 +274,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jPanel1.add(lblEmpresa, gridBagConstraints);
 
         lblCedulaJuridica.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblCedulaJuridica.setText("jLabel15");
+        lblCedulaJuridica.setText("lblEmpresa");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;

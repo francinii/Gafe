@@ -1,5 +1,4 @@
 package gafe.vista;
-
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -142,7 +141,7 @@ public class cargarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
-        public String leerArhivoLicencia(File abre){
+    public String leerArhivoLicencia(File abre){
     // Metodo que carga la Licencia.Lic
     String aux = "";
     String texto = "";
@@ -169,13 +168,8 @@ public class cargarLicencia extends javax.swing.JFrame {
             Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } 
         }
-
         return texto;
-
-    }
-    
-    
-    
+    }      
     
     public File abrirFileChooserLicencia() {
 
@@ -185,11 +179,8 @@ public class cargarLicencia extends javax.swing.JFrame {
         jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         jfc.setFileFilter(xmlFilter);
         jfc.setAcceptAllFileFilterUsed(false);
-        //Image icon = new ImageIcon(getClass().getResource("/recursos/Camelot.png")).getImage();
-
         int returnValue = jfc.showOpenDialog(null);
         File abre = jfc.getSelectedFile();
-
         return abre;
     }
 
@@ -211,9 +202,7 @@ public class cargarLicencia extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return estado;
-
     }
     
     ControlFormularioPrincipal controlVentanas;
