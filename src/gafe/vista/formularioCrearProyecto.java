@@ -47,6 +47,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         validacion = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(247, 238, 212));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -57,7 +58,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         txtDescripcionProyecto.setRows(5);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
@@ -75,7 +76,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.ipadx = -13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(5, 3, 4, 54);
@@ -122,7 +123,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 8;
@@ -140,7 +141,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.insets = new java.awt.Insets(7, 7, 7, 7);
         add(btnGuardar, gridBagConstraints);
@@ -157,7 +158,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         jLabel6.setText("Ruta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         add(jLabel6, gridBagConstraints);
 
@@ -173,7 +174,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         jLabel8.setText("Descripción");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         add(jLabel8, gridBagConstraints);
@@ -207,6 +208,17 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 3);
         add(validacion, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        jLabel2.setText("(Sin guiones)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 7, 5, 0);
+        add(jLabel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -281,6 +293,7 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

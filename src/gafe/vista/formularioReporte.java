@@ -670,7 +670,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private String facturaElectronica = "Factura Electronica";
     private String notaCredito = "Nota Credito Electronica";
     private String notaDebito = "Nota Debito Electronica";
-    private String tiqueteElectronico = "Tiquete electronico";
+    private String tiqueteElectronico = "Tiquete Electronico";
     
     //Datos del combo emitidasRecibidas;
     private String noAplica = "N/A";
