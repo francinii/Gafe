@@ -1,13 +1,17 @@
 package gafe.modelo;
 
+import gafe.control.Encriptar;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LectorArchivoConfiguracion {
 
@@ -79,4 +83,69 @@ public class LectorArchivoConfiguracion {
         }
         return listaEstados;
     }
+
+    // escribir en el contador
+    public void escribirArchivo(String ruta) {
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+
+        List<String> conteFichero = leerArchivo(ruta);
+
+        if (conteFichero.size() <= 0) {
+            try {
+                fichero = new FileWriter(ruta);
+                pw = new PrintWriter(fichero);
+
+                pw.println(Encriptar.Encriptado("1"));
+                System.out.println("Entre 1 Encriptado");
+            } catch (IOException ex) {
+                Logger.getLogger(LectorArchivoConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (null != fichero) {
+                        fichero.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+
+        } else {
+
+            String contadorProyectos = conteFichero.get(0);
+            int contador = 0;
+            try {
+                contador = Integer.parseInt(Encriptar.Desencriptar(contadorProyectos));
+
+            } catch (Exception ex) {
+
+                Logger.getLogger(LectorArchivoConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            contador = contador + 1;
+            System.out.println("Este es el numero de poryectos creado " + contador);
+
+            try {
+                fichero = new FileWriter(ruta);
+                pw = new PrintWriter(fichero);
+
+                pw.println(Encriptar.Encriptado(String.valueOf(contador)));
+
+                System.out.println("Sume uno");
+
+            } catch (IOException ex) {
+
+                Logger.getLogger(LectorArchivoConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    if (null != fichero) {
+                        fichero.close();
+                    }
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

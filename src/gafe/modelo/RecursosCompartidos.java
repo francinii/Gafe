@@ -11,7 +11,7 @@ public class RecursosCompartidos {
     public static int nodoSeleccionado = 0;  
     public static String cedulaJuridicaProyecto;
     public static String fechaLicencia;
-    
+    public static int cantidadDeProyectos;
 
     public RecursosCompartidos() {
     }
@@ -58,6 +58,15 @@ public class RecursosCompartidos {
     public static void setFechaLicencia(String fechaLicencia) {
         RecursosCompartidos.fechaLicencia = fechaLicencia;
     }
+
+    public static int getCantidadDeProyectos() {
+        return cantidadDeProyectos;
+    }
+
+    public static void setCantidadDeProyectos(int cantidadDeProyectos) {
+        RecursosCompartidos.cantidadDeProyectos = cantidadDeProyectos;
+    }
+    
     
     
   

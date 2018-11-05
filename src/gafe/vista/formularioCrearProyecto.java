@@ -2,6 +2,7 @@ package gafe.vista;
 
 import gafe.control.Control;
 import gafe.modelo.Proyecto;
+import gafe.modelo.RecursosCompartidos;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -238,25 +239,38 @@ public class formularioCrearProyecto extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
-        try {
-            String ruta = txtRuta.getText();
-            String nombreProyecto = txtNombreProyecto.getText();
-            String descripcionProyecto = txtDescripcionProyecto.getText();
-            String cedula = txtCedula.getText();
-            if (ruta.equals("") || nombreProyecto.equals("") || descripcionProyecto.equals("")|| cedula.equals("")) {
-                controlVentanas.mensaje("Debes ingresar todos los campos");
-            } else {
-                String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
-                limpiarFormulario();
-                controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
-                controlVentanas.mensaje("Proyecto creado satisfactoriamente");
-                validacion.setVisible(false);
+        // Verificacion si se sobrepasa el numero de proyectos creados
+        int nuemrosDelContador = controlVentanas.leerCantidadDeProyectosContador();
+        int cantidadDeProeyctosPermitidos = RecursosCompartidos.getCantidadDeProyectos();
 
+        if (nuemrosDelContador <= cantidadDeProeyctosPermitidos) {
+            try {
+                String ruta = txtRuta.getText();
+                String nombreProyecto = txtNombreProyecto.getText();
+                String descripcionProyecto = txtDescripcionProyecto.getText();
+                String cedula = txtCedula.getText();
+                if (ruta.equals("") || nombreProyecto.equals("") || descripcionProyecto.equals("") || cedula.equals("")) {
+                    controlVentanas.mensaje("Debes ingresar todos los campos");
+                } else {
+                    String guardarEn = ruta + '\\' + nombreProyecto + ".gafe";
+                    limpiarFormulario();
+                    controlVentanas.crearXmlProyecto(nombreProyecto, cedula, descripcionProyecto, guardarEn);
+                    controlVentanas.mensaje("Proyecto creado satisfactoriamente");
+                    controlVentanas.escribirArchivoContador();
+                    validacion.setVisible(false);
+
+                }
+            } catch (IOException e) {
+                System.out.println("Error FormularioCrearProyecto linea 264");
+            } catch (JAXBException ex) {
+                Logger.getLogger(formularioCrearProyecto.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException e) {
-        } catch (JAXBException ex) {
-            Logger.getLogger(formularioCrearProyecto.class.getName()).log(Level.SEVERE, null, ex);
+
+        }else{
+            controlVentanas.mensaje("No puedes crear mas proyectos");
         }
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 

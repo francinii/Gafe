@@ -1,6 +1,7 @@
 package gafe.vista;
 
 import gafe.control.Control;
+import gafe.control.Encriptar;
 import gafe.modelo.ElementosArbol;
 import gafe.modelo.ExportarReporte;
 import gafe.modelo.Factura;
@@ -702,23 +703,29 @@ public class ControlFormularioPrincipal {
         List<String> listadoArchivosExistentes = verificarSiExistenProyectosRecientes(rutasArchivosRecientes);
 
         if (listadoArchivosExistentes != null) {
-            for (String ruta : listadoArchivosExistentes) {
-                List<Factura> lista = null;
-                JAXBContext context = JAXBContext.newInstance(Proyecto.class);
-                Unmarshaller unmarshaller = context.createUnmarshaller();
-                Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
-                Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
-                if (proyecto.getListadoFacturas() != null) {
-                    lista = proyecto.getListadoFacturas();
-                    for (int i = 0; i < lista.size(); i++) {
-                        proyect.agregarXMLProyecto(lista.get(i));
+            try {
+                for (String ruta : listadoArchivosExistentes) {
+                    List<Factura> lista = null;
+                    JAXBContext context = JAXBContext.newInstance(Proyecto.class);
+                    Unmarshaller unmarshaller = context.createUnmarshaller();
+                    Proyecto proyecto = (Proyecto) unmarshaller.unmarshal(new File(ruta));
+                    Proyecto proyect = new Proyecto(proyecto.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), proyecto.getRuta());
+                    if (proyecto.getListadoFacturas() != null) {
+                        lista = proyecto.getListadoFacturas();
+                        for (int i = 0; i < lista.size(); i++) {
+                            proyect.agregarXMLProyecto(lista.get(i));
+                        }
                     }
-                }
-                //control.escribirArchivoConfiguracion(ruta, listadoArchivosExistentes, true);
-                agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
-                agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
+                    //control.escribirArchivoConfiguracion(ruta, listadoArchivosExistentes, true);
+                    agregarNodoArbol(arbol, proyecto.getNombre(), ruta);
+                    agregarProyectoAlista(proyect.getNombre(), proyecto.getCedula(), proyecto.getDescripcion(), ruta, lista);
 
+                }
+
+            } catch (Exception e) {
+                System.out.println("Problemas con proyectos recientes - Control Formulario prinicpal" + e);
             }
+
         }
     }
 
@@ -909,6 +916,8 @@ public class ControlFormularioPrincipal {
             columna[i] = "";
         }
     }
+    
+    
 
     public void llenarFacturaReportes(JTable tabla, String ruta, List<Factura> listFacturas) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
@@ -1059,6 +1068,26 @@ public class ControlFormularioPrincipal {
         arbol.expandRow(0);   
     }
     
+    public void escribirArchivoContador(){
+        control.escrbirArchivoContador(directorioCantidadProyecto);
+    }
+    
+    public  int leerCantidadDeProyectosContador(){
+        List<String> proyecto = control.leerArchivoConfiguracion(directorioCantidadProyecto);
+        
+        int num = 0;
+        try {
+            num = Integer.parseInt(Encriptar.Desencriptar(proyecto.get(0)));
+        } catch (Exception ex) {
+            Logger.getLogger(ControlFormularioPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return num;
+    }
+    
+    
+    
+    
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
     String EmpresaGlobal;
     String CedulaJuridicaGlobal;
@@ -1066,5 +1095,7 @@ public class ControlFormularioPrincipal {
     //String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
 
     public String directorioGlobalConfig = "GlobalConfig.data";
+    public String directorioCantidadProyecto = "Cantidad.data";
+    
     
 }

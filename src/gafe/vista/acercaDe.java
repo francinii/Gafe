@@ -37,6 +37,8 @@ public class acercaDe extends javax.swing.JFrame {
         lblLicencia = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblProyectos = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -135,6 +137,15 @@ public class acercaDe extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(4, 27, 4, 27);
         jPanel1.add(jLabel2, gridBagConstraints);
 
+        jLabel4.setText("#Proyectos");
+        jPanel1.add(jLabel4, new java.awt.GridBagConstraints());
+
+        lblProyectos.setText("lblProyectos");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(4, 27, 4, 27);
+        jPanel1.add(lblProyectos, gridBagConstraints);
+
         getContentPane().add(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(52, 21, 0));
@@ -191,6 +202,7 @@ public class acercaDe extends javax.swing.JFrame {
             proyecto.setText(c.obtenerValorPropiedad("proyecto"));
             version.setText(String.format("Versión %s", c.obtenerValorPropiedad("version")));
             lblLicencia.setText(RecursosCompartidos.getFechaLicencia());
+            lblProyectos.setText(String.valueOf(RecursosCompartidos.getCantidadDeProyectos()));
         } catch (Exception e) {
             System.err.println("No se puede obtener la información de configuración..");
         }
@@ -219,9 +231,11 @@ public class acercaDe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblLicencia;
+    private javax.swing.JLabel lblProyectos;
     private javax.swing.JLabel organizacion;
     private javax.swing.JLabel proyecto;
     private javax.swing.JLabel version;

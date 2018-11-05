@@ -39,22 +39,32 @@ public class Control {
         lectorArchivoConfiguracion = new LectorArchivoConfiguracion();
         List<String> licencia = null;
         licencia = lectorArchivoConfiguracion.leerArchivo(directorioLicencia);
-        String lic;
         
-                if (licencia.size() > 0) {
+        //crear contador archivos
+        lectorArchivoConfiguracion.leerArchivo(directorioCantidadProyecto);
+        lectorArchivoConfiguracion.escribirArchivo(directorioCantidadProyecto); //
+        
+        String lic;
+
+        if (licencia.size() > 0) {
             // si el arhivo licencia tiene algo, lo convertimos y comparamos las fechas
             lic = licencia.get(0);
 
             Date date = leerLicencia(lic);
-            // Guardar la fecha de vencimiento de licencia
+            int cantidad = desencriptarCantidadProyectos(licencia.get(1));
+            
+            // Guardar la fecha de vencimiento de licencia y cantidad de proyectos permitidos
             RecursosCompartidos.setFechaLicencia(date.toString());
-
+            RecursosCompartidos.setCantidadDeProyectos(cantidad);
+            
+            
+            
             System.out.println("Fecha Vencimiento Lic " + date.toString());
             int resultadoFechas = compararFechaLicencia(date);
 
             if (resultadoFechas >= 0) {
                 //Fechas correctas porque es positivo, la licencia esta bien
-                controlVentanas = new ControlFormularioPrincipal(this);           
+                controlVentanas = new ControlFormularioPrincipal(this);
                 formularioPrincipal = new formularioPrincipal(this, controlVentanas);
                 formularioListarXml = new formularioListarXml(controlVentanas);
                 formCrearProyecto = new formularioCrearProyecto(controlVentanas);
@@ -65,7 +75,6 @@ public class Control {
                 recursosCompartidos = new RecursosCompartidos();
                 cambiarEstadoColumnasReporte(directorio);
                 acercaDe = new acercaDe();
-
 
             } else {
                 //formulario que indica que esta vencido el sitema.
@@ -209,7 +218,11 @@ public class Control {
 
     public void escribirArchivoConfiguracion(String ruta, List<String> listaEstados, boolean sobreescribir) {
         lectorArchivoConfiguracion.escribirArchivo(ruta, listaEstados,sobreescribir);
-    }     
+    }   
+    
+    public void escrbirArchivoContador(String ruta){
+        lectorArchivoConfiguracion.escribirArchivo(ruta);
+    }
  
 
     public void cambiarEstadoColumnasReporte(String ruta) {
@@ -223,6 +236,20 @@ public class Control {
             ocultarMostrarColumnas(i, estado);
         }
     }
+    
+    public int desencriptarCantidadProyectos(String cantidad) {
+        String fechaDesencriptada = null;
+        try {
+            fechaDesencriptada= Encriptar.Desencriptar(cantidad);
+            
+            
+        } catch (Exception ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return Integer.parseInt(fechaDesencriptada);
+    }
+
 
     public void mostrarAcercaDe() {
         acercaDe.activarVentana();
@@ -263,5 +290,5 @@ public class Control {
     
     private String directorioLicencia = "licencia.lic";
     //private String directorioGlobalConfig = "../gafe//src//recursos//GlobalConfig.txt";
-
+    private String directorioCantidadProyecto = "Cantidad.data";
 }
