@@ -319,7 +319,7 @@ public class LectorFacturasXML {
             String totalGravado = crearElemento("TotalGravado", resumenFactura, namespace);
             String totalExcento = crearElemento("TotalExento", resumenFactura, namespace);
             String totalVenta = crearElemento("TotalVenta", resumenFactura, namespace);
-            String totalDescuento = crearElemento("TotalDescuento", resumenFactura, namespace);
+            String totalDescuento = crearElemento("TotalDescuentos", resumenFactura, namespace);
             String totalVentaNeta = crearElemento("TotalVentaNeta", resumenFactura, namespace);
             String totalImpuesto = crearElemento("TotalImpuesto", resumenFactura, namespace);
             String totalComprobante = crearElemento("TotalComprobante", resumenFactura, namespace);
