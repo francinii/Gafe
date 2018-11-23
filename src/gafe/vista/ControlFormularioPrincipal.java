@@ -934,7 +934,7 @@ public class ControlFormularioPrincipal {
         String emitidaRecibida = "";
         String fechaReporte = "";
         
-        int numeroColumnasTabla = 60;
+        int numeroColumnasTabla = 65;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
             
@@ -1037,6 +1037,13 @@ public class ControlFormularioPrincipal {
                     columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
                     columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
                     columna[44] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra();
+                    
+                    columna[60] = listFacturas.get(i).getInformacionReferencia().getTipoDocumento();
+                    columna[61] = listFacturas.get(i).getInformacionReferencia().getNumeroDoumento();
+                    columna[62] = listFacturas.get(i).getInformacionReferencia().getFechaEmision();
+                    columna[63] = listFacturas.get(i).getInformacionReferencia().getCodigo();
+                    columna[64] = listFacturas.get(i).getInformacionReferencia().getrazon();
+                    
                     modelo.addRow(columna);
                     limpiarTabla(columna);
 
