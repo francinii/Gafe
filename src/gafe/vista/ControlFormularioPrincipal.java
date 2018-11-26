@@ -811,6 +811,7 @@ public class ControlFormularioPrincipal {
     public void ocultarMostrarColumnas(int columna, boolean status) {
         JTable tablaReportes = control.tablaReportes();
         if (status == true) { // 1 cuando quiero mostrar
+
             tablaReportes.getColumnModel().getColumn(columna).setMaxWidth(500);
             tablaReportes.getColumnModel().getColumn(columna).setMinWidth(75);
             tablaReportes.getColumnModel().getColumn(columna).setPreferredWidth(175);
@@ -934,7 +935,7 @@ public class ControlFormularioPrincipal {
         String emitidaRecibida = "";
         String fechaReporte = "";
         
-        int numeroColumnasTabla = 65;
+        int numeroColumnasTabla = 67;
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
             
@@ -958,10 +959,7 @@ public class ControlFormularioPrincipal {
                 }else{
                     emitidaRecibida = "N/A";
                 }
-                        
-                
-                
-               
+                                       
                 columna[4] = listFacturas.get(i).getCondicionVenta();
                 columna[5] = listFacturas.get(i).getPlazoCredito();
                 columna[6] = listFacturas.get(i).getMedioPago();
@@ -989,19 +987,19 @@ public class ControlFormularioPrincipal {
                 columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getCanton();
                 columna[25] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito();
 
-                columna[45] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
-                columna[46] = listFacturas.get(i).getResumenFactura().getTipoCambio();
-                columna[47] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
-                columna[48] = listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos();
-                columna[49] = listFacturas.get(i).getResumenFactura().getTotalMercanciasGravadas();
-                columna[50] = listFacturas.get(i).getResumenFactura().getTotalMercanciasExcentas();
-                columna[51] = listFacturas.get(i).getResumenFactura().getTotalGravado();
-                columna[52] = listFacturas.get(i).getResumenFactura().getTotalExcento();
-                columna[53] = listFacturas.get(i).getResumenFactura().getTotalVenta();
-                columna[54] = listFacturas.get(i).getResumenFactura().getTotalDescuentos();
-                columna[55] = listFacturas.get(i).getResumenFactura().getTotalVentaNeta();
-                columna[56] = listFacturas.get(i).getResumenFactura().getTotalImpuesto();
-                columna[57] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
+                columna[46] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
+                columna[47] = listFacturas.get(i).getResumenFactura().getTipoCambio();
+                columna[48] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
+                columna[49] = listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos();
+                columna[50] = listFacturas.get(i).getResumenFactura().getTotalMercanciasGravadas();
+                columna[51] = listFacturas.get(i).getResumenFactura().getTotalMercanciasExcentas();
+                columna[52] = listFacturas.get(i).getResumenFactura().getTotalGravado();
+                columna[53] = listFacturas.get(i).getResumenFactura().getTotalExcento();
+                columna[54] = listFacturas.get(i).getResumenFactura().getTotalVenta();
+                columna[55] = listFacturas.get(i).getResumenFactura().getTotalDescuentos();
+                columna[56] = listFacturas.get(i).getResumenFactura().getTotalVentaNeta();
+                columna[57] = listFacturas.get(i).getResumenFactura().getTotalImpuesto();
+                columna[58] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
                     
@@ -1015,8 +1013,8 @@ public class ControlFormularioPrincipal {
                     columna[16] = cedulaReceptor;
                     columna[17] = nombreReceptor;
                     columna[18] = nombreComercialReceptor;   
-                    columna[58] = emitidaRecibida;
-                    columna[59] = fechaReporte;
+                    columna[59] = emitidaRecibida;
+                    columna[60] = fechaReporte;
                     
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
@@ -1024,25 +1022,29 @@ public class ControlFormularioPrincipal {
                     columna[29] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedida();
                     columna[30] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedidaComercial();
                     columna[31] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getDetalle();
-                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
-                    columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
-                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
-                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
-                    columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo();
-                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto();
-                    columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
-                    columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
-                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento();
-                    columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNumeroDocumento();
-                    columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
-                    columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
-                    columna[44] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra();
+                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getPrecioUnitario();
+                    columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
+                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
+                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
+                      
+                    columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
                     
-                    columna[60] = listFacturas.get(i).getInformacionReferencia().getTipoDocumento();
-                    columna[61] = listFacturas.get(i).getInformacionReferencia().getNumeroDoumento();
-                    columna[62] = listFacturas.get(i).getInformacionReferencia().getFechaEmision();
-                    columna[63] = listFacturas.get(i).getInformacionReferencia().getCodigo();
-                    columna[64] = listFacturas.get(i).getInformacionReferencia().getrazon();
+                    
+                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo();
+                    columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto();
+                    columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
+                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
+                    columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento();
+                    columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNumeroDocumento();
+                    columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
+                    columna[44] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
+                    columna[45] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra();
+                    
+                    columna[61] = listFacturas.get(i).getInformacionReferencia().getTipoDocumento();
+                    columna[62] = listFacturas.get(i).getInformacionReferencia().getNumeroDoumento();
+                    columna[63] = listFacturas.get(i).getInformacionReferencia().getFechaEmision();
+                    columna[64] = listFacturas.get(i).getInformacionReferencia().getCodigo();
+                    columna[65] = listFacturas.get(i).getInformacionReferencia().getrazon();
                     
                     modelo.addRow(columna);
                     limpiarTabla(columna);
@@ -1091,9 +1093,6 @@ public class ControlFormularioPrincipal {
         
         return num;
     }
-    
-    
-    
     
     //Variables Globales que se cargan, para enviarlas al formulario listar, "Empresa y cedula Juridica"
     String EmpresaGlobal;

@@ -37,19 +37,19 @@ public class filtroReporte extends javax.swing.JFrame {
         jCheckBox31 = new javax.swing.JCheckBox();
         jCheckBox32 = new javax.swing.JCheckBox();
         jCheckBox27 = new javax.swing.JCheckBox();
-        jCheckBox37 = new javax.swing.JCheckBox();
-        jCheckBox33 = new javax.swing.JCheckBox();
+        jCheckBox38 = new javax.swing.JCheckBox();
         jCheckBox34 = new javax.swing.JCheckBox();
         jCheckBox35 = new javax.swing.JCheckBox();
-        jCheckBox39 = new javax.swing.JCheckBox();
-        jCheckBox41 = new javax.swing.JCheckBox();
+        jCheckBox36 = new javax.swing.JCheckBox();
+        jCheckBox40 = new javax.swing.JCheckBox();
         jCheckBox42 = new javax.swing.JCheckBox();
         jCheckBox43 = new javax.swing.JCheckBox();
-        jCheckBox38 = new javax.swing.JCheckBox();
         jCheckBox44 = new javax.swing.JCheckBox();
-        jCheckBox40 = new javax.swing.JCheckBox();
+        jCheckBox39 = new javax.swing.JCheckBox();
         jCheckBox45 = new javax.swing.JCheckBox();
-        jCheckBox36 = new javax.swing.JCheckBox();
+        jCheckBox41 = new javax.swing.JCheckBox();
+        jCheckBox46 = new javax.swing.JCheckBox();
+        jCheckBox37 = new javax.swing.JCheckBox();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -61,8 +61,9 @@ public class filtroReporte extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox28 = new javax.swing.JCheckBox();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox59 = new javax.swing.JCheckBox();
         jCheckBox60 = new javax.swing.JCheckBox();
+        jCheckBox61 = new javax.swing.JCheckBox();
+        jCheckBox33 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -89,7 +90,6 @@ public class filtroReporte extends javax.swing.JFrame {
         jSeparator9 = new javax.swing.JSeparator();
         jCheckBox20 = new javax.swing.JCheckBox();
         jPanel6 = new javax.swing.JPanel();
-        jCheckBox46 = new javax.swing.JCheckBox();
         jCheckBox47 = new javax.swing.JCheckBox();
         jCheckBox48 = new javax.swing.JCheckBox();
         jCheckBox49 = new javax.swing.JCheckBox();
@@ -102,16 +102,17 @@ public class filtroReporte extends javax.swing.JFrame {
         jCheckBox56 = new javax.swing.JCheckBox();
         jCheckBox57 = new javax.swing.JCheckBox();
         jCheckBox58 = new javax.swing.JCheckBox();
+        jCheckBox59 = new javax.swing.JCheckBox();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        jCheckBox61 = new javax.swing.JCheckBox();
         jCheckBox62 = new javax.swing.JCheckBox();
         jCheckBox63 = new javax.swing.JCheckBox();
         jCheckBox64 = new javax.swing.JCheckBox();
         jCheckBox65 = new javax.swing.JCheckBox();
+        jCheckBox66 = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -215,77 +216,66 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox27, gridBagConstraints);
 
-        jCheckBox37.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox37.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox37.setText("Codigo Impuesto");
+        jCheckBox38.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox38.setForeground(new java.awt.Color(52, 21, 0));
+        jCheckBox38.setText("Codigo Impuesto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridy = 25;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox37, gridBagConstraints);
+        jPanel1.add(jCheckBox38, gridBagConstraints);
 
-        jCheckBox33.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox33.setText("Monto Descuento");
+        jCheckBox34.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox34.setText("Monto Descuento");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 18;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox33, gridBagConstraints);
+        jPanel1.add(jCheckBox34, gridBagConstraints);
 
-        jCheckBox34.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox34.setText("Naturaleza Descuento");
+        jCheckBox35.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox35.setText("Naturaleza Descuento");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 19;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox34, gridBagConstraints);
+        jPanel1.add(jCheckBox35, gridBagConstraints);
 
-        jCheckBox35.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox35.setText("SubTotal");
+        jCheckBox36.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox36.setText("SubTotal");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 20;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox35, gridBagConstraints);
+        jPanel1.add(jCheckBox36, gridBagConstraints);
 
-        jCheckBox39.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox39.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox39.setText("Monto Impuesto");
-        jCheckBox39.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox40.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox40.setForeground(new java.awt.Color(52, 21, 0));
+        jCheckBox40.setText("Monto Impuesto");
+        jCheckBox40.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox39ActionPerformed(evt);
+                jCheckBox40ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridy = 27;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox39, gridBagConstraints);
-
-        jCheckBox41.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox41.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox41.setText("Tipo Documento Exoneracion");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 24;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox41, gridBagConstraints);
+        jPanel1.add(jCheckBox40, gridBagConstraints);
 
         jCheckBox42.setBackground(new java.awt.Color(247, 238, 212));
         jCheckBox42.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox42.setText("Numero Documento Exoneracion");
+        jCheckBox42.setText("Tipo Documento Exoneracion");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 25;
@@ -296,12 +286,7 @@ public class filtroReporte extends javax.swing.JFrame {
 
         jCheckBox43.setBackground(new java.awt.Color(247, 238, 212));
         jCheckBox43.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox43.setText("Nombre Institucion Exoneración");
-        jCheckBox43.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox43ActionPerformed(evt);
-            }
-        });
+        jCheckBox43.setText("Numero Documento Exoneracion");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 26;
@@ -310,20 +295,14 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox43, gridBagConstraints);
 
-        jCheckBox38.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox38.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox38.setText("Tarifa Impuesto");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 25;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 2;
-        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox38, gridBagConstraints);
-
         jCheckBox44.setBackground(new java.awt.Color(247, 238, 212));
         jCheckBox44.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox44.setText("Fecha Emisón Exoneración");
+        jCheckBox44.setText("Nombre Institucion Exoneración");
+        jCheckBox44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox44ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 27;
@@ -332,21 +311,20 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox44, gridBagConstraints);
 
-        jCheckBox40.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox40.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox40.setText("Monto Impuesto Exo");
+        jCheckBox39.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox39.setForeground(new java.awt.Color(52, 21, 0));
+        jCheckBox39.setText("Tarifa Impuesto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridy = 26;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox40, gridBagConstraints);
+        jPanel1.add(jCheckBox39, gridBagConstraints);
 
         jCheckBox45.setBackground(new java.awt.Color(247, 238, 212));
         jCheckBox45.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox45.setText("Porcentaje Compra Exoneración");
-        jCheckBox45.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCheckBox45.setText("Fecha Emisón Exoneración");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 28;
@@ -355,16 +333,39 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox45, gridBagConstraints);
 
-        jCheckBox36.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox36.setForeground(new java.awt.Color(52, 21, 0));
-        jCheckBox36.setText("Monto Total");
+        jCheckBox41.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox41.setForeground(new java.awt.Color(52, 21, 0));
+        jCheckBox41.setText("Monto Impuesto Exo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 28;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
+        jPanel1.add(jCheckBox41, gridBagConstraints);
+
+        jCheckBox46.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox46.setForeground(new java.awt.Color(52, 21, 0));
+        jCheckBox46.setText("Porcentaje Compra Exoneración");
+        jCheckBox46.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 29;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
+        jPanel1.add(jCheckBox46, gridBagConstraints);
+
+        jCheckBox37.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox37.setForeground(new java.awt.Color(52, 21, 0));
+        jCheckBox37.setText("Monto Total Linea");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 21;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox36, gridBagConstraints);
+        jPanel1.add(jCheckBox37, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 23;
@@ -377,10 +378,10 @@ public class filtroReporte extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(52, 21, 0));
-        jLabel3.setText("Impuesto");
+        jLabel3.setText("Impuesto por linea");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridy = 23;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.ipady = 8;
@@ -402,7 +403,7 @@ public class filtroReporte extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(52, 21, 0));
-        jLabel5.setText("Detalle de factura");
+        jLabel5.setText("Detalle de factura por linea");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 16;
@@ -489,25 +490,32 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox1, gridBagConstraints);
 
-        jCheckBox59.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox59.setText("Emitidas/Recibidas");
+        jCheckBox60.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox60.setText("Emitidas/Recibidas");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox59, gridBagConstraints);
+        jPanel1.add(jCheckBox60, gridBagConstraints);
 
-        jCheckBox60.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox60.setText("Fecha Factura");
+        jCheckBox61.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox61.setText("Fecha Factura");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
-        jPanel1.add(jCheckBox60, gridBagConstraints);
+        jPanel1.add(jCheckBox61, gridBagConstraints);
+
+        jCheckBox33.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox33.setText("Precio Unitario");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 21;
+        jPanel1.add(jCheckBox33, gridBagConstraints);
 
         jTabbedPane1.addTab("Facturas", jPanel1);
 
@@ -805,114 +813,114 @@ public class filtroReporte extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(247, 238, 212));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jCheckBox46.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox46.setText("Codigo Moneda");
+        jCheckBox47.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox47.setText("Codigo Moneda");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox46, gridBagConstraints);
-
-        jCheckBox47.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox47.setText("Tipo Cambio");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox47, gridBagConstraints);
 
         jCheckBox48.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox48.setText("Total ServGravados");
+        jCheckBox48.setText("Tipo Cambio");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox48, gridBagConstraints);
 
         jCheckBox49.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox49.setText("Total ServExcentos");
+        jCheckBox49.setText("Total ServGravados");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox49, gridBagConstraints);
 
         jCheckBox50.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox50.setText("Total Mercancias Gravadas");
+        jCheckBox50.setText("Total ServExcentos");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox50, gridBagConstraints);
 
         jCheckBox51.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox51.setText("Total Mercancias Excentas");
+        jCheckBox51.setText("Total Mercancias Gravadas");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox51, gridBagConstraints);
 
         jCheckBox52.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox52.setText("Total Gravado");
+        jCheckBox52.setText("Total Mercancias Excentas");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox52, gridBagConstraints);
 
         jCheckBox53.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox53.setText("Total Excento");
+        jCheckBox53.setText("Total Gravado");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox53, gridBagConstraints);
 
         jCheckBox54.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox54.setText("Total Venta");
-        jCheckBox54.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox54.setText("Total Excento");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel6.add(jCheckBox54, gridBagConstraints);
+
+        jCheckBox55.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox55.setText("Total Venta");
+        jCheckBox55.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox54ActionPerformed(evt);
+                jCheckBox55ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox54, gridBagConstraints);
+        jPanel6.add(jCheckBox55, gridBagConstraints);
 
-        jCheckBox55.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox55.setText("Total Descuentos");
+        jCheckBox56.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox56.setText("Total Descuentos");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox55, gridBagConstraints);
+        jPanel6.add(jCheckBox56, gridBagConstraints);
 
-        jCheckBox56.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox56.setText("Total Venta Neta");
+        jCheckBox57.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox57.setText("Total Venta Neta");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox56, gridBagConstraints);
+        jPanel6.add(jCheckBox57, gridBagConstraints);
 
-        jCheckBox57.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox57.setText("Total Impuesto");
+        jCheckBox58.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox58.setText("Total Impuesto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox57, gridBagConstraints);
+        jPanel6.add(jCheckBox58, gridBagConstraints);
 
-        jCheckBox58.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox58.setText("Total Comprobante");
+        jCheckBox59.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox59.setText("Total Comprobante");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox58, gridBagConstraints);
+        jPanel6.add(jCheckBox59, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -943,45 +951,45 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jSeparator6, gridBagConstraints);
 
-        jCheckBox61.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox61.setText("Tipo Documento");
+        jCheckBox62.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox62.setText("Tipo Documento");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox61, gridBagConstraints);
-
-        jCheckBox62.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox62.setText("Num Documento ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox62, gridBagConstraints);
 
         jCheckBox63.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox63.setText("Fecha Emisión");
+        jCheckBox63.setText("Num Documento ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox63, gridBagConstraints);
 
         jCheckBox64.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox64.setText("Código");
+        jCheckBox64.setText("Fecha Emisión");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel6.add(jCheckBox64, gridBagConstraints);
 
         jCheckBox65.setBackground(new java.awt.Color(247, 238, 212));
-        jCheckBox65.setText("Razón");
+        jCheckBox65.setText("Código");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel6.add(jCheckBox65, gridBagConstraints);
+
+        jCheckBox66.setBackground(new java.awt.Color(247, 238, 212));
+        jCheckBox66.setText("Razón");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        jPanel6.add(jCheckBox65, gridBagConstraints);
+        jPanel6.add(jCheckBox66, gridBagConstraints);
 
         jTabbedPane1.addTab("Resumen Factura", jPanel6);
 
@@ -1022,23 +1030,23 @@ public class filtroReporte extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
-    private void jCheckBox43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox43ActionPerformed
+    private void jCheckBox44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox44ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox43ActionPerformed
+    }//GEN-LAST:event_jCheckBox44ActionPerformed
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
-    private void jCheckBox39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox39ActionPerformed
+    private void jCheckBox40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox40ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox39ActionPerformed
+    }//GEN-LAST:event_jCheckBox40ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         escribirArchivoConfiguracion();
         cambiarEstadoColumnasReporte();
         JOptionPane.showMessageDialog(null, "La configuración ha sido guardada con éxito.", "Filtro de reportes", HEIGHT);
-        cerrarVentana();
+        //cerrarVentana();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox21ActionPerformed
@@ -1062,9 +1070,9 @@ public class filtroReporte extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jCheckBox54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox54ActionPerformed
+    private void jCheckBox55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox55ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox54ActionPerformed
+    }//GEN-LAST:event_jCheckBox55ActionPerformed
     public void cerrarVentana() {
         super.setVisible(false);
         super.dispose();
@@ -1138,6 +1146,7 @@ public class filtroReporte extends javax.swing.JFrame {
         listaEstados.add(jCheckBox63.isSelected() + "");
         listaEstados.add(jCheckBox64.isSelected() + "");
         listaEstados.add(jCheckBox65.isSelected() + "");
+        listaEstados.add(jCheckBox66.isSelected() + "");
                
         control.escribirArchivoConfiguracion(RecursosCompartidos.getDiretorioArchivoConfiguracion(), listaEstados, false);
     }
@@ -1274,92 +1283,96 @@ public class filtroReporte extends javax.swing.JFrame {
                 jCheckBox37.setSelected(estado);
                 break;
             case 38:
-                jCheckBox38.setSelected(estado);
+                jCheckBox37.setSelected(estado);
                 break;
             case 39:
-                jCheckBox39.setSelected(estado);
+                jCheckBox38.setSelected(estado);
                 break;
             case 40:
-                jCheckBox40.setSelected(estado);
+                jCheckBox39.setSelected(estado);
                 break;
             case 41:
-                jCheckBox41.setSelected(estado);
+                jCheckBox40.setSelected(estado);
                 break;
             case 42:
-                jCheckBox42.setSelected(estado);
+                jCheckBox41.setSelected(estado);
                 break;
             case 43:
-                jCheckBox43.setSelected(estado);
+                jCheckBox42.setSelected(estado);
                 break;
             case 44:
-                jCheckBox44.setSelected(estado);
+                jCheckBox43.setSelected(estado);
                 break;
             case 45:
-                jCheckBox45.setSelected(estado);
+                jCheckBox44.setSelected(estado);
                 break;
 
             case 46:
-                jCheckBox46.setSelected(estado);
+                jCheckBox45.setSelected(estado);
                 break;
             case 47:
-                jCheckBox47.setSelected(estado);
+                jCheckBox46.setSelected(estado);
                 break;
 
             case 48:
-                jCheckBox48.setSelected(estado);
+                jCheckBox47.setSelected(estado);
                 break;
             case 49:
-                jCheckBox49.setSelected(estado);
+                jCheckBox48.setSelected(estado);
                 break;
 
             case 50:
-                jCheckBox50.setSelected(estado);
+                jCheckBox49.setSelected(estado);
                 break;
 
             case 51:
-                jCheckBox51.setSelected(estado);
+                jCheckBox50.setSelected(estado);
                 break;
 
             case 52:
-                jCheckBox52.setSelected(estado);
+                jCheckBox51.setSelected(estado);
                 break;
 
             case 53:
-                jCheckBox53.setSelected(estado);
+                jCheckBox52.setSelected(estado);
                 break;
 
             case 54:
-                jCheckBox54.setSelected(estado);
+                jCheckBox53.setSelected(estado);
                 break;
 
             case 55:
-                jCheckBox55.setSelected(estado);
+                jCheckBox54.setSelected(estado);
                 break;
 
             case 56:
-                jCheckBox56.setSelected(estado);
+                jCheckBox55.setSelected(estado);
                 break;
             case 57:
-                jCheckBox57.setSelected(estado);
+                jCheckBox56.setSelected(estado);
                 break;
             case 58:
-                jCheckBox58.setSelected(estado);
+                jCheckBox57.setSelected(estado);
                 break;
             case 59:
-                jCheckBox59.setSelected(estado);
+                jCheckBox58.setSelected(estado);
                 break;
             case 60:
-                jCheckBox60.setSelected(estado);
+                jCheckBox59.setSelected(estado);
             case 61:
-                jCheckBox61.setSelected(estado);
+                jCheckBox60.setSelected(estado);
             case 62:
-                jCheckBox62.setSelected(estado);
+                jCheckBox61.setSelected(estado);
             case 63:
-                jCheckBox63.setSelected(estado);
+                jCheckBox62.setSelected(estado);
             case 64:
-                jCheckBox64.setSelected(estado);
+                jCheckBox63.setSelected(estado);
             case 65:
+                jCheckBox64.setSelected(estado);
+            case 66:
                 jCheckBox65.setSelected(estado);
+            case 67:
+                jCheckBox66.setSelected(estado);    
             default:
                 break;
 
@@ -1432,6 +1445,7 @@ public class filtroReporte extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox63;
     private javax.swing.JCheckBox jCheckBox64;
     private javax.swing.JCheckBox jCheckBox65;
+    private javax.swing.JCheckBox jCheckBox66;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;

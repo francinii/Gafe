@@ -14,11 +14,11 @@ public class LineaDetalle {
         this.unidadMedidaComercial = unidadMedidaComercial;
         this.detalle = detalle;
         this.precioUnitario = precioUnitario;
-        this.montoTotal = montoTotal;
         this.montoDescuento = montoDescuento;
         this.Naturalezadescuento = Naturalezadescuento;
         this.subTotal = subTotal;
         this.impuesto = impuesto;
+        this.montoTotal = montoTotal;
         this.montoTotalLinea = montoTotalLinea;
     }
     
