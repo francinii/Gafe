@@ -97,6 +97,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -521,7 +522,7 @@ public class formularioReporte extends javax.swing.JPanel {
             tipoComprobante = "";
         }
                 
-        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 58));
+        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 59));
         rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
         
         /*  Validacion del filtro para el combo box     */ 
@@ -660,6 +661,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JLabel lblCedulaJuridica;
     private javax.swing.JLabel lblEmpresa;
     private javax.swing.JTextField txtFiltro;

@@ -1016,6 +1016,7 @@ public class ControlFormularioPrincipal {
                     columna[59] = emitidaRecibida;
                     columna[60] = fechaReporte;
                     
+                    // Detalle Factura 
                     columna[26] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNumeroLinea();
                     columna[27] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCodigo().getTipoCodigo();
                     columna[28] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getCantidad();
@@ -1025,11 +1026,10 @@ public class ControlFormularioPrincipal {
                     columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getPrecioUnitario();
                     columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
                     columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
-                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
-                      
+                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();                
                     columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
                     
-                    
+                   // Impuestos y exoneracion 
                     columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo();
                     columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto();
                     columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
