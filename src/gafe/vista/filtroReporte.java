@@ -515,6 +515,9 @@ public class filtroReporte extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 21;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 6);
         jPanel1.add(jCheckBox33, gridBagConstraints);
 
         jTabbedPane1.addTab("Facturas", jPanel1);
