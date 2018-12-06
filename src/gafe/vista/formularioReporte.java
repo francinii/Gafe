@@ -522,7 +522,7 @@ public class formularioReporte extends javax.swing.JPanel {
             tipoComprobante = "";
         }
                 
-        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 59));
+        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 60));
         rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
         
         /*  Validacion del filtro para el combo box     */ 
@@ -592,7 +592,7 @@ public class formularioReporte extends javax.swing.JPanel {
         }
            
                 
-        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 58));
+        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 60));
         rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
         
         /*  Validacion del filtro para el combo box     */ 
