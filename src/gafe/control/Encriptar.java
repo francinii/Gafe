@@ -9,6 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 
+
 public class Encriptar {
  
     public static String Encriptado(String texto) {

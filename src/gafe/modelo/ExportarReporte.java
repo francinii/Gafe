@@ -10,20 +10,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import jxl.CellView;
 import jxl.Workbook;
-import jxl.format.Border;
-import jxl.format.BorderLineStyle;
 import jxl.format.UnderlineStyle;
 import jxl.read.biff.BiffException;
-import jxl.write.Colour;
 import jxl.write.Label;
-import jxl.write.WritableCell;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
+
 
 public class ExportarReporte {
 
@@ -41,7 +37,7 @@ public class ExportarReporte {
         }
     }
 
-    public boolean export() {
+    public boolean export() throws WriteException {
         boolean existencia = false;
         try {
             existencia = verificarExistencia();
