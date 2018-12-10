@@ -1284,16 +1284,16 @@ public class filtroReporte extends javax.swing.JFrame {
                 jCheckBox33.setSelected(estado);
                 break;
             case 34:
-                jCheckBox35.setSelected(estado);
+                jCheckBox34.setSelected(estado);
                 break;
             case 35:
-                jCheckBox36.setSelected(estado);
+                jCheckBox35.setSelected(estado);
                 break;
             case 36:
-                jCheckBox37.setSelected(estado);
+                jCheckBox36.setSelected(estado);
                 break;
             case 37:
-                jCheckBox38.setSelected(estado);
+                jCheckBox37.setSelected(estado);
                 break;
             case 38:
                 jCheckBox38.setSelected(estado);
@@ -1319,45 +1319,36 @@ public class filtroReporte extends javax.swing.JFrame {
             case 45:
                 jCheckBox45.setSelected(estado);
                 break;
-
             case 46:
                 jCheckBox46.setSelected(estado);
                 break;
             case 47:
                 jCheckBox47.setSelected(estado);
                 break;
-
             case 48:
                 jCheckBox48.setSelected(estado);
                 break;
             case 49:
                 jCheckBox49.setSelected(estado);
                 break;
-
             case 50:
                 jCheckBox50.setSelected(estado);
                 break;
-
             case 51:
                 jCheckBox51.setSelected(estado);
                 break;
-
             case 52:
                 jCheckBox52.setSelected(estado);
                 break;
-
             case 53:
                 jCheckBox53.setSelected(estado);
                 break;
-
             case 54:
                 jCheckBox54.setSelected(estado);
                 break;
-
             case 55:
                 jCheckBox55.setSelected(estado);
                 break;
-
             case 56:
                 jCheckBox56.setSelected(estado);
                 break;
