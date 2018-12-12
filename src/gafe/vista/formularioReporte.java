@@ -116,6 +116,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         JComboEmitidasRecibidas = new javax.swing.JComboBox<>();
         ComboFiltro = new javax.swing.JComboBox<>();
+        NCnegativas = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane(TablaReportes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         TablaReportes = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -322,6 +323,24 @@ public class formularioReporte extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 6, 1, 1);
         jPanel1.add(ComboFiltro, gridBagConstraints);
 
+        NCnegativas.setBackground(new java.awt.Color(247, 238, 212));
+        NCnegativas.setText("N.C negativas");
+        NCnegativas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                NCnegativasItemStateChanged(evt);
+            }
+        });
+        NCnegativas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                NCnegativasStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel1.add(NCnegativas, gridBagConstraints);
+
         add(jPanel1);
 
         TablaReportes.setModel(new javax.swing.table.DefaultTableModel(
@@ -400,10 +419,16 @@ public class formularioReporte extends javax.swing.JPanel {
 
         if ((FechaAntes.getDate() != null) || FechaDespues.getDate() != null) { // Validacion campos en Blanco
             //try {
-                Calendar ini = Calendar.getInstance();
+                //Calendar ini = Calendar.getInstance();
                 
-                Date desde = FechaAntes.getDate();
-                Date hasta = FechaDespues.getDate();
+                Date d = FechaAntes.getDate();
+                Date h = FechaDespues.getDate();
+                
+ /* -Esta seccion es para sumarle y restarle un dia a la fecha, ya que el filtro no toma los mismos dias como referencia  -- */
+                Date desde = sumarRestarDiasFecha(d , -1);
+                Date hasta = sumarRestarDiasFecha(h , 1);
+     
+ /* -------------------------------------------------------------------------------------------------------------------------- */                
                 
                 int fechasComparadas = hasta.compareTo(desde);
                   
@@ -470,6 +495,21 @@ public class formularioReporte extends javax.swing.JPanel {
             txtFiltro.setText("");
         }
     }//GEN-LAST:event_ComboFiltroItemStateChanged
+
+    private void NCnegativasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NCnegativasStateChanged
+        
+                
+    }//GEN-LAST:event_NCnegativasStateChanged
+
+    private void NCnegativasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_NCnegativasItemStateChanged
+       
+        
+        /*
+        controlVentanas.abrirFormularioReportes(FramePrincipal);
+        
+        System.out.println("Item NotasCredito Negativas");
+        */
+    }//GEN-LAST:event_NCnegativasItemStateChanged
     
     public String formatoFecha(String fecha) {
         if (!fecha.equals("")) {
@@ -626,8 +666,13 @@ public class formularioReporte extends javax.swing.JPanel {
 
         
         if ((desde != null) || (hasta != null)) {
+            
+           
+            
             rfs.add(RowFilter.dateFilter(ComparisonType.AFTER, desde, 3));
             rfs.add(RowFilter.dateFilter(ComparisonType.BEFORE, hasta, 3));
+            
+            
 
         }else { //esto es para cuando quiero quitar el filtro de las fechas.
             rfs.add(RowFilter.regexFilter(""));
@@ -639,6 +684,16 @@ public class formularioReporte extends javax.swing.JPanel {
         trs.setRowFilter(af);          
     }
     
+    public Date sumarRestarDiasFecha(Date fecha, int dias) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha); // Configuramos la fecha que se recibe
+        calendar.add(Calendar.DAY_OF_YEAR, dias);  // numero de días a añadir, o restar en caso de días<0
+
+        return calendar.getTime(); // Devuelve el objeto Date con los nuevos días añadidos
+
+    }
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -646,6 +701,7 @@ public class formularioReporte extends javax.swing.JPanel {
     private org.jdesktop.swingx.JXDatePicker FechaAntes;
     private org.jdesktop.swingx.JXDatePicker FechaDespues;
     private javax.swing.JComboBox<String> JComboEmitidasRecibidas;
+    private javax.swing.JCheckBox NCnegativas;
     private javax.swing.JTable TablaReportes;
     private javax.swing.JButton btnFiltro;
     private javax.swing.JButton jButton2;

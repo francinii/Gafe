@@ -919,7 +919,8 @@ public class ControlFormularioPrincipal {
     }
     
     
-
+    //Cargar los datos de las facutras en la tabla
+    
     public void llenarFacturaReportes(JTable tabla, String ruta, List<Factura> listFacturas) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         String categoria = "";
