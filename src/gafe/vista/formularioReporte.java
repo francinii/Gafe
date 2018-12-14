@@ -329,7 +329,7 @@ public class formularioReporte extends javax.swing.JPanel {
         jPanel1.add(ComboFiltro, gridBagConstraints);
 
         NCnegativas.setBackground(new java.awt.Color(247, 238, 212));
-        NCnegativas.setText("N.C negativas");
+        NCnegativas.setText("Notas Créditos Negativas");
         NCnegativas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 NCnegativasItemStateChanged(evt);
