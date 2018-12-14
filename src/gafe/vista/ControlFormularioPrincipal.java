@@ -191,6 +191,28 @@ public class ControlFormularioPrincipal {
         }
         pintarReportes(panelPrincipal, fomrReporte);
     }
+    
+    
+    // Sobrecarga de metodo, aplica solo para notas de credito negativas 
+    public void abrirFormularioReportes(JPanel panelPrincipal, boolean notasCreditoNegativas) {
+        
+        this.notasCreditoNegativas = notasCreditoNegativas;
+        panelPrincipal.removeAll();
+        formularioReporte fomrReporte = control.getFormReporte();
+        limpiarTablaGenerico(control.getFormReporte().ObtenerTablaReportes());
+        fomrReporte.llenarDatosProyecto(EmpresaGlobal, CedulaJuridicaGlobal); // cargar el nombre y la cedulaJ del formulario listar
+
+        //Agregué esto
+        Proyecto p = buscarProyecto(RecursosCompartidos.getRuta());
+        if (p != null) {
+            List<Factura> listFacturas = p.getListadoFacturas();
+            //Final de la agregación
+            llenarFacturaReportes(control.tablaReportes(), RecursosCompartidos.getRuta(), listFacturas);
+        }
+        pintarReportes(panelPrincipal, fomrReporte);
+    }
+    
+    
 
     //Este abre el formulario con filtros de categoria y fecha
     public void abrirFormularioReportes(JTable TablaReportes,String fIncio, String fFinal) {
@@ -940,7 +962,10 @@ public class ControlFormularioPrincipal {
         Object[] columna = new Object[numeroColumnasTabla];
         for (int i = 0; i < listFacturas.size(); i++) {
             
+              
                 categoria = listFacturas.get(i).getCategoria();
+                
+                
                 clave = listFacturas.get(i).getClave();
                 consecutivo = listFacturas.get(i).getConsecutivo();
                 nombreEmisor = listFacturas.get(i).getEmisor().getNombre();
@@ -989,6 +1014,21 @@ public class ControlFormularioPrincipal {
                 columna[25] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito();
 
                 columna[47] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
+                
+            if (categoria.equals("NotaCreditoElectronica") && notasCreditoNegativas == true) {
+                columna[48] = "-" + listFacturas.get(i).getResumenFactura().getTipoCambio();
+                columna[49] = "-" + listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
+                columna[50] = "-" + listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos();
+                columna[51] = "-" + listFacturas.get(i).getResumenFactura().getTotalMercanciasGravadas();
+                columna[52] = "-" + listFacturas.get(i).getResumenFactura().getTotalMercanciasExcentas();
+                columna[53] = "-" + listFacturas.get(i).getResumenFactura().getTotalGravado();
+                columna[54] = "-" + listFacturas.get(i).getResumenFactura().getTotalExcento();
+                columna[55] = "-" + listFacturas.get(i).getResumenFactura().getTotalVenta();
+                columna[56] = "-" + listFacturas.get(i).getResumenFactura().getTotalDescuentos();
+                columna[57] = "-" + listFacturas.get(i).getResumenFactura().getTotalVentaNeta();
+                columna[58] = "-" + listFacturas.get(i).getResumenFactura().getTotalImpuesto();
+                columna[59] = "-" + listFacturas.get(i).getResumenFactura().getTotalComprobante();
+            } else {
                 columna[48] = listFacturas.get(i).getResumenFactura().getTipoCambio();
                 columna[49] = listFacturas.get(i).getResumenFactura().getTotalServiciosGravados();
                 columna[50] = listFacturas.get(i).getResumenFactura().getTotalServiciosExcentos();
@@ -1001,6 +1041,11 @@ public class ControlFormularioPrincipal {
                 columna[57] = listFacturas.get(i).getResumenFactura().getTotalVentaNeta();
                 columna[58] = listFacturas.get(i).getResumenFactura().getTotalImpuesto();
                 columna[59] = listFacturas.get(i).getResumenFactura().getTotalComprobante();
+
+            }
+
+                
+                
 
                 for (int j = 0; j < listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().size(); j++) {
                     
@@ -1024,19 +1069,40 @@ public class ControlFormularioPrincipal {
                     columna[29] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedida();
                     columna[30] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getUnidadMedidaComercial();
                     columna[31] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getDetalle();
-                    columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getPrecioUnitario();
-                    columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotal();
                     
-                    columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
-                    columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
-                    columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();                
-                    columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
+                    if (categoria.equals("NotaCreditoElectronica") && notasCreditoNegativas == true) {
+                        
+                        columna[32] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getPrecioUnitario();
+                        columna[33] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotal();
+                        columna[34] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
+                        columna[35] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
+                        columna[36] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
+                        columna[37] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
+                    
+                    } else {
+                        
+                        columna[32] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getPrecioUnitario();
+                        columna[33] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotal();
+                        columna[34] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoDescuento();
+                        columna[35] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getNaturalezadescuento();
+                        columna[36] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getSubTotal();
+                        columna[37] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getMontoTotalLinea();
+                    
+                    }
                     
                    // Impuestos y exoneracion 
                     columna[38] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getCodigo();
                     columna[39] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getTarifaImpuesto();
-                    columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
-                    columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
+                    
+                    if (categoria.equals("NotaCreditoElectronica") && notasCreditoNegativas == true) {
+                        columna[40] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
+                        columna[41] = "-" + listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
+                    }else {
+                        columna[40] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getMonto();
+                        columna[41] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoImpuesto();
+                    
+                    }
+                    
                     columna[42] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getTipoDocumento();
                     columna[43] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNumeroDocumento();
                     columna[44] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
@@ -1107,4 +1173,6 @@ public class ControlFormularioPrincipal {
     public String directorioCantidadProyecto = "Cantidad.data";
     
     
+    // esta variable cambia su valor en el metodo llenar reports
+    boolean notasCreditoNegativas = false;
 }

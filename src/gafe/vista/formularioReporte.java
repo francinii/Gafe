@@ -37,6 +37,11 @@ public class formularioReporte extends javax.swing.JPanel {
     DefaultTableModel modelo;
     TableRowSorter trs;   
     boolean statusBtnFiltrar = false;
+    
+    
+    
+    
+    
 
     public formularioReporte(ControlFormularioPrincipal control) {
         this.controlVentanas = control;
@@ -503,6 +508,17 @@ public class formularioReporte extends javax.swing.JPanel {
 
     private void NCnegativasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_NCnegativasItemStateChanged
        
+        
+        if(NCnegativas.isSelected()){
+            
+            
+            controlVentanas.abrirFormularioReportes(FramePrincipal,true);
+        }else{
+            
+            controlVentanas.abrirFormularioReportes(FramePrincipal,false);
+            
+        }
+        
         
         /*
         controlVentanas.abrirFormularioReportes(FramePrincipal);
