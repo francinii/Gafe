@@ -1013,7 +1013,7 @@ public class ControlFormularioPrincipal {
                 columna[24] = listFacturas.get(i).getReceptor().getUbicacion().getCanton();
                 columna[25] = listFacturas.get(i).getReceptor().getUbicacion().getDistrito();
 
-                columna[47] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
+               
                 
             if (categoria.equals("NotaCreditoElectronica") && notasCreditoNegativas == true) {
                 columna[48] = "-" + listFacturas.get(i).getResumenFactura().getTipoCambio();
@@ -1108,6 +1108,8 @@ public class ControlFormularioPrincipal {
                     columna[44] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getNombreInstitucion();
                     columna[45] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
                     columna[46] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorcentajeCompra();
+                    columna[47] = listFacturas.get(i).getResumenFactura().getCodigoMoneda();
+                    
                     
                     columna[62] = listFacturas.get(i).getInformacionReferencia().getTipoDocumento();
                     columna[63] = listFacturas.get(i).getInformacionReferencia().getNumeroDoumento();
