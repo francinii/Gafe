@@ -25,7 +25,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.xml.bind.JAXBContext;
@@ -254,7 +257,7 @@ public class Control {
     public void mostrarAcercaDe() {
         acercaDe.activarVentana();
     }
-    
+
     public boolean validarCedulaProyecto(File ruta, String cedula){
         return claseLectorFacturas.validarCedulaProyecto(ruta, cedula);
     }
@@ -267,6 +270,9 @@ public class Control {
     public void limpiarListadoError(){
         claseLectorFacturas.vaciarListaError();
     }
+
+    
+    
     
         
     List<Proyecto> listadoProyecto = new ArrayList<>();
@@ -281,10 +287,7 @@ public class Control {
     LectorArchivoConfiguracion lectorArchivoConfiguracion;
     formularioClientes formClientes;
     formularioProveedores formProveedores;
-    acercaDe acercaDe;
-   
-    
-    
+    acercaDe acercaDe;          
     
     private String directorio = "config.data";
     

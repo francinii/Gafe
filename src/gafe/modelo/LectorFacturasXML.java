@@ -70,6 +70,7 @@ public class LectorFacturasXML {
                 // System.out.println(nodoPadre.getName());
                 String categoria = nodoPadre.getName();
                 String clave = crearElemento("Clave", nodoPadre, namespace);
+                String codigoActividad = crearElemento("CodigoActividad", nodoPadre,namespace);
                 String numeroConsecutivo = crearElemento("NumeroConsecutivo", nodoPadre, namespace);
                 String fechaEmision = crearElemento("FechaEmision", nodoPadre, namespace);
                 String condicionVenta = crearElemento("CondicionVenta", nodoPadre, namespace);
@@ -82,14 +83,19 @@ public class LectorFacturasXML {
                 Receptor receptorObjeto = crearReceptor(nodoPadre, namespace); //Emisor corresponde al nodo padre 
                 //Obtener nodo detalle del servicio
                 DetalleServicio detalleServicio = crearDetalleServicio(nodoPadre, namespace);
+                
+                //obtener OtrosCargos
+                OtrosCargos otrosCargos = crearOtrosCargos(nodoPadre,namespace);
+                
                 //Obtener ResumenFactura
                 ResumenFactura resumenFactura = crearResumenFactura(nodoPadre, namespace);
                 //Obtener informacionReferencia
                 InformacionReferencia informacionReferencia = crearInformacionReferencia(nodoPadre, namespace);
-                //Obtener normativa
-                Normativa normativa = crearNormativa(nodoPadre, namespace);
+                
+                //OtrosCargos otrosCargos =    
+                Otros otros = crearOtros(nodoPadre, namespace);
 
-                return new Factura(categoria, clave, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio, resumenFactura, informacionReferencia, normativa);
+                return new Factura(categoria, clave,codigoActividad, numeroConsecutivo, fechaEmision, emisorObjeto, receptorObjeto, condicionVenta, plazoCredito, medioPago, detalleServicio,otrosCargos, resumenFactura, informacionReferencia, otros);
             } else {
                 listadoError.add(ruta);
             }
@@ -189,7 +195,7 @@ public class LectorFacturasXML {
     private Receptor crearReceptor(Element nodoPadre, String namespace) {
         if (nodoPadre.getChild("Receptor", Namespace.getNamespace(namespace)) != null) {
             Element nodoReceptor = nodoPadre.getChild("Receptor", Namespace.getNamespace(namespace));
-            String nombreReceptor = crearElemento("Nombre", nodoReceptor, namespace); //no recuerdo como se llamaba este
+            String nombreReceptor = crearElemento("Nombre", nodoReceptor, namespace); 
             String nombreComercial = crearElemento("NombreComercial", nodoReceptor, namespace);
             String identificacionExtranjero = crearElemento("IdentificacionExtranjero", nodoReceptor, namespace);
             String correoElectronico = crearElemento("CorreoElectronico", nodoReceptor, namespace);
@@ -206,15 +212,15 @@ public class LectorFacturasXML {
     }
 
     private Exoneracion crearExoneracion(Element nodoPadre, String namespace) {
-        if (nodoPadre.getChild("Impuesto", Namespace.getNamespace(namespace)) != null) {
+        if (nodoPadre.getChild("Exoneracion", Namespace.getNamespace(namespace)) != null) {
             Element exonera = nodoPadre.getChild("Exoneracion", Namespace.getNamespace(namespace));
             String tipoDocumento = crearElemento("TipoDocumento", exonera, namespace);
             String numeroDocumento = crearElemento("NumeroDocumento", exonera, namespace);
             String nombreInstitucion = crearElemento("NombreInstitucion", exonera, namespace);
             String fechaEmision = crearElemento("FechaEmision", exonera, namespace);
-            String montoImpuesto = crearElemento("MontoImpuesto", exonera, namespace);
-            String porcentajeCompra = crearElemento("PorcentajeCompra", exonera, namespace);
-            return new Exoneracion(tipoDocumento, numeroDocumento, nombreInstitucion, fechaEmision, montoImpuesto, porcentajeCompra);
+            String porcentajeExoneracion = crearElemento("PorcentajeExoneracion", exonera, namespace);
+            String montoExoneracion = crearElemento("MontoExoneracion", exonera, namespace);
+            return new Exoneracion(tipoDocumento, numeroDocumento, nombreInstitucion, fechaEmision, porcentajeExoneracion, montoExoneracion);
         }
         return new Exoneracion();
     }
@@ -259,29 +265,60 @@ public class LectorFacturasXML {
             List<Element> detalleServicio = detallaServicio.getChildren();
             for (Element lineaDetalle : detalleServicio) {
                 String numeroLinea = crearElemento("NumeroLinea", lineaDetalle, namespace);
+                String codigo = crearElemento("Codigo", lineaDetalle, namespace);
+                CodigoLineaDetalle codigoComercial = crearCodigo(lineaDetalle, namespace);
                 String cantidad = crearElemento("Cantidad", lineaDetalle, namespace);
                 String unidadMedida = crearElemento("UnidadMedida", lineaDetalle, namespace);
                 String unidadMedidaComercial = crearElemento("UnidadMedidaComercial", lineaDetalle, namespace);
                 String detalle = crearElemento("Detalle", lineaDetalle, namespace);
                 String precioUnitario = crearElemento("PrecioUnitario", lineaDetalle, namespace);
                 String montoTotal = crearElemento("MontoTotal", lineaDetalle, namespace);
-                String montoDescuento = crearElemento("MontoDescuento", lineaDetalle, namespace);
-                String naturalezaDescuento = crearElemento("NaturalezaDescuento", lineaDetalle, namespace);
+                
+                Descuento descuento = crearDescuento(lineaDetalle, namespace);
+                
                 String subTotal = crearElemento("SubTotal", lineaDetalle, namespace);
-                String montoTotalLinea = crearElemento("MontoTotalLinea", lineaDetalle, namespace);
-                CodigoLineaDetalle codigo = crearCodigo(detallaServicio, namespace);
+                
+                String baseImponible = crearElemento("BaseImponible", lineaDetalle, namespace);
                 Impuesto impuesto = crearImpuesto(lineaDetalle, namespace); //POR TERMINAR
-                listarDetalleServicio.agregarLinea(new LineaDetalle(numeroLinea, codigo, cantidad, unidadMedida, unidadMedidaComercial, detalle, precioUnitario, montoTotal, montoDescuento, naturalezaDescuento, subTotal, impuesto, montoTotalLinea));
+                
+                
+                String impuestoNeto = crearElemento("ImpuestoNeto", lineaDetalle, namespace);
+                
+                String montoTotalLinea = crearElemento("MontoTotalLinea", lineaDetalle, namespace);
+  
+
+                listarDetalleServicio.agregarLinea(new LineaDetalle(numeroLinea, codigo,codigoComercial, cantidad, unidadMedida, unidadMedidaComercial, detalle, precioUnitario, montoTotal, descuento , subTotal,baseImponible, impuesto, impuestoNeto,montoTotalLinea));
             }
             return listarDetalleServicio;
         }
         return new DetalleServicio();
     }
+    
+    private OtrosCargos crearOtrosCargos(Element nodoPadre, String namespace) {
+        if (nodoPadre.getChild("OtrosCargos", Namespace.getNamespace(namespace)) != null) {
+            Element nodoOtrosCargos = nodoPadre.getChild("OtrosCargos", Namespace.getNamespace(namespace));
+            String TipoDocumento = crearElemento("TipoDocumento", nodoOtrosCargos, namespace);
+            String NombreIdentidadTerceros = crearElemento("NumeroIdentidadTercero", nodoOtrosCargos, namespace);
+            String nombreTercero = crearElemento("NombreTercero", nodoOtrosCargos, namespace);
+            String detalle = crearElemento("Detalle", nodoOtrosCargos, namespace);
+            String porcentaje = crearElemento("Porcentaje", nodoOtrosCargos, namespace);
+            String MontoCargo = crearElemento("MontoCargo", nodoOtrosCargos, namespace);
+            
+            return new OtrosCargos(TipoDocumento,NombreIdentidadTerceros,nombreTercero,detalle,porcentaje,MontoCargo);
+        }
+        return new OtrosCargos();
+    }
+    
+    
+    
+    
+    
 
     private CodigoLineaDetalle crearCodigo(Element nodoPadre, String namespace) {
-        if (nodoPadre.getChild("LineaDetalle", Namespace.getNamespace(namespace)) != null) {
-            String tipo = crearElemento("Tipo", nodoPadre, namespace);
-            String codigo = crearElemento("Codigo", nodoPadre, namespace);
+        if (nodoPadre.getChild("CodigoComercial", Namespace.getNamespace(namespace)) != null) {
+            Element nodoCodigoComercial = nodoPadre.getChild("CodigoComercial", Namespace.getNamespace(namespace));
+            String tipo = crearElemento("Tipo", nodoCodigoComercial, namespace);
+            String codigo = crearElemento("Codigo", nodoCodigoComercial, namespace);
             return new CodigoLineaDetalle(tipo, codigo);
         }
         return new CodigoLineaDetalle();
@@ -292,13 +329,17 @@ public class LectorFacturasXML {
         if (nodoPadre.getChild("Impuesto", Namespace.getNamespace(namespace)) != null) {
             Element impuesto = nodoPadre.getChild("Impuesto", Namespace.getNamespace(namespace));
             String codigo = crearElemento("Codigo", impuesto, namespace);
+            String codigoTarifa = crearElemento("CodigoTarifa", impuesto, namespace);
             String tarifa = crearElemento("Tarifa", impuesto, namespace);
+            String factorIVA = crearElemento("FactorIVA", impuesto, namespace);
             String monto = crearElemento("Monto", impuesto, namespace);
             Exoneracion exoneracion = crearExoneracion(impuesto, namespace);
-            return new Impuesto(codigo, tarifa, monto, exoneracion);
+            return new Impuesto(codigo, codigoTarifa, tarifa, factorIVA,monto,exoneracion);
         }
         return new Impuesto();
     }
+    
+    /// Voy por impuestos
 
     private String crearElemento(String nombreNodo, Element nodoPadre, String namespace) {
         if (nodoPadre.getChild(nombreNodo, Namespace.getNamespace(namespace)) != null) {
@@ -310,20 +351,28 @@ public class LectorFacturasXML {
     private ResumenFactura crearResumenFactura(Element nodoPadre, String namespace) {
         if (nodoPadre.getChild("ResumenFactura", Namespace.getNamespace(namespace)) != null) {
             Element resumenFactura = nodoPadre.getChild("ResumenFactura", Namespace.getNamespace(namespace));
-            String codigoMoneda = crearElemento("CodigoMoneda", resumenFactura, namespace);
-            String tipoCambio = crearElemento("TipoCambio", resumenFactura, namespace);
+            CodigoTipoMoneda codigoMoneda = crearCodigoTipoMoneda(resumenFactura,namespace);
             String totalServiciosGravados = crearElemento("TotalServGravados", resumenFactura, namespace);
             String totalServiciosExcentos = crearElemento("TotalServExentos", resumenFactura, namespace);
+            String totalServiciosExonerados = crearElemento("TotalServExonerado", resumenFactura, namespace);                         
+            
             String totalMercanciasGravadas = crearElemento("TotalMercanciasGravadas", resumenFactura, namespace);
             String totalMercanciasExentas = crearElemento("TotalMercanciasExentas", resumenFactura, namespace);
+            String totalMercanciasExoneradas = crearElemento("TotalMercExonerada", resumenFactura, namespace);       
+            
             String totalGravado = crearElemento("TotalGravado", resumenFactura, namespace);
             String totalExcento = crearElemento("TotalExento", resumenFactura, namespace);
+            String totalExonerado = crearElemento("TotalExonerado", resumenFactura, namespace);
+            
             String totalVenta = crearElemento("TotalVenta", resumenFactura, namespace);
             String totalDescuento = crearElemento("TotalDescuentos", resumenFactura, namespace);
             String totalVentaNeta = crearElemento("TotalVentaNeta", resumenFactura, namespace);
             String totalImpuesto = crearElemento("TotalImpuesto", resumenFactura, namespace);
+            String totalIVADevuelto = crearElemento("TotalIVADevuelto",resumenFactura,namespace);
+            String totalOtrosCargos = crearElemento("TotalOtrosCargos",resumenFactura,namespace);   
             String totalComprobante = crearElemento("TotalComprobante", resumenFactura, namespace);
-            return new ResumenFactura(codigoMoneda, tipoCambio, totalServiciosGravados, totalServiciosExcentos, totalMercanciasGravadas, totalMercanciasExentas, totalGravado, totalExcento, totalVenta, totalDescuento, totalVentaNeta, totalImpuesto, totalComprobante);
+            
+            return new ResumenFactura(codigoMoneda, totalServiciosGravados, totalServiciosExcentos,totalServiciosExonerados, totalMercanciasGravadas, totalMercanciasExentas, totalMercanciasExoneradas, totalGravado, totalExcento,totalExonerado, totalVenta, totalDescuento, totalVentaNeta, totalImpuesto,totalIVADevuelto,totalOtrosCargos, totalComprobante);
         }
         return new ResumenFactura();
     }
@@ -341,15 +390,42 @@ public class LectorFacturasXML {
         return new InformacionReferencia();
     }
 
-    private Normativa crearNormativa(Element nodoPadre, String namespace) {
-        if (nodoPadre.getChild("Normativa", Namespace.getNamespace(namespace)) != null) {
-            Element normativa = nodoPadre.getChild("Normativa", Namespace.getNamespace(namespace));
-            String numResolucion = crearElemento("NumeroResolucion", normativa, namespace);
-            String fechaResolucion = crearElemento("FechaResolucion", normativa, namespace);
-            return new Normativa(numResolucion, fechaResolucion);
+
+    private CodigoTipoMoneda crearCodigoTipoMoneda(Element nodoPadre, String namespace) {
+        if (nodoPadre.getChild("CodigoTipoMoneda", Namespace.getNamespace(namespace)) != null) {
+            Element normativa = nodoPadre.getChild("CodigoTipoMoneda", Namespace.getNamespace(namespace));
+            String numResolucion = crearElemento("CodigoMoneda", normativa, namespace);
+            String fechaResolucion = crearElemento("TipoCambio", normativa, namespace);
+            return new CodigoTipoMoneda(numResolucion, fechaResolucion);
         }
-        return new Normativa();
+        return new CodigoTipoMoneda();
     }
+    
+    
+    private Descuento crearDescuento(Element nodoPadre, String namespace) {
+
+        if (nodoPadre.getChild("Descuento", Namespace.getNamespace(namespace)) != null) {
+            Element descuento = nodoPadre.getChild("Descuento", Namespace.getNamespace(namespace));
+            String montoDescuento = crearElemento("MontoDescuento", descuento, namespace);
+            String naturalezaDescuento = crearElemento("NaturalezaDescuento", descuento, namespace);
+            return new Descuento(montoDescuento, naturalezaDescuento);
+        }
+        return new Descuento();
+    }
+    
+    private Otros crearOtros(Element nodoPadre, String namespace) {
+
+        if (nodoPadre.getChild("Otros", Namespace.getNamespace(namespace)) != null) {
+            Element otros = nodoPadre.getChild("Otros", Namespace.getNamespace(namespace));
+            String montoDescuento = crearElemento("OtroTexto", otros, namespace);
+            String naturalezaDescuento = crearElemento("OtroContenido", otros, namespace);
+            return new Otros(montoDescuento, naturalezaDescuento);
+        }
+        return new Otros();
+    }
+
+    
+    
 // </editor-fold>
 
 }

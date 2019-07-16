@@ -6,13 +6,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="exoneracion")
 public class Exoneracion {
-    public Exoneracion(String tipoDocumento, String numeroDocumento, String nombreInstitucion, String fecheEmision, String montoImpuesto, String porcentajeCompra) {
+    public Exoneracion(String tipoDocumento, String numeroDocumento, String nombreInstitucion, String fecheEmision, String porecentajeExoneracion, String montoExoneracion) {
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
         this.nombreInstitucion = nombreInstitucion;
         this.fecheEmision = fecheEmision;
-        this.montoImpuesto = montoImpuesto;
-        this.porcentajeCompra = porcentajeCompra;
+        this.porecentajeExoneracion = porecentajeExoneracion;
+        this.montoExoneracion = montoExoneracion;
     }
     
     public Exoneracion(){
@@ -75,34 +75,23 @@ public class Exoneracion {
         this.fecheEmision = fecheEmision;
     }
 
-    /**
-     * @return the montoImpuesto
-     */
-    public String getMontoImpuesto() {
-        return montoImpuesto;
+    public String getPorecentajeExoneracion() {
+        return porecentajeExoneracion;
     }
 
-    /**
-     * @param montoImpuesto the montoImpuesto to set
-     */
-    public void setMontoImpuesto(String montoImpuesto) {
-        this.montoImpuesto = montoImpuesto;
+    public void setPorecentajeExoneracion(String porecentajeExoneracion) {
+        this.porecentajeExoneracion = porecentajeExoneracion;
     }
 
-    /**
-     * @return the porcentajeCompra
-     */
-    public String getPorcentajeCompra() {
-        return porcentajeCompra;
+    public String getMontoExoneracion() {
+        return montoExoneracion;
     }
 
-    /**
-     * @param porcentajeCompra the porcentajeCompra to set
-     */
-    public void setPorcentajeCompra(String porcentajeCompra) {
-        this.porcentajeCompra = porcentajeCompra;
+    public void setMontoExoneracion(String montoExoneracion) {
+        this.montoExoneracion = montoExoneracion;
     }
 
+    
 
 
            
@@ -110,7 +99,7 @@ public class Exoneracion {
     private String numeroDocumento;
     private String nombreInstitucion;
     private String fecheEmision;
-    private String montoImpuesto;
-    private String porcentajeCompra;
+    private String porecentajeExoneracion;
+    private String montoExoneracion;
         
 }

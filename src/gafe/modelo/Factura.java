@@ -6,14 +6,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Factura {
 
     public Factura() {
-        this("","", "", "", new Emisor(), new Receptor(), "", "", "", new DetalleServicio(), new ResumenFactura(), new InformacionReferencia(), new Normativa());
-
+        this("","", "" ,"", "", new Emisor(), new Receptor(), "", "", "", new DetalleServicio(), new OtrosCargos(), new ResumenFactura(), new InformacionReferencia(), new Otros());
     }
     
-    
-    public Factura(String categoria, String clave, String consecutivo, String fechaEmision, Emisor emisor, Receptor receptor, String condicionVenta, String plazoCredito, String medioPago, DetalleServicio detalleServicio, ResumenFactura resumenFactura, InformacionReferencia informacionReferencia, Normativa normativa) {
-        this.categoria = categoria;
+    public Factura(String categoria, String clave, String codigoActividad,String consecutivo, String fechaEmision, Emisor emisor, Receptor receptor, String condicionVenta, String plazoCredito, String medioPago, DetalleServicio detalleServicio,OtrosCargos otrosCargos, ResumenFactura resumenFactura, InformacionReferencia informacionReferencia, Otros otros) {
         this.clave = clave;
+        this.codigoActividad = codigoActividad;
+        this.categoria = categoria;
         this.consecutivo = consecutivo;
         this.fechaEmision = fechaEmision;
         this.emisor = emisor;
@@ -22,15 +21,21 @@ public class Factura {
         this.plazoCredito = plazoCredito;
         this.medioPago = medioPago;
         this.detalleServicio = detalleServicio;
+        this.otrosCargos = otrosCargos;
         this.resumenFactura = resumenFactura;
         this.informacionReferencia = informacionReferencia;
-        this.normativa = normativa;
+        this.otros = otros;
     }
 
     public String getClave() {
         return clave;
     }
 
+    public String getCodigoActividad() {
+        return codigoActividad;
+    }
+    
+    
     public String getConsecutivo() {
         return consecutivo;
     }
@@ -72,14 +77,14 @@ public class Factura {
         return informacionReferencia;
     }
 
-    public Normativa getOtros() {
-        return normativa;
-    }
+
     
     public String getCategoria(){
         return categoria;
     }
-    
+
+  
+       
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
@@ -93,6 +98,11 @@ public class Factura {
         this.consecutivo = consecutivo;
     }
 
+    public void setCodigoActividad(String codigoActividad) {
+        this.codigoActividad = codigoActividad;
+    }
+
+    
     public void setFechaEmision(String fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
@@ -129,14 +139,19 @@ public class Factura {
         this.informacionReferencia = informacionReferencia;
     }
 
-    public void setNormativa(Normativa otros) {
-        this.normativa = otros;
+   
+    public OtrosCargos getOtrosCargos() {
+        return otrosCargos;
+    }
+
+    public void setOtrosCargos(OtrosCargos otrosCargos) {
+        this.otrosCargos = otrosCargos;
     }
     
-
     
     private String categoria;
     private String clave;
+    private String codigoActividad;
     private String consecutivo;
     private String fechaEmision;
     private Emisor emisor;
@@ -145,8 +160,8 @@ public class Factura {
     private String plazoCredito;
     private String medioPago;
     private DetalleServicio detalleServicio;
+    private OtrosCargos otrosCargos;
     private ResumenFactura resumenFactura;
     private InformacionReferencia informacionReferencia;
-    private Normativa normativa;
-
+    private Otros otros;
 }

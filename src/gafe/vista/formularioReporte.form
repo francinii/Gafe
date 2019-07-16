@@ -286,6 +286,7 @@
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="NCnegativasItemStateChanged"/>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="NCnegativasStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NCnegativasActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -306,9 +307,10 @@
         <Component class="javax.swing.JTable" name="TablaReportes">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="TablaReportes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);">
-              <Table columnCount="67" rowCount="0">
+              <Table columnCount="83" rowCount="0">
                 <Column editable="false" title="Categoria" type="java.lang.Object"/>
                 <Column editable="false" title="Clave" type="java.lang.Object"/>
+                <Column editable="false" title="CodigoActividad" type="java.lang.Object"/>
                 <Column editable="false" title="Consecutivo" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha Emision" type="java.lang.Object"/>
                 <Column editable="false" title="Condicion Venta" type="java.lang.Object"/>
@@ -335,49 +337,144 @@
                 <Column editable="false" title="Distrito Receptor" type="java.lang.Object"/>
                 <Column editable="false" title="Numero de Linea" type="java.lang.Object"/>
                 <Column editable="false" title="Codigo del Producto" type="java.lang.Object"/>
+                <Column editable="false" title="Codigo Comercial" type="java.lang.Object"/>
                 <Column editable="false" title="Cantidad" type="java.lang.Object"/>
                 <Column editable="false" title="Unidad de Medida" type="java.lang.Object"/>
                 <Column editable="false" title="Unidad de Medida Comercial" type="java.lang.Object"/>
                 <Column editable="false" title="Detalle" type="java.lang.Object"/>
-                <Column editable="true" title="Precio Unitario" type="java.lang.Object"/>
-                <Column editable="true" title="Monto Total" type="java.lang.Object"/>
+                <Column editable="false" title="Precio Unitario" type="java.lang.Object"/>
+                <Column editable="false" title="Monto Total" type="java.lang.Object"/>
                 <Column editable="false" title="Monto Descuento" type="java.lang.Object"/>
                 <Column editable="false" title="Naturaleza Descuento" type="java.lang.Object"/>
                 <Column editable="false" title="SubTotal" type="java.lang.Object"/>
+                <Column editable="false" title="BaseImponible" type="java.lang.Object"/>
                 <Column editable="false" title="Monto Total Linea" type="java.lang.Object"/>
                 <Column editable="false" title="Codigo Impuesto" type="java.lang.Object"/>
+                <Column editable="false" title="CodigoTarifa" type="java.lang.Object"/>
                 <Column editable="false" title="Tarifa Impuesto" type="java.lang.Object"/>
-                <Column editable="true" title="Monto del Impuesto" type="java.lang.Object"/>
-                <Column editable="false" title="Monto Impuesto Exoneraci&#xf3;n" type="java.lang.Object"/>
+                <Column editable="false" title="FactorIVA" type="java.lang.Object"/>
+                <Column editable="false" title="Monto del Impuesto" type="java.lang.Object"/>
                 <Column editable="false" title="Tipo documento Exoneracion" type="java.lang.Object"/>
                 <Column editable="false" title="Numero Documento Exoneracion" type="java.lang.Object"/>
                 <Column editable="false" title="Nombre Instituci&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha Emisi&#xf3;n Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Porcentaje Compra Exoneraci&#xf3;n" type="java.lang.Object"/>
+                <Column editable="false" title="Monto Impuesto Exoneraci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Codigo Moneda" type="java.lang.Object"/>
                 <Column editable="false" title="Tipo Cambio" type="java.lang.Object"/>
                 <Column editable="false" title="Total Serv Gravados" type="java.lang.Object"/>
                 <Column editable="false" title="Total Serv Excentos" type="java.lang.Object"/>
+                <Column editable="false" title="Total Serv Exonerados" type="java.lang.Object"/>
                 <Column editable="false" title="Total Mercancias Gravadas" type="java.lang.Object"/>
                 <Column editable="false" title="Total Mercancias Excentas" type="java.lang.Object"/>
+                <Column editable="false" title="Total Mercancias Exoneradas" type="java.lang.Object"/>
                 <Column editable="false" title="Tota Gravado" type="java.lang.Object"/>
                 <Column editable="false" title="Total Excento" type="java.lang.Object"/>
+                <Column editable="false" title="Total Exonerado" type="java.lang.Object"/>
                 <Column editable="true" title="Total Venta" type="java.lang.Object"/>
                 <Column editable="false" title="Total Descuentos" type="java.lang.Object"/>
                 <Column editable="false" title="Total Venta Neta" type="java.lang.Object"/>
                 <Column editable="false" title="Total Impuestos" type="java.lang.Object"/>
+                <Column editable="false" title="TotalIVADevuelto" type="java.lang.Object"/>
+                <Column editable="false" title="TotalOtrosCargos" type="java.lang.Object"/>
                 <Column editable="false" title="Total Comprobante" type="java.lang.Object"/>
-                <Column editable="true" title="Estatus" type="java.lang.Object"/>
+                <Column editable="false" title="Estatus" type="java.lang.Object"/>
                 <Column editable="false" title="Fecha Factura" type="java.lang.Object"/>
-                <Column editable="true" title="TipoDocumentoRef" type="java.lang.Object"/>
-                <Column editable="true" title="NumeroDocumentoRef" type="java.lang.Object"/>
-                <Column editable="true" title="FechaEmisionRef" type="java.lang.Object"/>
-                <Column editable="true" title="C&#xf3;digoRef" type="java.lang.Object"/>
-                <Column editable="true" title="RazonSocialRef" type="java.lang.Object"/>
+                <Column editable="false" title="TipoDocumentoRef" type="java.lang.Object"/>
+                <Column editable="false" title="NumeroDocumentoRef" type="java.lang.Object"/>
+                <Column editable="false" title="FechaEmisionRef" type="java.lang.Object"/>
+                <Column editable="false" title="C&#xf3;digoRef" type="java.lang.Object"/>
+                <Column editable="false" title="RazonSocialRef" type="java.lang.Object"/>
+                <Column editable="false" title="OtrosCargos-TipoDoc" type="java.lang.Object"/>
+                <Column editable="false" title="OtrosCargos-IdentidadTercero" type="java.lang.Object"/>
+                <Column editable="false" title="OtrosCargos-NombreTercero" type="java.lang.Object"/>
+                <Column editable="false" title="OtrosCargos-Detalle" type="java.lang.Object"/>
+                <Column editable="false" title="OtrosCargos-Porcentaje" type="java.lang.Object"/>
+                <Column editable="false" title="OtrosCargos-MontoCargo" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

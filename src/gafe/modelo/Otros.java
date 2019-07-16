@@ -5,12 +5,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="otros")
 public class Otros {
    
-    public Otros(String texto) {
+    public Otros(String texto, String contenido) {
         this.texto = texto;        
     }
     
      public Otros() {
-        this("");       
+        this("","");       
     }
 
     public String getTexto() {
@@ -21,10 +21,19 @@ public class Otros {
         this.texto = texto;
     }
 
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    
  
     
     private String texto;
-  
+    private String contenido;
     
     
     

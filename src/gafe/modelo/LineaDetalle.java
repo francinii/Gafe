@@ -6,24 +6,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="lineaDetalle")
 public class LineaDetalle {
 
-    public LineaDetalle(String numeroLinea, CodigoLineaDetalle codigo, String cantidad, String unidadMedida, String unidadMedidaComercial, String detalle, String precioUnitario, String montoTotal, String montoDescuento, String Naturalezadescuento, String subTotal, Impuesto impuesto, String montoTotalLinea) {
+    public LineaDetalle(String numeroLinea, String codigoPrdoucto, CodigoLineaDetalle codigo, 
+            String cantidad, String unidadMedida, String unidadMedidaComercial, String detalle, 
+            String precioUnitario, String montoTotal, Descuento descuento, String subTotal, String baseImponible,
+            Impuesto impuesto, String impuestoNeto, String montoTotalLinea) 
+    {
         this.numeroLinea = numeroLinea;
-        this.codigo = codigo;
+        this.codigoPrdoucto = codigoPrdoucto;
+        this.codigo = codigo; // este es el codigo comercial
         this.cantidad = cantidad;
         this.unidadMedida = unidadMedida;
         this.unidadMedidaComercial = unidadMedidaComercial;
         this.detalle = detalle;
         this.precioUnitario = precioUnitario;
-        this.montoDescuento = montoDescuento;
-        this.Naturalezadescuento = Naturalezadescuento;
-        this.subTotal = subTotal;
-        this.impuesto = impuesto;
         this.montoTotal = montoTotal;
+        this.descuento = descuento;
+        this.subTotal = subTotal;
+        this.baseImponible = baseImponible;
+        this.impuesto = impuesto;
+        this.impuestoNeto = impuestoNeto;
         this.montoTotalLinea = montoTotalLinea;
     }
+
     
+    
+
     public LineaDetalle(){
-        this("",new CodigoLineaDetalle(),"","","","","","","","","",new Impuesto(),"");
+        this("","",new CodigoLineaDetalle(),"","","","","","",new Descuento(),"","",new Impuesto(),"","");
     }  
 
     public String getNumeroLinea() {
@@ -58,13 +67,6 @@ public class LineaDetalle {
         return montoTotal;
     }
 
-    public String getMontoDescuento() {
-        return montoDescuento;
-    }
-
-    public String getNaturalezadescuento() {
-        return Naturalezadescuento;
-    }
 
     public String getSubTotal() {
         return subTotal;
@@ -77,6 +79,26 @@ public class LineaDetalle {
     public String getMontoTotalLinea() {
         return montoTotalLinea;
     }
+
+    public String getCodigoPrdoucto() {
+        return codigoPrdoucto;
+    }
+
+    public Descuento getDescuento() {
+        return descuento;
+    }
+
+    public String getBaseImponible() {
+        return baseImponible;
+    }
+
+    public String getImpuestoNeto() {
+        return impuestoNeto;
+    }
+    
+    
+    
+    
 
     public void setNumeroLinea(String numeroLinea) {
         this.numeroLinea = numeroLinea;
@@ -111,18 +133,20 @@ public class LineaDetalle {
         this.montoTotal = montoTotal;
     }
 
-    public void setMontoDescuento(String montoDescuento) {
-        this.montoDescuento = montoDescuento;
-    }
-
-    public void setNaturalezadescuento(String Naturalezadescuento) {
-        this.Naturalezadescuento = Naturalezadescuento;
-    }
 
     public void setSubTotal(String subTotal) {
         this.subTotal = subTotal;
     }
 
+    public void setDescuento(Descuento descuento) {
+        this.descuento = descuento;
+    }
+
+    public void setBaseImponible(String baseImponible) {
+        this.baseImponible = baseImponible;
+    }
+
+    
     public void setImpuesto(Impuesto impuesto) {
         this.impuesto = impuesto;
     }
@@ -130,9 +154,21 @@ public class LineaDetalle {
     public void setMontoTotalLinea(String montoTotalLinea) {
         this.montoTotalLinea = montoTotalLinea;
     }
+
+    public void setCodigoPrdoucto(String codigoPrdoucto) {
+        this.codigoPrdoucto = codigoPrdoucto;
+    }
+
+    public void setImpuestoNeto(String impuestoNeto) {
+        this.impuestoNeto = impuestoNeto;
+    }
+    
+    
+    
     
     
     private String numeroLinea;
+    private String codigoPrdoucto;
     private CodigoLineaDetalle codigo; // verificar Codigo que tiene Hijo
     private String cantidad;
     private String unidadMedida;
@@ -140,9 +176,10 @@ public class LineaDetalle {
     private String detalle;
     private String precioUnitario;
     private String montoTotal;
-    private String montoDescuento;
-    private String Naturalezadescuento;
+    private Descuento descuento;
     private String subTotal;
+    private String baseImponible;
     private Impuesto impuesto; // tiene hijos 
+    private String impuestoNeto;
     private String montoTotalLinea;              
 }

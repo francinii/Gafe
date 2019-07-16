@@ -224,6 +224,13 @@ public class formularioListarXml extends javax.swing.JPanel {
     }
     
     
+   
+    
+    
+    
+    
+    
+    
     private JPanel FramePrincipal;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

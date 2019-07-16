@@ -340,6 +340,11 @@ public class formularioReporte extends javax.swing.JPanel {
                 NCnegativasStateChanged(evt);
             }
         });
+        NCnegativas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NCnegativasActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
@@ -353,11 +358,11 @@ public class formularioReporte extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Categoria", "Clave", "Consecutivo", "Fecha Emision", "Condicion Venta", "Plaza Credito", "Medio Pago", "Cédula Emisor", "Nombre Emisor", "Nombre Comercial Emisor", "Telefono Emisor", "Fax Emisor", "Correo Electrónico Emisor", "Provincia Emisor", "Cantón Emisor", "Distrito Emisor", "Cédula Receptor", "Nombre Receptor", "Nombre Comercial Receptor", "Identificacion Extranjero", "Telefono Receptor", "Fax Receptor", "Correo Electrónico Receptor", "Provincia Receptor", "Cantón Receptor", "Distrito Receptor", "Numero de Linea", "Codigo del Producto", "Cantidad", "Unidad de Medida", "Unidad de Medida Comercial", "Detalle", "Precio Unitario", "Monto Total", "Monto Descuento", "Naturaleza Descuento", "SubTotal", "Monto Total Linea", "Codigo Impuesto", "Tarifa Impuesto", "Monto del Impuesto", "Monto Impuesto Exoneración", "Tipo documento Exoneracion", "Numero Documento Exoneracion", "Nombre Institución Exoneración", "Fecha Emisión Exoneración", "Porcentaje Compra Exoneración", "Codigo Moneda", "Tipo Cambio", "Total Serv Gravados", "Total Serv Excentos", "Total Mercancias Gravadas", "Total Mercancias Excentas", "Tota Gravado", "Total Excento", "Total Venta", "Total Descuentos", "Total Venta Neta", "Total Impuestos", "Total Comprobante", "Estatus", "Fecha Factura", "TipoDocumentoRef", "NumeroDocumentoRef", "FechaEmisionRef", "CódigoRef", "RazonSocialRef"
+                "Categoria", "Clave", "CodigoActividad", "Consecutivo", "Fecha Emision", "Condicion Venta", "Plaza Credito", "Medio Pago", "Cédula Emisor", "Nombre Emisor", "Nombre Comercial Emisor", "Telefono Emisor", "Fax Emisor", "Correo Electrónico Emisor", "Provincia Emisor", "Cantón Emisor", "Distrito Emisor", "Cédula Receptor", "Nombre Receptor", "Nombre Comercial Receptor", "Identificacion Extranjero", "Telefono Receptor", "Fax Receptor", "Correo Electrónico Receptor", "Provincia Receptor", "Cantón Receptor", "Distrito Receptor", "Numero de Linea", "Codigo del Producto", "Codigo Comercial", "Cantidad", "Unidad de Medida", "Unidad de Medida Comercial", "Detalle", "Precio Unitario", "Monto Total", "Monto Descuento", "Naturaleza Descuento", "SubTotal", "BaseImponible", "Monto Total Linea", "Codigo Impuesto", "CodigoTarifa", "Tarifa Impuesto", "FactorIVA", "Monto del Impuesto", "Tipo documento Exoneracion", "Numero Documento Exoneracion", "Nombre Institución Exoneración", "Fecha Emisión Exoneración", "Porcentaje Compra Exoneración", "Monto Impuesto Exoneración", "Codigo Moneda", "Tipo Cambio", "Total Serv Gravados", "Total Serv Excentos", "Total Serv Exonerados", "Total Mercancias Gravadas", "Total Mercancias Excentas", "Total Mercancias Exoneradas", "Tota Gravado", "Total Excento", "Total Exonerado", "Total Venta", "Total Descuentos", "Total Venta Neta", "Total Impuestos", "TotalIVADevuelto", "TotalOtrosCargos", "Total Comprobante", "Estatus", "Fecha Factura", "TipoDocumentoRef", "NumeroDocumentoRef", "FechaEmisionRef", "CódigoRef", "RazonSocialRef", "OtrosCargos-TipoDoc", "OtrosCargos-IdentidadTercero", "OtrosCargos-NombreTercero", "OtrosCargos-Detalle", "OtrosCargos-Porcentaje", "OtrosCargos-MontoCargo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, true, false, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -526,6 +531,10 @@ public class formularioReporte extends javax.swing.JPanel {
         System.out.println("Item NotasCredito Negativas");
         */
     }//GEN-LAST:event_NCnegativasItemStateChanged
+
+    private void NCnegativasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NCnegativasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NCnegativasActionPerformed
     
     public String formatoFecha(String fecha) {
         if (!fecha.equals("")) {
@@ -578,32 +587,32 @@ public class formularioReporte extends javax.swing.JPanel {
             tipoComprobante = "";
         }
                 
-        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 60));
+        rfs.add(RowFilter.regexFilter(emitidasRecibidas, 70));
         rfs.add(RowFilter.regexFilter(tipoComprobante, 0));       
         
         /*  Validacion del filtro para el combo box     */ 
         if (tipoFiltro.equals("Nombre Emisor")) {
             obtenerTxtFiltro = txtFiltro.getText();
             System.out.println("engtreee "+txtFiltro.getText());
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 8));  // Case sensitive
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 9));  // Case sensitive
         } else if (tipoFiltro.equals("Nombre Comercial Emisor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 9));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 10));
         } else if (tipoFiltro.equals("Cédula Emisor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 7));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 8));
         } else if (tipoFiltro.equals("Nombre Receptor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 17));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 18));
         } else if (tipoFiltro.equals("Nombre Comercial Receptor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 18));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 19));
         } else if (tipoFiltro.equals("Cédula Receptor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 16));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 17));
         } else if (tipoFiltro.equals("Numero de Factura")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 2));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 3));
         }     
         
         System.out.println("EmitidasRecibidas  "+obtenerTxtFiltro);
@@ -655,25 +664,25 @@ public class formularioReporte extends javax.swing.JPanel {
         if (tipoFiltro.equals("Nombre Emisor")) {
             obtenerTxtFiltro = txtFiltro.getText();
             System.out.println("engtreee "+txtFiltro.getText());
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 8));  // Case sensitive
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 9));  // Case sensitive
         } else if (tipoFiltro.equals("Nombre Comercial Emisor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 9));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 10));
         } else if (tipoFiltro.equals("Cédula Emisor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 7));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 8));
         } else if (tipoFiltro.equals("Nombre Receptor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 17));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 18));
         } else if (tipoFiltro.equals("Nombre Comercial Receptor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 18));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 19));
         } else if (tipoFiltro.equals("Cédula Receptor")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 16));
+            rfs.add(2,RowFilter.regexFilter("(?i)" +obtenerTxtFiltro, 17));
         } else if (tipoFiltro.equals("Numero de Factura")) {
             obtenerTxtFiltro = txtFiltro.getText();
-            rfs.add(2, RowFilter.regexFilter("(?i)" + obtenerTxtFiltro, 2));
+            rfs.add(2, RowFilter.regexFilter("(?i)" + obtenerTxtFiltro, 3));
         }
 
         System.out.println("EmitidasRecibidas  " + obtenerTxtFiltro);
@@ -685,8 +694,8 @@ public class formularioReporte extends javax.swing.JPanel {
             
            
             
-            rfs.add(RowFilter.dateFilter(ComparisonType.AFTER, desde, 3));
-            rfs.add(RowFilter.dateFilter(ComparisonType.BEFORE, hasta, 3));
+            rfs.add(RowFilter.dateFilter(ComparisonType.AFTER, desde, 4));
+            rfs.add(RowFilter.dateFilter(ComparisonType.BEFORE, hasta, 4));
             
             
 

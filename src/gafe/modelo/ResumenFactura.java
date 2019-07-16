@@ -5,33 +5,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="resumenFactura")
 public class ResumenFactura {
 
-    public ResumenFactura(String codigoMoneda, String tipoCambio, String totalServiciosGravados, String totalServiciosExcentos, String totalMercanciasGravadas, String totalMercanciasExcentas, String totalGravado, String totalExcento, String totalVenta, String totalDescuentos, String totalVentaNeta, String totalImpuesto, String totalComprobante) {
+    public ResumenFactura(CodigoTipoMoneda codigoMoneda, String totalServiciosGravados, String totalServiciosExcentos, String totalServiciosExonerados, String totalMercanciasGravadas, String totalMercanciasExcentas, String totalMercaderiaExonerada, String totalGravado, String totalExcento, String totalExonerado, String totalVenta, String totalDescuentos, String totalVentaNeta, String totalImpuesto, String totaIVAdevuelto, String totalOtrosCargos, String totalComprobante) {
         this.codigoMoneda = codigoMoneda;
-        this.tipoCambio = tipoCambio;
         this.totalServiciosGravados = totalServiciosGravados;
         this.totalServiciosExcentos = totalServiciosExcentos;
+        this.totalServiciosExonerados = totalServiciosExonerados;
         this.totalMercanciasGravadas = totalMercanciasGravadas;
         this.totalMercanciasExcentas = totalMercanciasExcentas;
+        this.totalMercaderiaExonerada = totalMercaderiaExonerada;
         this.totalGravado = totalGravado;
         this.totalExcento = totalExcento;
+        this.totalExonerado = totalExonerado;
         this.totalVenta = totalVenta;
         this.totalDescuentos = totalDescuentos;
         this.totalVentaNeta = totalVentaNeta;
         this.totalImpuesto = totalImpuesto;
+        this.totaIVAdevuelto = totaIVAdevuelto;
+        this.totalOtrosCargos = totalOtrosCargos;
         this.totalComprobante = totalComprobante;
     }
+
+
     
         public ResumenFactura() {
-            this("","","","","","","","","","","","","");
+            this(new CodigoTipoMoneda(),"","","","","","","","","","","","","","","","");
         }
 
-    public String getCodigoMoneda() {
-        return codigoMoneda;
-    }
-
-    public String getTipoCambio() {
-        return tipoCambio;
-    }
 
     public String getTotalServiciosGravados() {
         return totalServiciosGravados;
@@ -77,13 +76,15 @@ public class ResumenFactura {
         return totalComprobante;
     }
 
-    public void setCodigoMoneda(String codigoMoneda) {
+    public CodigoTipoMoneda getCodigoMoneda() {
+        return codigoMoneda;
+    }
+
+    public void setCodigoMoneda(CodigoTipoMoneda codigoMoneda) {
         this.codigoMoneda = codigoMoneda;
     }
 
-    public void setTipoCambio(String tipoCambio) {
-        this.tipoCambio = tipoCambio;
-    }
+ 
 
     public void setTotalServiciosGravados(String totalServiciosGravados) {
         this.totalServiciosGravados = totalServiciosGravados;
@@ -128,19 +129,68 @@ public class ResumenFactura {
     public void setTotalComprobante(String totalComprobante) {
         this.totalComprobante = totalComprobante;
     }
+
+    public String getTotalServiciosExonerados() {
+        return totalServiciosExonerados;
+    }
+
+    public void setTotalServiciosExonerados(String totalServiciosExonerados) {
+        this.totalServiciosExonerados = totalServiciosExonerados;
+    }
+
+    public String getTotalMercaderiaExonerada() {
+        return totalMercaderiaExonerada;
+    }
+
+    public void setTotalMercaderiaExonerada(String totalMercaderiaExonerada) {
+        this.totalMercaderiaExonerada = totalMercaderiaExonerada;
+    }
+
+    public String getTotalExonerado() {
+        return totalExonerado;
+    }
+
+    public void setTotalExonerado(String totalExonerado) {
+        this.totalExonerado = totalExonerado;
+    }
+
+    public String getTotaIVAdevuelto() {
+        return totaIVAdevuelto;
+    }
+
+    public void setTotaIVAdevuelto(String totaIVAdevuelto) {
+        this.totaIVAdevuelto = totaIVAdevuelto;
+    }
+
+    public String getTotalOtrosCargos() {
+        return totalOtrosCargos;
+    }
+
+    public void setTotalOtrosCargos(String totalOtrosCargos) {
+        this.totalOtrosCargos = totalOtrosCargos;
+    }
     
-    private String codigoMoneda;
-    private String tipoCambio;
+    
+    
+    private CodigoTipoMoneda codigoMoneda;
     private String totalServiciosGravados;
     private String totalServiciosExcentos;
+    private String totalServiciosExonerados;
+    
     private String totalMercanciasGravadas;
     private String totalMercanciasExcentas;
+    private String totalMercaderiaExonerada;
+    
     private String totalGravado;
     private String totalExcento;
+    private String totalExonerado;
     private String totalVenta;
     private String totalDescuentos;
     private String totalVentaNeta;
     private String totalImpuesto;
+    private String totaIVAdevuelto;
+    private String totalOtrosCargos;
     private String totalComprobante;
+
     
 }
