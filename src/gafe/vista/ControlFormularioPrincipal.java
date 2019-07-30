@@ -1012,6 +1012,8 @@ public class ControlFormularioPrincipal {
         String fechaEmision = "";
         String emitidaRecibida = "";
         String fechaReporte = "";
+        String codigoMoneda;
+        
         
         int numeroColumnasTabla = 83;
         Object[] columna = new Object[numeroColumnasTabla];
@@ -1030,6 +1032,11 @@ public class ControlFormularioPrincipal {
                 cedulaReceptor = listFacturas.get(i).getReceptor().getIdenticacion().getNumeroIdentificacion();               
                 Date formFecha = formatoFecha(listFacturas.get(i).getFechaEmision());
                 fechaReporte = formatoFechasReporte(listFacturas.get(i).getFechaEmision()); // esta fecha es para los reportes.
+                codigoMoneda = listFacturas.get(i).getResumenFactura().getCodigoMoneda().getCodigoMoneda();
+                
+                
+                
+                
                 
                 /*Validacion para el status si es recibida o emitida*/
                 if (cedulaEmisor.equals(RecursosCompartidos.getCedulaJuridicaProyecto())) {
@@ -1128,6 +1135,7 @@ public class ControlFormularioPrincipal {
                     columna[17] = cedulaReceptor;
                     columna[18] = nombreReceptor;
                     columna[19] = nombreComercialReceptor;   
+                    columna[52] = codigoMoneda;
                     columna[70] = emitidaRecibida;
                     columna[71] = fechaReporte;
                     
@@ -1186,7 +1194,7 @@ public class ControlFormularioPrincipal {
                     columna[49] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getFecheEmision();
                     columna[50] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getPorecentajeExoneracion();
                     columna[51] = listFacturas.get(i).getDetalleServicio().getListaLineaDetalle().get(j).getImpuesto().getExoneracion().getMontoExoneracion();                  
-                    columna[52] = listFacturas.get(i).getResumenFactura().getCodigoMoneda().getCodigoMoneda();
+                    
                     columna[53] = listFacturas.get(i).getResumenFactura().getCodigoMoneda().getTipoCambio();
                     
                     

@@ -63,7 +63,7 @@ public class LectorFacturasXML {
             String tipoDocumento = doc.getRootElement().getName();
 
             if (tipoDocumento.equals("FacturaElectronica") || tipoDocumento.equals("NotaCreditoElectronica") || tipoDocumento.equals("NotaDebitoElectronica")
-                    || tipoDocumento.equals("TiqueteElectronico")) {
+                    || tipoDocumento.equals("TiqueteElectronico") || tipoDocumento.equals("FacturaElectronicaCompra") || tipoDocumento.equals("FacturaElectronicaExportacion") ) {
                 //Obtener la raiz
                 Element nodoPadre = doc.getRootElement();
                 String namespace = nodoPadre.getNamespace().getURI();

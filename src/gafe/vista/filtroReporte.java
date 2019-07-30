@@ -18,7 +18,7 @@ public class filtroReporte extends javax.swing.JFrame {
         setIconImage(icon);
         this.setLocationRelativeTo(null); // centrar la pantalla.
         
-        jCheckBox5.setVisible(false); // este es para que la fecha con la que se realizan los reportes no aparezca.
+        //jCheckBox5.setVisible(false); // este es para que la fecha con la que se realizan los reportes no aparezca.
     }
 
     @SuppressWarnings("unchecked")
@@ -1425,49 +1425,49 @@ public class filtroReporte extends javax.swing.JFrame {
                 jCheckBox3.setSelected(estado);
                 break;
             case 4:
-                jCheckBox5.setSelected(estado);
+                jCheckBox4.setSelected(estado);
                 break;
             case 5:
-                jCheckBox6.setSelected(estado);
+                jCheckBox5.setSelected(estado);
                 break;
             case 6:
-                jCheckBox7.setSelected(estado);
+                jCheckBox6.setSelected(estado);
                 break;
             case 7:
-                jCheckBox8.setSelected(estado);
+                jCheckBox7.setSelected(estado);
                 break;
             case 8:
-                jCheckBox9.setSelected(estado);
+                jCheckBox8.setSelected(estado);
                 break;
             case 9:
-                jCheckBox10.setSelected(estado);
+                jCheckBox9.setSelected(estado);
                 break;
             case 10:
-                jCheckBox11.setSelected(estado);
+                jCheckBox10.setSelected(estado);
                 break;
             case 11:
-                jCheckBox12.setSelected(estado);
+                jCheckBox11.setSelected(estado);
                 break;
             case 12:
-                jCheckBox13.setSelected(estado);
+                jCheckBox12.setSelected(estado);
                 break;
             case 13:
-                jCheckBox14.setSelected(estado);
+                jCheckBox13.setSelected(estado);
                 break;
             case 14:
-                jCheckBox15.setSelected(estado);
+                jCheckBox14.setSelected(estado);
                 break;
             case 15:
-                jCheckBox16.setSelected(estado);
+                jCheckBox15.setSelected(estado);
                 break;
             case 16:
-                jCheckBox17.setSelected(estado);
+                jCheckBox16.setSelected(estado);
                 break;
             case 17:
-                jCheckBox18.setSelected(estado);
+                jCheckBox17.setSelected(estado);
                 break;
             case 18:
-                jCheckBox19.setSelected(estado);
+                jCheckBox18.setSelected(estado);
                 break;
             case 19:
                 jCheckBox19.setSelected(estado);
